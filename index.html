@@ -1132,7 +1132,7 @@
           
             <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统no的安全性，Linux系统对于不同的用户访问同一文件夹的权限做出了规定</p>
 <p>先前我们使用<code>ls -al</code>查看了文件属性，我们现在来看看这些开头的字符到底是什么意思吧</p>
-
+<img src="/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.png" class title="文件属性">
 
 <p>我们将每一行分为六组来看</p>
 <blockquote>
@@ -1220,7 +1220,7 @@
 </ul>
 </li>
 </ul>
-<h2 id><a href="#" class="headerlink" title></a></h2>
+
           
         
       
@@ -1377,9 +1377,9 @@
 <p>以下是对这些目录的解释</p>
 <ul>
 <li><strong>/bin:</strong>  bin是Binary的缩写，这个目录存放着最经常使用的命令</li>
-<li><strong>/boot:</strong>  这里存放的是启动Linux的啥时候使用的一些核心文件（不要动）</li>
+<li><strong>/boot:</strong>  这里存放的是启动Linux的时候使用的一些核心文件（不要动）</li>
 <li><strong>/dev:</strong>  dev是Device的缩写，存放的是Linux的外设设备，</li>
-<li><strong>/etc:</strong>  <strong>这个目录是用来存放所有的系统no管理所需要的配置文件和子目录</strong></li>
+<li><strong>/etc:</strong>  <strong>这个目录是用来存放所有的系统管理所需要的配置文件和子目录</strong></li>
 <li><strong>/home:</strong>  <strong>用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是使用用户的账号来命名的</strong></li>
 <li><strong>/lib:</strong>  这里存放着系统最基本的动态连接共享库（不要动）</li>
 <li><strong>/lost+found:</strong>  这个目录一般是空的，但是当服务器意外关闭的时候，里面会存在一些错误文件（不要动）</li>
@@ -1387,7 +1387,7 @@
 <li><strong>/mnt:</strong>  这个目录是给用户来临时挂载别的文件系统的（后面会把本地文件挂载在这个目录下）</li>
 <li><strong>/opt:</strong>  <strong>给主机额外安装软件所在的目录</strong></li>
 <li><strong>/proc:</strong>  这是一个虚拟的目录，他是系统内存的映射，我们可以通过直接访问这个目录来获得系统信息（不用管）</li>
-<li><strong>/root（也就是  ~ ）:</strong>  该目录系统管理员目录，也称作超级权限者的用户主目录</li>
+<li><strong>/root（也就是  ~ ）:</strong>  该目录是系统管理员目录，也称作超级权限者的用户主目录</li>
 <li><strong>/sbin:</strong>  s就是super的意思，这里存放的是系统管理员使用的系统管理程序</li>
 <li><strong>/srv:</strong>  该目录用来存放一些守护进程启动之后需要提取的数据</li>
 <li><strong>/sys:</strong>  这是Linux2.6内核的一个很大的改变，该目录下安装了2.6内核中新出现的一个文件系统sysfs</li>
@@ -1438,7 +1438,7 @@
 <p>-u 只替换已经更新过的文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv 源文件 目标文件夹</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">重命名dir1为dir2</span></span><br><span class="line">mv dir1 dir2</span><br></pre></td></tr></table></figure>
 
-<h2 id><a href="#" class="headerlink" title></a></h2>
+
           
         
       
