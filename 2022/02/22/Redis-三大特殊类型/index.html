@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="三种特殊类型geospatialhyperloglogbitmaps">
+<meta name="description" content="三种特殊类型geospatial该数据类型是用来存储地理空间的 附近的人，发送定位，分享实时位置，打车的时候的距离计算都可以通过这个实现 我们这里使用这几个城市的经纬度作为测试    城市 经度 维度    相城区 120.64239 31.36889   吴江区 120.638317 31.159815   太仓 121.10891 31.4497   常熟市 120.75225 31.6537">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis-三大特殊类型">
 <meta property="og:url" content="http://li-zhi.net.cn/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="芝麻的blog">
-<meta property="og:description" content="三种特殊类型geospatialhyperloglogbitmaps">
+<meta property="og:description" content="三种特殊类型geospatial该数据类型是用来存储地理空间的 附近的人，发送定位，分享实时位置，打车的时候的距离计算都可以通过这个实现 我们这里使用这几个城市的经纬度作为测试    城市 经度 维度    相城区 120.64239 31.36889   吴江区 120.638317 31.159815   太仓 121.10891 31.4497   常熟市 120.75225 31.6537">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-02-22T08:41:55.000Z">
-<meta property="article:modified_time" content="2022-02-22T08:45:28.543Z">
+<meta property="article:modified_time" content="2022-02-23T07:29:18.482Z">
 <meta property="article:author" content="李智">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -397,7 +397,79 @@
       
 
       
-        <h2 id="三种特殊类型"><a href="#三种特殊类型" class="headerlink" title="三种特殊类型"></a>三种特殊类型</h2><h3 id="geospatial"><a href="#geospatial" class="headerlink" title="geospatial"></a>geospatial</h3><h3 id="hyperloglog"><a href="#hyperloglog" class="headerlink" title="hyperloglog"></a>hyperloglog</h3><h3 id="bitmaps"><a href="#bitmaps" class="headerlink" title="bitmaps"></a>bitmaps</h3>
+        <h2 id="三种特殊类型"><a href="#三种特殊类型" class="headerlink" title="三种特殊类型"></a>三种特殊类型</h2><h3 id="geospatial"><a href="#geospatial" class="headerlink" title="geospatial"></a>geospatial</h3><p>该数据类型是用来存储<strong>地理空间</strong>的</p>
+<p>附近的人，发送定位，分享实时位置，打车的时候的距离计算都可以通过这个实现</p>
+<p>我们这里使用这几个城市的经纬度作为测试</p>
+<table>
+<thead>
+<tr>
+<th align="center">城市</th>
+<th align="center">经度</th>
+<th align="center">维度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">相城区</td>
+<td align="center">120.64239</td>
+<td align="center">31.36889</td>
+</tr>
+<tr>
+<td align="center">吴江区</td>
+<td align="center">120.638317</td>
+<td align="center">31.159815</td>
+</tr>
+<tr>
+<td align="center">太仓</td>
+<td align="center">121.10891</td>
+<td align="center">31.4497</td>
+</tr>
+<tr>
+<td align="center">常熟市</td>
+<td align="center">120.75225</td>
+<td align="center">31.65374</td>
+</tr>
+<tr>
+<td align="center">昆山市</td>
+<td align="center">120.98074</td>
+<td align="center">31.38464</td>
+</tr>
+</tbody></table>
+<p>这里有六个基本命令，我们来一个个看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># geoadd key longitude latitude member [longitude latitude member..]</span></span><br><span class="line"><span class="comment"># 增加一个经纬度的坐标</span></span><br><span class="line"><span class="comment"># 两极无法添加，一般我们通过java程序一次性导入</span></span><br><span class="line">127.0.0.1:6379&gt; geoadd Suzhou 120.64239 31.36889 XiangChengDistrict 120.638317 31.159815 WuJiangDistrict 121.10891 31.4497 TaiCang 120.75225 31.65374 ChangShuCity 120.98074 31.38464 KunShanCity</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># geodist key member1 member2 [unit]</span></span><br><span class="line"><span class="comment"># 获取两地之间的距离单位为米</span></span><br><span class="line">127.0.0.1:6379&gt; GEODIST Suzhou TaiCang WuJiangDistrict</span><br><span class="line"><span class="string">&quot;55133.1652&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; GEODIST Suzhou TaiCang KunShanCity km</span><br><span class="line"><span class="string">&quot;14.1556&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># geohash key member [member..]</span></span><br><span class="line"><span class="comment"># 获取member的二维的空间经纬度数据编码</span></span><br><span class="line"><span class="comment"># 这个可以csdn搜一下具体的算法实现</span></span><br><span class="line">127.0.0.1:6379&gt; geohash Suzhou TaiCang</span><br><span class="line">1) <span class="string">&quot;wtw4gvhzf10&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># geopos key member [member..]</span></span><br><span class="line"><span class="comment"># 查看member的经纬度</span></span><br><span class="line">127.0.0.1:6379&gt; geopos Suzhou TaiCang XiangChengDistrict</span><br><span class="line">1) 1) <span class="string">&quot;121.10891193151474&quot;</span></span><br><span class="line">   2) <span class="string">&quot;31.449701065685858&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;120.64238995313644&quot;</span></span><br><span class="line">   2) <span class="string">&quot;31.368889085683811&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># georadius key longitude latitude radius m|km|ft|mi [WITHSCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC| ESC]</span></span><br><span class="line"><span class="comment"># mi是英里，ft是英尺</span></span><br><span class="line"><span class="comment"># 以给定的经纬度为中心，找到某一半径内的元素</span></span><br><span class="line"><span class="comment"># WITHCOORD表示显示坐标</span></span><br><span class="line"><span class="comment"># WITHDIST表示显示距离该点的位置</span></span><br><span class="line"><span class="comment"># WITHHASH表示显示该地址的hash值</span></span><br><span class="line"><span class="comment"># COUNT count表示显示几个</span></span><br><span class="line"><span class="comment"># ASC| ESC 表示正序还是倒序</span></span><br><span class="line">127.0.0.1:6379&gt; georadius Suzhou 120.98080 31.28460 30 km withdist</span><br><span class="line">1) 1) <span class="string">&quot;KunShanCity&quot;</span></span><br><span class="line">   2) <span class="string">&quot;11.1271&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;TaiCang&quot;</span></span><br><span class="line">   2) <span class="string">&quot;22.0285&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># georadiusbymember key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC]</span></span><br><span class="line"><span class="comment"># 以member为中心radius为半径，找到在此范围中的元素</span></span><br><span class="line">127.0.0.1:6379&gt; georadiusbymember Suzhou TaiCang 30 km withcoord withdist withhash asc</span><br><span class="line">1) 1) <span class="string">&quot;TaiCang&quot;</span></span><br><span class="line">   2) <span class="string">&quot;0.0000&quot;</span></span><br><span class="line">   3) (<span class="built_in">integer</span>) 4054798020485654</span><br><span class="line">   4) 1) <span class="string">&quot;121.10891193151474&quot;</span></span><br><span class="line">      2) <span class="string">&quot;31.449701065685858&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;KunShanCity&quot;</span></span><br><span class="line">   2) <span class="string">&quot;14.1556&quot;</span></span><br><span class="line">   3) (<span class="built_in">integer</span>) 4054794184325796</span><br><span class="line">   4) 1) <span class="string">&quot;120.98073989152908&quot;</span></span><br><span class="line">      2) <span class="string">&quot;31.38463984296795&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>geo的底层其实是Zset，我们可以使用Zset的命令去操作geo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrem Suzhou TaiCang</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zrange Suzhou 0 -1</span><br><span class="line">1) <span class="string">&quot;WuJiangDistrict&quot;</span></span><br><span class="line">2) <span class="string">&quot;XiangChengDistrict&quot;</span></span><br><span class="line">3) <span class="string">&quot;ChangShuCity&quot;</span></span><br><span class="line">4) <span class="string">&quot;KunShanCity&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="hyperloglog"><a href="#Hyperloglog" class="headerlink" title="Hyperloglog"></a>Hyperloglog</h3><blockquote>
+<p>先来了解一下基数是什么？</p>
+</blockquote>
+<p>基数其实就是一个集合中<strong>不重复的元素个数</strong>，其实就是一个集合去重后的集合长度</p>
+<p>业务场景：</p>
+<p>网站的访问量（一个人访问一个网站多次，也算一个人）</p>
+<p>传统使用set集合的重复无序的特性，可以保存用户的id，以set集合的长度作为标准。但是，专门使用一个set来保存用户id未免优点奢侈，如果id是分布式的会很复杂，导致set集合很庞大，所以需要一个方法来解决这个问题。</p>
+<p>Hyperloglog就是用来解决此问题的算法。</p>
+<p>优点：占用很小的内存空间存放2^64个数据，也只占用12kb</p>
+<p>瑕疵：会有0.81%的错误率</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pfadd key member [member..]</span></span><br><span class="line">127.0.0.1:6379&gt; pfadd <span class="built_in">set</span> a b c d e f g h i j k l</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># pfcount key [key..]</span></span><br><span class="line"><span class="comment"># 返回基数</span></span><br><span class="line">127.0.0.1:6379&gt; pfcount <span class="built_in">set</span></span><br><span class="line">(<span class="built_in">integer</span>) 12</span><br><span class="line">127.0.0.1:6379&gt; pfadd set2 j k l m n</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; pfcount <span class="built_in">set</span> set2</span><br><span class="line">(<span class="built_in">integer</span>) 14</span><br><span class="line"></span><br><span class="line"><span class="comment"># pfmerge destkey sourcekey [sourcekey..]</span></span><br><span class="line"><span class="comment"># 将sourcekey合并到destkey</span></span><br><span class="line">127.0.0.1:6379&gt; pfmerge <span class="built_in">set</span> set2</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment"># 探究底层：</span></span><br><span class="line"><span class="comment"># 我们获取一下此数据的数据类型，可以看到实际上存储的是string</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">type</span> <span class="built_in">set</span></span><br><span class="line">string</span><br><span class="line">127.0.0.1:6379&gt; get <span class="built_in">set</span></span><br><span class="line"><span class="string">&quot;HYLL\x01\x00\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x00Fm\x80I\xe8\x80@\xc4\x84K\\\x80D&lt;\x848\x80B=\x80K\x83\x80B\xed\x84A\xfc\x8cG\x8e\x80Bm\x80BZ&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h3><p>位存储，一般使用两种状态的区分</p>
+<p>比如统计中国的男子和女子的数目</p>
+<p>14亿个二进制数，0代表女子，1代表男</p>
+<p>0 0 1 1 1 0 1 …</p>
+<p>登录，头像是亮着的，未登录，头像是灰色的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setbit key offset value</span></span><br><span class="line"><span class="comment"># 设置offset位是value</span></span><br><span class="line">127.0.0.1:6379&gt; setbit sign 0 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 1 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 2 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 3 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"><span class="comment"># 中国sign可以代表</span></span><br><span class="line"><span class="comment"># 星期日未打卡</span></span><br><span class="line"><span class="comment"># 星期一已打卡</span></span><br><span class="line"><span class="comment"># 星期二未打卡</span></span><br><span class="line"><span class="comment"># 星期三已打卡</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># getbit key offset</span></span><br><span class="line"><span class="comment"># 查看该天是否打卡</span></span><br><span class="line">127.0.0.1:6379&gt; getbit sign 3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># bitcount key [start end]</span></span><br><span class="line"><span class="comment"># 查看sign中为1的个数</span></span><br><span class="line">127.0.0.1:6379&gt; BITCOUNT sign</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
       
     </div>
     
@@ -520,7 +592,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -575,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">三种特殊类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#geospatial"><span class="nav-number">1.1.</span> <span class="nav-text">geospatial</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperloglog"><span class="nav-number">1.2.</span> <span class="nav-text">hyperloglog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitmaps"><span class="nav-number">1.3.</span> <span class="nav-text">bitmaps</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">三种特殊类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#geospatial"><span class="nav-number">1.1.</span> <span class="nav-text">geospatial</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hyperloglog"><span class="nav-number">1.2.</span> <span class="nav-text">Hyperloglog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bitmap"><span class="nav-number">1.3.</span> <span class="nav-text">Bitmap</span></a></li></ol></li></ol></div>
             
 
           </div>

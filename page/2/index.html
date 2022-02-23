@@ -295,6 +295,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="url">Redis-五大基础数据类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-21T10:00:54+08:00">
+                2022-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p>redis默认有16个数据库Redis的瓶颈是根据机器的内存和网络带宽。</p>
+<h3 id="为什么单线程还可以这么快"><a href="#为什么单线程还可以这么快？" class="headerlink" title="为什么单线程还可以这么快？"></a>为什么单线程还可以这么快？</h3><p>redis是c语言写的，官网提供的性能数据</p>
+<p>1s  11万读取</p>
+<p>1s    8万写入</p>
+<p>误区：</p>
+<ol>
+<li>高性能的服务器一定是多线程的</li>
+<li>多线程一定比单线程效率高</li>
+</ol>
+<p>CPU—&gt;内存—&gt;硬盘</p>
+<p>核心：redis将所有的数据都放入内存中，所以用单线程去操作效率是很高的，多线程（CPU上下文会切换，十分耗时），对于内存系统，没有上下文切换效率会很高，多次读写都是在一个CPU上的，没有线程调度的耗时</p>
+<h2 id="五大数据类型"><a href="#五大数据类型" class="headerlink" title="五大数据类型"></a>五大数据类型</h2><h3 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换数据库</span></span><br><span class="line">select index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前数据库的数据数</span></span><br><span class="line">dbsize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前所有符合pattern的key</span></span><br><span class="line">keys pattern</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否存在该key，存在则返回1，不存在则返回0</span></span><br><span class="line">exists key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除key</span></span><br><span class="line">move key</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置kv</span></span><br><span class="line"><span class="built_in">set</span> key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看key存储的值</span></span><br><span class="line">get key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看类型</span></span><br><span class="line"><span class="built_in">type</span> key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置过期时间为secondss</span></span><br><span class="line">expire key seconds</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看剩余时间</span></span><br><span class="line">ttl key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空当前数据库</span></span><br><span class="line">flushdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空所有的数据库的内容</span></span><br><span class="line">flushall</span><br></pre></td></tr></table></figure>
+
+<h3 id="string"><a href="#String" class="headerlink" title="String"></a>String</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 追加key存储的value字符串</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果key不存在，则该命令相当于<span class="built_in">set</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> append key value</span></span><br><span class="line">append key &quot;appendstring&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看key存储的字符串的长度</span></span><br><span class="line">strlen key</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 自增1，自减1的操作</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> incr key</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> decr key</span></span><br><span class="line">127.0.0.1:6379&gt; set views 1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; incr views</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; incr views</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; decr views</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; decr views</span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 一次性加或者减指定数字的操作</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> incrby key increment</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> decrby key decrement</span></span><br><span class="line">127.0.0.1:6379&gt; incrby views 10</span><br><span class="line">(integer) 11</span><br><span class="line">127.0.0.1:6379&gt; decrby views 10</span><br><span class="line">(integer) 1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取一个范围内的字符串，即substring==&gt;[start,end)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意这里的getrange是闭区间，[start,end]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> getrange key start end</span></span><br><span class="line">127.0.0.1:6379&gt; set name zhima</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; getrange name 0 3</span><br><span class="line">&quot;zhim&quot;</span><br><span class="line">127.0.0.1:6379&gt; getrange name 0 -1</span><br><span class="line">&quot;zhima&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 替换字符串</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> setrange key offset value</span></span><br><span class="line">127.0.0.1:6379&gt; set key randomstring</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; setrange key 3 xxx</span><br><span class="line">(integer) 12</span><br><span class="line">127.0.0.1:6379&gt; get key</span><br><span class="line">&quot;ranxxxstring&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> setex (<span class="built_in">set</span> with expire) 设置过期时间</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置该字段过期时间为30s</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> setex key seconds value</span></span><br><span class="line">setex key 30 &quot;expire&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果不存在则设置值，在分布式锁中经常使用</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> setnx (<span class="built_in">set</span> <span class="keyword">if</span> not exist)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> setnx key value</span></span><br><span class="line">127.0.0.1:6379&gt; set key1 value1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get key1</span><br><span class="line">&quot;value1&quot;</span><br><span class="line">127.0.0.1:6379&gt; setnx key1 &quot;setnx&quot;</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; set key1 &quot;setnx&quot;</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get key1</span><br><span class="line">&quot;setnx&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 批量获取和设置值</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> mget   mset msetnx</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mset key value [key value..]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> mget key [key..]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> msetex key value [key value..]</span></span><br><span class="line">127.0.0.1:6379&gt; mset k1 v1 k2 v2 k3 v3</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line">&quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;k2&quot;</span><br><span class="line">2) &quot;k1&quot;</span><br><span class="line">3) &quot;k3&quot;</span><br><span class="line">127.0.0.1:6379&gt; mget k1 k2</span><br><span class="line">1) &quot;v1&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; msetnx k1 modifiedv1 k4 v4 # 该操作是一个原子性的操作！</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; get k4</span><br><span class="line">(nil)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> del key</span></span><br><span class="line">127.0.0.1:6379&gt; set k1 v1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;k1&quot;</span><br><span class="line">127.0.0.1:6379&gt; del k1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">(empty list or set)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 对象</span></span><br><span class="line">set user:1&#123;name:zhangsan,age:3&#125; # 设置一个user:1对象 值为json字符串来保存</span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里的key是一个巧妙的属性：&#123;className&#125;:&#123;id&#125;:&#123;field&#125;，在redis中是可以的</span></span><br><span class="line">127.0.0.1:6379&gt; mset user:1:name zhima user:1:age 19</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) &quot;user:1:age&quot;</span><br><span class="line">2) &quot;user:1:name&quot;</span><br><span class="line">127.0.0.1:6379&gt; mget user:1:name user:1:age</span><br><span class="line">1) &quot;zhima&quot;</span><br><span class="line">2) &quot;19&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 组合命令</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> getset先取得当前的值并返回，然后修改当前的值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> getset key value</span></span><br><span class="line">127.0.0.1:6379&gt; getset db redis</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; get db</span><br><span class="line">&quot;redis&quot;</span><br><span class="line">127.0.0.1:6379&gt; getset db modified</span><br><span class="line">&quot;redis&quot;</span><br><span class="line">127.0.0.1:6379&gt; get db</span><br><span class="line">&quot;modified&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="list"><a href="#List" class="headerlink" title="List"></a>List</h3><p>可以给其设置一个使用规则，则可以将其实现栈或者队列的功能</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置和取值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lrange key start stop [start,stop]</span></span><br><span class="line">127.0.0.1:6379&gt; lpush list1 v1 v2 v3</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/list%E7%B1%BB%E5%9E%8B%E7%9A%84lpush%E6%93%8D%E4%BD%9C.png" class title="list类型的lpush操作">
+
+<p>分析可知这里的lpush是头插入，也就是left插入，那与之对应的肯定还有个尾插入，即right插入，但是啊只有LRANGE操作来取得集合里的数据，没有RRANGE操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; rpush list v1 v2 v3</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v1&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除头部的值并返回</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lpop key</span></span><br><span class="line">127.0.0.1:6379&gt; lpop list</span><br><span class="line">&quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v2&quot;</span><br><span class="line">2) &quot;v3&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除尾部的值并返回</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpop key</span></span><br><span class="line">127.0.0.1:6379&gt; rpop list</span><br><span class="line">&quot;v3&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v2&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取索引处的元素</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lindex key index</span></span><br><span class="line">127.0.0.1:6379&gt; lpush list v1 v2 v3</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lindex list 0</span><br><span class="line">&quot;v3&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取集合长度</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> llen key</span> </span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; llen list</span><br><span class="line">(integer) 3</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 移除指定个数的匹配的值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lrem key count value</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v3&quot;</span><br><span class="line">3) &quot;v2&quot;</span><br><span class="line">4) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrem list 1 v1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v3&quot;</span><br><span class="line">3) &quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrem list 2 v3</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v2&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 截取指定位置的值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ltrim key start stop</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">5) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; ltrim list 0 2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将集合尾部元素移除，并在另一个集合头部加入一个元素</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpoplpush <span class="built_in">source</span> destination</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">5) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; rpoplpush list otherlist</span><br><span class="line">&quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange otherlist 0 -1</span><br><span class="line">1) &quot;v1&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改指定索引处元素的值</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lset list 0 modified</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;modified&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> lpush key value [value...]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当该集合不存在的时候会自动创建</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lset key index value</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当该集合不存在的时候会报错</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在指定值的前面|后面插入值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> linsert key BEFORE|AFTER pivot value</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">5) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; linsert list before v2 brforev2</span><br><span class="line">(integer) 6</span><br><span class="line">127.0.0.1:6379&gt; linsert list after v4 afterv4</span><br><span class="line">(integer) 7</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;afterv4&quot;</span><br><span class="line">4) &quot;v3&quot;</span><br><span class="line">5) &quot;brforev2&quot;</span><br><span class="line">6) &quot;v2&quot;</span><br><span class="line">7) &quot;v1&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>该List实质上是使用链表实现的</p>
+<p>栈：出栈（Lpop）入栈（Lpush）==  出栈（Rpop） 入栈（Rpush）</p>
+<p>队列：出队（Lpop）入队（Rpush）== 出栈（Rpop） 入栈（Lpush） </p>
+<h3 id="set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>该集合的特点是：<strong>无序不重复</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加一个元素</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> sadd key member [member..]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看所有的成员</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> smembers key</span></span><br><span class="line">127.0.0.1:6379&gt; sadd set a b c a</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;c&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 判断是否包含某个元素</span></span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;c&quot;</span><br><span class="line">127.0.0.1:6379&gt; sismember set c</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember set d</span><br><span class="line">(integer) 0</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看集合的长度</span></span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;c&quot;</span><br><span class="line">127.0.0.1:6379&gt; scard set</span><br><span class="line">(integer) 3</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除某个元素</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> srem key member [member..]</span></span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;c&quot;</span><br><span class="line">127.0.0.1:6379&gt; srem set a c</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 随机返回指定个数的元素</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> srandmember key count</span></span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;b&quot;</span><br><span class="line">4) &quot;c&quot;</span><br><span class="line">5) &quot;e&quot;</span><br><span class="line">127.0.0.1:6379&gt; srandmember set 3</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;e&quot;</span><br><span class="line">3) &quot;c&quot;</span><br><span class="line">127.0.0.1:6379&gt; srandmember set 3</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;b&quot;</span><br><span class="line">3) &quot;a</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 随机删除指定个数的元素，不写count默认为1</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> spop key [count]</span> </span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;b&quot;</span><br><span class="line">4) &quot;c&quot;</span><br><span class="line">5) &quot;e&quot;</span><br><span class="line">127.0.0.1:6379&gt; spop set 3</span><br><span class="line">1) &quot;c&quot;</span><br><span class="line">2) &quot;e&quot;</span><br><span class="line">3) &quot;a&quot;</span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;d&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将一个指定的值，移到另一个集合中</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> smove <span class="built_in">source</span> destination member</span></span><br><span class="line">127.0.0.1:6379&gt; sadd set a b c d e</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; smove set set2 a</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; smembers set2</span><br><span class="line">1) &quot;a&quot;</span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;c&quot;</span><br><span class="line">2) &quot;b&quot;</span><br><span class="line">3) &quot;d&quot;</span><br><span class="line">4) &quot;e&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 交集 sinter key [key..]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 差集 sdiff key [key..]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 并集 sunion key [key..]</span></span><br><span class="line">127.0.0.1:6379&gt; smembers set</span><br><span class="line">1) &quot;c&quot;</span><br><span class="line">2) &quot;b&quot;</span><br><span class="line">3) &quot;d&quot;</span><br><span class="line">4) &quot;e&quot;</span><br><span class="line">127.0.0.1:6379&gt; smembers set2</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">2) &quot;a&quot;</span><br><span class="line">3) &quot;g&quot;</span><br><span class="line">127.0.0.1:6379&gt; sinter set set2</span><br><span class="line">1) &quot;b&quot;</span><br><span class="line">127.0.0.1:6379&gt; sdiff set set2</span><br><span class="line">1) &quot;d&quot;</span><br><span class="line">2) &quot;e&quot;</span><br><span class="line">3) &quot;c&quot;</span><br><span class="line">127.0.0.1:6379&gt; sunion set set2</span><br><span class="line">1) &quot;c&quot;</span><br><span class="line">2) &quot;b&quot;</span><br><span class="line">3) &quot;d&quot;</span><br><span class="line">4) &quot;e&quot;</span><br><span class="line">5) &quot;a&quot;</span><br><span class="line">6) &quot;g&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>Map集合，key-Map集合</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># hset key field value</span></span><br><span class="line"><span class="comment"># 放入一个map</span></span><br><span class="line"><span class="comment"># hget key field </span></span><br><span class="line">127.0.0.1:6379&gt; hset hashmap name zhima</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hget hashmap name</span><br><span class="line"><span class="string">&quot;zhima&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置和取得多个键值对</span></span><br><span class="line"><span class="comment"># hmset key field name [field name..]</span></span><br><span class="line"><span class="comment"># hmget key field [field..]</span></span><br><span class="line">127.0.0.1:6379&gt; hmset user:1 name zhim age 10</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hmget user:1 name age</span><br><span class="line">1) <span class="string">&quot;zhim&quot;</span></span><br><span class="line">2) <span class="string">&quot;10&quot;</span></span><br><span class="line"><span class="comment"># 使用hset更新键值对</span></span><br><span class="line">127.0.0.1:6379&gt; hset user:1 name zhima</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; hmget user:1 name age</span><br><span class="line">1) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">2) <span class="string">&quot;19&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 取得所有的键值对</span></span><br><span class="line"><span class="comment"># hgetall key </span></span><br><span class="line">127.0.0.1:6379&gt; hgetall user:1</span><br><span class="line">1) <span class="string">&quot;name&quot;</span></span><br><span class="line">2) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">3) <span class="string">&quot;age&quot;</span></span><br><span class="line">4) <span class="string">&quot;19&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取键值对个数</span></span><br><span class="line"><span class="comment"># hlen key</span></span><br><span class="line">127.0.0.1:6379&gt; hlen user:1</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除键值对</span></span><br><span class="line"><span class="comment"># hdel key field</span></span><br><span class="line">127.0.0.1:6379&gt; hdel user:1 name</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall user:1</span><br><span class="line">1) <span class="string">&quot;age&quot;</span></span><br><span class="line">2) <span class="string">&quot;19&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否存在该键值对</span></span><br><span class="line"><span class="comment"># hexists key field</span></span><br><span class="line">127.0.0.1:6379&gt; hexists user:1 name</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hexists user:1 unknown</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获得所有的键</span></span><br><span class="line"><span class="comment"># hkeys key</span></span><br><span class="line"><span class="comment"># 获得所有的值</span></span><br><span class="line"><span class="comment"># hvals key</span></span><br><span class="line">127.0.0.1:6379&gt; hkeys user:1</span><br><span class="line">1) <span class="string">&quot;name&quot;</span></span><br><span class="line">2) <span class="string">&quot;age&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; hvals user:1</span><br><span class="line">1) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">2) <span class="string">&quot;19&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加值</span></span><br><span class="line"><span class="comment"># hincrby key field increment </span></span><br><span class="line"><span class="comment"># ！注意：！这里没有自减的方法，但是可以为increment设置负数来实现减</span></span><br><span class="line">127.0.0.1:6379&gt; hincrby user:1 name 1</span><br><span class="line">(error) ERR <span class="built_in">hash</span> value is not an <span class="built_in">integer</span></span><br><span class="line">127.0.0.1:6379&gt; hincrby user:1 age 2</span><br><span class="line">(<span class="built_in">integer</span>) 21</span><br><span class="line">127.0.0.1:6379&gt; hmset user:2 name lizhi age <span class="string">&quot;19&quot;</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hgetall user:2</span><br><span class="line">1) <span class="string">&quot;name&quot;</span></span><br><span class="line">2) <span class="string">&quot;lizhi&quot;</span></span><br><span class="line">3) <span class="string">&quot;age&quot;</span></span><br><span class="line">4) <span class="string">&quot;19&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; hincrby user:2 age 2</span><br><span class="line">(<span class="built_in">integer</span>) 21</span><br><span class="line">127.0.0.1:6379&gt; hincrby user:2 age -1</span><br><span class="line">(<span class="built_in">integer</span>) 20</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果不存在该字段，则添加该字段</span></span><br><span class="line"><span class="comment"># 如果存在，则不进行操作</span></span><br><span class="line"><span class="comment"># hsetnx key field value</span></span><br><span class="line">127.0.0.1:6379&gt; hsetnx user:1 name modified</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; hgetall user:1</span><br><span class="line">1) <span class="string">&quot;name&quot;</span></span><br><span class="line">2) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">3) <span class="string">&quot;age&quot;</span></span><br><span class="line">4) <span class="string">&quot;21&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; hsetnx user:1 address unknown</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall user:1</span><br><span class="line">1) <span class="string">&quot;name&quot;</span></span><br><span class="line">2) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">3) <span class="string">&quot;age&quot;</span></span><br><span class="line">4) <span class="string">&quot;21&quot;</span></span><br><span class="line">5) <span class="string">&quot;address&quot;</span></span><br><span class="line">6) <span class="string">&quot;unknown&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Hashmap适合存储对象</p>
+<h3 id="zset有序列表"><a href="#Zset（有序列表）" class="headerlink" title="Zset（有序列表）"></a>Zset（有序列表）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加值 这个score相当于权重，用来排序</span></span><br><span class="line"><span class="comment"># zadd key [NX|XX] [CH] [INCR] score member [score member..]</span></span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 1 one</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd myzset 2 two 3 three</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正序输出</span></span><br><span class="line"><span class="comment"># zrange key start stop [withscores]</span></span><br><span class="line">127.0.0.1:6379&gt; zrange myzset 0 -1</span><br><span class="line">1) <span class="string">&quot;one&quot;</span></span><br><span class="line">2) <span class="string">&quot;two&quot;</span></span><br><span class="line">3) <span class="string">&quot;three&quot;</span></span><br><span class="line"><span class="comment"># 倒叙输出</span></span><br><span class="line"><span class="comment"># zrevrange key start stop [withscores]</span></span><br><span class="line">127.0.0.1:6379&gt; zrevrange salary 0 -1</span><br><span class="line">1) <span class="string">&quot;lizhi&quot;</span></span><br><span class="line">2) <span class="string">&quot;xiaozhang&quot;</span></span><br><span class="line">3) <span class="string">&quot;zhima&quot;</span></span><br><span class="line"><span class="comment"># 携带权重输出</span></span><br><span class="line">127.0.0.1:6379&gt; zrange salary 0 -1 withscores</span><br><span class="line">1) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">2) <span class="string">&quot;1000&quot;</span></span><br><span class="line">3) <span class="string">&quot;xiaozhang&quot;</span></span><br><span class="line">4) <span class="string">&quot;1500&quot;</span></span><br><span class="line">5) <span class="string">&quot;lizhi&quot;</span></span><br><span class="line">6) <span class="string">&quot;2000&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># zrangebyscore key min max [withscores] [limit offset count]</span></span><br><span class="line"><span class="comment"># 获取score在min到max之间的元素，闭区间</span></span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore salary 1000 1600</span><br><span class="line">1) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">2) <span class="string">&quot;xiaozhang&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore salary -inf +inf</span><br><span class="line">1) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">2) <span class="string">&quot;xiaozhang&quot;</span></span><br><span class="line">3) <span class="string">&quot;lizhi&quot;</span></span><br><span class="line"><span class="comment"># zrevrangebyscore key max min [withscores] [limit offset count]</span></span><br><span class="line"><span class="comment"># 倒叙输出score在max到min之间的，闭区间，</span></span><br><span class="line"><span class="comment"># [limit offset count]是指定显示从offset开始的count个数据，包括offset所在的元素</span></span><br><span class="line">127.0.0.1:6379&gt; zrevrangebyscore salary 1600 1000</span><br><span class="line">1) <span class="string">&quot;xiaozhang&quot;</span></span><br><span class="line">2) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; zadd salary 10 xiaoming 27 ziaohzhyang 19 zhima 25 lizhi</span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore salary 10 19</span><br><span class="line">1) <span class="string">&quot;xiaoming&quot;</span></span><br><span class="line">2) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore salary 10 25 withscores</span><br><span class="line">1) <span class="string">&quot;xiaoming&quot;</span></span><br><span class="line">2) <span class="string">&quot;10&quot;</span></span><br><span class="line">3) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">4) <span class="string">&quot;19&quot;</span></span><br><span class="line">5) <span class="string">&quot;lizhi&quot;</span></span><br><span class="line">6) <span class="string">&quot;25&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore salary 10 25 <span class="built_in">limit</span> 0 2</span><br><span class="line">1) <span class="string">&quot;xiaoming&quot;</span></span><br><span class="line">2) <span class="string">&quot;zhima&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除元素</span></span><br><span class="line">127.0.0.1:6379&gt; zrem salary xiaoming</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看该集合的长度</span></span><br><span class="line"><span class="comment"># zcard key</span></span><br><span class="line">127.0.0.1:6379&gt; zcard salary</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看符合[min,max]区间的元素个数</span></span><br><span class="line"><span class="comment"># zcount key min max</span></span><br><span class="line">127.0.0.1:6379&gt; zcount salary 10 19</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>注：以上命令只是常用命令，更多命令可以在官网查看</p>
+<p>英文官网地址：<a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io/</a></p>
+<p>中文官网地址：<a target="_blank" rel="noopener" href="http://www.redis.cn/">http://www.redis.cn/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2182,346 +2373,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/" itemprop="url">JVM-简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-10T12:24:26+08:00">
-                2022-02-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="jvm的体系结构"><a href="#JVM的体系结构" class="headerlink" title="JVM的体系结构"></a>JVM的体系结构</h3><p>下面是简易的结构图</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" class title="JVM体系结构">
-
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%842.png" class title="JVM体系结构2">
-
-<p>栈中不会有垃圾回收</p>
-<p>大部分JVM调优都是在堆内存上进行调优</p>
-<p>详细的结构图如下</p>
-
-
-<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><p>类加载器的作用就是将类（class）装进内存的</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A81.png" class title="类加载器">
-
-<p>JVM规定了以下类型的加载器</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8.png" class title="类加载器">
-
-<p><strong>引导类加载器：</strong>用C++编写的，是JVM自带的类加载器，<strong>负责java平台的核心库</strong>，用来装载核心类库，该加载器无法直接获取（获取的时候会是null）</p>
-<p><strong>扩展类加载器（ExtClassLoader）：</strong>负责jre/lib/etc目录下的jar包户或者 -d java.ext.dirs指定目录下的jar包装入工作库</p>
-<p><strong>系统类加载器（AppClassLoader）：</strong>负责java -classpath或者java.class.path指定目录下的类与jar包</p>
-<h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><p>检查顺序从下至上，加载顺序从顶至下</p>
-<p>举个栗子：我写了一个Student类，我要加载它需要经过以下过程</p>
-<ol>
-<li>先将该任务委托给AppClassLoader</li>
-<li>AppClassLoader很懒，它不想加载，将任务向上委托给ExtClassLoader</li>
-<li>ExtClassLoader也很懒，它不想加载，继续将任务向上委托给BootStrapClassLoader</li>
-<li>BootStrapClassLoader没法偷懒了，只能自己加载，但是在自己管理的lib目录下并没有找到该类，只能将任务再次交给ExtClassLoader去加载</li>
-<li>那ExtClassLoader没法偷懒了，只能在自己管理的ext目录下找该类，但是也没有找到，只能将任务继续向下转交给AppClassLoader</li>
-<li>AppClassLoader不得不自己去尝试加载该类，于是加载成功</li>
-</ol>
-<blockquote>
-<p>既然最后还是AppClassLoader去加载Student类何必绕一个大圈子呢？</p>
-</blockquote>
-<p>这是为了防止原始类被用户写的类所覆盖。</p>
-<p>再举个栗子：我自己写了一个String类，我要加载它会经历以下过程</p>
-<ol>
-<li>先将该任务委托给AppClassLoader</li>
-<li>ExtClassLoader也很懒，它不想加载，继续将任务向上委托给BootStrapClassLoader</li>
-<li>BootStrapClassLoader没法偷懒了，只能自己加载，于是在自己管理的lib目录下找到该类并加载，将加载结果向下一直传递到用户</li>
-</ol>
-<h4 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h4><p>类的加载过程分三个阶段</p>
-<p>类的加载 ==》类的链接 ==》类的初始化</p>
-<ul>
-<li><p><strong>类的加载：</strong>将Class文件字节码加载到内存中，并将这些静态数据转换为方法区的运行时数据结构，然后在堆中生成一个代表该类的Class对象，作为方法区类数据的访问入口，可以使用反射获取该类的所有信息。</p>
-</li>
-<li><p><strong>类的链接：</strong>将Java类的二进制代码合并到JVM中</p>
-<ul>
-<li>验证：确保加载的类符合JVM规范</li>
-<li>准备：为静态变量分配内存并设置成员变量的默认值</li>
-<li>解析：JVM常量池内的符号引用（常量名）替换为直接引用（地址）的过程</li>
-</ul>
-</li>
-<li><p><strong>类的初始化：</strong>执行类构造器&lt; clinit &gt;()方法的过程</p>
-<ul>
-<li>类构造器方法是由编译期按顺序收集类中所有类变量的赋值动作和静态代码块中的语句合并而成的（类构造器是构造类信息的，不是对象构造器）</li>
-<li>当初始化一个类的时候，如果其父类为初始化，则先初始化其父类</li>
-<li>JVM会保证类构造器在多线程环境下被正确加锁</li>
-</ul>
-</li>
-</ul>
-<h4 id="类的主动引用一定会发生类的初始化"><a href="#类的主动引用（一定会发生类的初始化）" class="headerlink" title="类的主动引用（一定会发生类的初始化）"></a>类的主动引用（一定会发生类的初始化）</h4><ul>
-<li>当JVM启动的时候，先初始化main方法所在的类</li>
-<li>new 一个类的对象</li>
-<li>调用该类的静态成员（除了final）和静态方法</li>
-<li>使用反射对其类进行反射调用</li>
-<li>当初始化一个类时，其父类若没有初始化，则先初始化其父类</li>
-</ul>
-<h4 id="类的被动引用不会发生类的初始化"><a href="#类的被动引用（不会发生类的初始化）" class="headerlink" title="类的被动引用（不会发生类的初始化）"></a>类的被动引用（不会发生类的初始化）</h4><ul>
-<li>当访问一个静态域的时候，只有真正声明该域的类才会被初始化。举个栗子：当通过子类调用父类的静态变量，该子类是不会被初始化的</li>
-<li>通过数组定义类引用，不会导致初始化</li>
-<li>引用常量不会导致初始化</li>
-</ul>
-<h3 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h3><p>​        java安全模型的核心就是java沙箱（sandbox）。沙箱是一个限制程序运行的环境。沙箱机制就是将java代码限定在JVM特定的运行范围内，并且严格限制代码对本地资源的访问，通过这样的措施来保证对代码的有效隔离，防止对本地系统造成破坏。<strong>沙箱主要限制系统资源（CPU，内存，文件系统，网络）访问</strong>。不同级别的沙箱对这些资源的限制就不一样</p>
-<p>​        所有的java程序运行都可以指定沙箱，可以指定安全策略。</p>
-<p>​        在java中，将执行过程分为本地代码和远程代码两部分，本地代码是默认可信任的，而远程代码则被看做是不受信任的。对于授予信任的本地代码，可以访问一切本地资源。而对于非授予信任的远程代码在早期的java实现中，完全依赖于java沙箱机制。下图是jdk1.0的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.0%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.0安全模型">
-
-<p>​        但是如此严格的安全机制也给程序的功能拓展带来了障碍，比如用户希望远程代码访问本地资源的时候，就会被沙箱机制所拒绝。所以在后来的jdk1.1版本中，针对安全机制做出了改进，增加了安全策略，允许用户指定代码对本地资源的访问权限。下图是jdk1.1的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.1%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.1安全模型">
-
-<p>​        在jdk1.2的版本中，再次引进安全机制，增加了代码签名，不论是本地代码还是远程代码，都会按照用户的安全策略设定，由类加载器加载到JVM中权限不同的运行空间，来实现差异化的代码执行权限控制。下图是jdk1.2的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.2%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.2安全模型">
-
-<p>​        当前最新的安全机制实现，则引入了域（domain）的概念。JVM会把所有的代码加载到不同的系统和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域（Protected Domain），对应不一样的权限（Permission）。存在于不同域中的类文件就具有了当前域的全部权限。下图是jdk1.6的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.6安全模型">
-
-<p>​        组成沙箱的基本组件:</p>
-<ul>
-<li><p>字节码校验器(bytecode verifier):确保java类文件遭循java语言规范。这样可以帮助ava程序实现内存保<br>护。但并不是所有的类文件都会经过字节码校验，比如核心类。</p>
-</li>
-<li><p>类装载器(classloader):其中类装载器在3个方面对java沙箱起作用</p>
-<ul>
-<li>它防止恶意代码去干涉善意的代码;</li>
-<li>它守护了被信任的类库边界;</li>
-<li>它将代码归入保护域，确定了代码可以进行哪些操作。</li>
-</ul>
-</li>
-</ul>
-<p>​        虚拟机为不同的类加载器载入的类提供不同的命名空间，命名空间由一系列唯一的名称组成，每一个被装载的类将有一个名字，这个命名空间是由ava虚拟机为每一个类装载器维护的，它们互相之间甚至不可见。</p>
-<p>类装载器采用的机制是双亲委派模式。</p>
-<ol>
-<li>从最内层IVM自带类加载器开始加载，外层恶意同名类得不到加载从而无法使用;</li>
-<li>由于严格通过包来区分了访问域，外层恶意的类通过内置代码也无法获得权限访问到内层类，破坏代码就自然无法生效。</li>
-</ol>
-<ul>
-<li>存取控制器(access controller):存取控制器可以控制核心API对操作系统的存取权限，而这个控制的策略<br>设定，可以由用户指定。</li>
-<li>安全管理器(security manager):是核心API和操作系统之间的主要接口。实现权限控制，比存取控制器优先级高。</li>
-<li>安全软件包(security package):javasecurity下的类和扩展包下的类，允许用户为自己的应用增加新的安全特性，包括:<ul>
-<li>安全提供者</li>
-<li>消息摘要</li>
-<li>数字签名</li>
-<li>加密</li>
-<li>鉴别</li>
-</ul>
-</li>
-</ul>
-<h3 id="native"><a href="#native" class="headerlink" title="native"></a>native</h3><p>凡是带了native关键词的方法，说明这个方法java语言实现不了，此方法会被放入本地方法栈中，该栈通过JNI（Java Native Interface）去调用底层的C或者C++语言写的方法。</p>
-<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>Method Area</p>
-<p>方法区是被所有线程共享的，所有字段和方法字节码，以及一些特殊方法，如构造函数，接口代码也在此定义，简单来说，所有定义的方法的信息都会被保存在该区域</p>
-<p>静态变量、常量、类信息（构造方法，接口定义），运行时的常量池存放在方法区中，但是实例变量存在于内存区中，与方法区无关</p>
-<h3 id="pc寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h3><p>程序计数器：Program Counter Register</p>
-<p>​        每个线程都有一个程序计数器，实现程序私有的，就是一个指针，指向方法区中的方法字节码</p>
-<h3 id="三种jvm"><a href="#三种JVM" class="headerlink" title="三种JVM"></a>三种JVM</h3><ul>
-<li>Sun公司的HotSpot </li>
-<li>Oracle公司的JRockit（最快的JVM，但是不适合学习）</li>
-<li>IBM公司的J9VM</li>
-</ul>
-<p>我们学的是HotSpot</p>
-<h3 id="堆heap"><a href="#堆（Heap）" class="headerlink" title="堆（Heap）"></a>堆（Heap）</h3><p>一个JVM只有一个堆内存，堆内存的大小是可以调节的，里面一般放实例对象</p>
-<p>堆内存细分为三个区域：</p>
-<ol>
-<li>新生区  Young/New  </li>
-<li>养老区  old </li>
-<li>永久区  perm</li>
-</ol>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83.png" class title="JVM堆内存分布">
-
-<p>GC垃圾回收主要在伊甸园区和养老区</p>
-<p>堆内存满了就会爆OOM（OutOfMemoryError）错误</p>
-<p>所有的对象都是在伊甸园区产生的</p>
-<p>伊甸园满了会触发轻GC，有的就直接死了，然后留下来的去往幸存区</p>
-<p>如果幸存区满了，就去往老年区</p>
-<p>如果老年区满了，触发一次重GC（伊甸园区和幸存者区都清一遍，活下来的去老年区）</p>
-<h3 id="垃圾处理器gc"><a href="#垃圾处理器GC" class="headerlink" title="垃圾处理器GC"></a>垃圾处理器GC</h3><p>GC的作用区域只有堆</p>
-<p>两种回收：轻GC 、Full GC</p>
-<p>GC的算法</p>
-<ol>
-<li>标记清除法</li>
-<li>标记整理法</li>
-<li>标记复制算法</li>
-<li>引用计数法（给每一个对象分配一个计数器，将计数器为0的对象清除）</li>
-</ol>
-<h4 id="标记复制法"><a href="#标记复制法" class="headerlink" title="标记复制法"></a>标记复制法</h4><p>谁空谁是to幸存区</p>
-<p>新生区主要使用复制算法</p>
-<p>好处：没有内存碎片</p>
-<p>坏处：浪费了内存空间</p>
-<p>复制算法使用最佳场景：对象存活度较低的时候</p>
-<h4 id="标记清除法"><a href="#标记清除法" class="headerlink" title="标记清除法"></a>标记清除法</h4><p>扫描这些活着的对象，清除没有标记的对象进行清除</p>
-<p>缺点：两次扫描，浪费时间，会产生内存碎片</p>
-<p>优点：不需要额外空间</p>
-<h4 id="标记整理法"><a href="#标记整理法" class="headerlink" title="标记整理法"></a>标记整理法</h4><p>再次扫描，向一端移动存活的对象</p>
-<p>分代收集算法</p>
-<p>年轻代：</p>
-<ul>
-<li>存活率低</li>
-<li>复制算法</li>
-</ul>
-<p>老年代</p>
-<ul>
-<li>存活率高</li>
-<li>标记清除+标记压缩混合实现</li>
-</ul>
-<h3 id="jmmjava-memory-model"><a href="#JMM：Java-Memory-Model" class="headerlink" title="JMM：Java Memory Model"></a>JMM：Java Memory Model</h3><ol>
-<li>什么是JMM</li>
-<li>做什么的</li>
-<li>怎么用</li>
-</ol>
-<p>这五道面试题可以试着做一做</p>
-<ol>
-<li>请你谈谈你对JVM的理解？java8虚拟机和之前的有什么不同？</li>
-<li>什么是OOM，什么是栈溢出？怎么分析？</li>
-<li>JVM的常用调优参数有哪些？</li>
-<li>内存快照如何抓取？怎么分析Dump文件？</li>
-<li>谈谈你对类加载器的认识？</li>
-</ol>
-<ol>
-<li>我第一次调用这个类的时候才会去将class文件加载成class对象放到方法区中？</li>
-<li></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2576,7 +2427,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -295,6 +295,346 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/" itemprop="url">JVM-简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-10T12:24:26+08:00">
+                2022-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="jvm的体系结构"><a href="#JVM的体系结构" class="headerlink" title="JVM的体系结构"></a>JVM的体系结构</h3><p>下面是简易的结构图</p>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" class title="JVM体系结构">
+
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%842.png" class title="JVM体系结构2">
+
+<p>栈中不会有垃圾回收</p>
+<p>大部分JVM调优都是在堆内存上进行调优</p>
+<p>详细的结构图如下</p>
+
+
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><p>类加载器的作用就是将类（class）装进内存的</p>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A81.png" class title="类加载器">
+
+<p>JVM规定了以下类型的加载器</p>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8.png" class title="类加载器">
+
+<p><strong>引导类加载器：</strong>用C++编写的，是JVM自带的类加载器，<strong>负责java平台的核心库</strong>，用来装载核心类库，该加载器无法直接获取（获取的时候会是null）</p>
+<p><strong>扩展类加载器（ExtClassLoader）：</strong>负责jre/lib/etc目录下的jar包户或者 -d java.ext.dirs指定目录下的jar包装入工作库</p>
+<p><strong>系统类加载器（AppClassLoader）：</strong>负责java -classpath或者java.class.path指定目录下的类与jar包</p>
+<h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><p>检查顺序从下至上，加载顺序从顶至下</p>
+<p>举个栗子：我写了一个Student类，我要加载它需要经过以下过程</p>
+<ol>
+<li>先将该任务委托给AppClassLoader</li>
+<li>AppClassLoader很懒，它不想加载，将任务向上委托给ExtClassLoader</li>
+<li>ExtClassLoader也很懒，它不想加载，继续将任务向上委托给BootStrapClassLoader</li>
+<li>BootStrapClassLoader没法偷懒了，只能自己加载，但是在自己管理的lib目录下并没有找到该类，只能将任务再次交给ExtClassLoader去加载</li>
+<li>那ExtClassLoader没法偷懒了，只能在自己管理的ext目录下找该类，但是也没有找到，只能将任务继续向下转交给AppClassLoader</li>
+<li>AppClassLoader不得不自己去尝试加载该类，于是加载成功</li>
+</ol>
+<blockquote>
+<p>既然最后还是AppClassLoader去加载Student类何必绕一个大圈子呢？</p>
+</blockquote>
+<p>这是为了防止原始类被用户写的类所覆盖。</p>
+<p>再举个栗子：我自己写了一个String类，我要加载它会经历以下过程</p>
+<ol>
+<li>先将该任务委托给AppClassLoader</li>
+<li>ExtClassLoader也很懒，它不想加载，继续将任务向上委托给BootStrapClassLoader</li>
+<li>BootStrapClassLoader没法偷懒了，只能自己加载，于是在自己管理的lib目录下找到该类并加载，将加载结果向下一直传递到用户</li>
+</ol>
+<h4 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h4><p>类的加载过程分三个阶段</p>
+<p>类的加载 ==》类的链接 ==》类的初始化</p>
+<ul>
+<li><p><strong>类的加载：</strong>将Class文件字节码加载到内存中，并将这些静态数据转换为方法区的运行时数据结构，然后在堆中生成一个代表该类的Class对象，作为方法区类数据的访问入口，可以使用反射获取该类的所有信息。</p>
+</li>
+<li><p><strong>类的链接：</strong>将Java类的二进制代码合并到JVM中</p>
+<ul>
+<li>验证：确保加载的类符合JVM规范</li>
+<li>准备：为静态变量分配内存并设置成员变量的默认值</li>
+<li>解析：JVM常量池内的符号引用（常量名）替换为直接引用（地址）的过程</li>
+</ul>
+</li>
+<li><p><strong>类的初始化：</strong>执行类构造器&lt; clinit &gt;()方法的过程</p>
+<ul>
+<li>类构造器方法是由编译期按顺序收集类中所有类变量的赋值动作和静态代码块中的语句合并而成的（类构造器是构造类信息的，不是对象构造器）</li>
+<li>当初始化一个类的时候，如果其父类为初始化，则先初始化其父类</li>
+<li>JVM会保证类构造器在多线程环境下被正确加锁</li>
+</ul>
+</li>
+</ul>
+<h4 id="类的主动引用一定会发生类的初始化"><a href="#类的主动引用（一定会发生类的初始化）" class="headerlink" title="类的主动引用（一定会发生类的初始化）"></a>类的主动引用（一定会发生类的初始化）</h4><ul>
+<li>当JVM启动的时候，先初始化main方法所在的类</li>
+<li>new 一个类的对象</li>
+<li>调用该类的静态成员（除了final）和静态方法</li>
+<li>使用反射对其类进行反射调用</li>
+<li>当初始化一个类时，其父类若没有初始化，则先初始化其父类</li>
+</ul>
+<h4 id="类的被动引用不会发生类的初始化"><a href="#类的被动引用（不会发生类的初始化）" class="headerlink" title="类的被动引用（不会发生类的初始化）"></a>类的被动引用（不会发生类的初始化）</h4><ul>
+<li>当访问一个静态域的时候，只有真正声明该域的类才会被初始化。举个栗子：当通过子类调用父类的静态变量，该子类是不会被初始化的</li>
+<li>通过数组定义类引用，不会导致初始化</li>
+<li>引用常量不会导致初始化</li>
+</ul>
+<h3 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h3><p>​        java安全模型的核心就是java沙箱（sandbox）。沙箱是一个限制程序运行的环境。沙箱机制就是将java代码限定在JVM特定的运行范围内，并且严格限制代码对本地资源的访问，通过这样的措施来保证对代码的有效隔离，防止对本地系统造成破坏。<strong>沙箱主要限制系统资源（CPU，内存，文件系统，网络）访问</strong>。不同级别的沙箱对这些资源的限制就不一样</p>
+<p>​        所有的java程序运行都可以指定沙箱，可以指定安全策略。</p>
+<p>​        在java中，将执行过程分为本地代码和远程代码两部分，本地代码是默认可信任的，而远程代码则被看做是不受信任的。对于授予信任的本地代码，可以访问一切本地资源。而对于非授予信任的远程代码在早期的java实现中，完全依赖于java沙箱机制。下图是jdk1.0的安全模型</p>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.0%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.0安全模型">
+
+<p>​        但是如此严格的安全机制也给程序的功能拓展带来了障碍，比如用户希望远程代码访问本地资源的时候，就会被沙箱机制所拒绝。所以在后来的jdk1.1版本中，针对安全机制做出了改进，增加了安全策略，允许用户指定代码对本地资源的访问权限。下图是jdk1.1的安全模型</p>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.1%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.1安全模型">
+
+<p>​        在jdk1.2的版本中，再次引进安全机制，增加了代码签名，不论是本地代码还是远程代码，都会按照用户的安全策略设定，由类加载器加载到JVM中权限不同的运行空间，来实现差异化的代码执行权限控制。下图是jdk1.2的安全模型</p>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.2%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.2安全模型">
+
+<p>​        当前最新的安全机制实现，则引入了域（domain）的概念。JVM会把所有的代码加载到不同的系统和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域（Protected Domain），对应不一样的权限（Permission）。存在于不同域中的类文件就具有了当前域的全部权限。下图是jdk1.6的安全模型</p>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.6安全模型">
+
+<p>​        组成沙箱的基本组件:</p>
+<ul>
+<li><p>字节码校验器(bytecode verifier):确保java类文件遭循java语言规范。这样可以帮助ava程序实现内存保<br>护。但并不是所有的类文件都会经过字节码校验，比如核心类。</p>
+</li>
+<li><p>类装载器(classloader):其中类装载器在3个方面对java沙箱起作用</p>
+<ul>
+<li>它防止恶意代码去干涉善意的代码;</li>
+<li>它守护了被信任的类库边界;</li>
+<li>它将代码归入保护域，确定了代码可以进行哪些操作。</li>
+</ul>
+</li>
+</ul>
+<p>​        虚拟机为不同的类加载器载入的类提供不同的命名空间，命名空间由一系列唯一的名称组成，每一个被装载的类将有一个名字，这个命名空间是由ava虚拟机为每一个类装载器维护的，它们互相之间甚至不可见。</p>
+<p>类装载器采用的机制是双亲委派模式。</p>
+<ol>
+<li>从最内层IVM自带类加载器开始加载，外层恶意同名类得不到加载从而无法使用;</li>
+<li>由于严格通过包来区分了访问域，外层恶意的类通过内置代码也无法获得权限访问到内层类，破坏代码就自然无法生效。</li>
+</ol>
+<ul>
+<li>存取控制器(access controller):存取控制器可以控制核心API对操作系统的存取权限，而这个控制的策略<br>设定，可以由用户指定。</li>
+<li>安全管理器(security manager):是核心API和操作系统之间的主要接口。实现权限控制，比存取控制器优先级高。</li>
+<li>安全软件包(security package):javasecurity下的类和扩展包下的类，允许用户为自己的应用增加新的安全特性，包括:<ul>
+<li>安全提供者</li>
+<li>消息摘要</li>
+<li>数字签名</li>
+<li>加密</li>
+<li>鉴别</li>
+</ul>
+</li>
+</ul>
+<h3 id="native"><a href="#native" class="headerlink" title="native"></a>native</h3><p>凡是带了native关键词的方法，说明这个方法java语言实现不了，此方法会被放入本地方法栈中，该栈通过JNI（Java Native Interface）去调用底层的C或者C++语言写的方法。</p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>Method Area</p>
+<p>方法区是被所有线程共享的，所有字段和方法字节码，以及一些特殊方法，如构造函数，接口代码也在此定义，简单来说，所有定义的方法的信息都会被保存在该区域</p>
+<p>静态变量、常量、类信息（构造方法，接口定义），运行时的常量池存放在方法区中，但是实例变量存在于内存区中，与方法区无关</p>
+<h3 id="pc寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h3><p>程序计数器：Program Counter Register</p>
+<p>​        每个线程都有一个程序计数器，实现程序私有的，就是一个指针，指向方法区中的方法字节码</p>
+<h3 id="三种jvm"><a href="#三种JVM" class="headerlink" title="三种JVM"></a>三种JVM</h3><ul>
+<li>Sun公司的HotSpot </li>
+<li>Oracle公司的JRockit（最快的JVM，但是不适合学习）</li>
+<li>IBM公司的J9VM</li>
+</ul>
+<p>我们学的是HotSpot</p>
+<h3 id="堆heap"><a href="#堆（Heap）" class="headerlink" title="堆（Heap）"></a>堆（Heap）</h3><p>一个JVM只有一个堆内存，堆内存的大小是可以调节的，里面一般放实例对象</p>
+<p>堆内存细分为三个区域：</p>
+<ol>
+<li>新生区  Young/New  </li>
+<li>养老区  old </li>
+<li>永久区  perm</li>
+</ol>
+<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83.png" class title="JVM堆内存分布">
+
+<p>GC垃圾回收主要在伊甸园区和养老区</p>
+<p>堆内存满了就会爆OOM（OutOfMemoryError）错误</p>
+<p>所有的对象都是在伊甸园区产生的</p>
+<p>伊甸园满了会触发轻GC，有的就直接死了，然后留下来的去往幸存区</p>
+<p>如果幸存区满了，就去往老年区</p>
+<p>如果老年区满了，触发一次重GC（伊甸园区和幸存者区都清一遍，活下来的去老年区）</p>
+<h3 id="垃圾处理器gc"><a href="#垃圾处理器GC" class="headerlink" title="垃圾处理器GC"></a>垃圾处理器GC</h3><p>GC的作用区域只有堆</p>
+<p>两种回收：轻GC 、Full GC</p>
+<p>GC的算法</p>
+<ol>
+<li>标记清除法</li>
+<li>标记整理法</li>
+<li>标记复制算法</li>
+<li>引用计数法（给每一个对象分配一个计数器，将计数器为0的对象清除）</li>
+</ol>
+<h4 id="标记复制法"><a href="#标记复制法" class="headerlink" title="标记复制法"></a>标记复制法</h4><p>谁空谁是to幸存区</p>
+<p>新生区主要使用复制算法</p>
+<p>好处：没有内存碎片</p>
+<p>坏处：浪费了内存空间</p>
+<p>复制算法使用最佳场景：对象存活度较低的时候</p>
+<h4 id="标记清除法"><a href="#标记清除法" class="headerlink" title="标记清除法"></a>标记清除法</h4><p>扫描这些活着的对象，清除没有标记的对象进行清除</p>
+<p>缺点：两次扫描，浪费时间，会产生内存碎片</p>
+<p>优点：不需要额外空间</p>
+<h4 id="标记整理法"><a href="#标记整理法" class="headerlink" title="标记整理法"></a>标记整理法</h4><p>再次扫描，向一端移动存活的对象</p>
+<p>分代收集算法</p>
+<p>年轻代：</p>
+<ul>
+<li>存活率低</li>
+<li>复制算法</li>
+</ul>
+<p>老年代</p>
+<ul>
+<li>存活率高</li>
+<li>标记清除+标记压缩混合实现</li>
+</ul>
+<h3 id="jmmjava-memory-model"><a href="#JMM：Java-Memory-Model" class="headerlink" title="JMM：Java Memory Model"></a>JMM：Java Memory Model</h3><ol>
+<li>什么是JMM</li>
+<li>做什么的</li>
+<li>怎么用</li>
+</ol>
+<p>这五道面试题可以试着做一做</p>
+<ol>
+<li>请你谈谈你对JVM的理解？java8虚拟机和之前的有什么不同？</li>
+<li>什么是OOM，什么是栈溢出？怎么分析？</li>
+<li>JVM的常用调优参数有哪些？</li>
+<li>内存快照如何抓取？怎么分析Dump文件？</li>
+<li>谈谈你对类加载器的认识？</li>
+</ol>
+<ol>
+<li>我第一次调用这个类的时候才会去将class文件加载成class对象放到方法区中？</li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/07/if%E8%AF%AD%E5%8F%A5%E5%87%8F%E5%B0%91%E5%B5%8C%E5%A5%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2306,248 +2646,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" itemprop="url">Linux-文件操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:11:31+08:00">
-                2022-01-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统no的安全性，Linux系统对于不同的用户访问同一文件夹的权限做出了规定</p>
-<p>先前我们使用<code>ls -al</code>查看了文件属性，我们现在来看看这些开头的字符到底是什么意思吧</p>
-<img src="/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.png" class title="文件属性">
-
-<p>我们将每一行分为六组来看</p>
-<blockquote>
-<p>第一组</p>
-</blockquote>
-<p>这一组固定一共十个字符，拆分为第一个字符和后9个字符来看</p>
-<p>第一个字符的含义</p>
-<ul>
-<li><strong>[d]代表目录</strong></li>
-<li><strong>[-]代表文件</strong></li>
-<li><strong>[l]代表这是一个链接文档（link file）</strong></li>
-<li>[b]代表装置文件，里面可能有供存储的接口设备</li>
-<li>[c]代表专职文件里面的串行端口设备，例如键盘或者鼠标</li>
-</ul>
-<p>后九个字符的含义</p>
-<p>接下来的字符中以三个为一组，且均是以[rwx]的三个参数的组合</p>
-<p>r–》read读操作</p>
-<p>w–》write写操作</p>
-<p>x–》execute执行操作</p>
-<p>如果对应位置没有权限，就会出现-号</p>
-<p>第一组为属主的权限（该文件的所有者）</p>
-<p>第二组为属组的权限（所有者的同组用户）</p>
-<p>第三组为其他用户的权限（其他用户）</p>
-<blockquote>
-<p>第二组</p>
-</blockquote>
-<p>如果该项是文件夹，该数字表示文件夹中的包含文件数</p>
-<p>如果是文件，则显示1</p>
-<blockquote>
-<p>第三组</p>
-</blockquote>
-<p>第一个参数表示属主</p>
-<p>第二个参数表示属组（root组）</p>
-<blockquote>
-<p>第四组</p>
-</blockquote>
-<p>文件大小</p>
-<blockquote>
-<p>第五组</p>
-</blockquote>
-<p>创建时间</p>
-<blockquote>
-<p>第六组</p>
-</blockquote>
-<p>文件名</p>
-<h3 id="修改文属性件"><a href="#修改文属性件" class="headerlink" title="修改文属性件"></a>修改文属性件</h3><h4 id="更改文件属组"><a href="#更改文件属组" class="headerlink" title="更改文件属组"></a>更改文件属组</h4><p>基础命令：chgrp</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
-
-<h4 id="更改文件属主也可以同时更改文件属组"><a href="#更改文件属主，也可以同时更改文件属组" class="headerlink" title="更改文件属主，也可以同时更改文件属组"></a>更改文件属主，也可以同时更改文件属组</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [-R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
-
-<h4 id="更改文件九大属性"><a href="#更改文件九大属性" class="headerlink" title="更改文件九大属性"></a>更改文件九大属性</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomd [-R] xyz 文件或者目录 </span><br></pre></td></tr></table></figure>
-
-<p>Linux文件系统属性有两种设置方法，一种数字，一种符号。</p>
-<p>Linux文件的基本权限有九个，分别是owner/group/others三种身份各自有自己的read/write/execute权限</p>
-<p>文件的权限字符是[rwxrwxrwx]，这九个权限是三三一组的！我们可以使用数字来代表各个权限，各个权限的分数对照表如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4   w:2   x:1</span><br></pre></td></tr></table></figure>
-
-<p>每种身份（owner/group/others）各自的三个权限（r/w/x）分数是需要累加的，举个栗子：[rwxrwx—]</p>
-<ul>
-<li>owner = rwx = 4 + 2 + 1= 7</li>
-<li>group = rwx = 4 + 2 + 1= 7</li>
-<li>others = —  = 0</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h3><p>Linux系统中使用以下命令来查看文件的内容</p>
-<ul>
-<li>cat 由第一行开始显示文件的内容</li>
-<li>tac 由最后一行开始显示文件的内容</li>
-<li>nl 显示的时候，输出行号</li>
-<li>more 一页一页的显示文件的内容<ul>
-<li>空格翻页，enter代表向下看一行，:f代表当前行数，退出查看输入q，向下查询字符串使用命令<code>/要查找的字符串</code>向上查询使用命令<code>?要查找的字符串</code>，n代表继续搜寻下一个，N代表继续搜寻上一个</li>
-</ul>
-</li>
-<li>less 与 more相似，但是他可以往前翻页<ul>
-<li>上下键代表向上下翻页</li>
-</ul>
-</li>
-<li>head 只查看前几行<ul>
-<li>通过  -n 参数可以控制查看几行</li>
-</ul>
-</li>
-<li>tail 只查看尾巴几行<ul>
-<li>通过  -n 参数可以控制查看几行</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2602,7 +2700,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
