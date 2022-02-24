@@ -295,6 +295,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-OOP%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-OOP%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" itemprop="url">设计模式-OOP七大原则</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T18:18:58+08:00">
+                2022-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="oop七大原则"><a href="#OOP七大原则" class="headerlink" title="OOP七大原则"></a>OOP七大原则</h2><h3 id="开闭原则the-open-closed-principle-ocp"><a href="#开闭原则-The-Open-Closed-Principle-，OCP" class="headerlink" title="开闭原则(The Open-Closed Principle ，OCP)"></a>开闭原则(The Open-Closed Principle ，OCP)</h3><p><strong>定义：</strong>对拓展开放，对修改关闭</p>
+<p><strong>问题的由来：</strong>在软件的生命周期的，因为变化、升级和维护等原因需要对软件原有代码进行修改时，可能会给旧的代码引入错误。</p>
+<p><strong>解决办法：</strong>当软件需要发生变化的时候，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</p>
+<p><strong>为什么要遵循开闭原则</strong></p>
+<p>　　1、只要是面向对象的编程，在开发过程中都会强调开闭原则</p>
+<p>　　2、是最基础的设计原则，其他五个设计原则都是开闭原则的具体形态</p>
+<p>　　3、可以提高代码的复用性</p>
+<p>　　4、可以提高代码的可维护性</p>
+<h3 id="单一职责原则single-responsibility-principlesrp"><a href="#单一职责原则（Single-Responsibility-Principle-SRP）" class="headerlink" title="单一职责原则（Single Responsibility Principle,SRP）"></a>单一职责原则（Single Responsibility Principle,SRP）</h3><p><strong>定义：</strong>如果一个类具有多个职责，应当将对象解耦，提高内聚，分别创建一些类去一 一完成这些职责，</p>
+<p><strong>核心：</strong>高内聚、低耦合。</p>
+<p><strong>优点：</strong></p>
+<p>　　1、降低类的功能复杂度</p>
+<p>　　2、提高系统的可维护性</p>
+<p>　　3、变更风险低</p>
+<h3 id="里氏替换原则liskov-substitution-principle-lsp"><a href="#里氏替换原则（Liskov-Substitution-Principle-，LSP）" class="headerlink" title="里氏替换原则（Liskov Substitution Principle ，LSP）"></a>里氏替换原则（Liskov Substitution Principle ，LSP）</h3><p><strong>定义：</strong>  继承必须保证超类所拥有的性质在子类中仍然成立，是继承复用的基石，其实就是继承与派生的规则</p>
+<p>里氏替换至少包含一下两个含义：</p>
+<p>　1、如果继承是为了实现代码重用，那么共享的父类方法就应该保持不变，不能被子类重新定义。子类只能通过新添加方法来扩展功能，父类和子类都可以实例化，而子类继承的方法和父类是一样的，父类调用方法的地方，子类也可以调用同一个继承得来的一致的方法，这时用子类对象将父类对象替换掉时，当然逻辑一致，相安无事。</p>
+<p>​    2、如果继承的目的是为了多态，而多态的前提就是子类覆盖并重新定义父类的方法，我们应该将父类定义为抽象类，并定义抽象方法，让子类重新定义这些方法，当父类是抽象类时，父类就是不能实例化的，也就不存在子类替换父类实例的现象。 </p>
+<p><strong>优点：</strong>可以大大减少程序的bug以及增强代码的可读性。</p>
+<h3 id="依赖倒置原则dependency-inversion-principle-dip"><a href="#依赖倒置原则（Dependency-Inversion-Principle-，DIP）" class="headerlink" title="依赖倒置原则（Dependency Inversion Principle ，DIP）"></a>依赖倒置原则（Dependency Inversion Principle ，DIP）</h3><p><strong>定义：</strong>面向接口编程</p>
+<p>本质就是通过抽象(接口或抽象类)使各个类或模块的实现彼此独立，不互相影响，实现模块间的松耦合。</p>
+<h3 id="接口隔离原则interface-segregation-principle-isp"><a href="#接口隔离原则-Interface-Segregation-Principle-ISP" class="headerlink" title="接口隔离原则(Interface Segregation Principle, ISP)"></a>接口隔离原则(Interface Segregation Principle, ISP)</h3><p><strong>定义：</strong>要用各个类建立他们需要的专用接口</p>
+<p>它包含了2层意思：</p>
+<p><strong>接口的设计原则：</strong>接口的设计应该遵循最小接口原则，不要把用户使用不到的方法塞进同一个接口里。如果一个接口的有方法没有被用户使用到，则说明该接口已经臃肿了，应该将其分割成几个功能专一的接口。</p>
+<p><strong>接口的依赖（继承）原则：</strong>如果一个接口a继承另一个接口b，则接口a相当于继承了接口b的方法，那么接口a也应该遵循上述原则：不应该包含用户不使用的方法。 反之，则说明接口a被b给污染了，应该重新设计它们的关系。</p>
+<h3 id="迪米特法则law-of-demeter-lod"><a href="#迪米特法则（Law-of-Demeter-，LOD）" class="headerlink" title="迪米特法则（Law of Demeter ，LOD）"></a>迪米特法则（Law of Demeter ，LOD）</h3><p><strong>定义：</strong>只与直接朋友交谈，不与陌生人通信</p>
+<p><strong>直接朋友的定义：</strong></p>
+<p>1）当前对象本身（this）</p>
+<p>2）以参量形式传入到当前对象方法中的对象</p>
+<p>3）当前对象的实例变量</p>
+<p>4）当前对象的实例变量如果是一个聚集，那么聚集中的元素也都是朋友</p>
+<p>5）当前对象所创建的对象</p>
+<h3 id="合成复用原则compositeaggregate-reuse-principle-carp"><a href="#合成复用原则（Composite-Aggregate-Reuse-Principle-，CARP）" class="headerlink" title="合成复用原则（Composite/Aggregate Reuse Principle ，CARP）"></a>合成复用原则（Composite/Aggregate Reuse Principle ，CARP）</h3><p><strong>定义：</strong>尽量先使用<strong>组合或者内聚</strong>等关联关系来实现，其次才考虑使用继承来实现，因为java是单继承</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/24/Redis-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1039,7 +1213,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1058,7 +1232,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/" itemprop="url">多并发中的锁</a></h1>
+                <a class="post-title-link" href="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/" itemprop="url">多并发中的锁</a></h1>
         
 
         <div class="post-meta">
@@ -1145,10 +1319,10 @@
           
             <h3 id="为什么需要锁"><a href="#为什么需要锁？" class="headerlink" title="为什么需要锁？"></a>为什么需要锁？</h3><p>在单线程环境下，不论怎么操作数据都不会出现什么致命的操作，但是在这个多并发的时代，我们更多的要考虑多并发，并保证多并发环境的安全性。</p>
 <p>在并发环境下，多个线程争抢操作<strong>同一份数据</strong>，这样可能会导致数据异常，这个时候就需要一种机制来保证这一份数据的安全性。</p>
-<img src="/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/JVM%E5%86%85%E5%AD%98%E7%AE%80%E7%95%A5%E5%9B%BE.png" class title="JVM内存简略图">
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/JVM%E5%86%85%E5%AD%98%E7%AE%80%E7%95%A5%E5%9B%BE.png" class title="JVM内存简略图">
 
 <h3 id="锁是如何实现的"><a href="#锁是如何实现的？" class="headerlink" title="锁是如何实现的？"></a>锁是如何实现的？</h3><p>在java中，每一个Object都有一把锁，这把锁放在对象的对象头中，锁中记录了当前对象被哪个线程所占用。</p>
-<h4 id="内存中的对象结构"><a href="#内存中的对象结构" class="headerlink" title="内存中的对象结构"></a>内存中的对象结构</h4><img src="/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84.png" class title="对象结构">
+<h4 id="内存中的对象结构"><a href="#内存中的对象结构" class="headerlink" title="内存中的对象结构"></a>内存中的对象结构</h4><img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84.png" class title="对象结构">
 
 <p><strong>对齐填充字节</strong>是为了满足java对象必须是8比特的倍数这一条件所设计的</p>
 <p><strong>实例数据</strong>是为了保存对象属性和方法的</p>
@@ -1163,7 +1337,7 @@
 </ul>
 </li>
 </ul>
-<img src="/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E5%A4%B4%E7%9A%84MarkWord.png" class title="对象头的MarkWord">
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E5%A4%B4%E7%9A%84MarkWord.png" class title="对象头的MarkWord">
 
 <h3 id="synchronized实现原理"><a href="#synchronized实现原理" class="headerlink" title="synchronized实现原理"></a>synchronized实现原理</h3><p>synchronized被编译后会生成monitorenter和monitorexit两个字节码指令，依赖这两个指令就可以实现锁的机制，从而实现线程的同步</p>
 <p>这是未上锁的代码：</p>
@@ -1176,14 +1350,14 @@
 <p>我们来加一下synchronized代码块</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSync</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep(<span class="number">30</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:===&gt;&quot;</span>+count++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%8A%A0%E9%94%81%E7%9A%84%E7%BB%93%E6%9E%9C.png" class title="加锁的结果">
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%8A%A0%E9%94%81%E7%9A%84%E7%BB%93%E6%9E%9C.png" class title="加锁的结果">
 
 <p>可以发现结果十分正确，我们来反编译一下，得到以下字节码文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">javap -c .\TestSync.class</span><br><span class="line">Compiled from <span class="string">&quot;TestSync.java&quot;</span></span><br><span class="line">public class com.lizhi.TestSync &#123;</span><br><span class="line">  public com.lizhi.TestSync();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: invokespecial <span class="comment">#1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">       4: <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">  public void add();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: dup</span><br><span class="line">       2: astore_1</span><br><span class="line">       3: monitorenter</span><br><span class="line">       4: getstatic     <span class="comment">#2                  // Field java/util/concurrent/TimeUnit.MILLISECONDS:Ljava/util/concurrent/TimeUnit;</span></span><br><span class="line">       7: ldc2_w        <span class="comment">#3                  // long 30l</span></span><br><span class="line">      10: invokevirtual <span class="comment">#5                  // Method java/util/concurrent/TimeUnit.sleep:(J)V</span></span><br><span class="line">      13: goto          21</span><br><span class="line">      16: astore_2</span><br><span class="line">      17: aload_2</span><br><span class="line">      18: invokevirtual <span class="comment">#7                  // Method java/lang/InterruptedException.printStackTrace:()V</span></span><br><span class="line">      21: getstatic     <span class="comment">#8                  // Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">      24: invokestatic  <span class="comment">#9                  // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;</span></span><br><span class="line">      27: invokevirtual <span class="comment">#10                 // Method java/lang/Thread.getName:()Ljava/lang/String;</span></span><br><span class="line">      30: aload_0</span><br><span class="line">      31: dup</span><br><span class="line">      32: getfield      <span class="comment">#11                 // Field count:I</span></span><br><span class="line">      35: dup_x1</span><br><span class="line">      36: iconst_1</span><br><span class="line">      37: iadd</span><br><span class="line">      38: putfield      <span class="comment">#11                 // Field count:I</span></span><br><span class="line">      41: invokedynamic <span class="comment">#12,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;I)Ljava/lang/String;</span></span><br><span class="line">      46: invokevirtual <span class="comment">#13                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V</span></span><br><span class="line">      49: aload_1</span><br><span class="line">      50: monitorexit</span><br><span class="line">      51: goto          59</span><br><span class="line">      54: astore_3</span><br><span class="line">      55: aload_1</span><br><span class="line">      56: monitorexit</span><br><span class="line">      57: aload_3</span><br><span class="line">      58: athrow</span><br><span class="line">      59: <span class="built_in">return</span></span><br><span class="line">    Exceptio n table:</span><br><span class="line">       from    to  target <span class="built_in">type</span></span><br><span class="line">           4    13    16   Class java/lang/InterruptedException</span><br><span class="line">           4    51    54   any</span><br><span class="line">          54    57    54   any</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到在第3行和第50行出现了monitorenter和monitorexit</p>
 <h4 id="monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h4><p>该单词的意思是监视器，可以将其想成一间宾馆的客房，把各个线程想像成客人。如果客人未退房，在这之后的客人则无法入住，只能等待这个客人退房后方可入住。</p>
-  <img src="/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/monitor%E7%9A%84%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6.jpg" class title="monitor的等待机制">
+  <img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/monitor%E7%9A%84%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6.jpg" class title="monitor的等待机制">
 
 <p><strong>monitor是依赖于操作系统的mutex lock来实现的</strong></p>
 <p>java线程实际上是对操作系统线程的映射，每当挂起或者唤醒一个线程都要切换</p>
@@ -1248,7 +1422,7 @@
 <blockquote>
 <p>Unsafe</p>
 </blockquote>
-<img src="/2022/02/23/%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/Unsafe%E7%9A%84%E5%8A%9F%E8%83%BD%E5%9B%BE.png" class title="Unsafe的功能图">
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/Unsafe%E7%9A%84%E5%8A%9F%E8%83%BD%E5%9B%BE.png" class title="Unsafe的功能图">
 
           
         
@@ -1828,7 +2002,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/22/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1847,7 +2021,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/22/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" itemprop="url">大O表示法</a></h1>
+                <a class="post-title-link" href="/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" itemprop="url">大O表示法</a></h1>
         
 
         <div class="post-meta">
@@ -1924,7 +2098,7 @@
             <h2 id="如何去评判一个算法的好坏呢"><a href="#如何去评判一个算法的好坏呢？" class="headerlink" title="如何去评判一个算法的好坏呢？"></a>如何去评判一个算法的好坏呢？</h2><p>我们可以从两个维度分别是时间和空间去评判，所以我们也可以根据这两点去优化我们的代码，从而使自己的算法的复杂度降低，效率提高。</p>
 <p>那这样说的话，是不是我拿着不同的算法在不同的电脑上跑然后比较时间，谁的时间短，谁的算法更牛逼。那如果两台电脑的性能本就有着很大的差距呢？这样就不公平了，导致了比较的偏差。</p>
 <h2 id="大o表示法"><a href="#大O表示法" class="headerlink" title="大O表示法"></a>大O表示法</h2><p>那么我们可以使用一种表示法也就是大O表示法来具体表示<strong>时间复杂度</strong>和<strong>空间复杂度</strong>。它将代码的所有步骤转换为<strong>关于数据规模n的公式项</strong>，然后排除不会对问题的整体复杂度产生较大影响的<strong>低阶、系数项和常数项</strong>。</p>
-<img src="/2022/02/22/%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/Big-OComplexityChart.png" class title="Big-O Complexity Chart">
+<img src="/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/Big-OComplexityChart.png" class title="Big-O Complexity Chart">
 
 <h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>其实该值表示的是，当数据的量级增加的时候，时间增长的一个趋势。</p>
 <p>公式：T(n) = O(f(n))</p>
@@ -1953,230 +2127,6 @@
 
 <p>O(n^2)的例子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] arr = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">        arr[i][j] = i+j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/" itemprop="url">Redis-三大特殊类型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-22T16:41:55+08:00">
-                2022-02-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="三种特殊类型"><a href="#三种特殊类型" class="headerlink" title="三种特殊类型"></a>三种特殊类型</h2><h3 id="geospatial"><a href="#geospatial" class="headerlink" title="geospatial"></a>geospatial</h3><p>该数据类型是用来存储<strong>地理空间</strong>的</p>
-<p>附近的人，发送定位，分享实时位置，打车的时候的距离计算都可以通过这个实现</p>
-<p>我们这里使用这几个城市的经纬度作为测试</p>
-<table>
-<thead>
-<tr>
-<th align="center">城市</th>
-<th align="center">经度</th>
-<th align="center">维度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">相城区</td>
-<td align="center">120.64239</td>
-<td align="center">31.36889</td>
-</tr>
-<tr>
-<td align="center">吴江区</td>
-<td align="center">120.638317</td>
-<td align="center">31.159815</td>
-</tr>
-<tr>
-<td align="center">太仓</td>
-<td align="center">121.10891</td>
-<td align="center">31.4497</td>
-</tr>
-<tr>
-<td align="center">常熟市</td>
-<td align="center">120.75225</td>
-<td align="center">31.65374</td>
-</tr>
-<tr>
-<td align="center">昆山市</td>
-<td align="center">120.98074</td>
-<td align="center">31.38464</td>
-</tr>
-</tbody></table>
-<p>这里有六个基本命令，我们来一个个看</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># geoadd key longitude latitude member [longitude latitude member..]</span></span><br><span class="line"><span class="comment"># 增加一个经纬度的坐标</span></span><br><span class="line"><span class="comment"># 两极无法添加，一般我们通过java程序一次性导入</span></span><br><span class="line">127.0.0.1:6379&gt; geoadd Suzhou 120.64239 31.36889 XiangChengDistrict 120.638317 31.159815 WuJiangDistrict 121.10891 31.4497 TaiCang 120.75225 31.65374 ChangShuCity 120.98074 31.38464 KunShanCity</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># geodist key member1 member2 [unit]</span></span><br><span class="line"><span class="comment"># 获取两地之间的距离单位为米</span></span><br><span class="line">127.0.0.1:6379&gt; GEODIST Suzhou TaiCang WuJiangDistrict</span><br><span class="line"><span class="string">&quot;55133.1652&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; GEODIST Suzhou TaiCang KunShanCity km</span><br><span class="line"><span class="string">&quot;14.1556&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># geohash key member [member..]</span></span><br><span class="line"><span class="comment"># 获取member的二维的空间经纬度数据编码</span></span><br><span class="line"><span class="comment"># 这个可以csdn搜一下具体的算法实现</span></span><br><span class="line">127.0.0.1:6379&gt; geohash Suzhou TaiCang</span><br><span class="line">1) <span class="string">&quot;wtw4gvhzf10&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># geopos key member [member..]</span></span><br><span class="line"><span class="comment"># 查看member的经纬度</span></span><br><span class="line">127.0.0.1:6379&gt; geopos Suzhou TaiCang XiangChengDistrict</span><br><span class="line">1) 1) <span class="string">&quot;121.10891193151474&quot;</span></span><br><span class="line">   2) <span class="string">&quot;31.449701065685858&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;120.64238995313644&quot;</span></span><br><span class="line">   2) <span class="string">&quot;31.368889085683811&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># georadius key longitude latitude radius m|km|ft|mi [WITHSCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC| ESC]</span></span><br><span class="line"><span class="comment"># mi是英里，ft是英尺</span></span><br><span class="line"><span class="comment"># 以给定的经纬度为中心，找到某一半径内的元素</span></span><br><span class="line"><span class="comment"># WITHCOORD表示显示坐标</span></span><br><span class="line"><span class="comment"># WITHDIST表示显示距离该点的位置</span></span><br><span class="line"><span class="comment"># WITHHASH表示显示该地址的hash值</span></span><br><span class="line"><span class="comment"># COUNT count表示显示几个</span></span><br><span class="line"><span class="comment"># ASC| ESC 表示正序还是倒序</span></span><br><span class="line">127.0.0.1:6379&gt; georadius Suzhou 120.98080 31.28460 30 km withdist</span><br><span class="line">1) 1) <span class="string">&quot;KunShanCity&quot;</span></span><br><span class="line">   2) <span class="string">&quot;11.1271&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;TaiCang&quot;</span></span><br><span class="line">   2) <span class="string">&quot;22.0285&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># georadiusbymember key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC]</span></span><br><span class="line"><span class="comment"># 以member为中心radius为半径，找到在此范围中的元素</span></span><br><span class="line">127.0.0.1:6379&gt; georadiusbymember Suzhou TaiCang 30 km withcoord withdist withhash asc</span><br><span class="line">1) 1) <span class="string">&quot;TaiCang&quot;</span></span><br><span class="line">   2) <span class="string">&quot;0.0000&quot;</span></span><br><span class="line">   3) (<span class="built_in">integer</span>) 4054798020485654</span><br><span class="line">   4) 1) <span class="string">&quot;121.10891193151474&quot;</span></span><br><span class="line">      2) <span class="string">&quot;31.449701065685858&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;KunShanCity&quot;</span></span><br><span class="line">   2) <span class="string">&quot;14.1556&quot;</span></span><br><span class="line">   3) (<span class="built_in">integer</span>) 4054794184325796</span><br><span class="line">   4) 1) <span class="string">&quot;120.98073989152908&quot;</span></span><br><span class="line">      2) <span class="string">&quot;31.38463984296795&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>geo的底层其实是Zset，我们可以使用Zset的命令去操作geo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrem Suzhou TaiCang</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zrange Suzhou 0 -1</span><br><span class="line">1) <span class="string">&quot;WuJiangDistrict&quot;</span></span><br><span class="line">2) <span class="string">&quot;XiangChengDistrict&quot;</span></span><br><span class="line">3) <span class="string">&quot;ChangShuCity&quot;</span></span><br><span class="line">4) <span class="string">&quot;KunShanCity&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="hyperloglog"><a href="#Hyperloglog" class="headerlink" title="Hyperloglog"></a>Hyperloglog</h3><blockquote>
-<p>先来了解一下基数是什么？</p>
-</blockquote>
-<p>基数其实就是一个集合中<strong>不重复的元素个数</strong>，其实就是一个集合去重后的集合长度</p>
-<p>业务场景：</p>
-<p>网站的访问量（一个人访问一个网站多次，也算一个人）</p>
-<p>传统使用set集合的重复无序的特性，可以保存用户的id，以set集合的长度作为标准。但是，专门使用一个set来保存用户id未免优点奢侈，如果id是分布式的会很复杂，导致set集合很庞大，所以需要一个方法来解决这个问题。</p>
-<p>Hyperloglog就是用来解决此问题的算法。</p>
-<p>优点：占用很小的内存空间存放2^64个数据，也只占用12kb</p>
-<p>瑕疵：会有0.81%的错误率</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pfadd key member [member..]</span></span><br><span class="line">127.0.0.1:6379&gt; pfadd <span class="built_in">set</span> a b c d e f g h i j k l</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># pfcount key [key..]</span></span><br><span class="line"><span class="comment"># 返回基数</span></span><br><span class="line">127.0.0.1:6379&gt; pfcount <span class="built_in">set</span></span><br><span class="line">(<span class="built_in">integer</span>) 12</span><br><span class="line">127.0.0.1:6379&gt; pfadd set2 j k l m n</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; pfcount <span class="built_in">set</span> set2</span><br><span class="line">(<span class="built_in">integer</span>) 14</span><br><span class="line"></span><br><span class="line"><span class="comment"># pfmerge destkey sourcekey [sourcekey..]</span></span><br><span class="line"><span class="comment"># 将sourcekey合并到destkey</span></span><br><span class="line">127.0.0.1:6379&gt; pfmerge <span class="built_in">set</span> set2</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment"># 探究底层：</span></span><br><span class="line"><span class="comment"># 我们获取一下此数据的数据类型，可以看到实际上存储的是string</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">type</span> <span class="built_in">set</span></span><br><span class="line">string</span><br><span class="line">127.0.0.1:6379&gt; get <span class="built_in">set</span></span><br><span class="line"><span class="string">&quot;HYLL\x01\x00\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x00Fm\x80I\xe8\x80@\xc4\x84K\\\x80D&lt;\x848\x80B=\x80K\x83\x80B\xed\x84A\xfc\x8cG\x8e\x80Bm\x80BZ&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h3><p>位存储，一般使用两种状态的区分</p>
-<p>比如统计中国的男子和女子的数目</p>
-<p>14亿个二进制数，0代表女子，1代表男</p>
-<p>0 0 1 1 1 0 1 …</p>
-<p>登录，头像是亮着的，未登录，头像是灰色的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setbit key offset value</span></span><br><span class="line"><span class="comment"># 设置offset位是value</span></span><br><span class="line">127.0.0.1:6379&gt; setbit sign 0 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 1 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 2 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 3 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"><span class="comment"># 中国sign可以代表</span></span><br><span class="line"><span class="comment"># 星期日未打卡</span></span><br><span class="line"><span class="comment"># 星期一已打卡</span></span><br><span class="line"><span class="comment"># 星期二未打卡</span></span><br><span class="line"><span class="comment"># 星期三已打卡</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># getbit key offset</span></span><br><span class="line"><span class="comment"># 查看该天是否打卡</span></span><br><span class="line">127.0.0.1:6379&gt; getbit sign 3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># bitcount key [start end]</span></span><br><span class="line"><span class="comment"># 查看sign中为1的个数</span></span><br><span class="line">127.0.0.1:6379&gt; BITCOUNT sign</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
 
 
 
@@ -2277,7 +2227,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

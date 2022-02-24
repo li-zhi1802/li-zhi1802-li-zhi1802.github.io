@@ -295,6 +295,237 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/26/MyBatis%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/26/MyBatis%E5%85%A5%E9%97%A8/" itemprop="url">MyBatis入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-26T23:43:33+08:00">
+                2022-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/MyBatis/" itemprop="url" rel="index">
+                    <span itemprop="name">MyBatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="mybatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h2 id="回顾jdbc"><a href="#回顾JDBC" class="headerlink" title="回顾JDBC"></a>回顾JDBC</h2><ol>
+<li>注册驱动</li>
+<li>获取连接</li>
+<li>获取数据库操作对象</li>
+<li>执行SQL，操作数据库</li>
+<li>处理结果集</li>
+<li>关闭连接</li>
+</ol>
+<p>Connection可以获得PreparedStatement或者Statement</p>
+<p>ResultSet是SQL语句执行后返回的对象</p>
+<p>PreparedStatement和Statement是用来执行SQL语句的对象</p>
+<p>两者的区别：</p>
+<p>PreparedStatement对SQL语句做了预编译，很好的解决了SQL注入的问题。</p>
+<p>Statement是单纯的对字符串进行拼接，会产生SQL注入的问题</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Def： MyBatis是一个优秀的持久层的框架，支持定制化SQL语句，存储过程以及高级映射，大大简化了JDBC的笨重的代码。</p>
+<p>MyBatis可以使用XML配置文件或者注解的方式来配置和映射原生类型、接口和pojo（Plain Object Java Object）</p>
+<p>持久层是什么？持久层是一个将应用中产生的数据保存到数据库的过程</p>
+<p>思路：导入依赖—》编写代码—》测试</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>MyBatis中最重要的三个类</p>
+<ol>
+<li>SqlSessionFactoryBuilder</li>
+<li>SqlSessionFactory</li>
+<li>SqlSession</li>
+</ol>
+<p>每个基于MyBatis的应用都是以一个SqlSessionFactory实例为核心的。这个实例需要通过SqlSessionFactoryBuilder加载配置文件获得。这个配置文件可以通过两种方式获得，第一种是以XML文件的形式存在，第二种是在java代码对象的形式存在</p>
+<h3 id="构建sqlsessionfactory"><a href="#构建SqlSessionFactory" class="headerlink" title="构建SqlSessionFactory"></a>构建SqlSessionFactory</h3><blockquote>
+<p>mybatis-config.xml配置构建SqlSessionFactory所需要的参数</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;userName&#125;&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在java中加载配置文件，通过SqlSessionFactoryBuilder构建SqlSessionFactory实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String resource=<span class="string">&quot;mybatis-config.xml&quot;</span>;</span><br><span class="line">InputStream inputStream = Resources.getResourceAsStream(resource);</span><br><span class="line">SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过java代码配置不推荐，略</p>
+</blockquote>
+<h3 id="构建sqlsession"><a href="#构建SqlSession" class="headerlink" title="构建SqlSession"></a>构建SqlSession</h3><p>SqlSession，通过此对象获得接口的映射器实例，该映射对象对标JDBC中接口的实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开启一个sqlSession对象，默认关闭自动提交事务</span></span><br><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line"><span class="comment">//开启自动提交事务</span></span><br><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射sql语句"><a href="#映射SQL语句" class="headerlink" title="映射SQL语句"></a>映射SQL语句</h3><blockquote>
+<p>通过XML配置文件的方式和接口做绑定，实现接口方法</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.lizhi.mapper.TeacherMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;listTeachers&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.lizhi.pojo.Teacher&quot;</span>&gt;</span></span><br><span class="line">        SELECT * FROM teacher</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mapper标签的namespace属性指向被绑定的接口</li>
+<li>标签内书写SQL语句，id为接口中的方法名<ul>
+<li>select标签实现select方法</li>
+<li>insert标签实现insert方法</li>
+<li>update标签实现update方法</li>
+<li>delete标签实现delete方法</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>通过注解的方式实现SQL映射</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;SELECT * FROM teacher WHERE id = #&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function">Teacher <span class="title">getTeacherById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>选择何种方式实现SQL映射，取决于自身。</p>
+<p>但是如果SQL复杂的情况下，尽量不要使用注解开发，使用XML的方式去做SQL映射</p>
+<h3 id="三个对象的作用域scope"><a href="#三个对象的作用域（Scope）" class="headerlink" title="三个对象的作用域（Scope）"></a>三个对象的作用域（Scope）</h3><ul>
+<li>SqlSessionFactoryBuilder</li>
+</ul>
+<p>该对象就一个作用，通过读取一些配置获取SqlSessionFactory实例对象。</p>
+<p>我们没有理由一直保留它，因为SqlSessionFactory将被保存在全局作用域中，以保证所有的XML解析资源可以被释放给做其他事情，所以它的作用域应该是局部变量</p>
+<ul>
+<li>SqlSession</li>
+</ul>
+<p>该对象就一个作用，通过getMapper方法获取映射器实例。</p>
+<p>每个线程都应该有它自己的SqlSession对象，因为该对象不是线程安全的，因此它是不能被共享的，所以它的最佳作用域是局部变量。</p>
+<p>在web框架中，可以将其放到request的作用域中，返回一个响应前，关闭SqlSession对象，这个关闭操作很重要</p>
+<ul>
+<li>SqlSessionFactory</li>
+</ul>
+<p>该对象就一个作用，通过openSession方法获取SqlSession对象。</p>
+<p>因为SqlSession对象是线程不安全的，所以每次查询数据库都需要一个新的SqlSession对象，既然SqlSessionFactoryBuilder的作用域为局部变量，那么在我们第一次创建出来SqlSessionFactory对象的时候，就可以将其保存在全局作用域中，下次就不需要再创建SqlSessionFactoryBuilder对象了，所以SqlSessionFactory的最佳作用域是全局唯一变量。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/26/Maven/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -844,7 +1075,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
