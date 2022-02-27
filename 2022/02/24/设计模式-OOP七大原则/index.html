@@ -386,7 +386,7 @@
       
 
       
-        <h2 id="oop七大原则"><a href="#OOP七大原则" class="headerlink" title="OOP七大原则"></a>OOP七大原则</h2><h3 id="开闭原则the-open-closed-principle-ocp"><a href="#开闭原则-The-Open-Closed-Principle-，OCP" class="headerlink" title="开闭原则(The Open-Closed Principle ，OCP)"></a>开闭原则(The Open-Closed Principle ，OCP)</h3><p><strong>定义：</strong>对拓展开放，对修改关闭</p>
+        <h2 id="OOP七大原则"><a href="#OOP七大原则" class="headerlink" title="OOP七大原则"></a>OOP七大原则</h2><h3 id="开闭原则-The-Open-Closed-Principle-，OCP"><a href="#开闭原则-The-Open-Closed-Principle-，OCP" class="headerlink" title="开闭原则(The Open-Closed Principle ，OCP)"></a>开闭原则(The Open-Closed Principle ，OCP)</h3><p><strong>定义：</strong>对拓展开放，对修改关闭</p>
 <p><strong>问题的由来：</strong>在软件的生命周期的，因为变化、升级和维护等原因需要对软件原有代码进行修改时，可能会给旧的代码引入错误。</p>
 <p><strong>解决办法：</strong>当软件需要发生变化的时候，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</p>
 <p><strong>为什么要遵循开闭原则</strong></p>
@@ -394,31 +394,31 @@
 <p>　　2、是最基础的设计原则，其他五个设计原则都是开闭原则的具体形态</p>
 <p>　　3、可以提高代码的复用性</p>
 <p>　　4、可以提高代码的可维护性</p>
-<h3 id="单一职责原则single-responsibility-principlesrp"><a href="#单一职责原则（Single-Responsibility-Principle-SRP）" class="headerlink" title="单一职责原则（Single Responsibility Principle,SRP）"></a>单一职责原则（Single Responsibility Principle,SRP）</h3><p><strong>定义：</strong>如果一个类具有多个职责，应当将对象解耦，提高内聚，分别创建一些类去一 一完成这些职责，</p>
+<h3 id="单一职责原则（Single-Responsibility-Principle-SRP）"><a href="#单一职责原则（Single-Responsibility-Principle-SRP）" class="headerlink" title="单一职责原则（Single Responsibility Principle,SRP）"></a>单一职责原则（Single Responsibility Principle,SRP）</h3><p><strong>定义：</strong>如果一个类具有多个职责，应当将对象解耦，提高内聚，分别创建一些类去一 一完成这些职责，</p>
 <p><strong>核心：</strong>高内聚、低耦合。</p>
 <p><strong>优点：</strong></p>
 <p>　　1、降低类的功能复杂度</p>
 <p>　　2、提高系统的可维护性</p>
 <p>　　3、变更风险低</p>
-<h3 id="里氏替换原则liskov-substitution-principle-lsp"><a href="#里氏替换原则（Liskov-Substitution-Principle-，LSP）" class="headerlink" title="里氏替换原则（Liskov Substitution Principle ，LSP）"></a>里氏替换原则（Liskov Substitution Principle ，LSP）</h3><p><strong>定义：</strong>  继承必须保证超类所拥有的性质在子类中仍然成立，是继承复用的基石，其实就是继承与派生的规则</p>
+<h3 id="里氏替换原则（Liskov-Substitution-Principle-，LSP）"><a href="#里氏替换原则（Liskov-Substitution-Principle-，LSP）" class="headerlink" title="里氏替换原则（Liskov Substitution Principle ，LSP）"></a>里氏替换原则（Liskov Substitution Principle ，LSP）</h3><p><strong>定义：</strong>  继承必须保证超类所拥有的性质在子类中仍然成立，是继承复用的基石，其实就是继承与派生的规则</p>
 <p>里氏替换至少包含一下两个含义：</p>
 <p>　1、如果继承是为了实现代码重用，那么共享的父类方法就应该保持不变，不能被子类重新定义。子类只能通过新添加方法来扩展功能，父类和子类都可以实例化，而子类继承的方法和父类是一样的，父类调用方法的地方，子类也可以调用同一个继承得来的一致的方法，这时用子类对象将父类对象替换掉时，当然逻辑一致，相安无事。</p>
 <p>​    2、如果继承的目的是为了多态，而多态的前提就是子类覆盖并重新定义父类的方法，我们应该将父类定义为抽象类，并定义抽象方法，让子类重新定义这些方法，当父类是抽象类时，父类就是不能实例化的，也就不存在子类替换父类实例的现象。 </p>
 <p><strong>优点：</strong>可以大大减少程序的bug以及增强代码的可读性。</p>
-<h3 id="依赖倒置原则dependency-inversion-principle-dip"><a href="#依赖倒置原则（Dependency-Inversion-Principle-，DIP）" class="headerlink" title="依赖倒置原则（Dependency Inversion Principle ，DIP）"></a>依赖倒置原则（Dependency Inversion Principle ，DIP）</h3><p><strong>定义：</strong>面向接口编程</p>
+<h3 id="依赖倒置原则（Dependency-Inversion-Principle-，DIP）"><a href="#依赖倒置原则（Dependency-Inversion-Principle-，DIP）" class="headerlink" title="依赖倒置原则（Dependency Inversion Principle ，DIP）"></a>依赖倒置原则（Dependency Inversion Principle ，DIP）</h3><p><strong>定义：</strong>面向接口编程</p>
 <p>本质就是通过抽象(接口或抽象类)使各个类或模块的实现彼此独立，不互相影响，实现模块间的松耦合。</p>
-<h3 id="接口隔离原则interface-segregation-principle-isp"><a href="#接口隔离原则-Interface-Segregation-Principle-ISP" class="headerlink" title="接口隔离原则(Interface Segregation Principle, ISP)"></a>接口隔离原则(Interface Segregation Principle, ISP)</h3><p><strong>定义：</strong>要用各个类建立他们需要的专用接口</p>
+<h3 id="接口隔离原则-Interface-Segregation-Principle-ISP"><a href="#接口隔离原则-Interface-Segregation-Principle-ISP" class="headerlink" title="接口隔离原则(Interface Segregation Principle, ISP)"></a>接口隔离原则(Interface Segregation Principle, ISP)</h3><p><strong>定义：</strong>要用各个类建立他们需要的专用接口</p>
 <p>它包含了2层意思：</p>
 <p><strong>接口的设计原则：</strong>接口的设计应该遵循最小接口原则，不要把用户使用不到的方法塞进同一个接口里。如果一个接口的有方法没有被用户使用到，则说明该接口已经臃肿了，应该将其分割成几个功能专一的接口。</p>
 <p><strong>接口的依赖（继承）原则：</strong>如果一个接口a继承另一个接口b，则接口a相当于继承了接口b的方法，那么接口a也应该遵循上述原则：不应该包含用户不使用的方法。 反之，则说明接口a被b给污染了，应该重新设计它们的关系。</p>
-<h3 id="迪米特法则law-of-demeter-lod"><a href="#迪米特法则（Law-of-Demeter-，LOD）" class="headerlink" title="迪米特法则（Law of Demeter ，LOD）"></a>迪米特法则（Law of Demeter ，LOD）</h3><p><strong>定义：</strong>只与直接朋友交谈，不与陌生人通信</p>
+<h3 id="迪米特法则（Law-of-Demeter-，LOD）"><a href="#迪米特法则（Law-of-Demeter-，LOD）" class="headerlink" title="迪米特法则（Law of Demeter ，LOD）"></a>迪米特法则（Law of Demeter ，LOD）</h3><p><strong>定义：</strong>只与直接朋友交谈，不与陌生人通信</p>
 <p><strong>直接朋友的定义：</strong></p>
 <p>1）当前对象本身（this）</p>
 <p>2）以参量形式传入到当前对象方法中的对象</p>
 <p>3）当前对象的实例变量</p>
 <p>4）当前对象的实例变量如果是一个聚集，那么聚集中的元素也都是朋友</p>
 <p>5）当前对象所创建的对象</p>
-<h3 id="合成复用原则compositeaggregate-reuse-principle-carp"><a href="#合成复用原则（Composite-Aggregate-Reuse-Principle-，CARP）" class="headerlink" title="合成复用原则（Composite/Aggregate Reuse Principle ，CARP）"></a>合成复用原则（Composite/Aggregate Reuse Principle ，CARP）</h3><p><strong>定义：</strong>尽量先使用<strong>组合或者内聚</strong>等关联关系来实现，其次才考虑使用继承来实现，因为java是单继承</p>
+<h3 id="合成复用原则（Composite-x2F-Aggregate-Reuse-Principle-，CARP）"><a href="#合成复用原则（Composite-x2F-Aggregate-Reuse-Principle-，CARP）" class="headerlink" title="合成复用原则（Composite&#x2F;Aggregate Reuse Principle ，CARP）"></a>合成复用原则（Composite&#x2F;Aggregate Reuse Principle ，CARP）</h3><p><strong>定义：</strong>尽量先使用<strong>组合或者内聚</strong>等关联关系来实现，其次才考虑使用继承来实现，因为java是单继承</p>
 
       
     </div>
@@ -542,7 +542,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -597,7 +597,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#oop%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">OOP七大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99the-open-closed-principle-ocp"><span class="nav-number">1.1.</span> <span class="nav-text">开闭原则(The Open-Closed Principle ，OCP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99single-responsibility-principlesrp"><span class="nav-number">1.2.</span> <span class="nav-text">单一职责原则（Single Responsibility Principle,SRP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99liskov-substitution-principle-lsp"><span class="nav-number">1.3.</span> <span class="nav-text">里氏替换原则（Liskov Substitution Principle ，LSP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99dependency-inversion-principle-dip"><span class="nav-number">1.4.</span> <span class="nav-text">依赖倒置原则（Dependency Inversion Principle ，DIP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99interface-segregation-principle-isp"><span class="nav-number">1.5.</span> <span class="nav-text">接口隔离原则(Interface Segregation Principle, ISP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99law-of-demeter-lod"><span class="nav-number">1.6.</span> <span class="nav-text">迪米特法则（Law of Demeter ，LOD）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99compositeaggregate-reuse-principle-carp"><span class="nav-number">1.7.</span> <span class="nav-text">合成复用原则（Composite&#x2F;Aggregate Reuse Principle ，CARP）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OOP%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">OOP七大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99-The-Open-Closed-Principle-%EF%BC%8COCP"><span class="nav-number">1.1.</span> <span class="nav-text">开闭原则(The Open-Closed Principle ，OCP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99%EF%BC%88Single-Responsibility-Principle-SRP%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">单一职责原则（Single Responsibility Principle,SRP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99%EF%BC%88Liskov-Substitution-Principle-%EF%BC%8CLSP%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">里氏替换原则（Liskov Substitution Principle ，LSP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99%EF%BC%88Dependency-Inversion-Principle-%EF%BC%8CDIP%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">依赖倒置原则（Dependency Inversion Principle ，DIP）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99-Interface-Segregation-Principle-ISP"><span class="nav-number">1.5.</span> <span class="nav-text">接口隔离原则(Interface Segregation Principle, ISP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99%EF%BC%88Law-of-Demeter-%EF%BC%8CLOD%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">迪米特法则（Law of Demeter ，LOD）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99%EF%BC%88Composite-x2F-Aggregate-Reuse-Principle-%EF%BC%8CCARP%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">合成复用原则（Composite&#x2F;Aggregate Reuse Principle ，CARP）</span></a></li></ol></li></ol></div>
             
 
           </div>

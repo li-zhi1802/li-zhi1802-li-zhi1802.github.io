@@ -407,7 +407,7 @@
       
 
       
-        <h3 id="jvm的体系结构"><a href="#JVM的体系结构" class="headerlink" title="JVM的体系结构"></a>JVM的体系结构</h3><p>下面是简易的结构图</p>
+        <h3 id="JVM的体系结构"><a href="#JVM的体系结构" class="headerlink" title="JVM的体系结构"></a>JVM的体系结构</h3><p>下面是简易的结构图</p>
 <img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" class title="JVM体系结构">
 
 <img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%842.png" class title="JVM体系结构2">
@@ -424,7 +424,7 @@
 <img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8.png" class title="类加载器">
 
 <p><strong>引导类加载器：</strong>用C++编写的，是JVM自带的类加载器，<strong>负责java平台的核心库</strong>，用来装载核心类库，该加载器无法直接获取（获取的时候会是null）</p>
-<p><strong>扩展类加载器（ExtClassLoader）：</strong>负责jre/lib/etc目录下的jar包户或者 -d java.ext.dirs指定目录下的jar包装入工作库</p>
+<p><strong>扩展类加载器（ExtClassLoader）：</strong>负责jre&#x2F;lib&#x2F;etc目录下的jar包户或者 -d java.ext.dirs指定目录下的jar包装入工作库</p>
 <p><strong>系统类加载器（AppClassLoader）：</strong>负责java -classpath或者java.class.path指定目录下的类与jar包</p>
 <h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><p>检查顺序从下至上，加载顺序从顶至下</p>
 <p>举个栗子：我写了一个Student类，我要加载它需要经过以下过程</p>
@@ -447,7 +447,7 @@
 <li>BootStrapClassLoader没法偷懒了，只能自己加载，于是在自己管理的lib目录下找到该类并加载，将加载结果向下一直传递到用户</li>
 </ol>
 <h4 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h4><p>类的加载过程分三个阶段</p>
-<p>类的加载 ==》类的链接 ==》类的初始化</p>
+<p>类的加载 &#x3D;&#x3D;》类的链接 &#x3D;&#x3D;》类的初始化</p>
 <ul>
 <li><p><strong>类的加载：</strong>将Class文件字节码加载到内存中，并将这些静态数据转换为方法区的运行时数据结构，然后在堆中生成一个代表该类的Class对象，作为方法区类数据的访问入口，可以使用反射获取该类的所有信息。</p>
 </li>
@@ -466,14 +466,14 @@
 </ul>
 </li>
 </ul>
-<h4 id="类的主动引用一定会发生类的初始化"><a href="#类的主动引用（一定会发生类的初始化）" class="headerlink" title="类的主动引用（一定会发生类的初始化）"></a>类的主动引用（一定会发生类的初始化）</h4><ul>
+<h4 id="类的主动引用（一定会发生类的初始化）"><a href="#类的主动引用（一定会发生类的初始化）" class="headerlink" title="类的主动引用（一定会发生类的初始化）"></a>类的主动引用（一定会发生类的初始化）</h4><ul>
 <li>当JVM启动的时候，先初始化main方法所在的类</li>
 <li>new 一个类的对象</li>
 <li>调用该类的静态成员（除了final）和静态方法</li>
 <li>使用反射对其类进行反射调用</li>
 <li>当初始化一个类时，其父类若没有初始化，则先初始化其父类</li>
 </ul>
-<h4 id="类的被动引用不会发生类的初始化"><a href="#类的被动引用（不会发生类的初始化）" class="headerlink" title="类的被动引用（不会发生类的初始化）"></a>类的被动引用（不会发生类的初始化）</h4><ul>
+<h4 id="类的被动引用（不会发生类的初始化）"><a href="#类的被动引用（不会发生类的初始化）" class="headerlink" title="类的被动引用（不会发生类的初始化）"></a>类的被动引用（不会发生类的初始化）</h4><ul>
 <li>当访问一个静态域的时候，只有真正声明该域的类才会被初始化。举个栗子：当通过子类调用父类的静态变量，该子类是不会被初始化的</li>
 <li>通过数组定义类引用，不会导致初始化</li>
 <li>引用常量不会导致初始化</li>
@@ -526,18 +526,18 @@
 <h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>Method Area</p>
 <p>方法区是被所有线程共享的，所有字段和方法字节码，以及一些特殊方法，如构造函数，接口代码也在此定义，简单来说，所有定义的方法的信息都会被保存在该区域</p>
 <p>静态变量、常量、类信息（构造方法，接口定义），运行时的常量池存放在方法区中，但是实例变量存在于内存区中，与方法区无关</p>
-<h3 id="pc寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h3><p>程序计数器：Program Counter Register</p>
+<h3 id="PC寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h3><p>程序计数器：Program Counter Register</p>
 <p>​        每个线程都有一个程序计数器，实现程序私有的，就是一个指针，指向方法区中的方法字节码</p>
-<h3 id="三种jvm"><a href="#三种JVM" class="headerlink" title="三种JVM"></a>三种JVM</h3><ul>
+<h3 id="三种JVM"><a href="#三种JVM" class="headerlink" title="三种JVM"></a>三种JVM</h3><ul>
 <li>Sun公司的HotSpot </li>
 <li>Oracle公司的JRockit（最快的JVM，但是不适合学习）</li>
 <li>IBM公司的J9VM</li>
 </ul>
 <p>我们学的是HotSpot</p>
-<h3 id="堆heap"><a href="#堆（Heap）" class="headerlink" title="堆（Heap）"></a>堆（Heap）</h3><p>一个JVM只有一个堆内存，堆内存的大小是可以调节的，里面一般放实例对象</p>
+<h3 id="堆（Heap）"><a href="#堆（Heap）" class="headerlink" title="堆（Heap）"></a>堆（Heap）</h3><p>一个JVM只有一个堆内存，堆内存的大小是可以调节的，里面一般放实例对象</p>
 <p>堆内存细分为三个区域：</p>
 <ol>
-<li>新生区  Young/New  </li>
+<li>新生区  Young&#x2F;New  </li>
 <li>养老区  old </li>
 <li>永久区  perm</li>
 </ol>
@@ -549,7 +549,7 @@
 <p>伊甸园满了会触发轻GC，有的就直接死了，然后留下来的去往幸存区</p>
 <p>如果幸存区满了，就去往老年区</p>
 <p>如果老年区满了，触发一次重GC（伊甸园区和幸存者区都清一遍，活下来的去老年区）</p>
-<h3 id="垃圾处理器gc"><a href="#垃圾处理器GC" class="headerlink" title="垃圾处理器GC"></a>垃圾处理器GC</h3><p>GC的作用区域只有堆</p>
+<h3 id="垃圾处理器GC"><a href="#垃圾处理器GC" class="headerlink" title="垃圾处理器GC"></a>垃圾处理器GC</h3><p>GC的作用区域只有堆</p>
 <p>两种回收：轻GC 、Full GC</p>
 <p>GC的算法</p>
 <ol>
@@ -709,7 +709,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -764,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">JVM的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">2.1.</span> <span class="nav-text">双亲委派机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">类的加载过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E4%B8%BB%E5%8A%A8%E5%BC%95%E7%94%A8%E4%B8%80%E5%AE%9A%E4%BC%9A%E5%8F%91%E7%94%9F%E7%B1%BB%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.3.</span> <span class="nav-text">类的主动引用（一定会发生类的初始化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E8%A2%AB%E5%8A%A8%E5%BC%95%E7%94%A8%E4%B8%8D%E4%BC%9A%E5%8F%91%E7%94%9F%E7%B1%BB%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">2.4.</span> <span class="nav-text">类的被动引用（不会发生类的初始化）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">沙箱安全机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#native"><span class="nav-number">4.</span> <span class="nav-text">native</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-number">5.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pc%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">PC寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8Djvm"><span class="nav-number">7.</span> <span class="nav-text">三种JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86heap"><span class="nav-number">8.</span> <span class="nav-text">堆（Heap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%A4%84%E7%90%86%E5%99%A8gc"><span class="nav-number">9.</span> <span class="nav-text">垃圾处理器GC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E5%A4%8D%E5%88%B6%E6%B3%95"><span class="nav-number">9.1.</span> <span class="nav-text">标记复制法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%B3%95"><span class="nav-number">9.2.</span> <span class="nav-text">标记清除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E6%B3%95"><span class="nav-number">9.3.</span> <span class="nav-text">标记整理法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">JVM的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">2.1.</span> <span class="nav-text">双亲委派机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">类的加载过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E4%B8%BB%E5%8A%A8%E5%BC%95%E7%94%A8%EF%BC%88%E4%B8%80%E5%AE%9A%E4%BC%9A%E5%8F%91%E7%94%9F%E7%B1%BB%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">类的主动引用（一定会发生类的初始化）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E8%A2%AB%E5%8A%A8%E5%BC%95%E7%94%A8%EF%BC%88%E4%B8%8D%E4%BC%9A%E5%8F%91%E7%94%9F%E7%B1%BB%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">类的被动引用（不会发生类的初始化）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">沙箱安全机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#native"><span class="nav-number">4.</span> <span class="nav-text">native</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-number">5.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">PC寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8DJVM"><span class="nav-number">7.</span> <span class="nav-text">三种JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%EF%BC%88Heap%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">堆（Heap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%A4%84%E7%90%86%E5%99%A8GC"><span class="nav-number">9.</span> <span class="nav-text">垃圾处理器GC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E5%A4%8D%E5%88%B6%E6%B3%95"><span class="nav-number">9.1.</span> <span class="nav-text">标记复制法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E6%B3%95"><span class="nav-number">9.2.</span> <span class="nav-text">标记清除法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E6%B3%95"><span class="nav-number">9.3.</span> <span class="nav-text">标记整理法</span></a></li></ol></li></ol></div>
             
 
           </div>

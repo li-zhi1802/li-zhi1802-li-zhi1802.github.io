@@ -406,7 +406,7 @@
 <p>事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离。</p>
 <p><strong>持久性（Durability）</strong></p>
 <p>持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响</p>
-<h3 id="redis中的事务"><a href="#Redis中的事务" class="headerlink" title="Redis中的事务"></a>Redis中的事务</h3><p>事务的本质即：一组命令一起执行，不允许被插队。</p>
+<h3 id="Redis中的事务"><a href="#Redis中的事务" class="headerlink" title="Redis中的事务"></a>Redis中的事务</h3><p>事务的本质即：一组命令一起执行，不允许被插队。</p>
 <p>在Redis中，单条命令是原子性的，但是事务不保证原子性</p>
 <p>事务没有隔离级别的概念</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启事务</span></span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令入队</span></span><br><span class="line">127.0.0.1:6379&gt; hset user:1 name zhima</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; hset user:1 age 19</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; hset user:1 address Suzhou</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; hmget user:1 name age address</span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment"># 执行事务</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) (<span class="built_in">integer</span>) 1</span><br><span class="line">2) (<span class="built_in">integer</span>) 1</span><br><span class="line">3) (<span class="built_in">integer</span>) 1</span><br><span class="line">4) 1) <span class="string">&quot;zhima&quot;</span></span><br><span class="line">   2) <span class="string">&quot;19&quot;</span></span><br><span class="line">   3) <span class="string">&quot;Suzhou&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 中途放弃事务</span></span><br><span class="line">127.0.0.1:6379&gt; discard</span><br></pre></td></tr></table></figure>
@@ -545,7 +545,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -600,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.2.</span> <span class="nav-text">Redis中的事务</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.2.</span> <span class="nav-text">Redis中的事务</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -405,9 +405,9 @@
       
 
       
-        <h2 id="nosql"><a href="#Nosql" class="headerlink" title="Nosql"></a>Nosql</h2><p>我们先前学的都是mysql，它是关系型数据库，表与表之间有联系。</p>
+        <h2 id="Nosql"><a href="#Nosql" class="headerlink" title="Nosql"></a>Nosql</h2><p>我们先前学的都是mysql，它是关系型数据库，表与表之间有联系。</p>
 <p>NoSql即非关系型数据库。</p>
-<h3 id="mysql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h3><blockquote>
+<h3 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h3><blockquote>
 <p>MySql的瓶颈</p>
 </blockquote>
 <ol>
@@ -417,12 +417,12 @@
 </ol>
 <img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E6%97%A9%E4%BA%9B%E5%B9%B4%E7%9A%84mysql.png" class title="早些年的mysql">
 
-<h4 id="解决方案读写分离垂直拆分"><a href="#解决方案：读写分离（垂直拆分）" class="headerlink" title="解决方案：读写分离（垂直拆分）"></a>解决方案：读写分离（垂直拆分）</h4><img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB.png" class title="读写分离">
+<h4 id="解决方案：读写分离（垂直拆分）"><a href="#解决方案：读写分离（垂直拆分）" class="headerlink" title="解决方案：读写分离（垂直拆分）"></a>解决方案：读写分离（垂直拆分）</h4><img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB.png" class title="读写分离">
 
 <p>因为80%网站对于数据的操作都是读取，不会产生并发问题，所以为了提升效率，当我们第一次读取完数据后，将数据放入缓存中，下一次查询如果是同样的业务，则直接从缓存中读取数据，会大大提升性能，解决了读的压力</p>
 <img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E5%8A%A0Cache.png" class title="加Cache">
 
-<h4 id="解决方案分库分表mysql集群水平拆分"><a href="#解决方案：分库分表，MySql集群（水平拆分）" class="headerlink" title="解决方案：分库分表，MySql集群（水平拆分）"></a>解决方案：分库分表，MySql集群（水平拆分）</h4><p>每一个集群放一些表和数据库，这样的操作解决了写的压力</p>
+<h4 id="解决方案：分库分表，MySql集群（水平拆分）"><a href="#解决方案：分库分表，MySql集群（水平拆分）" class="headerlink" title="解决方案：分库分表，MySql集群（水平拆分）"></a>解决方案：分库分表，MySql集群（水平拆分）</h4><p>每一个集群放一些表和数据库，这样的操作解决了写的压力</p>
 <img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/MySQL%E9%9B%86%E7%BE%A4.png" class title="MySQL集群">
 
 <img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84.png" class title="基本架构">
@@ -451,7 +451,7 @@
 <li>高可用（扩）</li>
 <li>高并发</li>
 </ol>
-<h2 id="nosql的四大分类"><a href="#Nosql的四大分类" class="headerlink" title="Nosql的四大分类"></a>Nosql的四大分类</h2><ol>
+<h2 id="Nosql的四大分类"><a href="#Nosql的四大分类" class="headerlink" title="Nosql的四大分类"></a>Nosql的四大分类</h2><ol>
 <li><strong>KV键值对</strong></li>
 </ol>
 <ul>
@@ -500,7 +500,7 @@
 <p>数据模型：图架构</p>
 <p>优点：利用图结构相关算法，比如最短路径寻址N度关系查找等</p>
 <p>缺点：很多时候需要对整个图做计算才能得出需要的信息，而且这种结构不太好做分布式的集群方式</p>
-<h2 id="redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<h2 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
 <p>Redis全名是Remote Dictionary Server ，即远程字典调用</p>
 <p>默认端口是6379</p>
 </blockquote>
@@ -644,7 +644,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -699,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#nosql"><span class="nav-number">1.</span> <span class="nav-text">Nosql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql"><span class="nav-number">1.1.</span> <span class="nav-text">MySql</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%9E%82%E7%9B%B4%E6%8B%86%E5%88%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决方案：读写分离（垂直拆分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8mysql%E9%9B%86%E7%BE%A4%E6%B0%B4%E5%B9%B3%E6%8B%86%E5%88%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">解决方案：分库分表，MySql集群（水平拆分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BB%8A%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.3.</span> <span class="nav-text">如今的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nosql%E7%9A%84%E5%9B%9B%E5%A4%A7%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">Nosql的四大分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">Redis简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8B%E8%BD%BD%E5%90%8E%E7%9B%B4%E6%8E%A5%E8%A7%A3%E5%8E%8B%E5%8D%B3%E5%8F%AF"><span class="nav-number">3.2.</span> <span class="nav-text">下载下载后直接解压即可</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">3.3.</span> <span class="nav-text">备注</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nosql"><span class="nav-number">1.</span> <span class="nav-text">Nosql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql"><span class="nav-number">1.1.</span> <span class="nav-text">MySql</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%EF%BC%88%E5%9E%82%E7%9B%B4%E6%8B%86%E5%88%86%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">解决方案：读写分离（垂直拆分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%EF%BC%8CMySql%E9%9B%86%E7%BE%A4%EF%BC%88%E6%B0%B4%E5%B9%B3%E6%8B%86%E5%88%86%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">解决方案：分库分表，MySql集群（水平拆分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BB%8A%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.3.</span> <span class="nav-text">如今的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nosql%E7%9A%84%E5%9B%9B%E5%A4%A7%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">Nosql的四大分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">Redis简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8B%E8%BD%BD%E5%90%8E%E7%9B%B4%E6%8E%A5%E8%A7%A3%E5%8E%8B%E5%8D%B3%E5%8F%AF"><span class="nav-number">3.2.</span> <span class="nav-text">下载下载后直接解压即可</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E6%B3%A8"><span class="nav-number">3.3.</span> <span class="nav-text">备注</span></a></li></ol></li></ol></div>
             
 
           </div>

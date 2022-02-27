@@ -450,20 +450,20 @@
 <h3 id="修改文属性件"><a href="#修改文属性件" class="headerlink" title="修改文属性件"></a>修改文属性件</h3><h4 id="更改文件属组"><a href="#更改文件属组" class="headerlink" title="更改文件属组"></a>更改文件属组</h4><p>基础命令：chgrp</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
 
-<h4 id="更改文件属主也可以同时更改文件属组"><a href="#更改文件属主，也可以同时更改文件属组" class="headerlink" title="更改文件属主，也可以同时更改文件属组"></a>更改文件属主，也可以同时更改文件属组</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [-R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+<h4 id="更改文件属主，也可以同时更改文件属组"><a href="#更改文件属主，也可以同时更改文件属组" class="headerlink" title="更改文件属主，也可以同时更改文件属组"></a>更改文件属主，也可以同时更改文件属组</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [-R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
 
 <h4 id="更改文件九大属性"><a href="#更改文件九大属性" class="headerlink" title="更改文件九大属性"></a>更改文件九大属性</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomd [-R] xyz 文件或者目录 </span><br></pre></td></tr></table></figure>
 
 <p>Linux文件系统属性有两种设置方法，一种数字，一种符号。</p>
-<p>Linux文件的基本权限有九个，分别是owner/group/others三种身份各自有自己的read/write/execute权限</p>
+<p>Linux文件的基本权限有九个，分别是owner&#x2F;group&#x2F;others三种身份各自有自己的read&#x2F;write&#x2F;execute权限</p>
 <p>文件的权限字符是[rwxrwxrwx]，这九个权限是三三一组的！我们可以使用数字来代表各个权限，各个权限的分数对照表如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4   w:2   x:1</span><br></pre></td></tr></table></figure>
 
-<p>每种身份（owner/group/others）各自的三个权限（r/w/x）分数是需要累加的，举个栗子：[rwxrwx—]</p>
+<p>每种身份（owner&#x2F;group&#x2F;others）各自的三个权限（r&#x2F;w&#x2F;x）分数是需要累加的，举个栗子：[rwxrwx—]</p>
 <ul>
-<li>owner = rwx = 4 + 2 + 1= 7</li>
-<li>group = rwx = 4 + 2 + 1= 7</li>
-<li>others = —  = 0</li>
+<li>owner &#x3D; rwx &#x3D; 4 + 2 + 1&#x3D; 7</li>
+<li>group &#x3D; rwx &#x3D; 4 + 2 + 1&#x3D; 7</li>
+<li>others &#x3D; —  &#x3D; 0</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
 
@@ -612,7 +612,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -667,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">文件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E5%B1%9E%E6%80%A7%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">修改文属性件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E7%BB%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">更改文件属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E4%B8%BB%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%90%8C%E6%97%B6%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E7%BB%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">更改文件属主，也可以同时更改文件属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E4%B9%9D%E5%A4%A7%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.3.</span> <span class="nav-text">更改文件九大属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">查看文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">文件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E5%B1%9E%E6%80%A7%E4%BB%B6"><span class="nav-number">1.2.</span> <span class="nav-text">修改文属性件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E7%BB%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">更改文件属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E4%B8%BB%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%90%8C%E6%97%B6%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E5%B1%9E%E7%BB%84"><span class="nav-number">1.2.2.</span> <span class="nav-text">更改文件属主，也可以同时更改文件属组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E4%B9%9D%E5%A4%A7%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.3.</span> <span class="nav-text">更改文件九大属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">查看文件</span></a></li></ol></li></ol></div>
             
 
           </div>

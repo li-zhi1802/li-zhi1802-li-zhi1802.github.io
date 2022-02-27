@@ -397,7 +397,7 @@
       
 
       
-        <h2 id="配置configuration"><a href="#配置Configuration" class="headerlink" title="配置Configuration"></a>配置Configuration</h2><p>在MyBatis中，配置文件的顶层结构如下</p>
+        <h2 id="配置Configuration"><a href="#配置Configuration" class="headerlink" title="配置Configuration"></a>配置Configuration</h2><p>在MyBatis中，配置文件的顶层结构如下</p>
 <ul>
 <li>Configuration<ul>
 <li><strong>properties</strong></li>
@@ -475,7 +475,7 @@
 <td>未设置</td>
 </tr>
 </tbody></table>
-<h3 id="类型别名typealiases"><a href="#类型别名typeAliases" class="headerlink" title="类型别名typeAliases"></a>类型别名typeAliases</h3><p>在映射器XML文件中，resultType属性在配置了类型别名后，可以不需要写全限定名，可以写在这里起的别名</p>
+<h3 id="类型别名typeAliases"><a href="#类型别名typeAliases" class="headerlink" title="类型别名typeAliases"></a>类型别名typeAliases</h3><p>在映射器XML文件中，resultType属性在配置了类型别名后，可以不需要写全限定名，可以写在这里起的别名</p>
 <ol>
 <li>在此包下的所有类都被默认起别名为类名开头小写，该默认值被注解@Alias()覆盖</li>
 </ol>
@@ -571,7 +571,7 @@
 <td>Map</td>
 </tr>
 </tbody></table>
-<h3 id="环境配置environments"><a href="#环境配置Environments" class="headerlink" title="环境配置Environments"></a>环境配置Environments</h3><p>mybatis可以配置多套环境，这种机制有利于将SQL映射应用于多种数据库之中。开发，测试，生成环境需要有不同的配置。</p>
+<h3 id="环境配置Environments"><a href="#环境配置Environments" class="headerlink" title="环境配置Environments"></a>环境配置Environments</h3><p>mybatis可以配置多套环境，这种机制有利于将SQL映射应用于多种数据库之中。开发，测试，生成环境需要有不同的配置。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;userName&#125;&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>注意一些关键点</p>
@@ -579,8 +579,8 @@
 <li>environment的id属性，该属性是唯一性标识环境的值</li>
 <li>在environments的default属性中通过id指定环境配置</li>
 </ul>
-<h4 id="事务管理器transactionmanager"><a href="#事务管理器transactionManager" class="headerlink" title="事务管理器transactionManager"></a>事务管理器transactionManager</h4><p>type指定事务管理器</p>
-<p>mybatis中有两种事务管理器（也就是type = “JDBC|MANAGED”）</p>
+<h4 id="事务管理器transactionManager"><a href="#事务管理器transactionManager" class="headerlink" title="事务管理器transactionManager"></a>事务管理器transactionManager</h4><p>type指定事务管理器</p>
+<p>mybatis中有两种事务管理器（也就是type &#x3D; “JDBC|MANAGED”）</p>
 <ul>
 <li>JDBC-这个配置直接使用了JDBC的提交和回滚机制，依赖于数据源的连接来管理事务管理作用域</li>
 <li>MANAGED-这个配置几乎什么都不做，一般不选用</li>
@@ -588,10 +588,10 @@
 <blockquote>
 <p>如果使用mybatis+Spring 则没有必要配置事务管理器，因为Spring模块会使用自带的事务管理器来覆盖此配置</p>
 </blockquote>
-<h4 id="数据源datasource"><a href="#数据源dataSource" class="headerlink" title="数据源dataSource"></a>数据源dataSource</h4><p>type指定数据源类型</p>
+<h4 id="数据源dataSource"><a href="#数据源dataSource" class="headerlink" title="数据源dataSource"></a>数据源dataSource</h4><p>type指定数据源类型</p>
 <p>dataSource元素使用标准的JDBC数据源接口来配置JDBC连接对象的资源</p>
 <p>有三种内置的数据源格式</p>
-<h5 id="unpooled"><a href="#UNPOOLED" class="headerlink" title="UNPOOLED"></a>UNPOOLED</h5><p>这个数据源的实现每次连接会打开和关闭连接会有点慢，但是对于一些小型应用已经足够了，</p>
+<h5 id="UNPOOLED"><a href="#UNPOOLED" class="headerlink" title="UNPOOLED"></a>UNPOOLED</h5><p>这个数据源的实现每次连接会打开和关闭连接会有点慢，但是对于一些小型应用已经足够了，</p>
 <p>此类型的数据源只需要配置以下几种属性</p>
 <ul>
 <li><code>driver</code> – 这是 JDBC 驱动的 Java 类全限定名（并不是 JDBC 驱动中可能包含的数据源类）。</li>
@@ -602,13 +602,13 @@
 <li><code>defaultNetworkTimeout</code> – 等待数据库操作完成的默认网络超时时间（单位：毫秒）</li>
 </ul>
 <hr>
-<h5 id="pooled"><a href="#POOLED" class="headerlink" title="POOLED"></a>POOLED</h5><p>这个数据源的实现利用了池的概念将JDBC的连接对象组织起来，避免了创建新的连接实例的时候所必需的初始化和认证时间，可以使web应用响应速度变快，该类型的数据源除了以上UNPOOLED的属性外还有以下常用配置</p>
+<h5 id="POOLED"><a href="#POOLED" class="headerlink" title="POOLED"></a>POOLED</h5><p>这个数据源的实现利用了池的概念将JDBC的连接对象组织起来，避免了创建新的连接实例的时候所必需的初始化和认证时间，可以使web应用响应速度变快，该类型的数据源除了以上UNPOOLED的属性外还有以下常用配置</p>
 <ul>
 <li><code>poolMaximumActiveConnections</code> – 在任意时间可存在的活动（正在使用）连接数量，默认值：10</li>
 <li><code>poolMaximumIdleConnections</code> – 任意时间可能存在的空闲连接数。</li>
 <li><code>poolTimeToWait</code> – 这是一个底层设置，如果获取连接花费了相当长的时间，连接池会打印状态日志并重新尝试获取一个连接（避免在误配置的情况下一直失败且不打印日志），默认值：20000 毫秒（即 20 秒）。</li>
 </ul>
-<h5 id="jndi用得少略"><a href="#JNDI-用得少，略" class="headerlink" title="JNDI(用得少，略)"></a>JNDI(用得少，略)</h5>
+<h5 id="JNDI-用得少，略"><a href="#JNDI-用得少，略" class="headerlink" title="JNDI(用得少，略)"></a>JNDI(用得少，略)</h5>
       
     </div>
     
@@ -731,7 +731,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -786,7 +786,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEconfiguration"><span class="nav-number">1.</span> <span class="nav-text">配置Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7properties"><span class="nav-number">1.1.</span> <span class="nav-text">属性properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEsettings"><span class="nav-number">1.2.</span> <span class="nav-text">设置settings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8Dtypealiases"><span class="nav-number">1.3.</span> <span class="nav-text">类型别名typeAliases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEenvironments"><span class="nav-number">1.4.</span> <span class="nav-text">环境配置Environments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8transactionmanager"><span class="nav-number">1.4.1.</span> <span class="nav-text">事务管理器transactionManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%BA%90datasource"><span class="nav-number">1.4.2.</span> <span class="nav-text">数据源dataSource</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#unpooled"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">UNPOOLED</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pooled"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">POOLED</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#jndi%E7%94%A8%E5%BE%97%E5%B0%91%E7%95%A5"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">JNDI(用得少，略)</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEConfiguration"><span class="nav-number">1.</span> <span class="nav-text">配置Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7properties"><span class="nav-number">1.1.</span> <span class="nav-text">属性properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEsettings"><span class="nav-number">1.2.</span> <span class="nav-text">设置settings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8DtypeAliases"><span class="nav-number">1.3.</span> <span class="nav-text">类型别名typeAliases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEEnvironments"><span class="nav-number">1.4.</span> <span class="nav-text">环境配置Environments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8transactionManager"><span class="nav-number">1.4.1.</span> <span class="nav-text">事务管理器transactionManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%BA%90dataSource"><span class="nav-number">1.4.2.</span> <span class="nav-text">数据源dataSource</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#UNPOOLED"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">UNPOOLED</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POOLED"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">POOLED</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JNDI-%E7%94%A8%E5%BE%97%E5%B0%91%EF%BC%8C%E7%95%A5"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">JNDI(用得少，略)</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
