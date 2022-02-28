@@ -295,6 +295,238 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/" itemprop="url">【64-Medium】最小路径和</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-25T23:03:19+08:00">
+                2022-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="最小路径和"><a href="#最小路径和" class="headerlink" title="最小路径和"></a>最小路径和</h2><p>给定一个包含非负整数的 <code>*m* x *n*</code> 网格 <code>grid</code> ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
+<p><strong>说明：</strong>每次只能向下或者向右移动一步。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,3,1],[1,5,1],[4,2,1]]</span><br><span class="line">输出：7</span><br><span class="line">解释：因为路径 1→3→1→1→1 的总和最小。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,2,3],[4,5,6]]</span><br><span class="line">输出：12</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == grid.length</code></li>
+<li><code>n == grid[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 200</code></li>
+<li><code>0 &lt;= grid[i][j] &lt;= 100</code></li>
+</ul>
+<p>分析：一般来说，遇到这种统计可行路径的数量，或者求最小路径的时候，使用<strong>动态规划</strong>和<strong>搜索</strong>这两种方法，但是搜索更适用于数据规模较小的题目</p>
+<h3 id="法一：动态规划"><a href="#法一：动态规划" class="headerlink" title="法一：动态规划"></a>法一：动态规划</h3><p>动态规划算法，我们主要关注以下两点。</p>
+<ol>
+<li><p>状态的设置。在这个题目里，由于要求最小路径和，我们可以令 dp[ i ] [ j ] 代表从（i，j）点走到右下角点的最小路径和。</p>
+</li>
+<li><p>状态转移方程。我们考虑如何来求出 dp [ i] [j]。由于每次只能往右或者下走，所以从（i，j）只能走到（i+1，j）或者（i，j+1)。换言之，dp[ i ] [ j ] 的前继状态只有dp[ i+1 ] [ j ], dp[ i ] [ j+1 ], 所以我们在两者取最小，然后加上这个格子内的数即可</p>
+</li>
+</ol>
+<p>  dp(i,j) &#x3D; grid(i,j) + min(dp(i + 1,j),dp(i,j + 1))</p>
+<p>是需要特殊处理的，当然还有终点元素也是要做个排除，下面先看流程图</p>
+<p>就以案例一的矩阵为例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,3,1],[1,5,1],[4,2,1]]</span><br><span class="line">输出：7</span><br><span class="line">解释：因为路径 1→3→1→1→1 的总和最小。</span><br></pre></td></tr></table></figure>
+
+<h4 id="正向思维"><a href="#正向思维" class="headerlink" title="正向思维"></a>正向思维</h4><p>从终点考虑问题，思考下一点在哪</p>
+<p>只有最后一列是只能向下走</p>
+<p>只有最后一行是只能向右走</p>
+<p>终点不做处理</p>
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/%E7%9F%A9%E9%98%B5%E5%9B%BE.png" class title="矩阵图">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-01.png" class title="process-01">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-02.png" class title="process-02">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-03.png" class title="process-03">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-04.png" class title="process-04">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-05.png" class title="process-05">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-06.png" class title="process-06">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-07.png" class title="process-07">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-08.png" class title="process-08">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-09.png" class title="process-09">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process-10.png" class title="process-10">
+
+<p>上代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> height = grid.length;</span><br><span class="line">        <span class="keyword">int</span> width = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = height - <span class="number">1</span> ; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = width - <span class="number">1</span> ; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span>(i==height-<span class="number">1</span>&amp;&amp;j!=width-<span class="number">1</span>)&#123;</span><br><span class="line">                    grid[i][j]+=grid[i][j+<span class="number">1</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i!=height-<span class="number">1</span>&amp;&amp;j==width-<span class="number">1</span>)&#123;</span><br><span class="line">                    grid[i][j]+=grid[i+<span class="number">1</span>][j];</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i!=height-<span class="number">1</span>&amp;&amp;j!=width-<span class="number">1</span>)&#123;</span><br><span class="line">                    grid[i][j]+=Math.min(grid[i+<span class="number">1</span>][j],grid[i][j+<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> grid[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="逆向思维"><a href="#逆向思维" class="headerlink" title="逆向思维"></a>逆向思维</h4><p>即我从起点出发，思考上一点在哪</p>
+<p>只有第一行是可以向左</p>
+<p>只有第一列是可以向上</p>
+<p>第一个元素不做处理</p>
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/%E7%9F%A9%E9%98%B5%E5%9B%BE.png" class title="矩阵图">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-01.png" class title="process2-01">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-02.png" class title="process2-02">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-03.png" class title="process2-03">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-04.png" class title="process2-04">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-05.png" class title="process2-05">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-06.png" class title="process2-06">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-07.png" class title="process2-07">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-08.png" class title="process2-08">
+
+<img src="/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/process2-09.png" class title="process2-09">
+
+<p>上代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rows = grid.length;</span><br><span class="line">        <span class="keyword">int</span> columns = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows ; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; columns ; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(i==<span class="number">0</span>&amp;&amp;j!=<span class="number">0</span>)&#123;</span><br><span class="line">                    grid[i][j]+=grid[i][j-<span class="number">1</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(j==<span class="number">0</span>&amp;&amp;i!=<span class="number">0</span>)&#123;</span><br><span class="line">                    grid[i][j]+=grid[i-<span class="number">1</span>][j];</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i!=<span class="number">0</span>) &#123;</span><br><span class="line">                    grid[i][j]+=Math.min(grid[i-<span class="number">1</span>][j],grid[i][j-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> grid[rows-<span class="number">1</span>][columns-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><p>这是官方的优化说明：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我们可以用一个一维数组dp来代替二维数组，dp 数组的大小和grid的行大小相同。</span><br><span class="line"></span><br><span class="line">这是因为对于某个固定状态，只需要考虑下方和右方的节点。</span><br><span class="line"></span><br><span class="line">我们就可以一行一行计算，来节省空间复杂度。</span><br></pre></td></tr></table></figure>
+
+<p>这是我个人的解读（对于逆向思维）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">想要得到最后的结果，就需要从第一行开始计算，然后该行的数据为下一行的计算提供数据。</span><br><span class="line">这一行计算完成后，上一行就失去了作用，而且我们需要的就只是计算完成后的最后一行数据</span><br><span class="line">返回的也就是这最后一行的最后一个数据也就是dp[rows-1][colums-1]</span><br></pre></td></tr></table></figure>
+
+<p>这里就不画流程图了，直接上代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> rows = grid.length;</span><br><span class="line">        <span class="keyword">int</span> columns = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[columns];</span><br><span class="line">        Arrays.fill(dp,Integer.MAX_VALUE);</span><br><span class="line">        dp[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>]=dp[<span class="number">0</span>]+grid[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; columns; j++) &#123;</span><br><span class="line">                dp[j]=Math.min(dp[j],dp[j-<span class="number">1</span>])+grid[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[columns-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/25/%E3%80%90537-Easy%E3%80%91%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2370,173 +2602,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/24/%E3%80%90%E5%89%91%E6%8C%87Offer21-Easy%E3%80%91%E5%A5%87%E5%89%8D%E5%81%B6%E5%90%8E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/02/24/%E3%80%90%E5%89%91%E6%8C%87Offer21-Easy%E3%80%91%E5%A5%87%E5%89%8D%E5%81%B6%E5%90%8E/" itemprop="url">【剑指Offer21-Easy】奇前偶后</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T20:05:31+08:00">
-                2022-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="奇前偶后"><a href="#奇前偶后" class="headerlink" title="奇前偶后"></a>奇前偶后</h2><p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数在数组的前半部分，所有偶数在数组的后半部分。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,3,4]</span><br><span class="line">输出：[1,3,2,4] </span><br><span class="line">注：[3,1,2,4] 也是正确的答案之一。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ol>
-<li><code>0 &lt;= nums.length &lt;= 50000</code></li>
-<li><code>0 &lt;= nums[i] &lt;= 10000</code></li>
-</ol>
-<p><strong>Related Topics</strong></p>
-<ul>
-<li>数组</li>
-<li>双指针</li>
-<li>排序</li>
-</ul>
-<h3 id="法一："><a href="#法一：" class="headerlink" title="法一："></a>法一：</h3><p>分析：先new一个相同长度的数组result，接着用odd&#x3D;0标记从头开始，用even&#x3D;nums.length-1标记从尾开始，然后遍历nums，将数字放入result中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] exchange(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">        <span class="keyword">int</span> odd=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> even= len -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                result[even--]=nums[i];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                result[odd++]=nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><p>在原有题目基础上加一个条件：奇数和偶数部分必须是排好序的。</p>
-<p>其实只要我们在每次插入数据之后，循环判断是否需要交换</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] sortExchange(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span> len = nums.length;</span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">    <span class="keyword">int</span> odd=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> even= len -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums[i]%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            result[even--]=nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = even+<span class="number">1</span>; j &lt; len-<span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(result[j]&gt;result[j+<span class="number">1</span>])&#123;</span><br><span class="line">                    swap(result,j,j+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            result[odd++]=nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = odd - <span class="number">1</span>; j &gt; <span class="number">0</span> ; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span>(result[j]&lt;result[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    swap(result,j,j-<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp=arr[j];</span><br><span class="line">    arr[j]=arr[i];</span><br><span class="line">    arr[i]=temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2591,7 +2656,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
