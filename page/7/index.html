@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -68,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="芝麻的blog" />
 
 
 
@@ -79,14 +86,15 @@
 
 
 
-<meta name="description" content="个人博客">
+<meta name="description" content="芝麻的blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="芝麻的blog">
 <meta property="og:url" content="http://li-zhi.net.cn/page/7/index.html">
 <meta property="og:site_name" content="芝麻的blog">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="芝麻的blog">
 <meta property="og:locale">
-<meta property="article:author" content="李智">
+<meta property="article:author" content="芝麻">
+<meta property="article:tag" content="个人学习笔记">
 <meta name="twitter:card" content="summary">
 
 
@@ -137,6 +145,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+
   
   
     
@@ -159,7 +168,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">百 事 可 乐</p>
       
   </div>
 
@@ -194,15 +203,15 @@
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            一些平时积攒的小技巧
+            有料
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-anchor"></i> <br />
             
             归档
           </a>
@@ -295,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -314,7 +323,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" itemprop="url">【3-Medium】无重复字符的最长子串</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" itemprop="url">【3-Medium】无重复字符的最长子串</a></h1>
         
 
         <div class="post-meta">
@@ -370,6 +379,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
 
           
 
@@ -418,21 +458,21 @@
 <h3 id="法三：滑动窗口法"><a href="#法三：滑动窗口法" class="headerlink" title="法三：滑动窗口法"></a>法三：滑动窗口法</h3><p>此方法从力扣官网解题得知：</p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/jian-dan-yi-dong-javac-pythonjshua-dong-bff20/">https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/jian-dan-yi-dong-javac-pythonjshua-dong-bff20/</a>    </p>
 <p>我按照此思路画了图</p>
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process01.png" class title="滑动窗口process01">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process01.png" class title="滑动窗口process01">
 
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process02.png" class title="滑动窗口process02">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process02.png" class title="滑动窗口process02">
 
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process03.png" class title="滑动窗口process03">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process03.png" class title="滑动窗口process03">
 
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process04.png" class title="滑动窗口process04">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process04.png" class title="滑动窗口process04">
 
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process05.png" class title="滑动窗口process05">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process05.png" class title="滑动窗口process05">
 
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process06.png" class title="滑动窗口process06">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process06.png" class title="滑动窗口process06">
 
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process07.png" class title="滑动窗口process07">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process07.png" class title="滑动窗口process07">
 
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process08.png" class title="滑动窗口process08">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3process08.png" class title="滑动窗口process08">
 
 <p>这是我知道此方法后写的代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">if</span>(len &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> len;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxLength = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        LinkedList&lt;Character&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span>(right &lt; len)&#123;</span><br><span class="line">            <span class="keyword">while</span>(right &lt; len &amp;&amp; !list.contains(s.charAt(right)))&#123;</span><br><span class="line">                maxLength = Math.max(maxLength, right-left+<span class="number">1</span>);</span><br><span class="line">                list.add(s.charAt(right++));</span><br><span class="line">            &#125;</span><br><span class="line">            left++;</span><br><span class="line">            <span class="keyword">while</span>(right &lt; len &amp;&amp; list.pop()!=s.charAt(right))&#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxLength;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -447,7 +487,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">if</span>(len &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> len;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxLength = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        Map&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span>(right &lt; len)&#123;</span><br><span class="line">            <span class="keyword">char</span> now = s.charAt(right);</span><br><span class="line">            <span class="keyword">if</span>(map.get(now)!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="comment">// 如果拿到的索引+1比left大再赋值</span></span><br><span class="line">                left = Math.max(map.get(now)+<span class="number">1</span>,left);</span><br><span class="line">            &#125;</span><br><span class="line">            maxLength = Math.max(maxLength, right-left+<span class="number">1</span>);</span><br><span class="line">            map.put(now,right);</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxLength;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>接下来，我们追求一下极致，先看下题目要求</p>
-<img src="/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82.png" class title="题目要求">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E3%80%903-Medium%E3%80%91%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82.png" class title="题目要求">
 
 <p>因为字符是确定的所以，我们可以new一个128长度的数组来当hashmap，键是字符的ascll码值，值是索引，代码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">if</span>(len &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> len;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxLength = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] window = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">128</span>];</span><br><span class="line">        <span class="keyword">while</span>(right &lt; len)&#123;</span><br><span class="line">            <span class="keyword">char</span> now = s.charAt(right);</span><br><span class="line">            left = Math.max(left, window[now] +<span class="number">1</span>);</span><br><span class="line">            maxLength = Math.max(maxLength, right-left+<span class="number">1</span>);</span><br><span class="line">            window[now] = right;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxLength;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -499,7 +539,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -518,7 +558,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" itemprop="url">大O表示法</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/" itemprop="url">大O表示法</a></h1>
         
 
         <div class="post-meta">
@@ -574,6 +614,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  695
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
 
           
 
@@ -595,7 +666,7 @@
             <h2 id="如何去评判一个算法的好坏呢？"><a href="#如何去评判一个算法的好坏呢？" class="headerlink" title="如何去评判一个算法的好坏呢？"></a>如何去评判一个算法的好坏呢？</h2><p>我们可以从两个维度分别是时间和空间去评判，所以我们也可以根据这两点去优化我们的代码，从而使自己的算法的复杂度降低，效率提高。</p>
 <p>那这样说的话，是不是我拿着不同的算法在不同的电脑上跑然后比较时间，谁的时间短，谁的算法更牛逼。那如果两台电脑的性能本就有着很大的差距呢？这样就不公平了，导致了比较的偏差。</p>
 <h2 id="大O表示法"><a href="#大O表示法" class="headerlink" title="大O表示法"></a>大O表示法</h2><p>那么我们可以使用一种表示法也就是大O表示法来具体表示<strong>时间复杂度</strong>和<strong>空间复杂度</strong>。它将代码的所有步骤转换为<strong>关于数据规模n的公式项</strong>，然后排除不会对问题的整体复杂度产生较大影响的<strong>低阶、系数项和常数项</strong>。</p>
-<img src="/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/Big-OComplexityChart.png" class title="Big-O Complexity Chart">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/22/%E7%AE%97%E6%B3%95-%E5%A4%A7O%E8%A1%A8%E7%A4%BA%E6%B3%95/Big-OComplexityChart.png" class title="Big-O Complexity Chart">
 
 <h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>其实该值表示的是，当数据的量级增加的时候，时间增长的一个趋势。</p>
 <p>公式：T(n) &#x3D; O(f(n))</p>
@@ -683,7 +754,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -702,7 +773,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/" itemprop="url">Redis-三大特殊类型</a></h1>
+                <a class="post-title-link" href="/javaEE/Redis/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/" itemprop="url">Redis-三大特殊类型</a></h1>
         
 
         <div class="post-meta">
@@ -768,6 +839,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
           
 
           
@@ -907,7 +1009,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -926,7 +1028,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/" itemprop="url">【1827-Easy】最少操作使数组递增</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/" itemprop="url">【1827-Easy】最少操作使数组递增</a></h1>
         
 
         <div class="post-meta">
@@ -981,6 +1083,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  408
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1080,7 +1213,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/%E3%80%901380-Easy%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901380-Easy%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1099,7 +1232,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/21/%E3%80%901380-Easy%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/" itemprop="url">【1380-Easy】矩阵中的幸运数</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901380-Easy%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/" itemprop="url">【1380-Easy】矩阵中的幸运数</a></h1>
         
 
         <div class="post-meta">
@@ -1154,6 +1287,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
           
 
           
@@ -1264,7 +1428,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1283,7 +1447,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/" itemprop="url">【717-Easy】1比特与2比特字符</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/" itemprop="url">【717-Easy】1比特与2比特字符</a></h1>
         
 
         <div class="post-meta">
@@ -1338,6 +1502,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  440
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1433,7 +1628,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1452,7 +1647,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" itemprop="url">【2-Medium】两数相加</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" itemprop="url">【2-Medium】两数相加</a></h1>
         
 
         <div class="post-meta">
@@ -1508,6 +1703,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1542,10 +1768,10 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]</span><br><span class="line">输出：[8,9,9,9,0,0,0,1]</span><br></pre></td></tr></table></figure>
 
 <p><strong>图示1：</strong></p>
-<img src="/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E5%9B%BE%E7%A4%BA1.png" class title="图示1">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E5%9B%BE%E7%A4%BA1.png" class title="图示1">
 
 <p><strong>图示2：</strong></p>
-<img src="/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E5%9B%BE%E7%A4%BA2.png" class title="图示2">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E5%9B%BE%E7%A4%BA2.png" class title="图示2">
 
 <p><strong>提示：</strong></p>
 <ul>
@@ -1570,7 +1796,7 @@
 <p>我们算一下int的最大值是多少，int是4个字节也就是32位，可以表示2^32个数字，</p>
 <p>再来看long的最大值，long是8个字节也就是64位，可以表示2^64位。</p>
 <p>此方法乍一看确实没问题，但是，请看题目要求</p>
-<img src="/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82.png" class title="题目要求">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82.png" class title="题目要求">
 
 <p>题目要求告诉我们，测试的时候可能会出现100位的数字，long类型最大值远远不够，所以当数字很大的时候，该方法就会崩盘。</p>
 <p>这时候就需要考虑其他方法。比如，递归。</p>
@@ -1643,7 +1869,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/%E3%80%901-Easy%E3%80%91%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901-Easy%E3%80%91%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1662,7 +1888,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/21/%E3%80%901-Easy%E3%80%91%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" itemprop="url">【1-Easy】两数之和</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901-Easy%E3%80%91%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" itemprop="url">【1-Easy】两数之和</a></h1>
         
 
         <div class="post-meta">
@@ -1717,6 +1943,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  651
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
           
 
           
@@ -1823,7 +2080,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/%E5%8E%BBIOE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/21/%E5%8E%BBIOE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1842,7 +2099,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/21/%E5%8E%BBIOE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" itemprop="url">去IOE是什么？</a></h1>
+                <a class="post-title-link" href="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/21/%E5%8E%BBIOE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" itemprop="url">去IOE是什么？</a></h1>
         
 
         <div class="post-meta">
@@ -1897,6 +2154,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  479
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1983,7 +2271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2002,7 +2290,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="url">Redis-五大基础数据类型</a></h1>
+                <a class="post-title-link" href="/javaEE/Redis/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="url">Redis-五大基础数据类型</a></h1>
         
 
         <div class="post-meta">
@@ -2069,6 +2357,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
 
           
 
@@ -2105,7 +2424,7 @@
 <h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>可以给其设置一个使用规则，则可以将其实现栈或者队列的功能</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置和取值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lrange key start stop [start,stop]</span></span><br><span class="line">127.0.0.1:6379&gt; lpush list1 v1 v2 v3</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list1 0 1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br></pre></td></tr></table></figure>
 
-<img src="/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/list%E7%B1%BB%E5%9E%8B%E7%9A%84lpush%E6%93%8D%E4%BD%9C.png" class title="list类型的lpush操作">
+<img src="/javaEE/Redis/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/list%E7%B1%BB%E5%9E%8B%E7%9A%84lpush%E6%93%8D%E4%BD%9C.png" class title="list类型的lpush操作">
 
 <p>分析可知这里的lpush是头插入，也就是left插入，那与之对应的肯定还有个尾插入，即right插入，但是啊只有LRANGE操作来取得集合里的数据，没有RRANGE操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; rpush list v1 v2 v3</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v1&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除头部的值并返回</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lpop key</span></span><br><span class="line">127.0.0.1:6379&gt; lpop list</span><br><span class="line">&quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v2&quot;</span><br><span class="line">2) &quot;v3&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除尾部的值并返回</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpop key</span></span><br><span class="line">127.0.0.1:6379&gt; rpop list</span><br><span class="line">&quot;v3&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v2&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取索引处的元素</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lindex key index</span></span><br><span class="line">127.0.0.1:6379&gt; lpush list v1 v2 v3</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lindex list 0</span><br><span class="line">&quot;v3&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取集合长度</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> llen key</span> </span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v2&quot;</span><br><span class="line">3) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; llen list</span><br><span class="line">(integer) 3</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 移除指定个数的匹配的值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lrem key count value</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v3&quot;</span><br><span class="line">3) &quot;v2&quot;</span><br><span class="line">4) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrem list 1 v1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v3&quot;</span><br><span class="line">2) &quot;v3&quot;</span><br><span class="line">3) &quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrem list 2 v3</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v2&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 截取指定位置的值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ltrim key start stop</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">5) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; ltrim list 0 2</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将集合尾部元素移除，并在另一个集合头部加入一个元素</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> rpoplpush <span class="built_in">source</span> destination</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">5) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; rpoplpush list otherlist</span><br><span class="line">&quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange otherlist 0 -1</span><br><span class="line">1) &quot;v1&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改指定索引处元素的值</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lset list 0 modified</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;modified&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> lpush key value [value...]</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当该集合不存在的时候会自动创建</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> lset key index value</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当该集合不存在的时候会报错</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在指定值的前面|后面插入值</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> linsert key BEFORE|AFTER pivot value</span></span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;v3&quot;</span><br><span class="line">4) &quot;v2&quot;</span><br><span class="line">5) &quot;v1&quot;</span><br><span class="line">127.0.0.1:6379&gt; linsert list before v2 brforev2</span><br><span class="line">(integer) 6</span><br><span class="line">127.0.0.1:6379&gt; linsert list after v4 afterv4</span><br><span class="line">(integer) 7</span><br><span class="line">127.0.0.1:6379&gt; lrange list 0 -1</span><br><span class="line">1) &quot;v5&quot;</span><br><span class="line">2) &quot;v4&quot;</span><br><span class="line">3) &quot;afterv4&quot;</span><br><span class="line">4) &quot;v3&quot;</span><br><span class="line">5) &quot;brforev2&quot;</span><br><span class="line">6) &quot;v2&quot;</span><br><span class="line">7) &quot;v1&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -2213,7 +2532,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives/%7C%7C%20anchor">
               
                   <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
@@ -2248,6 +2567,16 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/li-zhi1802" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -2274,30 +2603,48 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-id-card"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">李智</span>
+  <span class="author" itemprop="copyrightHolder">芝麻</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">101.2k</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -2339,6 +2686,8 @@
   
 
 
+  
+
 
 
 
@@ -2377,6 +2726,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -2778,6 +3132,11 @@
   
 
   
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.3' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
 
 </body>
 </html>

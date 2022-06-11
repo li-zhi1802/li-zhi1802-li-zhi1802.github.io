@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -68,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="芝麻的blog" />
 
 
 
@@ -79,14 +86,15 @@
 
 
 
-<meta name="description" content="个人博客">
+<meta name="description" content="芝麻的blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="芝麻的blog">
 <meta property="og:url" content="http://li-zhi.net.cn/page/8/index.html">
 <meta property="og:site_name" content="芝麻的blog">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="芝麻的blog">
 <meta property="og:locale">
-<meta property="article:author" content="李智">
+<meta property="article:author" content="芝麻">
+<meta property="article:tag" content="个人学习笔记">
 <meta name="twitter:card" content="summary">
 
 
@@ -137,6 +145,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+
   
   
     
@@ -159,7 +168,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">百 事 可 乐</p>
       
   </div>
 
@@ -194,15 +203,15 @@
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            一些平时积攒的小技巧
+            有料
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-anchor"></i> <br />
             
             归档
           </a>
@@ -295,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -314,7 +323,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/" itemprop="url">Redis-前期准备</a></h1>
+                <a class="post-title-link" href="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/" itemprop="url">Redis-前期准备</a></h1>
         
 
         <div class="post-meta">
@@ -381,6 +390,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
 
           
 
@@ -409,17 +449,17 @@
 <li>30万以上的数据，需要使用索引（B+Tree）</li>
 <li>访问量大的话，服务器压力大</li>
 </ol>
-<img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E6%97%A9%E4%BA%9B%E5%B9%B4%E7%9A%84mysql.png" class title="早些年的mysql">
+<img src="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E6%97%A9%E4%BA%9B%E5%B9%B4%E7%9A%84mysql.png" class title="早些年的mysql">
 
-<h4 id="解决方案：读写分离（垂直拆分）"><a href="#解决方案：读写分离（垂直拆分）" class="headerlink" title="解决方案：读写分离（垂直拆分）"></a>解决方案：读写分离（垂直拆分）</h4><img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB.png" class title="读写分离">
+<h4 id="解决方案：读写分离（垂直拆分）"><a href="#解决方案：读写分离（垂直拆分）" class="headerlink" title="解决方案：读写分离（垂直拆分）"></a>解决方案：读写分离（垂直拆分）</h4><img src="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB.png" class title="读写分离">
 
 <p>因为80%网站对于数据的操作都是读取，不会产生并发问题，所以为了提升效率，当我们第一次读取完数据后，将数据放入缓存中，下一次查询如果是同样的业务，则直接从缓存中读取数据，会大大提升性能，解决了读的压力</p>
-<img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E5%8A%A0Cache.png" class title="加Cache">
+<img src="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E5%8A%A0Cache.png" class title="加Cache">
 
 <h4 id="解决方案：分库分表，MySql集群（水平拆分）"><a href="#解决方案：分库分表，MySql集群（水平拆分）" class="headerlink" title="解决方案：分库分表，MySql集群（水平拆分）"></a>解决方案：分库分表，MySql集群（水平拆分）</h4><p>每一个集群放一些表和数据库，这样的操作解决了写的压力</p>
-<img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/MySQL%E9%9B%86%E7%BE%A4.png" class title="MySQL集群">
+<img src="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/MySQL%E9%9B%86%E7%BE%A4.png" class title="MySQL集群">
 
-<img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84.png" class title="基本架构">
+<img src="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84.png" class title="基本架构">
 
 <h4 id="如今的数据"><a href="#如今的数据" class="headerlink" title="如今的数据"></a>如今的数据</h4><p>数据量大，变化快，导致mysql无法很好的解决问题。</p>
 <p>有的人使用mysql来存储一些比较大的文件，博客推文，图片等，数据库非常庞大，效率十分低下。</p>
@@ -502,7 +542,7 @@
 <p>它使用ANSI、C语言编写的、支持网络、可以基于内存亦可持久化的日志型、Key-value数据库、并提供多种语言的API，亦被称为结构化数据库</p>
 <h3 id="下载下载后直接解压即可"><a href="#下载下载后直接解压即可" class="headerlink" title="下载下载后直接解压即可"></a>下载下载后直接解压即可</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/12ozkQkUss8GH70lf7qrinQ </span><br><span class="line">提取码：nv5z </span><br></pre></td></tr></table></figure>
 
-<img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/redis%E7%9B%AE%E5%BD%95.png" class title="redis目录">
+<img src="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/redis%E7%9B%AE%E5%BD%95.png" class title="redis目录">
 
 <p>点击redis-server.exe即可启动服务</p>
 <h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>Redis推荐我们使用Linux使用redis，所以接下来使用阿里云服务器来学习redis</p>
@@ -514,7 +554,7 @@
 <p>也可以使用docker创建redis容器</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 开启一个redis容器并设置密码</span></span><br><span class="line">docker run -it --name studyredis -p6379:6379 --requirepass lizhi9275 redis</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看运行的容器</span></span><br><span class="line">docker ps </span><br></pre></td></tr></table></figure>
 
-<img src="/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E6%9F%A5%E7%9C%8B%E5%90%AF%E5%8A%A8%E7%8A%B6%E6%80%81.png" class title="查看启动状态">
+<img src="/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/%E6%9F%A5%E7%9C%8B%E5%90%AF%E5%8A%A8%E7%8A%B6%E6%80%81.png" class title="查看启动状态">
 
           
         
@@ -563,7 +603,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/17/SpringBoot-Shiro/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/SpringBoot/2022/02/17/SpringBoot-Shiro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -582,7 +622,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/17/SpringBoot-Shiro/" itemprop="url">Springboot-shiro</a></h1>
+                <a class="post-title-link" href="/javaEE/SpringBoot/2022/02/17/SpringBoot-Shiro/" itemprop="url">Springboot-shiro</a></h1>
         
 
         <div class="post-meta">
@@ -649,6 +689,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
 
           
 
@@ -682,7 +753,7 @@
 <li>Remember Me：”记住我”的功能</li>
 </ul>
 <h3 id="Shiro结构"><a href="#Shiro结构" class="headerlink" title="Shiro结构"></a>Shiro结构</h3><p>我们来观察一下Shiro的结构</p>
-<img src="/2022/02/17/SpringBoot-Shiro/Shiro%E6%9E%B6%E6%9E%84.png" class title="Shiro架构">
+<img src="/javaEE/SpringBoot/2022/02/17/SpringBoot-Shiro/Shiro%E6%9E%B6%E6%9E%84.png" class title="Shiro架构">
 
 <p>解释一下出现的名词</p>
 <ul>
@@ -785,7 +856,7 @@
 <p>用户认证指的是，当用户登录的时候，对其进行验证</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> AuthenticationInfo <span class="title">doGetAuthenticationInfo</span><span class="params">(AuthenticationToken authenticationToken)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;认证&quot;</span>);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 数据库中读取数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;</span><br><span class="line">    User user = userMapper.getUserByName(token.getUsername());</span><br><span class="line">    <span class="keyword">if</span>(user==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="comment">//这里如果返回null的话，会自动抛出异常到下图处</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里的第一个参数user会设置给当前登录对象的Principal中。</span></span><br><span class="line">    <span class="comment">//可以通过SecurityUtils.getSubject().getPrincipal()获取</span></span><br><span class="line">    <span class="comment">//第二个参数传入正确的密码，即数据库中的密码，交给shiro来做密码的校验，如果密码错误，也会抛出异常到下图的地方</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SimpleAuthenticationInfo(user, user.getPassword(),<span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2022/02/17/SpringBoot-Shiro/%E8%BF%94%E5%9B%9E%E5%BC%82%E5%B8%B8%E5%88%B0%E6%AD%A4%E5%A4%84.png" class title="返回异常到此处">
+<img src="/javaEE/SpringBoot/2022/02/17/SpringBoot-Shiro/%E8%BF%94%E5%9B%9E%E5%BC%82%E5%B8%B8%E5%88%B0%E6%AD%A4%E5%A4%84.png" class title="返回异常到此处">
 
 <blockquote>
 <p>这里插上一嘴，在web环境中，通过subject拿到的session即web框架中的那个session。</p>
@@ -793,7 +864,7 @@
 </blockquote>
 <h3 id="用户授权"><a href="#用户授权" class="headerlink" title="用户授权"></a>用户授权</h3><p>好啦，现在案例已经可以跑起来了，并且如果账号密码正确的话是可以登录的，并且返回到主页</p>
 <p>还记得我们在下图配置的这一串让人一头雾水的配置吗？</p>
-<img src="/2022/02/17/SpringBoot-Shiro/%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83.png" class title="用户授权">
+<img src="/javaEE/SpringBoot/2022/02/17/SpringBoot-Shiro/%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83.png" class title="用户授权">
 
 <p>这里就只是配置了一个规则，但是具体登录的用户的授权还没有做，我们现在去完成它吧</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principalCollection)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;授权&quot;</span>);</span><br><span class="line">    SimpleAuthorizationInfo info = <span class="keyword">new</span> SimpleAuthorizationInfo();</span><br><span class="line">    <span class="comment">//这里需要根据用户表的数据进行增加权限</span></span><br><span class="line">    Subject subject = SecurityUtils.getSubject();</span><br><span class="line">    <span class="comment">//拿到用户认证的时候传入的user</span></span><br><span class="line">    User currentUser = (User) subject.getPrincipal();</span><br><span class="line">    System.out.println(<span class="string">&quot;权限为：&quot;</span>+ currentUser.getPerms());</span><br><span class="line">    <span class="comment">//数据库中perms字段是以这样的形式存储的   user:add,user:update</span></span><br><span class="line">    <span class="comment">//所以需要将其用，分割然后使用工具类将其转换为集合传入addStringPermissions</span></span><br><span class="line">    info.addStringPermissions(Arrays.asList(currentUser.getPerms().split(<span class="string">&quot;,&quot;</span>)));</span><br><span class="line">    <span class="keyword">return</span> info;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -862,7 +933,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/17/SpringBoot-Swagger/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -881,7 +952,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/17/SpringBoot-Swagger/" itemprop="url">swagger</a></h1>
+                <a class="post-title-link" href="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/" itemprop="url">swagger</a></h1>
         
 
         <div class="post-meta">
@@ -948,6 +1019,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  770
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
 
           
 
@@ -988,11 +1090,11 @@
 <ol start="4">
 <li>访问swagger-ui.html</li>
 </ol>
-<img src="/2022/02/17/SpringBoot-Swagger/UI%E7%95%8C%E9%9D%A2.png" class title="UI界面">
+<img src="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/UI%E7%95%8C%E9%9D%A2.png" class title="UI界面">
 
 <p>我们在ui的jar包中可以知道我们可以访问该页面</p>
 <p>这是访问的页面</p>
-<img src="/2022/02/17/SpringBoot-Swagger/swagger%E7%9A%84%E7%95%8C%E9%9D%A2.png" class title="swagger的界面">
+<img src="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/swagger%E7%9A%84%E7%95%8C%E9%9D%A2.png" class title="swagger的界面">
 
 <h3 id="配置Swagger"><a href="#配置Swagger" class="headerlink" title="配置Swagger"></a>配置Swagger</h3><p>Swagger中用来配置的bean是Docket</p>
 <h4 id="配置文档信息"><a href="#配置文档信息" class="headerlink" title="配置文档信息"></a>配置文档信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Docket <span class="title">docket</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//配置swagger信息</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ApiInfo(</span><br><span class="line">            <span class="string">&quot;swagger测试&quot;</span>,<span class="comment">//文档名称</span></span><br><span class="line">            <span class="string">&quot;初次测试swagger&quot;</span>,<span class="comment">//文档描述</span></span><br><span class="line">            <span class="string">&quot;1.0&quot;</span>,<span class="comment">//版本号</span></span><br><span class="line">            <span class="string">&quot;http://li-zhi.net.cn/&quot;</span>,<span class="comment">//作者个人博客</span></span><br><span class="line">            <span class="keyword">new</span> Contact(<span class="string">&quot;李智&quot;</span>,<span class="string">&quot;http://li-zhi.net.cn/&quot;</span>,<span class="string">&quot;1158778689@qq.com&quot;</span>),<span class="comment">//作者联系方式</span></span><br><span class="line">            <span class="string">&quot;Apache 2.0&quot;</span>,<span class="comment">//开源协议</span></span><br><span class="line">            <span class="string">&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;</span>,</span><br><span class="line">            <span class="keyword">new</span> ArrayList&lt;&gt;()</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1073,7 +1175,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1092,7 +1194,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url">单例设计模式</a></h1>
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url">单例设计模式</a></h1>
         
 
         <div class="post-meta">
@@ -1147,6 +1249,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
           
 
           
@@ -1326,7 +1459,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1345,7 +1478,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url">工厂设计模式</a></h1>
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url">工厂设计模式</a></h1>
         
 
         <div class="post-meta">
@@ -1400,6 +1533,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  911
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
           
 
           
@@ -1539,7 +1703,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/16/SpringBoot-Security/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/SpringBoot/2022/02/16/SpringBoot-Security/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1558,7 +1722,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/16/SpringBoot-Security/" itemprop="url">SpringBoot-Security</a></h1>
+                <a class="post-title-link" href="/javaEE/SpringBoot/2022/02/16/SpringBoot-Security/" itemprop="url">SpringBoot-Security</a></h1>
         
 
         <div class="post-meta">
@@ -1624,6 +1788,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
           
 
           
@@ -1722,7 +1917,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/11/ForkJoin/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JUC/2022/02/11/ForkJoin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1741,7 +1936,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/11/ForkJoin/" itemprop="url">ForkJoin</a></h1>
+                <a class="post-title-link" href="/javaEE/JUC/2022/02/11/ForkJoin/" itemprop="url">ForkJoin</a></h1>
         
 
         <div class="post-meta">
@@ -1808,6 +2003,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  190
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1828,10 +2054,10 @@
           
             <h2 id="ForkJoin"><a href="#ForkJoin" class="headerlink" title="ForkJoin"></a>ForkJoin</h2><h3 id="什么是ForkJoin？"><a href="#什么是ForkJoin？" class="headerlink" title="什么是ForkJoin？"></a>什么是ForkJoin？</h3><p>并行执行任务，提交效率，大数据量的时候使用！</p>
 <p>把大任务拆分成小任务</p>
-<img src="/2022/02/11/ForkJoin/ForkJoin.png" class title="ForkJoin">
+<img src="/javaEE/JUC/2022/02/11/ForkJoin/ForkJoin.png" class title="ForkJoin">
 
 <h3 id="ForkJoin特点：工作窃取"><a href="#ForkJoin特点：工作窃取" class="headerlink" title="ForkJoin特点：工作窃取"></a>ForkJoin特点：工作窃取</h3><p>内部维护的双端队列，两端都可以出</p>
-<img src="/2022/02/11/ForkJoin/%E5%81%B7%E7%AA%83%E7%AE%97%E6%B3%95.png" class title="偷窃算法">
+<img src="/javaEE/JUC/2022/02/11/ForkJoin/%E5%81%B7%E7%AA%83%E7%AE%97%E6%B3%95.png" class title="偷窃算法">
 
 <h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><ol>
 <li>创建ForkJoinPool对象</li>
@@ -1887,7 +2113,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/11/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/11/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1906,7 +2132,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/11/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" itemprop="url">函数式接口</a></h1>
+                <a class="post-title-link" href="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/11/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" itemprop="url">函数式接口</a></h1>
         
 
         <div class="post-meta">
@@ -1961,6 +2187,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  303
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -2055,7 +2312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/11/JUC-%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2022/02/11/JUC-%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2074,7 +2331,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/11/JUC-%E7%BA%BF%E7%A8%8B%E6%B1%A0/" itemprop="url">线程池</a></h1>
+                <a class="post-title-link" href="/javaEE/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2022/02/11/JUC-%E7%BA%BF%E7%A8%8B%E6%B1%A0/" itemprop="url">线程池</a></h1>
         
 
         <div class="post-meta">
@@ -2140,6 +2397,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  774
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
           
 
           
@@ -2219,7 +2507,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runtime.getRuntime().availableProcessors()<span class="comment">//动态获取cpu核数</span></span><br></pre></td></tr></table></figure>
 
 <h5 id="IO密集型"><a href="#IO密集型" class="headerlink" title="IO密集型"></a>IO密集型</h5><p>程序里面有多少个非常消耗IO的线程，一般最大线程数设置为该数字的两倍</p>
-<h3 id="四大拒绝策略"><a href="#四大拒绝策略" class="headerlink" title="四大拒绝策略"></a>四大拒绝策略</h3><img src="/2022/02/11/JUC-%E7%BA%BF%E7%A8%8B%E6%B1%A0/%E5%9B%9B%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5.png" class title="四种拒绝策略">
+<h3 id="四大拒绝策略"><a href="#四大拒绝策略" class="headerlink" title="四大拒绝策略"></a>四大拒绝策略</h3><img src="/javaEE/%E5%A4%9A%E7%BA%BF%E7%A8%8B/2022/02/11/JUC-%E7%BA%BF%E7%A8%8B%E6%B1%A0/%E5%9B%9B%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5.png" class title="四种拒绝策略">
 
 <h4 id="AbortPolicy"><a href="#AbortPolicy" class="headerlink" title="AbortPolicy"></a>AbortPolicy</h4><p>不处理此任务，并且抛出异常</p>
 <h4 id="CallerRunsPolicy"><a href="#CallerRunsPolicy" class="headerlink" title="CallerRunsPolicy"></a>CallerRunsPolicy</h4><p>不处理此任务，往上传递此任务，哪来的回哪里去</p>
@@ -2273,7 +2561,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2292,7 +2580,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/" itemprop="url">JVM-简介</a></h1>
+                <a class="post-title-link" href="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/" itemprop="url">JVM-简介</a></h1>
         
 
         <div class="post-meta">
@@ -2359,6 +2647,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
 
           
 
@@ -2378,9 +2697,9 @@
         
           
             <h3 id="JVM的体系结构"><a href="#JVM的体系结构" class="headerlink" title="JVM的体系结构"></a>JVM的体系结构</h3><p>下面是简易的结构图</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" class title="JVM体系结构">
+<img src="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" class title="JVM体系结构">
 
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%842.png" class title="JVM体系结构2">
+<img src="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%842.png" class title="JVM体系结构2">
 
 <p>栈中不会有垃圾回收</p>
 <p>大部分JVM调优都是在堆内存上进行调优</p>
@@ -2390,16 +2709,16 @@
 <h3 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h3><p>​        java安全模型的核心就是java沙箱（sandbox）。沙箱是一个限制程序运行的环境。沙箱机制就是将java代码限定在JVM特定的运行范围内，并且严格限制代码对本地资源的访问，通过这样的措施来保证对代码的有效隔离，防止对本地系统造成破坏。<strong>沙箱主要限制系统资源（CPU，内存，文件系统，网络）访问</strong>。不同级别的沙箱对这些资源的限制就不一样</p>
 <p>​        所有的java程序运行都可以指定沙箱，可以指定安全策略。</p>
 <p>​        在java中，将执行过程分为本地代码和远程代码两部分，本地代码是默认可信任的，而远程代码则被看做是不受信任的。对于授予信任的本地代码，可以访问一切本地资源。而对于非授予信任的远程代码在早期的java实现中，完全依赖于java沙箱机制。下图是jdk1.0的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.0%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.0安全模型">
+<img src="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.0%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.0安全模型">
 
 <p>​        但是如此严格的安全机制也给程序的功能拓展带来了障碍，比如用户希望远程代码访问本地资源的时候，就会被沙箱机制所拒绝。所以在后来的jdk1.1版本中，针对安全机制做出了改进，增加了安全策略，允许用户指定代码对本地资源的访问权限。下图是jdk1.1的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.1%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.1安全模型">
+<img src="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.1%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.1安全模型">
 
 <p>​        在jdk1.2的版本中，再次引进安全机制，增加了代码签名，不论是本地代码还是远程代码，都会按照用户的安全策略设定，由类加载器加载到JVM中权限不同的运行空间，来实现差异化的代码执行权限控制。下图是jdk1.2的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.2%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.2安全模型">
+<img src="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.2%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.2安全模型">
 
 <p>​        当前最新的安全机制实现，则引入了域（domain）的概念。JVM会把所有的代码加载到不同的系统和应用域，系统域部分专门负责与关键资源进行交互，而各个应用域部分则通过系统的部分代理来对各种需要的资源进行访问。虚拟机中不同的受保护域（Protected Domain），对应不一样的权限（Permission）。存在于不同域中的类文件就具有了当前域的全部权限。下图是jdk1.6的安全模型</p>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.6安全模型">
+<img src="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/jdk1.6%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B.png" class title="jdk1.6安全模型">
 
 <p>​        组成沙箱的基本组件:</p>
 <ul>
@@ -2444,7 +2763,7 @@
 <li>养老区  old </li>
 <li>永久区  perm</li>
 </ol>
-<img src="/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83.png" class title="JVM堆内存分布">
+<img src="/javaEE/JVM/2022/02/10/JVM-%E7%AE%80%E4%BB%8B/JVM%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83.png" class title="JVM堆内存分布">
 
 <p>GC垃圾回收主要在伊甸园区和养老区</p>
 <p>堆内存满了就会爆OOM（OutOfMemoryError）错误</p>
@@ -2576,7 +2895,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives/%7C%7C%20anchor">
               
                   <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
@@ -2611,6 +2930,16 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/li-zhi1802" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -2637,30 +2966,48 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-id-card"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">李智</span>
+  <span class="author" itemprop="copyrightHolder">芝麻</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">101.2k</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -2702,6 +3049,8 @@
   
 
 
+  
+
 
 
 
@@ -2740,6 +3089,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -3141,6 +3495,11 @@
   
 
   
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.3' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
 
 </body>
 </html>

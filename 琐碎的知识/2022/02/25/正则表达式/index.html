@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="琐碎的知识," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="正则表达式正则表达式是由普通字符（如英文字母）以及特殊字符（也称为元字符）组成的文字模式，该模式对文本查找时需要匹配的一个或多个字符串描述，给出一个匹配模板。它可以大大简化文本识别工作，现已超出了某种语言或某个系统的局限，成为被人们广为使用的工具。 正则表达式基础书写符号   符号 名称 示例 解释 匹配输入    \ 转义符 \* 符号“*” *   [ ] 可接收的字符列表 [efgh] e、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="芝麻的blog">
+<meta property="og:description" content="正则表达式正则表达式是由普通字符（如英文字母）以及特殊字符（也称为元字符）组成的文字模式，该模式对文本查找时需要匹配的一个或多个字符串描述，给出一个匹配模板。它可以大大简化文本识别工作，现已超出了某种语言或某个系统的局限，成为被人们广为使用的工具。 正则表达式基础书写符号   符号 名称 示例 解释 匹配输入    \ 转义符 \* 符号“*” *   [ ] 可接收的字符列表 [efgh] e、">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-02-25T03:19:07.000Z">
+<meta property="article:modified_time" content="2022-04-07T01:43:32.807Z">
+<meta property="article:author" content="芝麻">
+<meta property="article:tag" content="琐碎的知识">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://li-zhi.net.cn/琐碎的知识/2022/02/25/正则表达式/"/>
+
+
+
+
+
+  <title>正则表达式 | 芝麻的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">芝麻的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">百 事 可 乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sometips">
+          <a href="/sometips/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            有料
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-anchor"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正则表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-25T11:19:07+08:00">
+                2022-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">琐碎的知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式是由普通字符（如英文字母）以及特殊字符（也称为元字符）组成的文字模式，该模式对文本查找时需要匹配的一个或多个字符串描述，给出一个匹配模板。它可以大大简化文本识别工作，现已超出了某种语言或某个系统的局限，成为被人们广为使用的工具。</p>
+<h3 id="正则表达式基础书写符号"><a href="#正则表达式基础书写符号" class="headerlink" title="正则表达式基础书写符号"></a>正则表达式基础书写符号</h3><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">名称</th>
+<th align="center">示例</th>
+<th align="center">解释</th>
+<th align="center">匹配输入</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\</td>
+<td align="center">转义符</td>
+<td align="center">\*</td>
+<td align="center">符号“*”</td>
+<td align="center">*</td>
+</tr>
+<tr>
+<td align="center">[ ]</td>
+<td align="center">可接收的字符列表</td>
+<td align="center">[efgh]</td>
+<td align="center">e、f、g、h中的任意1个字符</td>
+<td align="center">e、f、g、h</td>
+</tr>
+<tr>
+<td align="center">[^]</td>
+<td align="center">不接收的字符列表</td>
+<td align="center">[^abc]</td>
+<td align="center">除a、b、c之外的任意1个字符，包括数字和特殊符号</td>
+<td align="center">m、q、5、*</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">匹配“|”之前或之后的表达式</td>
+<td align="center">ab|cd</td>
+<td align="center">ab或者cd</td>
+<td align="center">ab、cd</td>
+</tr>
+<tr>
+<td align="center">( )</td>
+<td align="center"><strong>将子表达式分组</strong></td>
+<td align="center">(abc)</td>
+<td align="center">将字符串abc作为一组</td>
+<td align="center">abc</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">连字符（只在[ ]中使用）</td>
+<td align="center">A-Z</td>
+<td align="center">任意单个大写字母</td>
+<td align="center">大写字母</td>
+</tr>
+</tbody></table>
+<h2 id="正则表达式限定符"><a href="#正则表达式限定符" class="headerlink" title="正则表达式限定符"></a>正则表达式限定符</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">名称</th>
+<th align="center">示例</th>
+<th align="center">解释</th>
+<th align="center">匹配输入</th>
+<th align="center">不匹配输入</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">*</td>
+<td align="center">指定字符重复0次或n次相当于<code>&#123;0,&#125;</code></td>
+<td align="center">(abc)*</td>
+<td align="center">仅包含任意个abc的字符串</td>
+<td align="center">abc、abcabcabc</td>
+<td align="center">a、abcabcabca</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="center">指定字符重复1次或n次，相当于<code>&#123;1,&#125;</code></td>
+<td align="center">m+(abc)*</td>
+<td align="center">以至少1个m开头，后接任意个abc的字符串</td>
+<td align="center">m、mabc、mabcabc</td>
+<td align="center">ma、abc</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td align="center">指定字符重复0次或1次</td>
+<td align="center">m+abc?</td>
+<td align="center">以至少1个m开头，后接ab或abc的字符串</td>
+<td align="center">mab、mabc、mmmab、mmabc</td>
+<td align="center">ab、abc、mabcc</td>
+</tr>
+<tr>
+<td align="center">{n}</td>
+<td align="center">只能输入n个字符</td>
+<td align="center">[abcd]{3}</td>
+<td align="center">由abcd中字母组成的任意长度为3的字符串</td>
+<td align="center">abc、dbc、adc</td>
+<td align="center">a、aa、dcbd</td>
+</tr>
+<tr>
+<td align="center">{n,}</td>
+<td align="center">指定至少 n 个匹配</td>
+<td align="center">[abcd]{3,}</td>
+<td align="center">由abcd中字母组成的任意长度不小于3的字符串</td>
+<td align="center">aab、dbc、aaabdc</td>
+<td align="center">a、cd、bb</td>
+</tr>
+<tr>
+<td align="center">{n,m}</td>
+<td align="center">指定至少 n 个但不多于 m 个匹配</td>
+<td align="center">[abcd]{3,5}</td>
+<td align="center">由abcd中字母组成的任意长度不小于3，不大于5的字符串</td>
+<td align="center">abc、abcd、aaaaa、bcdab</td>
+<td align="center">ab、ababab、a</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">指定起始字符，用于<code>&#123;&#125;</code>内</td>
+<td align="center">^[0-9]+[a-z]*</td>
+<td align="center">以至少1个数字开头，后接任意个小写字母的字符串</td>
+<td align="center">123、6aa、555edf</td>
+<td align="center">abc、aaa、a33</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">指定结束字符，用于<code>&#123;&#125;</code>内</td>
+<td align="center">^[0-9]-[a-z]+$</td>
+<td align="center">以1个数字开头后接连字符“–”，并以至少1个小写字母结尾的字符串</td>
+<td align="center">2-a、3-ddd、5-efg</td>
+<td align="center">33a、8-、7-Ab</td>
+</tr>
+</tbody></table>
+<h2 id="匹配字符集"><a href="#匹配字符集" class="headerlink" title="匹配字符集"></a>匹配字符集</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">名称</th>
+<th align="center">示例</th>
+<th align="center">解释</th>
+<th align="center">匹配输入</th>
+<th align="center">不匹配输入</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">匹配除 \n 以外的任何字符</td>
+<td align="center">a..b</td>
+<td align="center">以a开头，b结尾，中间包括2个任意字符的长度为4的字符串</td>
+<td align="center">aaab、aefb、a35b、a#*b</td>
+<td align="center">ab、aaaa、a123447b</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="center">匹配单个数字字符，相当于[0-9]</td>
+<td align="center">\d{3}(\d)?</td>
+<td align="center">包含3个或4个数字的字符串</td>
+<td align="center">123、9876</td>
+<td align="center">123、9876</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td align="center">匹配单个非数字字符，相当于[^0-9]</td>
+<td align="center">\D(\d)*</td>
+<td align="center">以单个非数字字符开头，后接任意个数字字符串</td>
+<td align="center">a、A342</td>
+<td align="center">aa、AA78、1234</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">匹配单个数字、大小写字母字符，相当于[0-9a-zA-Z]</td>
+<td align="center">^^^^^</td>
+<td align="center">以3个数字字符开头的长度为7的数字字母字符串</td>
+<td align="center">234abcd、12345Pe</td>
+<td align="center">58a、Ra46</td>
+</tr>
+<tr>
+<td align="center">\W</td>
+<td align="center">匹配单个非数字、大小写字母字符，相当于[^0-9a-zA-Z]</td>
+<td align="center">\W+\d{2}</td>
+<td align="center">以至少1个非数字字母字符开头，2个数字字符结尾的字符串</td>
+<td align="center">#29、#?@10</td>
+<td align="center">23、#?@10</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">匹配空格字符，比如tab</td>
+<td align="center">\s[0-9]\s</td>
+<td align="center">匹配所有的空白</td>
+<td align="center">空格12空格</td>
+<td align="center">asdfa</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">匹配每一个字母的前后</td>
+<td align="center">\b</td>
+<td align="center">匹配所有字母的前后</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="正则-Pattern"><a href="#正则-Pattern" class="headerlink" title="正则-Pattern"></a>正则-Pattern</h2><h3 id="JAVA中的正则"><a href="#JAVA中的正则" class="headerlink" title="JAVA中的正则"></a>JAVA中的正则</h3><p>java.util.regex 是一个用正则表达式所订制的模式来对字符串进行匹配工作的类库包，它包括两个类：<code>Pattern</code> 和 <code>Matcher</code> 。</p>
+<ul>
+<li>Pattern： <strong>一个 Pattern 是一个正则表达式经编译后的表现模式。</strong></li>
+<li>Matcher：<strong>一个 Matcher 对象是一个状态机器，它依据 Pattern 对象做为匹配模式对字符串展开匹配检查。</strong></li>
+</ul>
+<p>首先一个 <code>Pattern</code> 实例订制了一个所用语法与 <code>PERL</code> 类似的正则表达式经编译后的模式，然后一个 <code>Matcher</code> 实例在这个给定的 <code>Pattern</code> 实例的模式控制下进行字符串的匹配工作。</p>
+<p>以下我们就分别来看看这两个类：</p>
+<h3 id="1-1、Pattern"><a href="#1-1、Pattern" class="headerlink" title="1.1、Pattern"></a>1.1、Pattern</h3><p>Pattern 的方法如下表：</p>
+<table>
+<thead>
+<tr>
+<th>方法名称</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static Pattern compile(String regex)</td>
+<td>将给定的正则表达式编译并赋予给 <code>Pattern</code> 类</td>
+</tr>
+<tr>
+<td>static Pattern compile(String regex, int flags)</td>
+<td>对指定字符串的截取，参数配置如下</td>
+</tr>
+<tr>
+<td>int flags()</td>
+<td>返回当前 <code>Pattern</code> 的匹配 <code>flag</code> 参数</td>
+</tr>
+<tr>
+<td>Matcher matcher(CharSequence input)</td>
+<td>生成一个给定命名的 <code>Matcher</code> 对象</td>
+</tr>
+<tr>
+<td>static boolean matches(String regex, CharSequence input)</td>
+<td>编译给定的正则表达式并对输入的字串以该正则表达式为模开展匹配</td>
+</tr>
+<tr>
+<td>String pattern()</td>
+<td>返回该Patter对象所编译的正则表达式</td>
+</tr>
+</tbody></table>
+<p>对于 <code>static Pattern compile(String regex, int flags)</code> 方法中的参数 flags 取值如下：</p>
+<blockquote>
+<ul>
+<li><strong>Pattern.CASE_INSENSITIVE</strong>：默认情况下，大小写不敏感的匹配只适用于US-ASCII字符集。让表达式忽略大小写进行匹配。</li>
+<li><strong>Pattern.COMMENTS</strong>：此种模式下，匹配时会忽略表达式中空格字符(表达式里的空格，tab，回车)。</li>
+<li><strong>Pattern.UNIX_LINES</strong>：此种模式下，只有 <code>\n</code>才被认作一行的中止，并且与 <code>.</code>，<code>^</code>，以及 <code>$</code> 进行匹配。</li>
+<li><strong>Pattern.MULTILINE</strong>：此种模式下，上箭头和单引号分别匹配一行的开始和结束。</li>
+<li><strong>Pattern.DOTALL</strong>：此种模式下，表达式 <code>.</code> 可以匹配任意字符，包括表示一行的结束符。</li>
+</ul>
+</blockquote>
+<p>一个正则表达式，也就是一串有特定意义的字符，必须首先要编译成为一个 <code>Pattern</code> 类的实例，这个 <code>Pattern</code> 对象将会使用 <code>matcher()</code> 方法来生成一个 <code>Matcher</code> 实例，接着便可以使用该 <code>Matcher</code> 实例以编译的正则表达式为基础对目标字符串进行匹配工作，多个 <code>Matcher</code> 是可以共用一个 <code>Pattern</code> 对象的。</p>
+<p>现在我们先来看一个简单的例子，再通过分析它来了解怎样生成一个 <code>Pattern</code> 对象并且编译一个正则表达式，最后根据这个正则表达式将目标字符串进行分割：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成一个 Pattern，同时编译一个正则表达式</span></span><br><span class="line">Pattern p = Pattern.compile(<span class="string">&quot;[/]+&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用 Pattern 的 split() 方法把字符串按 &quot;/&quot; 分割</span></span><br><span class="line">String[] result = p.split(</span><br><span class="line">    <span class="string">&quot;Kevin has seen《LEON》seveal times,because it is a good film.&quot;</span></span><br><span class="line">    +<span class="string">&quot;/ 凯文已经看过《这个杀手不太冷》几次了，因为它是一部&quot;</span></span><br><span class="line">    +<span class="string">&quot;好电影。/名词:凯文。&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++)&#123;</span><br><span class="line">    System.out.println(result[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上述代码的运行结果为：</p>
+<p>Kevin has seen《LEON》seveal times,because it is a good film.<br>凯文已经看过《这个杀手不太冷》几次了，因为它是一部好电影。<br>名词:凯文。</p>
+</blockquote>
+<p>正则 - Matcher</p>
+<h3 id="1、Matcher"><a href="#1、Matcher" class="headerlink" title="1、Matcher"></a>1、Matcher</h3><p><code>Matcher</code> 对象是一个状态机器，它<strong>依据 Pattern 对象做为匹配模式对字符串展开匹配检查</strong>。</p>
+<p>我们来学习一下 <code>Matcher</code> 常用的方法：</p>
+<ul>
+<li><strong>索引方法</strong>：索引方法提供了有用的索引值，精确表明输入字符串中在哪能找到匹配。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public int start()</td>
+<td>返回以前匹配的初始索引</td>
+</tr>
+<tr>
+<td>public int start(int group)</td>
+<td>返回在以前的匹配操作期间，由给定组所捕获的子序列的初始索引</td>
+</tr>
+<tr>
+<td>public int end()</td>
+<td>返回最后匹配字符之后的偏移量</td>
+</tr>
+<tr>
+<td>public int end(int group)</td>
+<td>返回在以前的匹配操作期间，由给定组所捕获子序列的最后字符之后的偏移量</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>查找方法</strong>：查找方法用来检查输入字符串并返回一个布尔值，表示是否找到该模式。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public boolean lookingAt()</td>
+<td>尝试将从区域开头开始的输入序列与该模式匹配</td>
+</tr>
+<tr>
+<td>public boolean find()</td>
+<td>尝试查找与该模式匹配的输入序列的下一个子序列</td>
+</tr>
+<tr>
+<td>public boolean find(int start）</td>
+<td>重置此匹配器，然后尝试查找匹配该模式、从指定索引开始的输入序列的下一个子序列</td>
+</tr>
+<tr>
+<td>public boolean matches()</td>
+<td>尝试将整个区域与模式匹配</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>例：下面是一个对单词 <code>cat</code> 出现在输入字符串中出现次数进行计数的例子：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">String regex = <span class="string">&quot;dog&quot;</span>;</span><br><span class="line">String input = <span class="string">&quot;dog dog dogtie&quot;</span>;</span><br><span class="line">Pattern p = Pattern.compile(regex);</span><br><span class="line">Matcher m = p.matcher(input); <span class="comment">// 获取 matcher 对象</span></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (m.find()) &#123;</span><br><span class="line">    count++;</span><br><span class="line">    System.out.println(<span class="string">&quot;Match number &quot;</span> + count);</span><br><span class="line">    System.out.println(<span class="string">&quot;start(): &quot;</span> + m.start());</span><br><span class="line">    System.out.println(<span class="string">&quot;end(): &quot;</span> + m.end());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上述代码的执行结果为：</p>
+<p>Match number 1     &#x2F;&#x2F; 第一次出现 （下标 0-2）<br>start(): 0            &#x2F;&#x2F; 开始下标 0<br>end(): 3            &#x2F;&#x2F; 结束下标 3<br>Match number 2     &#x2F;&#x2F; 第二次出现（下标 4-6）<br>start(): 4            &#x2F;&#x2F; 开始下标 4<br>end(): 7            &#x2F;&#x2F; 结束下标 7<br>Match number 3     &#x2F;&#x2F; 第三次出现（下标 8-10）<br>start(): 8            &#x2F;&#x2F; 开始下标 8<br>end(): 11           &#x2F;&#x2F; 结束下标 11</p>
+</blockquote>
+<p><code>matches</code> 和 <code>lookingAt</code> 方法都用来尝试匹配一个输入序列模式。它们的不同是 <code>matches</code> 要求整个序列都匹配，而 <code>lookingAt</code> 不要求。</p>
+<p><code>lookingAt</code> 方法虽然不需要整句都匹配，但是需要从第一个字符开始匹配。</p>
+<p>这两个方法经常在输入字符串的开始使用。</p>
+<blockquote>
+<p>我们通过下面这个例子，来解释这个功能：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String regex = <span class="string">&quot;foo&quot;</span>;</span><br><span class="line">String input = <span class="string">&quot;fooooooooooooooooo&quot;</span>;</span><br><span class="line">String input2 = <span class="string">&quot;ooooofoooooooooooo&quot;</span>;</span><br><span class="line"></span><br><span class="line">Pattern pattern = Pattern.compile(regex);</span><br><span class="line">Matcher matcher = pattern.matcher(input);</span><br><span class="line">Matcher matcher2 = pattern.matcher(input2);</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;lookingAt(): &quot;</span> + matcher.lookingAt());</span><br><span class="line">System.out.println(<span class="string">&quot;matches(): &quot;</span> + matcher.matches());</span><br><span class="line">System.out.println(<span class="string">&quot;lookingAt(): &quot;</span> + matcher2.lookingAt());</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上述代码的执行结果为：</p>
+<p>lookingAt(): true<br>matches(): false<br>lookingAt(): false</p>
+</blockquote>
+<ul>
+<li><strong>替换方法</strong>：替换方法是替换输入字符串里文本的方法。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public Matcher appendReplacement(StringBuffer sb, String replacement)</td>
+<td>实现非终端添加和替换步骤。</td>
+</tr>
+<tr>
+<td>public StringBuffer appendTail(StringBuffer sb)</td>
+<td>实现终端添加和替换步骤。</td>
+</tr>
+<tr>
+<td>public String replaceAll(String replacement)</td>
+<td>替换模式与给定替换字符串相匹配的输入序列的每个子序列。</td>
+</tr>
+<tr>
+<td>public String replaceFirst(String replacement)</td>
+<td>替换模式与给定替换字符串匹配的输入序列的第一个子序列。</td>
+</tr>
+<tr>
+<td>public static String quoteReplacement(String s)</td>
+<td>返回指定字符串的字面替换字符串。</td>
+</tr>
+</tbody></table>
+<p><code>replaceFirst</code> 和 <code>replaceAll</code> 方法用来替换匹配正则表达式的文本。不同的是，<code>replaceFirst</code> 替换首次匹配，<code>replaceAll</code> 替换所有匹配。</p>
+<blockquote>
+<p>下面的例子来解释这个功能：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">String regex = <span class="string">&quot;dog&quot;</span>;</span><br><span class="line">String input1 = <span class="string">&quot;The dog says meow. All dogs say meow.&quot;</span>;</span><br><span class="line">String input2 = <span class="string">&quot;The dog says meow. All dogs say meow.&quot;</span>;</span><br><span class="line">String replace = <span class="string">&quot;cat&quot;</span>;</span><br><span class="line"></span><br><span class="line">Pattern p = Pattern.compile(regex);</span><br><span class="line"><span class="comment">// get a matcher object</span></span><br><span class="line">Matcher m1 = p.matcher(input1);</span><br><span class="line">Matcher m2 = p.matcher(input2);</span><br><span class="line"></span><br><span class="line">input1 = m1.replaceAll(replace);</span><br><span class="line">input2 = m2.replaceFirst(replace);</span><br><span class="line"></span><br><span class="line">System.out.println(input1);</span><br><span class="line">System.out.println(input2);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上述代码的执行结果为：</p>
+<p>The cat says meow. All cats say meow.<br>The cat says meow. All dogs say meow.</p>
+</blockquote>
+<p>从上面的结果，我们可以发现，<code>replaceFirst</code> 方法只将第一个 <code>dog</code> 替换成了 <code>cat</code>。而 <code>replaceAll</code> 方法却将两个 <code>dog</code> 都替换成了 <code>cat</code>。</p>
+<p>下面看一些案例：</p>
+<ol>
+<li>回溯</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实例一</span></span><br><span class="line"><span class="comment"># pattern:前后标签名一致</span></span><br><span class="line">&lt;(\w+)&gt;(.+)&lt;\/\1&gt;</span><br><span class="line"><span class="comment"># 匹配：</span></span><br><span class="line">&lt;font&gt;asdasdas&lt;/font&gt;</span><br><span class="line">&lt;head&gt;as&lt;/head&gt;</span><br><span class="line"><span class="comment"># 不匹配：</span></span><br><span class="line">&lt;font&gt;sad&lt;/asd&gt;</span><br><span class="line">===============================</span><br><span class="line"><span class="comment"># 实例二 </span></span><br><span class="line"><span class="comment"># pattern:</span></span><br><span class="line">(\w)(\w)\1\2</span><br><span class="line"><span class="comment"># 匹配：</span></span><br><span class="line">abba</span><br><span class="line">dffd</span><br><span class="line"><span class="comment"># 不匹配</span></span><br><span class="line">asasd</span><br><span class="line">===============================</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>正向先行断言、反向先行断言、正向后行断言、反向后行断言</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 括号内的不会被提取出来</span></span><br><span class="line">===============================</span><br><span class="line"><span class="comment"># 正向先行断言，从左往右看，有才继续匹配后面的</span></span><br><span class="line"><span class="comment"># pattern：至少有一个大小和一个小写字母</span></span><br><span class="line">(?=.*?[a-z])(?=.*?[A-Z]).+</span><br><span class="line"><span class="comment"># 匹配</span></span><br><span class="line">asdojCsdsvd</span><br><span class="line">ZjsdzsaJN12</span><br><span class="line"><span class="comment"># 不匹配</span></span><br><span class="line">assafasf123r32</span><br><span class="line"><span class="comment"># 密码强度验证</span></span><br><span class="line"><span class="comment"># 1.至少有一个数字</span></span><br><span class="line"><span class="comment"># 2.至少有一个小写字母</span></span><br><span class="line"><span class="comment"># 3.至少有一个大写字母</span></span><br><span class="line"><span class="comment"># 4.至少有8个字符</span></span><br><span class="line"><span class="comment"># pattern：</span></span><br><span class="line">(?=.*?[a-zA-z0-9])\w&#123;8,&#125;</span><br><span class="line">================================</span><br><span class="line"><span class="comment"># 反向先行断言，从左往右看，没有才继续匹配后面的</span></span><br><span class="line"><span class="comment"># pattern：匹配不是qq.com结尾的邮箱</span></span><br><span class="line">(\d&#123;6,10&#125;)@(?!qq\.com)</span><br><span class="line"><span class="comment"># 匹配</span></span><br><span class="line">233325425@163.com</span><br><span class="line"><span class="comment"># 不匹配</span></span><br><span class="line">233325425@qq.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># pattern：匹配不是&lt;font&gt;&lt;/font&gt;包裹的标签</span></span><br><span class="line">&lt;(?!font)&gt;(\w+)&lt;/(\1)&gt;</span><br><span class="line">============================</span><br><span class="line"><span class="comment"># 后行断言是从右向左来看的</span></span><br><span class="line"><span class="comment"># 正向后行断言(?&lt;=)</span></span><br><span class="line"><span class="comment"># 反向后行断言(?&lt;!)</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>或者</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提取图片格式是jpg或者png的图片名字</span></span><br><span class="line"><span class="comment"># pattern</span></span><br><span class="line">.+(png|jpg)</span><br><span class="line"><span class="comment"># 匹配</span></span><br><span class="line">asdfsa.jpg</span><br><span class="line">asfsabiu.png</span><br><span class="line"><span class="comment"># 不匹配</span></span><br><span class="line">asfsas.webp</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>分组</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用分组功能但是不捕获数据</span></span><br><span class="line"><span class="comment"># pattern：China:开头的才获取城市数据</span></span><br><span class="line">(?:China:)(.+)</span><br><span class="line"><span class="comment"># 匹配</span></span><br><span class="line">China:Suzhou</span><br><span class="line">China:BeiJing</span><br><span class="line"><span class="comment"># 不匹配</span></span><br><span class="line">America:Los Angeles</span><br><span class="line">==================================</span><br><span class="line"><span class="comment"># 分组实用技巧</span></span><br><span class="line"><span class="comment">#pattern：对于不同格式的数据获取年月日</span></span><br><span class="line">(\d&#123;4&#125;)[-\\\.\/\s]?(\d&#123;2&#125;)[-\\\.\/\s]?(\d&#123;2&#125;)</span><br><span class="line"><span class="comment"># 匹配</span></span><br><span class="line">20190908</span><br><span class="line">2019-09-08</span><br><span class="line">2019 09 08</span><br><span class="line">2019/09/08</span><br><span class="line">2019\09\08</span><br><span class="line">2019.09.08</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" rel="tag"><i class="fa fa-tag"></i> 琐碎的知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/javaEE/Redis/2022/02/25/Redis-%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" rel="next" title="Redis-发布订阅">
+                <i class="fa fa-chevron-left"></i> Redis-发布订阅
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" rel="prev" title="Redis-主从复制">
+                Redis-主从复制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20anchor">
+              
+                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/li-zhi1802" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9F%BA%E7%A1%80%E4%B9%A6%E5%86%99%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.1.</span> <span class="nav-text">正则表达式基础书写符号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">正则表达式限定符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">匹配字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99-Pattern"><span class="nav-number">4.</span> <span class="nav-text">正则-Pattern</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99"><span class="nav-number">4.1.</span> <span class="nav-text">JAVA中的正则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1%E3%80%81Pattern"><span class="nav-number">4.2.</span> <span class="nav-text">1.1、Pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81Matcher"><span class="nav-number">4.3.</span> <span class="nav-text">1、Matcher</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-id-card"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">芝麻</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">101.2k</span>
+  
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.3' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+</body>
+</html>

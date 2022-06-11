@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -68,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="芝麻的blog" />
 
 
 
@@ -79,14 +86,15 @@
 
 
 
-<meta name="description" content="个人博客">
+<meta name="description" content="芝麻的blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="芝麻的blog">
 <meta property="og:url" content="http://li-zhi.net.cn/page/4/index.html">
 <meta property="og:site_name" content="芝麻的blog">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="芝麻的blog">
 <meta property="og:locale">
-<meta property="article:author" content="李智">
+<meta property="article:author" content="芝麻">
+<meta property="article:tag" content="个人学习笔记">
 <meta name="twitter:card" content="summary">
 
 
@@ -137,6 +145,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+
   
   
     
@@ -159,7 +168,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">百 事 可 乐</p>
       
   </div>
 
@@ -194,15 +203,15 @@
             
               <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
             
-            一些平时积攒的小技巧
+            有料
           </a>
         </li>
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-anchor"></i> <br />
             
             归档
           </a>
@@ -295,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -314,7 +323,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/" itemprop="url">算法-旋转的数字</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/" itemprop="url">算法-旋转的数字</a></h1>
         
 
         <div class="post-meta">
@@ -370,6 +379,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  356
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -392,7 +432,7 @@
 <p>这是自己起的题目名</p>
 </blockquote>
 <p>直接上5阶旋转数字的示例图</p>
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" class title="示例图">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" class title="示例图">
 
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题一看就知道是不可能一行一行输出的</p>
 <p>我们需要通过一个二位数组先来计算出来这个矩阵的数据</p>
@@ -404,43 +444,43 @@
 <p>第二个循环用来写入这一次循环中<strong>水平向下</strong>的数据</p>
 <p>第三个循环用来写入这一次循环中<strong>水平向右</strong>的数据</p>
 <p>第四个循环用来写入这一次循环中<strong>水平向上</strong>的数据</p>
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/%E5%9B%9B%E5%B0%8F%E5%BE%AA%E7%8E%AF.png" class title="四小循环">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/%E5%9B%9B%E5%B0%8F%E5%BE%AA%E7%8E%AF.png" class title="四小循环">
 
 <h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><p>粉红色的是标注为<strong>每次大循环</strong>的开始处</p>
 <blockquote>
 <p>PS：图片很多，过程很详细</p>
 </blockquote>
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-01.png" class title="process-01">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-01.png" class title="process-01">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-02.png" class title="process-02">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-02.png" class title="process-02">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-03.png" class title="process-03">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-03.png" class title="process-03">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-04.png" class title="process-04">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-04.png" class title="process-04">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-05.png" class title="process-05">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-05.png" class title="process-05">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-06.png" class title="process-06">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-06.png" class title="process-06">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-07.png" class title="process-07">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-07.png" class title="process-07">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-08.png" class title="process-08">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-08.png" class title="process-08">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-09.png" class title="process-09">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-09.png" class title="process-09">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-10.png" class title="process-10">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-10.png" class title="process-10">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-11.png" class title="process-11">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-11.png" class title="process-11">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-12.png" class title="process-12">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-12.png" class title="process-12">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-13.png" class title="process-13">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-13.png" class title="process-13">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-14.png" class title="process-14">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-14.png" class title="process-14">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-15.png" class title="process-15">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-15.png" class title="process-15">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-16.png" class title="process-16">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%B0%E5%AD%97/process-16.png" class title="process-16">
 
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] rotateNumber(<span class="keyword">int</span> n)&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">int</span> counter=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> timer;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n / <span class="number">2</span>; i++) &#123;</span><br><span class="line">        timer = n - i - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//-&gt;</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; timer; j++) &#123;</span><br><span class="line">            matrix[i][j]=counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//↓</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i ; j &lt; timer; j++) &#123;</span><br><span class="line">            matrix[j][timer]=counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//&lt;-</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = timer; j &gt; i ; j--) &#123;</span><br><span class="line">            matrix[timer][j]=counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//↑</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j =timer; j &gt; i ; j--) &#123;</span><br><span class="line">            matrix[j][i]=counter++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果是奇数，单独处理中间那一格数据</span></span><br><span class="line">    <span class="keyword">if</span>(n%<span class="number">2</span>!=<span class="number">0</span>)&#123;</span><br><span class="line">        matrix[n/<span class="number">2</span>][n/<span class="number">2</span>]=n*n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> matrix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -491,7 +531,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -510,7 +550,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/" itemprop="url">算法-螺旋数字</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/" itemprop="url">算法-螺旋数字</a></h1>
         
 
         <div class="post-meta">
@@ -566,6 +606,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  389
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -588,7 +659,7 @@
 <p>这是自己起的题目名字</p>
 </blockquote>
 <p>直接上6阶螺旋数字的示例图</p>
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" class title="示例图">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" class title="示例图">
 
 <p>传入数字n，最后输出n阶的螺旋数字</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">spiralNumber</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -608,59 +679,59 @@
 <blockquote>
 <p>PS：图片很多，过程很详细</p>
 </blockquote>
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-01.png" class title="process-01">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-01.png" class title="process-01">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-02.png" class title="process-02">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-02.png" class title="process-02">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-03.png" class title="process-03">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-03.png" class title="process-03">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-04.png" class title="process-04">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-04.png" class title="process-04">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-05.png" class title="process-05">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-05.png" class title="process-05">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-06.png" class title="process-06">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-06.png" class title="process-06">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-07.png" class title="process-07">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-07.png" class title="process-07">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-08.png" class title="process-08">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-08.png" class title="process-08">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-09.png" class title="process-09">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-09.png" class title="process-09">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-10.png" class title="process-10">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-10.png" class title="process-10">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-11.png" class title="process-11">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-11.png" class title="process-11">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-12.png" class title="process-12">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-12.png" class title="process-12">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-13.png" class title="process-13">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-13.png" class title="process-13">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-14.png" class title="process-14">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-14.png" class title="process-14">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-15.png" class title="process-15">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-15.png" class title="process-15">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-16.png" class title="process-16">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-16.png" class title="process-16">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-17.png" class title="process-17">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-17.png" class title="process-17">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-18.png" class title="process-18">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-18.png" class title="process-18">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-19.png" class title="process-19">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-19.png" class title="process-19">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-20.png" class title="process-20">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-20.png" class title="process-20">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-21.png" class title="process-21">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-21.png" class title="process-21">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-22.png" class title="process-22">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-22.png" class title="process-22">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-23.png" class title="process-23">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-23.png" class title="process-23">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-24.png" class title="process-24">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-24.png" class title="process-24">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-25.png" class title="process-25">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-25.png" class title="process-25">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-26.png" class title="process-26">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-26.png" class title="process-26">
 
-<img src="/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-27.png" class title="process-27">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/28/%E7%AE%97%E6%B3%95-%E8%9E%BA%E6%97%8B%E6%95%B0%E5%AD%97/process-27.png" class title="process-27">
 
 <p>这是代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] spiralNumber(<span class="keyword">int</span> n)&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">int</span> counter = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i+=<span class="number">2</span>) &#123;</span><br><span class="line">        j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &gt;= <span class="number">0</span>; k--) &#123;</span><br><span class="line">            matrix[k][j++]=counter++;</span><br><span class="line">        &#125;</span><br><span class="line">        end=j;</span><br><span class="line">        <span class="comment">// 如果n是奇数，在最后一次大循环中就不会有这个小循环了</span></span><br><span class="line">        <span class="keyword">if</span>(j &gt;= n)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= end; k++) &#123;</span><br><span class="line">            matrix[k][j--]=counter++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> matrix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -713,7 +784,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -732,7 +803,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-门面模式</a></h1>
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-门面模式</a></h1>
         
 
         <div class="post-meta">
@@ -787,6 +858,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  176
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -869,7 +971,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -888,7 +990,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/" itemprop="url">【981-Medium】基于时间的键值存储</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/" itemprop="url">【981-Medium】基于时间的键值存储</a></h1>
         
 
         <div class="post-meta">
@@ -943,6 +1045,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  767
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
           
 
           
@@ -1049,7 +1182,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/uncategorized/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1068,7 +1201,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/" itemprop="url">【剑指OfferII68-Easy】查找插入位置</a></h1>
+                <a class="post-title-link" href="/uncategorized/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/" itemprop="url">【剑指OfferII68-Easy】查找插入位置</a></h1>
         
 
         <div class="post-meta">
@@ -1101,6 +1234,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  477
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
           
 
           
@@ -1157,11 +1321,11 @@
 <p>nums[mid] &lt; target 则 left右移</p>
 <p>nums[mid] &gt; target 则 right 左移</p>
 <p>查找结束如果没有相等值则返回left，该值为插入位置</p>
-<img src="/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/process1-01.png" class title="process1-01">
+<img src="/uncategorized/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/process1-01.png" class title="process1-01">
 
-<img src="/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/process1-02.png" class title="process1-02">
+<img src="/uncategorized/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/process1-02.png" class title="process1-02">
 
-<img src="/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/process1-03.png" class title="process1-03">
+<img src="/uncategorized/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/process1-03.png" class title="process1-03">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left&lt;=right) &#123;</span><br><span class="line">            mid = (left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&gt;target)&#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1215,7 +1379,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/27/%E3%80%902016-Easy%E3%80%91%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%902016-Easy%E3%80%91%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1234,7 +1398,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/27/%E3%80%902016-Easy%E3%80%91%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/" itemprop="url">【2016-Easy】增量元素之间的最大差值</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%902016-Easy%E3%80%91%E5%A2%9E%E9%87%8F%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E7%9A%84%E6%9C%80%E5%A4%A7%E5%B7%AE%E5%80%BC/" itemprop="url">【2016-Easy】增量元素之间的最大差值</a></h1>
         
 
         <div class="post-meta">
@@ -1289,6 +1453,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  469
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
           
 
           
@@ -1388,7 +1583,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1407,7 +1602,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" itemprop="url">【206-Easy】反转链表</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" itemprop="url">【206-Easy】反转链表</a></h1>
         
 
         <div class="post-meta">
@@ -1463,6 +1658,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  546
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1512,17 +1738,17 @@
 <p>将now指向suffix，</p>
 <p>然后suffix向后走一位。</p>
 <p>这样一次循环就走完了。</p>
-<img src="/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-01.jpg" class title="process1-01">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-01.jpg" class title="process1-01">
 
-<img src="/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-02.jpg" class title="process1-02">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-02.jpg" class title="process1-02">
 
-<img src="/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-03.jpg" class title="process1-03">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-03.jpg" class title="process1-03">
 
-<img src="/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-04.jpg" class title="process1-04">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-04.jpg" class title="process1-04">
 
-<img src="/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-05.jpg" class title="process1-05">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-05.jpg" class title="process1-05">
 
-<img src="/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-06.jpg" class title="process1-06">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-06.jpg" class title="process1-06">
 
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">        ListNode now = head;</span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode suffix = now.next;</span><br><span class="line">        <span class="keyword">while</span>(now.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            now.next=prev;</span><br><span class="line">            prev = now;</span><br><span class="line">            now = suffix;</span><br><span class="line">            suffix = suffix.next;</span><br><span class="line">        &#125;</span><br><span class="line">        now.next=prev;</span><br><span class="line">        head = now;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1587,7 +1813,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1606,7 +1832,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/" itemprop="url">【876-Easy】链表的中间节点</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/" itemprop="url">【876-Easy】链表的中间节点</a></h1>
         
 
         <div class="post-meta">
@@ -1662,6 +1888,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  392
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1709,18 +1966,18 @@
 <p>fast一次走两步</p>
 <p>当fasf走到底的时候slow就在中间</p>
 <p>节点数目为奇数</p>
-<img src="/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-01.png" class title="process1-01">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-01.png" class title="process1-01">
 
-<img src="/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-02.png" class title="process1-02">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-02.png" class title="process1-02">
 
-<img src="/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-03.png" class title="process1-03">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-03.png" class title="process1-03">
 
 <p>节点数目为偶数</p>
-<img src="/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-01.png" class title="process2-01">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-01.png" class title="process2-01">
 
-<img src="/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-02.png" class title="process2-02">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-02.png" class title="process2-02">
 
-<img src="/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-03.png" class title="process2-03">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-03.png" class title="process2-03">
 
 <p>上代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">middleNode1</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    <span class="keyword">while</span>(fast!=<span class="keyword">null</span>&amp;&amp;fast.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1773,7 +2030,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1792,7 +2049,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" itemprop="url">【剑指offerII26-Medium】重排链表</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" itemprop="url">【剑指offerII26-Medium】重排链表</a></h1>
         
 
         <div class="post-meta">
@@ -1848,6 +2105,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  527
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1872,12 +2160,12 @@
 
 <p>不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
 <p><strong>示例 1:</strong></p>
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B1.png" class title="示例1">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B1.png" class title="示例1">
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [1,2,3,4]</span><br><span class="line">输出: [1,4,2,3]</span><br></pre></td></tr></table></figure>
 
 <p><strong>示例 2:</strong></p>
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B2.png" class title="示例2">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B2.png" class title="示例2">
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [1,2,3,4,5]</span><br><span class="line">输出: [1,5,2,4,3]</span><br></pre></td></tr></table></figure>
 
@@ -1903,33 +2191,33 @@
 <p>这时候需要插入的节点就按顺序保存在队列中了</p>
 <p>接着按队列出队顺序间隔插入到原链表中</p>
 <p>对于实例二的流程图：</p>
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-01.png" class title="process-01">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-01.png" class title="process-01">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-02.png" class title="process-02">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-02.png" class title="process-02">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-03.png" class title="process-03">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-03.png" class title="process-03">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-04.png" class title="process-04">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-04.png" class title="process-04">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-05.png" class title="process-05">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-05.png" class title="process-05">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-06.png" class title="process-06">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-06.png" class title="process-06">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-07.png" class title="process-07">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-07.png" class title="process-07">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-08.png" class title="process-08">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-08.png" class title="process-08">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-09.png" class title="process-09">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-09.png" class title="process-09">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-10.png" class title="process-10">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-10.png" class title="process-10">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-11.png" class title="process-11">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-11.png" class title="process-11">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-12.png" class title="process-12">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-12.png" class title="process-12">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-13.png" class title="process-13">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-13.png" class title="process-13">
 
-<img src="/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-14.png" class title="process-14">
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-14.png" class title="process-14">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        LinkedList&lt;ListNode&gt; nodes = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(temp!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            nodes.add(temp);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">            len++;</span><br><span class="line">        &#125;</span><br><span class="line">        len = len/<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            temp = nodes.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        temp.next=<span class="keyword">null</span>;</span><br><span class="line">        temp = head;</span><br><span class="line">        ListNode now;</span><br><span class="line">        <span class="keyword">while</span>(!nodes.isEmpty())&#123;</span><br><span class="line">            now = nodes.pollLast();</span><br><span class="line">            now.next = temp.next;</span><br><span class="line">            temp.next = now;</span><br><span class="line">            temp = now.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1984,7 +2272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2003,7 +2291,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-享元模式</a></h1>
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-享元模式</a></h1>
         
 
         <div class="post-meta">
@@ -2058,6 +2346,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  259
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -2179,7 +2498,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives/%7C%7C%20anchor">
               
                   <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
@@ -2214,6 +2533,16 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/li-zhi1802" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -2240,30 +2569,48 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-id-card"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">李智</span>
+  <span class="author" itemprop="copyrightHolder">芝麻</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">101.2k</span>
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-
-
-
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
@@ -2305,6 +2652,8 @@
   
 
 
+  
+
 
 
 
@@ -2343,6 +2692,11 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
@@ -2744,6 +3098,11 @@
   
 
   
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.3' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
 
 </body>
 </html>
