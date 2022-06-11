@@ -484,7 +484,41 @@
           
           
 
-          
+          <div>
+    <svg>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-1"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-2"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-3"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-4"></text>
+    </svg>
+</div>
+
+<script>
+function showtime(){
+    var noatime = new Date();
+    var h = noatime.getHours(),
+        m = noatime.getMinutes(),
+        s = noatime.getSeconds();
+    h=checktime(h);
+    m=checktime(m);
+    s=checktime(s);
+  return h+":"+m+":"+s;
+}
+
+function checktime(x){
+  if(x<10){
+    x="0"+x;
+  }
+  return x;
+}
+
+var div1=document.getElementsByTagName("text");
+setInterval(function(){
+  for (var i in div1){
+      div1[i].innerHTML=showtime();
+  }
+},1000);
+</script>
 
         </div>
       </section>
@@ -499,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.</span> <span class="nav-text">Spring核心配置文件的模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC%E7%9A%84web-xml%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">SpringMVC的web.xml模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E6%9D%BF%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">数据库模板配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.</span> <span class="nav-text">MyBatis配置文件的模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">核心配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E5%99%A8xml%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">映射器xml文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#druid%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">druid连接池配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#maven%E5%9D%90%E6%A0%87"><span class="nav-number">5.1.</span> <span class="nav-text">maven坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%83%A8%E5%88%86%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">一部分核心配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4druid%E7%9A%84%E5%B9%BF%E5%91%8A"><span class="nav-number">5.3.</span> <span class="nav-text">去除druid的广告</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub"><span class="nav-number">6.</span> <span class="nav-text">GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E9%80%9F"><span class="nav-number">6.1.</span> <span class="nav-text">加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E9%A1%B9%E7%9B%AE"><span class="nav-number">6.2.</span> <span class="nav-text">高质量项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-number">6.3.</span> <span class="nav-text">官方文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maven%E4%B8%AD%E8%B5%84%E6%BA%90%E5%AF%BC%E5%87%BA%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">maven中资源导出出现问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">8.</span> <span class="nav-text">CORS跨域请求的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringSession%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">9.</span> <span class="nav-text">SpringSession的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log4j-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">10.</span> <span class="nav-text">Log4j 核心配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">11.</span> <span class="nav-text">字体图标的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="nav-text">Spring核心配置文件的模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC%E7%9A%84web-xml%E6%A8%A1%E6%9D%BF"><span class="nav-text">SpringMVC的web.xml模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E6%9D%BF%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">数据库模板配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="nav-text">MyBatis配置文件的模板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">核心配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E5%99%A8xml%E6%96%87%E4%BB%B6"><span class="nav-text">映射器xml文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#druid%E8%BF%9E%E6%8E%A5%E6%B1%A0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">druid连接池配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#maven%E5%9D%90%E6%A0%87"><span class="nav-text">maven坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%83%A8%E5%88%86%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">一部分核心配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4druid%E7%9A%84%E5%B9%BF%E5%91%8A"><span class="nav-text">去除druid的广告</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitHub"><span class="nav-text">GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E9%80%9F"><span class="nav-text">加速</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E9%A1%B9%E7%9B%AE"><span class="nav-text">高质量项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3"><span class="nav-text">官方文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maven%E4%B8%AD%E8%B5%84%E6%BA%90%E5%AF%BC%E5%87%BA%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="nav-text">maven中资源导出出现问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">CORS跨域请求的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringSession%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">SpringSession的配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Log4j-%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">Log4j 核心配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">字体图标的使用</span></a></li></ol></div>
             
 
           </div>

@@ -672,7 +672,41 @@
           
           
 
-          
+          <div>
+    <svg>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-1"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-2"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-3"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-4"></text>
+    </svg>
+</div>
+
+<script>
+function showtime(){
+    var noatime = new Date();
+    var h = noatime.getHours(),
+        m = noatime.getMinutes(),
+        s = noatime.getSeconds();
+    h=checktime(h);
+    m=checktime(m);
+    s=checktime(s);
+  return h+":"+m+":"+s;
+}
+
+function checktime(x){
+  if(x<10){
+    x="0"+x;
+  }
+  return x;
+}
+
+var div1=document.getElementsByTagName("text");
+setInterval(function(){
+  for (var i in div1){
+      div1[i].innerHTML=showtime();
+  }
+},1000);
+</script>
 
         </div>
       </section>
@@ -687,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-lt-T-R-gt"><span class="nav-number">1.1.</span> <span class="nav-text">Function&lt; T , R &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predicate-lt-T-gt"><span class="nav-number">1.2.</span> <span class="nav-text">Predicate&lt; T &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer-lt-T-gt"><span class="nav-number">1.3.</span> <span class="nav-text">Consumer&lt; T &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supplier-lt-T-gt"><span class="nav-number">1.4.</span> <span class="nav-text">Supplier&lt; T &gt;</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-text">函数式接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-lt-T-R-gt"><span class="nav-text">Function&lt; T , R &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predicate-lt-T-gt"><span class="nav-text">Predicate&lt; T &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consumer-lt-T-gt"><span class="nav-text">Consumer&lt; T &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supplier-lt-T-gt"><span class="nav-text">Supplier&lt; T &gt;</span></a></li></ol></li></ol></div>
             
 
           </div>
