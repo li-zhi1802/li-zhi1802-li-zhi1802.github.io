@@ -448,12 +448,12 @@
 <li><p><code>void set(String key, String value, int timestamp)</code> 存储键 <code>key</code>、值 <code>value</code>，以及给定的时间戳 <code>timestamp</code>。</p>
 </li>
 <li><p>&#96;&#96;&#96;<br>String get(String key, int timestamp)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 返回先前调用 `set(key, value, timestamp_prev)` 所存储的值，其中 `timestamp_prev &lt;= timestamp` 。</span><br><span class="line">  - 如果有多个这样的值，则返回对应最大的 `timestamp_prev` 的那个值。</span><br><span class="line">  - 如果没有值，则返回空字符串（`&quot;&quot;`）。</span><br><span class="line"></span><br><span class="line">**示例：**</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">  -</span> 返回先前调用 <span class="code">`set(key, value, timestamp_prev)`</span> 所存储的值，其中 <span class="code">`timestamp_prev &lt;= timestamp`</span> 。</span><br><span class="line"><span class="bullet">  -</span> 如果有多个这样的值，则返回对应最大的 <span class="code">`timestamp_prev`</span> 的那个值。</span><br><span class="line"><span class="bullet">  -</span> 如果没有值，则返回空字符串（<span class="code">`&quot;&quot;`</span>）。</span><br><span class="line"></span><br><span class="line"><span class="strong">**示例：**</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>输入：<br>[“TimeMap”, “set”, “get”, “get”, “set”, “get”, “get”]<br>[[], [“foo”, “bar”, 1], [“foo”, 1], [“foo”, 3], [“foo”, “bar2”, 4], [“foo”, 4], [“foo”, 5]]<br>输出：<br>[null, null, “bar”, “bar”, null, “bar2”, “bar2”]</p>
 </li>
 </ul>
 <p>解释：<br>TimeMap timeMap &#x3D; new TimeMap();<br>timeMap.set(“foo”, “bar”, 1);  &#x2F;&#x2F; 存储键 “foo” 和值 “bar” ，时间戳 timestamp &#x3D; 1<br>timeMap.get(“foo”, 1);         &#x2F;&#x2F; 返回 “bar”<br>timeMap.get(“foo”, 3);         &#x2F;&#x2F; 返回 “bar”, 因为在时间戳 3 和时间戳 2 处没有对应 “foo” 的值，所以唯一的值位于时间戳 1 处（即 “bar”） 。<br>timeMap.set(“foo”, “bar2”, 4); &#x2F;&#x2F; 存储键 “foo” 和值 “bar2” ，时间戳 timestamp &#x3D; 4<br>timeMap.get(“foo”, 4);         &#x2F;&#x2F; 返回 “bar2”<br>timeMap.get(“foo”, 5);         &#x2F;&#x2F; 返回 “bar2”</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```java</span><br><span class="line">/**</span><br><span class="line"> * Your TimeMap object will be instantiated and called as such:</span><br><span class="line"> * TimeMap obj = new TimeMap();</span><br><span class="line"> * obj.set(key,value,timestamp);</span><br><span class="line"> * String param_2 = obj.get(key,timestamp);</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```java</span><br><span class="line">/**</span><br><span class="line"> * Your TimeMap <span class="type">object</span> will be instantiated <span class="built_in">and</span> called <span class="keyword">as</span> such:</span><br><span class="line"> * TimeMap obj = <span class="built_in">new</span> TimeMap();</span><br><span class="line"> * obj.<span class="keyword">set</span>(<span class="keyword">key</span>,value,timestamp);</span><br><span class="line"> * <span class="type">String</span> param_2 = obj.<span class="keyword">get</span>(<span class="keyword">key</span>,timestamp);</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
 
 <p><strong>提示：</strong></p>
 <ul>
@@ -488,6 +488,35 @@
 
     
 
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>给作者买杯咖啡吧~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -715,9 +744,9 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-      <span class="post-meta-item-text">Site words total count&#58;</span>
+      <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="Site words total count">101.2k</span>
+    <span title="站点总字数">101.2k</span>
   
 </div>
 
@@ -1258,8 +1287,78 @@
 
   
 
-  <script type="text/javascript" src="/lib/clipboard/clipboard.js"></script>
-<script type="text/javascript" src="/js/src/custom.js"></script>
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
   
   <script type="text/javascript"
    color="0,0,255"

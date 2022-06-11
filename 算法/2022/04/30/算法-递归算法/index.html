@@ -490,7 +490,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        <span class="built_in">return</span> add(l1,l2,0);</span><br><span class="line">    &#125;</span><br><span class="line">    public ListNode add(ListNode l1, ListNode l2, int bit) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == null &amp;&amp; l2 == null &amp;&amp; bit == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> null;</span><br><span class="line">        &#125;</span><br><span class="line">        int val = bit;</span><br><span class="line">        // bit就是表示每次是否进位</span><br><span class="line">        <span class="keyword">if</span> (l1 != null) &#123;</span><br><span class="line">            val += l1.val;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l2 != null) &#123;</span><br><span class="line">            val += l2.val;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode node = new ListNode(val % 10);</span><br><span class="line">        node.next = add(l1, l2, val / 10);</span><br><span class="line">        <span class="built_in">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>例二：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public ListNode mergeTwoLists(ListNode list1, ListNode list2) &#123;</span><br><span class="line">    if(list1==null)&#123;</span><br><span class="line">        return list2;</span><br><span class="line">    &#125;else if(list2==null)&#123;</span><br><span class="line">        return list1;</span><br><span class="line">    &#125;else if(list1.val &lt;= list2.val)&#123;</span><br><span class="line">        list1.next=mergeTwoLists(list1.next,list2);</span><br><span class="line">        return list1;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        list2.next = mergeTwoLists(list1, list2.next);</span><br><span class="line">        return list2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode mergeTwoLists(ListNode list1, ListNode list2) &#123;</span><br><span class="line">    <span class="keyword">if</span>(list1==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> list2;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(list2==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> list1;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(list1.<span class="keyword">val</span> &lt;= list2.<span class="keyword">val</span>)&#123;</span><br><span class="line">        list1.next=mergeTwoLists(list1.next,list2);</span><br><span class="line">        <span class="keyword">return</span> list1;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        list2.next = mergeTwoLists(list1, list2.next);</span><br><span class="line">        <span class="keyword">return</span> list2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>例三：两两交换节点</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">swapTwoAsGroup</span><span class="params">(ListNode head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead = head.next;</span><br><span class="line">    ListNode tail=head.next.next;</span><br><span class="line">    head.next.next=head;</span><br><span class="line">    head.next=swapTwoAsGroup(tail);</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -504,6 +504,35 @@
 
     
 
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>给作者买杯咖啡吧~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -731,9 +760,9 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-      <span class="post-meta-item-text">Site words total count&#58;</span>
+      <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="Site words total count">101.2k</span>
+    <span title="站点总字数">101.2k</span>
   
 </div>
 
@@ -1274,8 +1303,78 @@
 
   
 
-  <script type="text/javascript" src="/lib/clipboard/clipboard.js"></script>
-<script type="text/javascript" src="/js/src/custom.js"></script>
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
   
   <script type="text/javascript"
    color="0,0,255"

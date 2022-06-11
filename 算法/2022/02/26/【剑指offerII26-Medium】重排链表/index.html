@@ -459,18 +459,18 @@
       
         <h2 id="重排链表"><a href="#重排链表" class="headerlink" title="重排链表"></a>重排链表</h2><p>给定一个单链表 <code>L</code> 的头节点 <code>head</code> ，单链表 <code>L</code> 表示为：</p>
 <p><code>L0 → L1 → … → Ln-1 → Ln</code><br>请将其重新排列后变为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">L0</span> → Ln → L<span class="number">1</span> → Ln-<span class="number">1</span> → L<span class="number">2</span> → Ln-<span class="number">2</span> → …</span><br></pre></td></tr></table></figure>
 
 <p>不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
 <p><strong>示例 1:</strong></p>
 <img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B1.png" class title="示例1">
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [1,2,3,4]</span><br><span class="line">输出: [1,4,2,3]</span><br></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [<span class="number">1,2,3,4</span>]</span><br><span class="line">输出: [<span class="number">1,4,2,3</span>]</span><br></pre></td></tr></table></figure>
 
 <p><strong>示例 2:</strong></p>
 <img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B2.png" class title="示例2">
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [1,2,3,4,5]</span><br><span class="line">输出: [1,5,2,4,3]</span><br></pre></td></tr></table></figure>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = <span class="string">[1,2,3,4,5]</span></span><br><span class="line">输出: <span class="string">[1,5,2,4,3]</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>提示：</strong></p>
 <ul>
@@ -536,6 +536,35 @@
 
     
 
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>给作者买杯咖啡吧~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -763,9 +792,9 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-      <span class="post-meta-item-text">Site words total count&#58;</span>
+      <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="Site words total count">101.2k</span>
+    <span title="站点总字数">101.2k</span>
   
 </div>
 
@@ -1306,8 +1335,78 @@
 
   
 
-  <script type="text/javascript" src="/lib/clipboard/clipboard.js"></script>
-<script type="text/javascript" src="/js/src/custom.js"></script>
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
   
   <script type="text/javascript"
    color="0,0,255"
