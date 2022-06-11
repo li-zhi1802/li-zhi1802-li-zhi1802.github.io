@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JUC," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为什么需要锁？在单线程环境下，不论怎么操作数据都不会出现什么致命的操作，但是在这个多并发的时代，我们更多的要考虑多并发，并保证多并发环境的安全性。 在并发环境下，多个线程争抢操作同一份数据，这样可能会导致数据异常，这个时候就需要一种机制来保证这一份数据的安全性。   锁是如何实现的？在java中，每一个Object都有一把锁，这把锁放在对象的对象头中，锁中记录了当前对象被哪个线程所占用。 内存中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多并发中的锁">
+<meta property="og:url" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/index.html">
+<meta property="og:site_name" content="芝麻的blog">
+<meta property="og:description" content="为什么需要锁？在单线程环境下，不论怎么操作数据都不会出现什么致命的操作，但是在这个多并发的时代，我们更多的要考虑多并发，并保证多并发环境的安全性。 在并发环境下，多个线程争抢操作同一份数据，这样可能会导致数据异常，这个时候就需要一种机制来保证这一份数据的安全性。   锁是如何实现的？在java中，每一个Object都有一把锁，这把锁放在对象的对象头中，锁中记录了当前对象被哪个线程所占用。 内存中的">
+<meta property="og:locale">
+<meta property="og:image" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/JVM%E5%86%85%E5%AD%98%E7%AE%80%E7%95%A5%E5%9B%BE.png">
+<meta property="og:image" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E5%A4%B4%E7%9A%84MarkWord.png">
+<meta property="og:image" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%8A%A0%E9%94%81%E7%9A%84%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/monitor%E7%9A%84%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6.jpg">
+<meta property="og:image" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/Unsafe%E7%9A%84%E5%8A%9F%E8%83%BD%E5%9B%BE.png">
+<meta property="article:published_time" content="2022-02-23T07:56:59.000Z">
+<meta property="article:modified_time" content="2022-02-24T02:29:10.098Z">
+<meta property="article:author" content="李智">
+<meta property="article:tag" content="JUC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/JVM%E5%86%85%E5%AD%98%E7%AE%80%E7%95%A5%E5%9B%BE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://li-zhi.net.cn/2022/02/23/JUC-多并发中的锁/"/>
+
+
+
+
+
+  <title>多并发中的锁 | 芝麻的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">芝麻的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sometips">
+          <a href="/sometips/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            一些平时积攒的小技巧
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">多并发中的锁</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-23T15:56:59+08:00">
+                2022-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/JUC/" itemprop="url" rel="index">
+                    <span itemprop="name">JUC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="为什么需要锁？"><a href="#为什么需要锁？" class="headerlink" title="为什么需要锁？"></a>为什么需要锁？</h3><p>在单线程环境下，不论怎么操作数据都不会出现什么致命的操作，但是在这个多并发的时代，我们更多的要考虑多并发，并保证多并发环境的安全性。</p>
+<p>在并发环境下，多个线程争抢操作<strong>同一份数据</strong>，这样可能会导致数据异常，这个时候就需要一种机制来保证这一份数据的安全性。</p>
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/JVM%E5%86%85%E5%AD%98%E7%AE%80%E7%95%A5%E5%9B%BE.png" class title="JVM内存简略图">
+
+<h3 id="锁是如何实现的？"><a href="#锁是如何实现的？" class="headerlink" title="锁是如何实现的？"></a>锁是如何实现的？</h3><p>在java中，每一个Object都有一把锁，这把锁放在对象的对象头中，锁中记录了当前对象被哪个线程所占用。</p>
+<h4 id="内存中的对象结构"><a href="#内存中的对象结构" class="headerlink" title="内存中的对象结构"></a>内存中的对象结构</h4><img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84.png" class title="对象结构">
+
+<p><strong>对齐填充字节</strong>是为了满足java对象必须是8比特的倍数这一条件所设计的</p>
+<p><strong>实例数据</strong>是为了保存对象属性和方法的</p>
+<p><strong>对象头</strong>是为了保存对象的运行时数据，对象头包含了两部分，一个是Mark Word 一个是Class Pointer</p>
+<ul>
+<li><p>Class Pointer 指向Class对象</p>
+</li>
+<li><p>Mark Word (32 bit)存放了很多和当前对象运行时状态有关的数据</p>
+<ul>
+<li>hashCode</li>
+<li>锁状态</li>
+</ul>
+</li>
+</ul>
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E5%A4%B4%E7%9A%84MarkWord.png" class title="对象头的MarkWord">
+
+<h3 id="synchronized实现原理"><a href="#synchronized实现原理" class="headerlink" title="synchronized实现原理"></a>synchronized实现原理</h3><p>synchronized被编译后会生成monitorenter和monitorexit两个字节码指令，依赖这两个指令就可以实现锁的机制，从而实现线程的同步</p>
+<p>这是未上锁的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSync</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TimeUnit.MILLISECONDS.sleep(<span class="number">30</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:===&gt;&quot;</span>+count++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    TestSync ts = <span class="keyword">new</span> TestSync();</span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            ts.add();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            ts.add();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            ts.add();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们来加一下synchronized代码块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSync</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep(<span class="number">30</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:===&gt;&quot;</span>+count++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%8A%A0%E9%94%81%E7%9A%84%E7%BB%93%E6%9E%9C.png" class title="加锁的结果">
+
+<p>可以发现结果十分正确，我们来反编译一下，得到以下字节码文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">javap -c .\TestSync.class</span><br><span class="line">Compiled from <span class="string">&quot;TestSync.java&quot;</span></span><br><span class="line">public class com.lizhi.TestSync &#123;</span><br><span class="line">  public com.lizhi.TestSync();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: invokespecial <span class="comment">#1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">       4: <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">  public void add();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: dup</span><br><span class="line">       2: astore_1</span><br><span class="line">       3: monitorenter</span><br><span class="line">       4: getstatic     <span class="comment">#2                  // Field java/util/concurrent/TimeUnit.MILLISECONDS:Ljava/util/concurrent/TimeUnit;</span></span><br><span class="line">       7: ldc2_w        <span class="comment">#3                  // long 30l</span></span><br><span class="line">      10: invokevirtual <span class="comment">#5                  // Method java/util/concurrent/TimeUnit.sleep:(J)V</span></span><br><span class="line">      13: goto          21</span><br><span class="line">      16: astore_2</span><br><span class="line">      17: aload_2</span><br><span class="line">      18: invokevirtual <span class="comment">#7                  // Method java/lang/InterruptedException.printStackTrace:()V</span></span><br><span class="line">      21: getstatic     <span class="comment">#8                  // Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">      24: invokestatic  <span class="comment">#9                  // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;</span></span><br><span class="line">      27: invokevirtual <span class="comment">#10                 // Method java/lang/Thread.getName:()Ljava/lang/String;</span></span><br><span class="line">      30: aload_0</span><br><span class="line">      31: dup</span><br><span class="line">      32: getfield      <span class="comment">#11                 // Field count:I</span></span><br><span class="line">      35: dup_x1</span><br><span class="line">      36: iconst_1</span><br><span class="line">      37: iadd</span><br><span class="line">      38: putfield      <span class="comment">#11                 // Field count:I</span></span><br><span class="line">      41: invokedynamic <span class="comment">#12,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;I)Ljava/lang/String;</span></span><br><span class="line">      46: invokevirtual <span class="comment">#13                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V</span></span><br><span class="line">      49: aload_1</span><br><span class="line">      50: monitorexit</span><br><span class="line">      51: goto          59</span><br><span class="line">      54: astore_3</span><br><span class="line">      55: aload_1</span><br><span class="line">      56: monitorexit</span><br><span class="line">      57: aload_3</span><br><span class="line">      58: athrow</span><br><span class="line">      59: <span class="built_in">return</span></span><br><span class="line">    Exceptio n table:</span><br><span class="line">       from    to  target <span class="built_in">type</span></span><br><span class="line">           4    13    16   Class java/lang/InterruptedException</span><br><span class="line">           4    51    54   any</span><br><span class="line">          54    57    54   any</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到在第3行和第50行出现了monitorenter和monitorexit</p>
+<h4 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h4><p>该单词的意思是监视器，可以将其想成一间宾馆的客房，把各个线程想像成客人。如果客人未退房，在这之后的客人则无法入住，只能等待这个客人退房后方可入住。</p>
+  <img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/monitor%E7%9A%84%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6.jpg" class title="monitor的等待机制">
+
+<p><strong>monitor是依赖于操作系统的mutex lock来实现的</strong></p>
+<p>java线程实际上是对操作系统线程的映射，每当挂起或者唤醒一个线程都要切换</p>
+<p>操作系统内核态，这种操作是比较重量级的，在一些情况下甚至切换时间会超过任务本身执行的时间，这样的情况下，使用synchronized的会对系统的性能产生很严重的影响，但是从java6开始，synchronized进行了优化，引入了偏向锁和轻量级锁。</p>
+<h4 id="锁的四种状态"><a href="#锁的四种状态" class="headerlink" title="锁的四种状态"></a>锁的四种状态</h4><p>由低到高分别是：无锁、偏向锁、轻量级锁、重量级锁。</p>
+<p>这就与Mark Word中的四种状态对应上了</p>
+<p>注意：锁只能升级不能降级</p>
+<p><strong>无锁</strong></p>
+<p>无锁即<strong>没有</strong>对自身资源上锁，所有线程都可以拿到资源并操作</p>
+<p>这就可能出现两种情况</p>
+<ol>
+<li>某个对象不会出现在多线程环境下，或者说即使出现在多线程环境下也不会出现竞争的情况</li>
+<li>资源会被竞争，但是我不想对资源锁定，不过这样也不行，会导致一些问题，就想通过一种其他机制来控制多线程，</li>
+</ol>
+<p>比如说，如果有多个进程想修改同一个值，但是只能有一个线程修改成功，其他失败的线程需要不断尝试，直到修改成功 ，这就是CAS（Compare And Swap）,CAS在操作系统中通过一条指令来实现，所以其就可以保证原子性，有了这种机制，我们就可以实现无锁编程</p>
+<p><strong>偏向锁</strong></p>
+<p>假如一个对象被加锁了，那么在实际运行过程中只有一个线程会获得这个对象锁，并只有当线程执行完任务，才会将锁释放。</p>
+<p>我们设想的是，最好这个对象能够认识这个线程，当这个线程过来，那么这个对象就把自己的锁给他，这可以说这个对象偏爱这个线程，这就是偏向锁的概念</p>
+<p>那么这个认识的人，被这个对象记在哪里呢？那就是在对象头中MarkWord的线程ID中，假如情况发生了变化，这个对象发现，不止有一个线程在争抢锁，那么该偏向锁会直接升级成轻量级锁</p>
+<p><strong>轻量级锁</strong></p>
+<p>那当锁升级为轻量级锁的时候，如何判断线程和所之间的绑定关系呢？可以再看下那张markword的表，这里已经不再使用线程ID这个字段了，而是将30bit变为指向线程栈中的锁记录（Lock Record）的指针</p>
+<p>当一个线程想要获得对象的锁的时候，加入看到锁的标志位为00那么就知道它是轻量级锁，这时候线程会在自己的虚拟机栈中开辟一块被称为Lock Record的空间（线程私有的哦），该控件用来存放对象头中的Mark word的副本以及owner指针，线程通过CAS去尝试获得锁，一旦获取那么将会复制该对象头中的markword到本线程的Lock record中并且将Locker record中的owner指针指向该对象，并且对象的前三十位将会生成一个指针，指向线程虚拟机栈中的Lock Record，这样一来就实现了线程和对象锁的绑定。</p>
+<p>当线程已经被抢占了，那其他想抢占的线程会自旋等待（可以理解为轮询），不断尝试拿到锁，这种操作区别于被操作系统挂起阻塞，如果对象的锁很快就被释放的话，自旋就不需要进行系统中断和重新恢复，所以它的效率会更高。</p>
+<p>自旋相当于CPU空转，如果CPU空转时间过长，性能也会产生损耗，然后就有了一种优化，就是适应性自旋。简单来说，就是自旋的时间会根据上一次在同一个锁上自旋的时间以及锁的状态来决定的</p>
+<p><strong>重量级锁</strong></p>
+<p>如果同时有多个线程要获得这个对象锁，也就是说一旦自旋等待的线程超过一个，则会升级为重量级锁，那么这个时候，这就需要使用monitor来对线程进行控制，此时将会完全锁定资源，对线程的管控也更为严格</p>
+<h3 id="无锁编程"><a href="#无锁编程" class="headerlink" title="无锁编程"></a>无锁编程</h3><p>java中的synchronized就是悲观锁（Pessimistic Concurrency Control），什么叫悲观锁呢？</p>
+<p>简单来说就是操作系统会悲观地认为，如果不严格同步线程调用，那么一定会产生异常，所以互斥锁会锁定资源，直供一个线程使用，而阻塞其他线程，因此叫悲观锁，但是悲观锁不是万能的，如果大部分操作都是读的操作，那么就没有必要在每次调用的时候都锁定资源。可能会出现同步代码块执行的耗时远远小于线程切换的耗时。使用悲观锁，会导致性能十分不容乐观，比如大量用户需要同时读取同一份资源，如果使用的是悲观锁，则同一时间只能有一个用户可以查看，其他用户都在一直白屏，但是！其实对于读的操作，即使是多个线程同时操作该数据，也不会对该数据造成影响，我们能不能在不锁定资源的情况下，也可以对线程调用进行一些协调呢？这时候就出现了乐观锁这种机制，实现原理就是CAS（Compare And Swap）</p>
+<h4 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h4><p>我们来举个栗子：人就是线程，厕所就是对象，该对象有一个值来表示是否被占用occupy 0表示空闲 1表示有人</p>
+<p>很多人要去抢厕所，然后线程A（Old Value &#x3D; 0 ，new Value &#x3D;1）、B（Old Value &#x3D; 0，new Value &#x3D; 1）这两个人冲到了最前面，然后A率先和厕所的occupy比较（Compare）发现和oldValue一致，则将oldValue与厕所的occupy交换（And Swap），这时候B一看自己的oldValue与厕所的occupy（1）不一致，他很不甘心，但也只能在厕所外踱步（自旋），通常在等了一段时间后（设置最大自旋次数），骂出一句国粹后就离去了</p>
+<p>这时候可能就出现了问题，因为Compare和Swap是两个操作，没有原子性，这就有可能出现，当A即将将值改为1的那一刹那，B抢到了时间片，将其改为了1，然后A也将其改为1，这就很尴尬了，两个人一起进入了厕所。</p>
+<p>那么如何保证CS的原子性呢？难道还是锁来实现同步吗？这不就是一个鸡生蛋蛋生鸡的问题了吗？</p>
+<p>其实啊，各种不同架构的CPU都提供了指令级别的CAS原子操作，</p>
+<p>比如在X86架构下，通过cmpxchg指令可以支持CAS</p>
+<p>在ARM下，通过LL&#x2F;SC来实现CS……</p>
+<p>也就是说不通过操作系统的同步原语（比如 mutex），CPU已经实现了CS，上层只需要调用即可，这样我们就可以不依赖锁来进行线程同步，但是这也不意味着无锁可以完全代替有锁</p>
+<h4 id="利用CAS特性来进行无锁编程"><a href="#利用CAS特性来进行无锁编程" class="headerlink" title="利用CAS特性来进行无锁编程"></a>利用CAS特性来进行无锁编程</h4><p>需求：使用三条线程，将一个值，从0累加到1000</p>
+<p>1、错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count =<span class="number">0</span> ;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">while</span>(count&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:==&gt;&quot;</span>+count++);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、使用synchronized</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count =<span class="number">0</span> ;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">while</span>(count&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">                    <span class="keyword">synchronized</span> (Application2.class)&#123;</span><br><span class="line">                        System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:==&gt;&quot;</span>+count++);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、无锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> AtomicInteger count =<span class="keyword">new</span> AtomicInteger(<span class="number">0</span>) ;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">while</span>(count.get()&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:==&gt;&quot;</span>+count.getAndIncrement());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>探究源码</p>
+<p>AtomicInteger的getAndIncrement方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> U.getAndAddInt(<span class="keyword">this</span>, VALUE, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>U的getAndAddInt方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> jdk.internal.misc.Unsafe U = jdk.internal.misc.Unsafe.getUnsafe();</span><br></pre></td></tr></table></figure>
+
+<p>U是一个操作底层的类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HotSpotIntrinsicCandidate</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object o, <span class="keyword">long</span> offset, <span class="keyword">int</span> delta)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        v = getIntVolatile(o, offset);</span><br><span class="line">    &#125; <span class="keyword">while</span> (!weakCompareAndSetInt(o, offset, v, v + delta));</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HotSpotIntrinsicCandidate</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">weakCompareAndSetInt</span><span class="params">(Object o, <span class="keyword">long</span> offset,</span></span></span><br><span class="line"><span class="params"><span class="function">                                          <span class="keyword">int</span> expected,</span></span></span><br><span class="line"><span class="params"><span class="function">                                          <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> compareAndSetInt(o, offset, expected, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HotSpotIntrinsicCandidate</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">boolean</span> <span class="title">compareAndSetInt</span><span class="params">(Object o, <span class="keyword">long</span> offset,</span></span></span><br><span class="line"><span class="params"><span class="function">                                             <span class="keyword">int</span> expected,</span></span></span><br><span class="line"><span class="params"><span class="function">                                             <span class="keyword">int</span> x)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>启动次数可以通过启动参数来配置，默认是10，所以不会出现死循环</p>
+<blockquote>
+<p>Unsafe</p>
+</blockquote>
+<img src="/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/Unsafe%E7%9A%84%E5%8A%9F%E8%83%BD%E5%9B%BE.png" class title="Unsafe的功能图">
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JUC/" rel="tag"># JUC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/02/23/Redis-%E4%BA%8B%E5%8A%A1/" rel="next" title="Redis-事务">
+                <i class="fa fa-chevron-left"></i> Redis-事务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/" rel="prev" title="Redis-实现乐观锁">
+                Redis-实现乐观锁 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E9%94%81%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么需要锁？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">锁是如何实现的？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">内存中的对象结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">synchronized实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Monitor"><span class="nav-number">3.1.</span> <span class="nav-text">Monitor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="nav-number">3.2.</span> <span class="nav-text">锁的四种状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%94%81%E7%BC%96%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">无锁编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CAS"><span class="nav-number">4.1.</span> <span class="nav-text">CAS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A9%E7%94%A8CAS%E7%89%B9%E6%80%A7%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%97%A0%E9%94%81%E7%BC%96%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">利用CAS特性来进行无锁编程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李智</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

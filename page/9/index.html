@@ -1,0 +1,3217 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="芝麻的blog">
+<meta property="og:url" content="http://li-zhi.net.cn/page/9/index.html">
+<meta property="og:site_name" content="芝麻的blog">
+<meta property="og:description" content="个人博客">
+<meta property="og:locale">
+<meta property="article:author" content="李智">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://li-zhi.net.cn/page/9/"/>
+
+
+
+
+
+  <title>芝麻的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">芝麻的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sometips">
+          <a href="/sometips/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            一些平时积攒的小技巧
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/07/if%E8%AF%AD%E5%8F%A5%E5%87%8F%E5%B0%91%E5%B5%8C%E5%A5%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/07/if%E8%AF%AD%E5%8F%A5%E5%87%8F%E5%B0%91%E5%B5%8C%E5%A5%97/" itemprop="url">if语句减少嵌套</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-07T20:32:09+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">琐碎的知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="if的多重嵌套"><a href="#if的多重嵌套" class="headerlink" title="if的多重嵌套"></a>if的多重嵌套</h2><p>直接举栗子：有一个电商平台，当用户消费满1000元，根据vip等级可享受优惠</p>
+<ul>
+<li>普通会员             不打折</li>
+<li>白银会员             优惠50元</li>
+<li>黄金会员             打8折</li>
+<li>白金会员             优惠50元，再打七折</li>
+</ul>
+<h3 id="Version-1-0"><a href="#Version-1-0" class="headerlink" title="Version 1.0"></a>Version 1.0</h3><p>会员类型枚举</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">UserType</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * ORDINARY_VIP: 普通会员</span></span><br><span class="line"><span class="comment">     * SILVER_VIP: 白银会员</span></span><br><span class="line"><span class="comment">     * GOLD_VIP： 黄金会员</span></span><br><span class="line"><span class="comment">     * PLATINUM_VIP：白金会员</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ORDINARY_VIP(<span class="number">1</span>),</span><br><span class="line">    SILVER_VIP(<span class="number">2</span>),</span><br><span class="line">    GOLD_VIP(<span class="number">3</span>),</span><br><span class="line">    PLATINUM_VIP(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code;</span><br><span class="line">    UserType(<span class="keyword">int</span> code) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">long</span> money, <span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = money;</span><br><span class="line">    <span class="keyword">if</span>(money &gt;= <span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(type == UserType.SILVER_VIP.getCode())&#123;</span><br><span class="line">            result = money - <span class="number">50</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.GOLD_VIP.getCode())&#123;</span><br><span class="line">            result = money * <span class="number">0.8</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.PLATNUM_VIP.getCode())&#123;</span><br><span class="line">            result = (money - <span class="number">50</span>)*<span class="number">0.7</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这里的if语句可能不是那么繁琐，但是当业务十分复杂或者当策略会经常变动的时候，需要经常修改源代码，这就严重违反了开闭原则，但是我可不可减少if的出现甚至不出现呢？</p>
+<p>下面我们结合以下两种解决方案来一步一步尝试解决问题</p>
+<ol>
+<li>卫语句</li>
+<li>策略模式</li>
+</ol>
+<h3 id="Version-1-1"><a href="#Version-1-1" class="headerlink" title="Version 1.1"></a>Version 1.1</h3><p>卫语句，就是将不符合的情况直接返回</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">long</span> money,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = money;</span><br><span class="line">    <span class="keyword">if</span>(money&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(type== UserType.ORDINARY_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> OrdinaryStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.SILVER_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> SilverStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.GOLD_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> GoldStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type==UserType.PLATINUM_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> PlatinumStrategy().compute(money);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Version-2-0"><a href="#Version-2-0" class="headerlink" title="Version 2.0"></a>Version 2.0</h3><p>策略模式就是将各个会员的优惠方式提出一个接口，分别实现</p>
+<p>策略接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>普通会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrdinaryStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>黄金会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoldStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money*<span class="number">0.8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>白金会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlatinumStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (money-<span class="number">50</span>)*<span class="number">0.7</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>白银会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SilverStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money-<span class="number">50</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">long</span> money,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = money;</span><br><span class="line">    <span class="keyword">if</span>(money&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(type== UserType.ORDINARY_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> OrdinaryStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.SILVER_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> SilverStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.GOLD_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> GoldStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type==UserType.PLATINUM_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> PlatinumStrategy().compute(money);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Version-2-1"><a href="#Version-2-1" class="headerlink" title="Version 2.1"></a>Version 2.1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;Integer,Strategy&gt; map;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StrategyFactory</span><span class="params">()</span></span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        map.put(UserType.ORDINARY_VIP.getCode(), <span class="keyword">new</span> OrdinaryStrategy());</span><br><span class="line">        map.put(UserType.SILVER_VIP.getCode(), <span class="keyword">new</span> SilverStrategy());</span><br><span class="line">        map.put(UserType.GOLD_VIP.getCode(),<span class="keyword">new</span> GoldStrategy());</span><br><span class="line">        map.put(UserType.PLATINUM_VIP.getCode(),<span class="keyword">new</span> PlatinumStrategy());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">int</span> userType, <span class="keyword">long</span> money)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(money&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(StrategyFactory.map.get(userType)==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;参数错误，无此类型的用户&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(userType).compute(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的工厂还可以通过这种方式来实现</p>
+<h3 id="Version-2-2"><a href="#Version-2-2" class="headerlink" title="Version 2.2"></a>Version 2.2</h3><p>策略接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>黄金会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoldStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money*<span class="number">0.8</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.GOLD_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>普通会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrdinaryStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.ORDINARY_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>白金会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlatinumStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (money-<span class="number">50</span>)*<span class="number">0.7</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.PLATINUM_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>白银会员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SilverStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money-<span class="number">50</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.SILVER_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>策略工厂</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;Integer, Strategy&gt; map;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StrategyFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        map=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;Strategy&gt; strategies=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        strategies.add(<span class="keyword">new</span> GoldStrategy());</span><br><span class="line">        strategies.add(<span class="keyword">new</span> OrdinaryStrategy());</span><br><span class="line">        strategies.add(<span class="keyword">new</span> PlatinumStrategy());</span><br><span class="line">        strategies.add(<span class="keyword">new</span> SilverStrategy());</span><br><span class="line">        map=strategies.stream().collect(Collectors.toMap(Strategy::getType,strategy -&gt; strategy));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">int</span> userType, <span class="keyword">long</span> money)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(money&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(StrategyFactory.map.get(userType)==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;参数错误，无此类型的用户&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(userType).compute(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/07/Cookie%E5%92%8CSession/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/07/Cookie%E5%92%8CSession/" itemprop="url">Cookie和Session</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-07T18:04:34+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">琐碎的知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="情景在线"><a href="#情景在线" class="headerlink" title="情景在线"></a>情景在线</h2><p>我们在登录完一个网站后，很长一段时间都不需要输入用户名和密码。大家有没有好奇这是为什么呢？</p>
+<p>学过HTTP的都知道，HTTP访问是无状态的，也就是说，服务器是不知道你这是第几次访问该网站的。</p>
+<p>那么Cookie，Session就是来做到让服务器预先知道一些信息，其核心其实就是存储。</p>
+<p>Cookie是存储在客户端的，Session是存储在服务器端的</p>
+<p>下面我们来说说Cookie</p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie翻译为小饼干</p>
+<img src="/2022/02/07/Cookie%E5%92%8CSession/Cookie%E5%9B%BE%E6%A0%87.png" class title="Cookie图标">
+
+<p>该技术可以实现每次HTTP请求都自动带数据给服务器，从而实现服务器可以在请求的时候就预先知道一些信息。</p>
+<p>流程图如下</p>
+<img src="/2022/02/07/Cookie%E5%92%8CSession/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BF%9D%E5%AD%98Cookie.png" class title="客户端保存Cookie">
+
+<p>我们可以在浏览器中查看Cookie</p>
+<img src="/2022/02/07/Cookie%E5%92%8CSession/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9F%A5%E7%9C%8BCookie.png" class title="浏览器查看Cookie">
+
+<p>如果使用Cookie保存账号密码，那只要别人盗到你的Cookie，那么你的账号密码就泄露了！所以就出现了Session的技术</p>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>Session翻译为会话</p>
+<p>当我们打开一个浏览器进去网站，则开始一个会话，但是会话的结束比较模糊，可以自动设置session过期时间，也可以设置永不过期。</p>
+<p>Session保存在服务器，当产生了一次会话，则服务器返回的时候携带存储session相关信息的Cookie，并保存在客户端，而这个session对象的信息则保存在服务器的数据库中。</p>
+<p>下面是流程图</p>
+<img src="/2022/02/07/Cookie%E5%92%8CSession/Session%E6%B5%81%E7%A8%8B%E5%9B%BE.png" class title="Session流程图">
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/07/Token/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/07/Token/" itemprop="url">Token</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-07T18:01:03+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">琐碎的知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="为什么会出现Token"><a href="#为什么会出现Token" class="headerlink" title="为什么会出现Token"></a>为什么会出现Token</h2><p>相信大家都知道Cookie和Session（不知道这两者的在我另外两篇博客里面有写，附上链接，<a target="_blank" rel="noopener" href="http://localhost:4000/2022/02/07/Cookie%E5%92%8CSession/">Cookie和Session</a>）</p>
+<p>随着技术的发展，用户群体变的越来越大，如果服务器依旧使用基于Cookie的Session，在某一时间段有大量用户访问的话，服务器就会将大量的Session保存在数据库中，导致服务器性能降低，为了处理这种问题，就出现了一种技术，也就是JWT(JSON Web Token)</p>
+<h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><img src="/2022/02/07/Token/JWT%E6%B5%81%E7%A8%8B%E5%9B%BE.png" class title="JWT流程图">
+
+<p>JWT是由三部分组成的，分别是header、payload、signature</p>
+<p>header部分申明用什么算法生成签名</p>
+<p>payload部分保存一些数据</p>
+<p>signature部分保存header申明的算法生成的签名</p>
+<img src="/2022/02/07/Token/JWT%E7%9A%84%E7%BB%84%E6%88%90.jpg" class title="JWT的组成">
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Session、Cookie、Token都是是在服务器产生的</p>
+<p>Cookie是保存SessionID的载体，但是Session对象是保存在服务器数据库中的</p>
+<p>Token在服务器端生成，保存服务器端的密文，将token放入cookie发送诶客户端并交由客户端保存</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/07/Ngrok/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/07/Ngrok/" itemprop="url">Ngrok</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-07T17:30:02+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">琐碎的知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用Ngrok快速部署项目"><a href="#使用Ngrok快速部署项目" class="headerlink" title="使用Ngrok快速部署项目"></a>使用Ngrok快速部署项目</h2><ol>
+<li>打开<a target="_blank" rel="noopener" href="https://ngrok.cc/">https://ngrok.cc/</a></li>
+<li>注册一个账户</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E6%B3%A8%E5%86%8C%E5%90%8E%E7%9A%84%E9%A1%B5%E9%9D%A2.png" class title="注册后的页面">
+
+<ol start="3">
+<li>支付2块钱进行支付宝实名认证</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81.png" class title="实名认证">
+
+<ol start="4">
+<li>点击开通隧道并翻到最后</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E5%BC%80%E9%80%9A%E9%9A%A7%E9%81%93.png" class title="开通隧道">
+
+<ol start="5">
+<li>开通隧道选项</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E5%BC%80%E9%80%9A%E9%9A%A7%E9%81%93%E9%80%89%E9%A1%B9.png" class title="开通隧道选项">
+
+<p>说明：</p>
+<blockquote>
+<p>隧道协议，两者即可</p>
+</blockquote>
+<ul>
+<li>HTTP</li>
+<li>HTTPS（HTTPS需要绑定自己的域名，并且已经申请了SSL证书，才能有效，否则无法使用https。）</li>
+</ul>
+<blockquote>
+<p>隧道名称</p>
+</blockquote>
+<p>随便写即可</p>
+<blockquote>
+<p>前置域名</p>
+</blockquote>
+<p>写自己喜欢的</p>
+<blockquote>
+<p>http验证用户名和密码</p>
+</blockquote>
+<p>这里可以不写</p>
+<ol start="6">
+<li>确认信息，开通</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E7%A1%AE%E8%AE%A4%E4%BF%A1%E6%81%AF.png" class title="确认信息">
+
+<ol start="7">
+<li>进入隧道管理页面</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E9%9A%A7%E9%81%93%E7%AE%A1%E7%90%86.png" class title="隧道管理">
+
+<blockquote>
+<p>ps：这里和我之前写的配置不一样，是因为一个用户只能免费开通一个http隧道</p>
+</blockquote>
+<img src="/2022/02/07/Ngrok/%E5%8F%AA%E8%83%BD%E5%85%8D%E8%B4%B9%E5%BC%80%E9%80%9A%E4%B8%80%E4%B8%AA.png" class title="只能免费开通一个">
+
+<ol start="8">
+<li>下载客户端</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8B%E8%BD%BD.png" class title="客户端下载">
+
+<p>下载对应系统的软件，并解压</p>
+<img src="/2022/02/07/Ngrok/%E4%B8%8B%E8%BD%BD%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BD%AF%E4%BB%B6.png" class title="下载客户端软件">
+
+<ol start="9">
+<li>启动批处理命令</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E5%90%AF%E5%8A%A8%E5%AE%A2%E6%88%B7%E7%AB%AF.png" class title="启动客户端">
+
+<img src="/2022/02/07/Ngrok/%E7%B1%BB%E4%BC%BC%E8%BF%99%E6%A0%B7%E7%9A%84%E7%95%8C%E9%9D%A2.png" class title="类似这样的界面">
+
+<blockquote>
+<p>ps：我第一次使用的不是乱码，我也不理解这次使用为什么会乱码，这里不影响使用</p>
+</blockquote>
+<ol start="10">
+<li>输入隧道id，回车</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E8%BE%93%E5%85%A5%E9%9A%A7%E9%81%93id.png" class title="输入隧道id">
+
+<p><strong>如果之前配置了账号密码，则在此处需要输入账号密码</strong></p>
+<ol start="11">
+<li>启动本地项目</li>
+</ol>
+<p><strong>注：本地项目启动的端口一定要和之前写的端口映射一致</strong></p>
+<img src="/2022/02/07/Ngrok/%E9%85%8D%E7%BD%AEtomcat%E5%BC%80%E5%90%AF%E7%9A%84%E7%AB%AF%E5%8F%A3.png" class title="配置tomcat开启的端口">
+
+<ol start="12">
+<li>打开网址测试</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E6%89%93%E5%BC%80%E7%BD%91%E5%9D%80%E6%B5%8B%E8%AF%95.png" class title="打开网址测试">
+
+<ol start="13">
+<li>本地</li>
+</ol>
+<img src="/2022/02/07/Ngrok/%E6%9C%AC%E5%9C%B0%E8%AE%BF%E9%97%AE.png" class title="本地访问">
+
+<ol start="14">
+<li>Ngrok提供的网站访问</li>
+</ol>
+<img src="/2022/02/07/Ngrok/Ngrok%E6%8F%90%E4%BE%9B%E7%9A%84%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE.png" class title="Ngrok提供的网站访问">
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/02/07/%E5%85%B3%E4%BA%8E%E8%B7%AF%E5%BE%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/02/07/%E5%85%B3%E4%BA%8E%E8%B7%AF%E5%BE%84/" itemprop="url">关于路径</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-07T16:57:28+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">琐碎的知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="访问路径"><a href="#访问路径" class="headerlink" title="访问路径"></a>访问路径</h1><p>URL统一资源定位符，用于定位资源的一种方式。</p>
+<p>通常的URL资源访问路径由两部分构成:资源路径与资源名称。</p>
+<p>资源名称指的是要访问资源的直接名称，如show.html,或与要访问资源存在映射关系的间接名称，如show.do</p>
+<p>资源路径，则是通过该路径则可以定位到指定的资源，即资源路径是指在URL资源访问路径中除了资源名称以外的其它部分。</p>
+<p>根据“资源路径是否可以独立完成资源准确定位”的判别标准,可以将访问路径分为绝对路径与相对路径</p>
+<h2 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h2><p>绝对路径，是指根据给出的访问路径可以精确的定位到这个资源的路径</p>
+<p>对于计算机中Web应用的绝对路径，则是指带访问协议的路径。即URL</p>
+<h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><p>相对路径,是指仅根据访问路径无法准确定位资源的路径。</p>
+<p>相对路径必须要结合其参照路径才可组成可以准确定位资源的绝对路径。    </p>
+<p>参照路径的不同，所形成的可以准确定位资源的绝对路径也是不同的。</p>
+<p>在进行资源访问时,必须要将相对路径转换为绝对路径才可完成资源的精确定位</p>
+<p><strong>绝对路径 &#x3D; 参照路径 + 相对路径</strong></p>
+<p>根据相对路径是否以斜杠开头，且路径指向的文件不同，其默认的参照路径是不一样的</p>
+<h3 id="以斜杠开头的相对路径"><a href="#以斜杠开头的相对路径" class="headerlink" title="以斜杠开头的相对路径"></a>以斜杠开头的相对路径</h3><h4 id="前台路径"><a href="#前台路径" class="headerlink" title="前台路径"></a>前台路径</h4><p>所谓前台路径是指，由浏览器解析执行的代码中所包含的路径。</p>
+<p>例如，html、 css、 js中的路径，及jsp文件中静态部分的路径(HTML标签中的路径)。html 及jsp文件中的&lt; img src-&#x3D;*&#x2F;&gt;、&lt; a href&#x3D;””&gt;. &lt; form action&#x3D;””&gt;等标签中的<strong>以斜杠开头的路径</strong>都属于前台路径</p>
+<p>前台路径的<strong>参照路径</strong>是Web服务器的根路径,即<strong><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/">http://127.0.0.1:8080</a></strong></p>
+<p>将前台路径转换为绝对路径的工作,是由浏览器自动完成的。</p>
+<p>该路径的作用是要为用户提交对某种资源的请求,是要查找并定位服务器中的某资源。</p>
+<p>简单来说,前台路径的作用是“查找”</p>
+<h4 id="后台路径"><a href="#后台路径" class="headerlink" title="后台路径"></a>后台路径</h4><p>所谓后台路径是指，由服务器解析执行的代码及文件中所包含的路径。</p>
+<p>例如，java 代码中的路径、jsp文件动态部分java代码块)中的路径、xml等配置文件中的路径(配置文件是要被java代码解析后加载到内存的，其中的路径会出现在Java 代码中)</p>
+<p>后台路径的<strong>参照路径</strong>是Web应用的根路径。<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/projectName">http://127.0.0.1:8080/projectName</a></p>
+<p>将后台路径转换为绝对路径的工作,是由服务器自动完成的。该路径的作用是标识出该资源在服务器中的路径，以便客户端能够按照这个设定路径来查找相应资源。简单来说,后台路径的作用是“标识”</p>
+<h3 id="以路径开头的相对路径"><a href="#以路径开头的相对路径" class="headerlink" title="以路径开头的相对路径"></a>以路径开头的相对路径</h3><p>以路径名称开头的相对路径，无论是出现在前台页面,还是出现在后台Java代码或配置文件中，其<strong>参照路径</strong>都是<strong>当前访问路径的资源路径</strong>。</p>
+<p>即使是response 的sendRedirect()方法的参数路径,若不以斜杠开头，其也属于“以斜杠开头的相对路径”类的路径，参照路径为当前服务器的根路径</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><table>
+<thead>
+<tr>
+<th>相对路径类型</th>
+<th>参照路径</th>
+<th>相对路径转绝对路径的完成者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前台路径</td>
+<td>当前Web服务器的根路径</td>
+<td>浏览器</td>
+</tr>
+<tr>
+<td>后台路径</td>
+<td>当前Web应用的根路径</td>
+<td>Web服务器</td>
+</tr>
+<tr>
+<td>以路径名称开头的路径</td>
+<td>当前访问路径的资源路径</td>
+<td>浏览器&#x2F;Web服务器</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>PS：</p>
+</blockquote>
+<p>对于response的sendRedirect( )方法完成的重定向</p>
+<p>若其参数路径为“以斜杠开头的相对路径”这个后台路径是个特例。是由sendRedirect( )方法的本质决定的。这个方法不仅可以完成在当前项目中资源的跳转,还可以跳转到其它项目中的资源。所以这个后台路径的参照路径为“<strong>当前Web服务器的根</strong>”。所以要加resquest.getContextPath();</p>
+<p>注意，只有这一种重定向是特例,将来我们还会学习到其它方式实现的重定向，但那里的重定向就不是特例,而是遵循我们之前的路径转换理论</p>
+<p><em><strong>如果加斜杠和不加斜杠都可以完成跳转，就加上斜杠</strong></em></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/31/SpringMVC-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/31/SpringMVC-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" itemprop="url">SpringMVC-文件下载</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:57:54+08:00">
+                2022-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/SpringMVC/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringMVC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><p>文件下载很简单，只要设置一下响应头即可</p>
+<p><strong>页面：</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=<span class="string">&quot;c&quot;</span> uri=<span class="string">&quot;http://java.sun.com/jsp/jstl/core&quot;</span> %&gt;</span><br><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        ul li &#123;</span><br><span class="line">            cursor: pointer;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot;javascript:&quot;</span>&gt;点击文字下载&lt;/a&gt;</span><br><span class="line">&lt;ul id=<span class="string">&quot;ul&quot;</span>&gt;</span><br><span class="line">    &lt;c:forEach items=<span class="string">&quot;$&#123;fileList&#125;&quot;</span> <span class="keyword">var</span>=<span class="string">&quot;file&quot;</span>&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=<span class="string">&quot;/fileDownLoad.do?fileName=$&#123;file&#125;&quot;</span>&gt;$&#123;file&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/c:forEach&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Controller：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/fileDownLoad.do&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">fileDownLoad</span><span class="params">(String fileName,HttpServletRequest req,HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String realPath = req.getServletContext().getRealPath(<span class="string">&quot;\\download&quot;</span>)+<span class="string">&quot;\\&quot;</span>;</span><br><span class="line">    File file = <span class="keyword">new</span> File(realPath.concat(fileName));</span><br><span class="line">    resp.setHeader(<span class="string">&quot;Content-disposition&quot;</span>,<span class="string">&quot;attachment; filename=&quot;</span>+ URLEncoder.encode(file.getName(),<span class="string">&quot;UTF-8&quot;</span>));</span><br><span class="line">    ServletOutputStream outputStream = resp.getOutputStream();</span><br><span class="line">    FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> len=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((len=fis.read(buffer))&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        outputStream.write(buffer,<span class="number">0</span>,len);</span><br><span class="line">    &#125;</span><br><span class="line">    outputStream.flush();</span><br><span class="line">    fis.close();</span><br><span class="line">    outputStream.close();</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;filedownload&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/31/SpringMVC-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/31/SpringMVC-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url">SpringMVC-文件上传</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:55:40+08:00">
+                2022-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/SpringMVC/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringMVC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先对于表单中的enctype属性做一个了解</p>
+<ol>
+<li>application&#x2F;x-www&#x3D;form-urlencoded:默认方式，只处理表单中的value的属性值，采用这种编码方式的表单会将表单域中的值处理成URL编码方式</li>
+<li>multipart&#x2F;form-data:这种编码方式会以二进制流的方式来处理表单数据，这种编码方式会将文件域中的文件夜风撞到请求参数中</li>
+<li>text&#x2F;plain:除了把空格改为“+”号外，其他字符不做编码处理，这种方式适合直接通过表单来发送邮件</li>
+</ol>
+<p>文件上传是一个web项目中很常见的功能，在springmvc中有着很好的支持，但是springmvc默认上下文没有配置MultipartResolver，所以在做文件上传和下载前，需要配置MultipartResolver，</p>
+<ol>
+<li>在原有包的基础上导入此包</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-fileupload<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>注册MultipartResolver实例，id必须为multipartResolver，id必须为multipartResolver，id必须为multipartResolver，不然报错</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;multipartResolver&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;defaultEncoding&quot;</span> <span class="attr">value</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;maxUploadSize&quot;</span> <span class="attr">value</span>=<span class="string">&quot;10485760&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;maxInMemorySize&quot;</span> <span class="attr">value</span>=<span class="string">&quot;40960&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以下就不赘述springMVC的配置文件了</p>
+</blockquote>
+<h2 id="上传单个文件"><a href="#上传单个文件" class="headerlink" title="上传单个文件"></a>上传单个文件</h2><p><strong>页面：</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;单个文件上传&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/singleFileUpload.do&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;avatar&quot;</span> id=<span class="string">&quot;avatar&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>controller：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/singleFileUpload.do&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">singleFileUploadDo</span><span class="params">(<span class="meta">@RequestParam(value = &quot;avatar&quot;,required = false)</span> CommonsMultipartFile avatar,HttpServletRequest req, Model model)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">//真实的保存上传文件的文件夹</span></span><br><span class="line">    String realSaveDirPath = req.getSession().getServletContext().getRealPath(<span class="string">&quot;/upload&quot;</span>);</span><br><span class="line">    File dir = <span class="keyword">new</span> File(realSaveDirPath);</span><br><span class="line">    <span class="keyword">if</span>(!dir.exists())&#123;</span><br><span class="line">        dir.mkdirs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//文件的全称，包括后缀</span></span><br><span class="line">    String avatarWholeName = avatar.getOriginalFilename();</span><br><span class="line">    <span class="comment">//文件的后缀</span></span><br><span class="line">    String suffix = avatarWholeName.substring(avatarWholeName.lastIndexOf(<span class="string">&#x27;.&#x27;</span>)+<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//这里可以对文件后缀做出一些逻辑处理，这里就不作处理了</span></span><br><span class="line">    <span class="comment">//这里为了保证文件名一定不一致，所以加入一个UUID随机值</span></span><br><span class="line">    String uuidPath = UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">    String realFileName = uuidPath.concat(avatarWholeName);</span><br><span class="line">    <span class="comment">//文件的真实保存全路径</span></span><br><span class="line">    String realSavePath = realSaveDirPath.concat(<span class="string">&quot;/&quot;</span>).concat(realFileName);</span><br><span class="line">    <span class="comment">//这里也可以自己用流读写</span></span><br><span class="line">    avatar.transferTo(<span class="keyword">new</span> File(realSavePath));</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;singleFileUpload&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="上传多个文件"><a href="#上传多个文件" class="headerlink" title="上传多个文件"></a>上传多个文件</h2><p>其实和上传单个文件很像，只要input控件的name属性是一样的，那它们就是一组，下面来看看代码</p>
+<p><strong>controller：</strong>（两法，个人偏向于第二种）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/multiFileUpload.do&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">multiFileUploadDo</span><span class="params">(<span class="meta">@RequestParam(value = &quot;file&quot;,required = false)</span> CommonsMultipartFile[] files,HttpServletRequest req, Model model)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="comment">//真实的保存上传文件的文件夹</span></span><br><span class="line">    String realSaveDirPath = req.getSession().getServletContext().getRealPath(<span class="string">&quot;/upload/multipart&quot;</span>);</span><br><span class="line">    File dir = <span class="keyword">new</span> File(realSaveDirPath);</span><br><span class="line">    <span class="keyword">if</span>(!dir.exists())&#123;</span><br><span class="line">        dir.mkdirs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; files.length; i++) &#123;</span><br><span class="line">        <span class="comment">//文件的全称，包括后缀</span></span><br><span class="line">        String avatarWholeName = files[i].getOriginalFilename();</span><br><span class="line">        <span class="comment">//文件的后缀</span></span><br><span class="line">        String suffix = avatarWholeName.substring(avatarWholeName.lastIndexOf(<span class="string">&#x27;.&#x27;</span>)+<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//这里可以对文件后缀做出一些逻辑处理，这里就不作处理了</span></span><br><span class="line">        <span class="comment">//这里为了保证文件名一定不一致，所以加入一个UUID随机值</span></span><br><span class="line">        String uuidPath = UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">        String realFileName = uuidPath.concat(avatarWholeName);</span><br><span class="line">        <span class="comment">//文件的真实保存全路径</span></span><br><span class="line">        String realSavePath = realSaveDirPath.concat(<span class="string">&quot;/&quot;</span>).concat(realFileName);</span><br><span class="line">        <span class="comment">//这里也可以自己用流读写</span></span><br><span class="line">        files[i].transferTo(<span class="keyword">new</span> File(realSavePath));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;multiFileUpload&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/multiFileUpload.do&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Map <span class="title">multiFileUploadDo</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String realPath = request.getServletContext().getRealPath(<span class="string">&quot;\\multipartUpload&quot;</span>)+<span class="string">&quot;\\&quot;</span>;</span><br><span class="line">    CommonsMultipartResolver cmr = <span class="keyword">new</span> CommonsMultipartResolver(request.getServletContext());</span><br><span class="line">    <span class="keyword">if</span>(cmr.isMultipart(request))&#123;</span><br><span class="line">        MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;</span><br><span class="line">        MultiValueMap&lt;String, MultipartFile&gt; multiFileMap = req.getMultiFileMap();</span><br><span class="line">        <span class="keyword">for</span> (String fieldName : multiFileMap.keySet()) &#123;</span><br><span class="line">            String uuidPath = UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="comment">//创建存放文件的文件夹</span></span><br><span class="line">            File dir = <span class="keyword">new</span> File(realPath + uuidPath + fieldName);</span><br><span class="line">            dir.mkdirs();</span><br><span class="line">            List&lt;MultipartFile&gt; multipartFiles = multiFileMap.get(fieldName);</span><br><span class="line">            <span class="keyword">for</span> (MultipartFile f : multipartFiles) &#123;</span><br><span class="line">                <span class="comment">//如果文件为空，则忽略，不然会报错</span></span><br><span class="line">                <span class="keyword">if</span>(!f.isEmpty())&#123;</span><br><span class="line">                    f.transferTo(<span class="keyword">new</span> File(dir.getPath()+<span class="string">&quot;\\&quot;</span>+f.getOriginalFilename()));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;multiFileUpload&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>页面：</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/multiFileUpload.do&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上都是同步提交，下面我们使用异步提交并且将图片预览出来，这次只演示单个文件上传，多个文件上传同理。</p>
+<h2 id="异步提交并提供预览"><a href="#异步提交并提供预览" class="headerlink" title="异步提交并提供预览"></a>异步提交并提供预览</h2><p><strong>Controller：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/reg.do&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Map <span class="title">reg</span><span class="params">(User user,String relativePath)</span></span>&#123;</span><br><span class="line">    user.setAvatarUrl(<span class="string">&quot;\\upload\\&quot;</span>.concat(relativePath));</span><br><span class="line">    HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    System.out.println(user);</span><br><span class="line">    map.put(<span class="string">&quot;result&quot;</span>,<span class="string">&quot;success&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> map;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/singleFileUpload.do&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Map <span class="title">singleFileUploadDo</span><span class="params">(<span class="meta">@RequestParam(value = &quot;avatar&quot;,required = false)</span>CommonsMultipartFile avatar,</span></span></span><br><span class="line"><span class="params"><span class="function">                              HttpServletRequest req)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(avatar==<span class="keyword">null</span>||avatar.isEmpty())&#123;</span><br><span class="line">        map.put(<span class="string">&quot;result&quot;</span>,<span class="string">&quot;fail&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//真实的保存上传文件的文件夹</span></span><br><span class="line">    String realSaveDirPath = req.getSession().getServletContext().getRealPath(<span class="string">&quot;/upload&quot;</span>);</span><br><span class="line">    File dir = <span class="keyword">new</span> File(realSaveDirPath);</span><br><span class="line">    <span class="keyword">if</span>(!dir.exists())&#123;</span><br><span class="line">        dir.mkdirs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//文件的全称，包括后缀</span></span><br><span class="line">    String avatarWholeName = avatar.getOriginalFilename();</span><br><span class="line">    <span class="comment">//文件的后缀</span></span><br><span class="line">    String suffix = avatarWholeName.substring(avatarWholeName.lastIndexOf(<span class="string">&#x27;.&#x27;</span>)+<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//这里可以对文件后缀做出一些逻辑处理，这里就不作处理了</span></span><br><span class="line">    <span class="comment">//这里为了保证文件名一定不一致，所以加入一个UUID随机值</span></span><br><span class="line">    String uuidPath = UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">    String realFileName = uuidPath.concat(avatarWholeName);</span><br><span class="line">    <span class="comment">//文件的真实保存全路径</span></span><br><span class="line">    String realSavePath = realSaveDirPath.concat(<span class="string">&quot;/&quot;</span>).concat(realFileName);</span><br><span class="line">    <span class="comment">//这里也可以自己用流读写</span></span><br><span class="line">    avatar.transferTo(<span class="keyword">new</span> File(realSavePath));</span><br><span class="line">    map.put(<span class="string">&quot;result&quot;</span>,<span class="string">&quot;success&quot;</span>);</span><br><span class="line">    <span class="comment">//用来给页面显示图片</span></span><br><span class="line">    map.put(<span class="string">&quot;relativePath&quot;</span>,<span class="string">&quot;\\upload\\&quot;</span>.concat(realFileName));</span><br><span class="line">    <span class="comment">//用来给前端判断是否需要再次上传</span></span><br><span class="line">    map.put(<span class="string">&quot;fileName&quot;</span>,avatarWholeName);</span><br><span class="line">    <span class="keyword">return</span> map;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>页面：</strong></p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">&quot;text/html;charset=UTF-8&quot;</span> language=<span class="string">&quot;java&quot;</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;单个文件上传&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form id=<span class="string">&quot;form&quot;</span> action=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/singleFileUpload.do&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;请输入用户名&quot;</span> name=<span class="string">&quot;userName&quot;</span> id=<span class="string">&quot;userName&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;number&quot;</span> placeholder=<span class="string">&quot;请输入年龄&quot;</span> name=<span class="string">&quot;age&quot;</span> id=<span class="string">&quot;age&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;avatar&quot;</span> id=<span class="string">&quot;avatar&quot;</span>&gt;</span><br><span class="line">        &lt;div style=<span class="string">&quot;display: none&quot;</span> id=<span class="string">&quot;showimgcontainer&quot;</span>&gt;</span><br><span class="line">            &lt;img id=<span class="string">&quot;showimg&quot;</span> width=<span class="string">&quot;400px&quot;</span> height=<span class="string">&quot;400px&quot;</span> style=<span class="string">&quot;border: solid 1px black&quot;</span>/&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;button&quot;</span> id=<span class="string">&quot;submitBtn&quot;</span> value=<span class="string">&quot;注册&quot;</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/static/js/jquery.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/static/js/jquery.form.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">    let fileName;</span><br><span class="line">	let relativePath;</span><br><span class="line">    $(<span class="string">&#x27;#avatar&#x27;</span>).change(()=&gt;&#123;</span><br><span class="line">		<span class="keyword">if</span>(fileName===$(<span class="string">&#x27;#avatar&#x27;</span>)[<span class="number">0</span>].files[<span class="number">0</span>].name)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">		let options = &#123;</span><br><span class="line">			url: <span class="string">&#x27;$&#123;pageContext.request.contextPath&#125;/singleFileUpload.do&#x27;</span>,</span><br><span class="line">            dataType:<span class="string">&#x27;text&#x27;</span>,</span><br><span class="line">            success(data)&#123;</span><br><span class="line">				data = JSON.parse(data);</span><br><span class="line">				<span class="keyword">if</span>(data.result===<span class="string">&#x27;fail&#x27;</span>)&#123;</span><br><span class="line">					alert(<span class="string">&quot;文件为空或者不存在&quot;</span>);</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				relativePath = data.relativePath;</span><br><span class="line">				fileName = data.fileName;</span><br><span class="line">				$(<span class="string">&#x27;#showimgcontainer&#x27;</span>).show();</span><br><span class="line">				$(<span class="string">&#x27;#showimg&#x27;</span>).attr(<span class="string">&#x27;src&#x27;</span>,relativePath);</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;</span><br><span class="line">		$(<span class="string">&#x27;#form&#x27;</span>).ajaxSubmit(options);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    $(<span class="string">&#x27;#submitBtn&#x27;</span>).click(()=&gt;&#123;</span><br><span class="line">		$.ajax(&#123;</span><br><span class="line">            url: <span class="string">&#x27;$&#123;pageContext.request.contextPath&#125;/reg.do&#x27;</span>,</span><br><span class="line">            method:<span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">            data: &#123;relativePath:relativePath,userName:$(<span class="string">&#x27;#userName&#x27;</span>).val(),age:$(<span class="string">&#x27;#age&#x27;</span>).val()&#125;,</span><br><span class="line">            success(data) &#123;</span><br><span class="line">				<span class="keyword">if</span>(data.result===<span class="string">&#x27;success&#x27;</span>)&#123;</span><br><span class="line">                    alert(<span class="string">&quot;注册成功&quot;</span>);</span><br><span class="line">					window.location = <span class="string">&#x27;$&#123;pageContext.request.contextPath&#125;/login&#x27;</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">					alert(<span class="string">&quot;出错！请重试！&quot;</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/31/Linux-%E7%AE%A1%E7%90%86%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/31/Linux-%E7%AE%A1%E7%90%86%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF%EF%BC%89/" itemprop="url">Linux-管理（了解即可）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:14:13+08:00">
+                2022-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h2><blockquote>
+<p>简介</p>
+</blockquote>
+<p>在一开始的时候我们就提到，Linux是一个多用户的分时操作系统，任何一个需要使用系统资源的用户，都必须向系统管理员申请一个账号，然后以这个账号登录系统。</p>
+<p>用户的账号一方面可以帮助系统管理员对使用系统资源的用户进行跟踪，并控制他们对资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护</p>
+<p>   每个用户都拥有一个唯一的用户名和密码</p>
+<p>对于账号的管理，主要有以下操作</p>
+<ol>
+<li><strong>用户账号的添加，删除和修改</strong></li>
+</ol>
+<p><u>增加用户</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -选项 用户名</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>选项</li>
+</ul>
+<p>-m 自动创建这个用户的主目录</p>
+<p>-d 指定用户的主目录在哪</p>
+<p>-c 指定一段注释</p>
+<p>-g 指定该用户的用户组</p>
+<p>-G 指定用户所属的附加组</p>
+<p>-s shell文件，指定用户的登录shell</p>
+<p>-u 用户号 ，如果有-o属性，则可以与其他人的标识号重复</p>
+<ul>
+<li>用户名</li>
+</ul>
+<p>指定用来登录的用户名</p>
+<p><u>删除用户</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">userdel -r 用户名 -g 分配组</span><br><span class="line"><span class="meta">#</span><span class="bash">删除用户的时候将其目录一并删除</span></span><br></pre></td></tr></table></figure>
+
+<p><u>修改用户信息</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod</span><br></pre></td></tr></table></figure>
+
+<p>创建的时候的一些参数，对应修改的内容的参数</p>
+<p><u>修改用户密码</u></p>
+<p>root用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名</span><br></pre></td></tr></table></figure>
+
+<p>普通用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br><span class="line">current password</span><br></pre></td></tr></table></figure>
+
+<p><u>切换用户</u></p>
+<p>root用户</p>
+<ol>
+<li>切换用户的命令是：su username</li>
+<li>从普通用户切换到root用户，可以使用命令：sudo su</li>
+<li>在终端输入exit或者logout的时或者快捷方式Ctrl+d（其实就是exit），可以退回原来账户</li>
+<li>在切换用户的之后，如果也想切换新用户的工作环境，则可以再su和username之间加入一个-，比如su - root</li>
+</ol>
+<p>$代表普通用户</p>
+<p>#代表超级用户，即root用户</p>
+<p><u>锁定账户</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">锁定之后就不能登录了</span></span><br><span class="line">passwd -l 用户名</span><br><span class="line"><span class="meta">#</span><span class="bash">清空该用户的密码，也不能登录</span></span><br><span class="line">passwd -d 用户名</span><br></pre></td></tr></table></figure>
+
+<p><u>查看账户信息</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line">用户名：口令(不可见为X)：用户标识号：组标识号：注释性描述：主目录：登录shell</span><br><span class="line">cat /etc/shadom</span><br><span class="line">查看加密的密码</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>用户组的管理</strong></li>
+</ol>
+<p>属主，属组</p>
+<p>每个用户都有一个用户组，root用户可以对一个用户组的全部用户进行集中管理（开发组，运维组、、、）。不同的Linux系统对于用户组的规定有所不同，如Linux下的用户属于与他同名的组，这个用户组在创建用户的时候创建</p>
+<p>用户组的管理涉及，用户组的添加，用户组的删除和修改。其实这些操作都是在对&#x2F;etc&#x2F;group的文件进行更新</p>
+<p><u>创建一个用户组</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gruopadd 用户组名称</span><br></pre></td></tr></table></figure>
+
+<p>创建用户组后可以得到一个id，可以通过-g参数指定该id</p>
+<p><u>删除一个用户组</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 用户组名称</span><br></pre></td></tr></table></figure>
+
+<p><u>修改用户组权限信息和名字</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupmod -g 用户组id -n 修改后用户组名称 用户组名称</span><br></pre></td></tr></table></figure>
+
+<p><u>查看所有的用户组</u></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/group</span><br></pre></td></tr></table></figure>
+
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><blockquote>
+<p>df [-h]，列出文件系统整体的磁盘使用量</p>
+</blockquote>
+<blockquote>
+<p>du [-h]，检查当前磁盘的使用量</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -sm /*</span><br><span class="line"><span class="meta">#</span><span class="bash">检查根目录下每个文件占用的容量</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">将外部设备filename挂载到/mnt/filename下来实现访问</span></span><br><span class="line">mount /dev/filename /mnt/filename</span><br><span class="line"><span class="meta">#</span><span class="bash">unmount -f强制卸载</span></span><br><span class="line">unmount -f [挂载位置]</span><br></pre></td></tr></table></figure>
+
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>1、每一个程序都有自己的一个进程，每个进程都有一个id号</p>
+<p>2、每个进程都会有一个父进程</p>
+<p>3、两种运行方式，前台运行，后台运行</p>
+<p>4、一般情况下，服务都是后台运行的</p>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps 查看当前系统中正在执行的各种进程的信息</span><br></pre></td></tr></table></figure>
+
+<p>ps -xx：</p>
+<ul>
+<li>-a 显示当前终端运行的所有的进程信息</li>
+<li>-u 以用户的信息显示进程</li>
+<li>-x 显示后台运行进程的参数</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看所有的进程</span></span><br><span class="line">ps -aux|grep mysql</span><br><span class="line">ps -aux|grep redis</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">|这个在Linux叫管道符  A|B</span></span><br><span class="line"><span class="meta">#</span><span class="bash">grep 过滤符合条件的字符串</span></span><br></pre></td></tr></table></figure>
+
+<p>这里只要知道就行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">可以查看父进程的信息</span></span><br><span class="line">ps -ef|grep mysql</span><br><span class="line"><span class="meta">#</span><span class="bash">进程树，更推荐</span></span><br><span class="line">pstree </span><br><span class="line">	-p 显示父id</span><br><span class="line">	-u 显示用户组</span><br></pre></td></tr></table></figure>
+
+<p>结束进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kill -9 进程id</span><br><span class="line"><span class="meta">#</span><span class="bash"> 这个-9是信号代码，代表强制结束</span></span><br><span class="line"><span class="meta">#</span><span class="bash">如果有死循环了，就可以选择强制结束该进程</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="拓展内容"><a href="#拓展内容" class="headerlink" title="拓展内容"></a>拓展内容</h2><h3 id="查看网络"><a href="#查看网络" class="headerlink" title="查看网络"></a>查看网络</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">在/etc/sysconfig/network-scripts/目录下是配置网络的</span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看IP地址，网络配置</span></span><br><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 文件名</span><br></pre></td></tr></table></figure>
+
+<h3 id="往文件尾部写入值"><a href="#往文件尾部写入值" class="headerlink" title="往文件尾部写入值"></a>往文件尾部写入值</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;Hello&quot; &gt;&gt;filename</span><br></pre></td></tr></table></figure>
+
+<h3 id="关于主机名称"><a href="#关于主机名称" class="headerlink" title="关于主机名称"></a>关于主机名称</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看主机名称</span></span><br><span class="line">hostname</span><br><span class="line"><span class="meta">#</span><span class="bash">修改主机名称</span></span><br><span class="line">hostname newhostname</span><br></pre></td></tr></table></figure>
+
+<h3 id="清屏"><a href="#清屏" class="headerlink" title="清屏"></a>清屏</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
+
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>在Linux中，链接分为软链接和硬链接</p>
+<p>硬链接：A–B，B是A的硬链接，类似于拷贝了一份</p>
+<p>可以这么理解，如果我把A删了，B也是可以访问到A这个文件</p>
+<p>软链接：就是一种类似Windows下的快捷方式，A–B，B是A的软链接。</p>
+<p>可以这么理解，如果我把A删了，则B无法再次访问A文件了</p>
+<h4 id="创建链接"><a href="#创建链接" class="headerlink" title="创建链接"></a>创建链接</h4><p>基础命令：ln </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">设置B为A的硬链接，这时候的B是白色</span></span><br><span class="line">ln A B</span><br><span class="line"><span class="meta">#</span><span class="bash">设置C为A的软链接（又名符号链接），这时候的C是特殊颜色</span></span><br><span class="line">ln -s A C</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>会感觉这个硬链接和复制有点像，但是两者是有区别的</li>
+</ul>
+<p>链接文件，他们的内容是同步的<br>但是复制只是复制，不会同步数据</p>
+<h3 id="端口有关操作"><a href="#端口有关操作" class="headerlink" title="端口有关操作"></a>端口有关操作</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看开放的端口</span></span><br><span class="line">firewall-cmd --list-ports</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">开启防火墙</span></span><br><span class="line">service firewalld start</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">重启防火墙</span></span><br><span class="line">service firewalld restart</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">关闭防火墙</span></span><br><span class="line">service firewalld stop</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看当前firewalld的状态</span></span><br><span class="line">systemctl status firewalld</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">开启端口，记得在阿里云配置安全组</span></span><br><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line"><span class="meta">#</span><span class="bash">重启防火墙服务</span></span><br><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/31/Linux-vim%E7%BC%96%E8%BE%91%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/31/Linux-vim%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="url">Linux-vim编辑器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:12:29+08:00">
+                2022-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="VIM编辑器"><a href="#VIM编辑器" class="headerlink" title="VIM编辑器"></a>VIM编辑器</h2><blockquote>
+<p>什么是VIM编辑器</p>
+</blockquote>
+<p>VIM是从vi发展出来的一个文本编辑器，代码补全，编译，及错误跳转等功能特别丰富。Linux中必须会使用vim</p>
+<h3 id="三种使用模式"><a href="#三种使用模式" class="headerlink" title="三种使用模式"></a>三种使用模式</h3><p>基本上vim&#x2F;vi分为三种使用模式，分别是命令模式（Command mode）、输入模式（Insert mode）、底线命令模式（Last Line mode）</p>
+<h4 id="命令模式（Command-mode）"><a href="#命令模式（Command-mode）" class="headerlink" title="命令模式（Command mode）"></a>命令模式（Command mode）</h4><p>用户刚刚启动vim，便进入了命令模式</p>
+<p>此状态下敲击键盘会被识别为命令，不会输入字符</p>
+<p>以下为常用命令：</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i</td>
+<td align="center">切换到输入模式</td>
+</tr>
+<tr>
+<td align="center">：</td>
+<td align="center">切换到底线命令模式</td>
+</tr>
+<tr>
+<td align="center">k或者上箭头</td>
+<td align="center">光标向上移</td>
+</tr>
+<tr>
+<td align="center">j或者下箭头</td>
+<td align="center">光标向下移</td>
+</tr>
+<tr>
+<td align="center">h或者左箭头</td>
+<td align="center">光标向左移</td>
+</tr>
+<tr>
+<td align="center">l或者右箭头</td>
+<td align="center">光标向右移</td>
+</tr>
+<tr>
+<td align="center">Ctrl+f</td>
+<td align="center">向下移动一页，相当于pageDown</td>
+</tr>
+<tr>
+<td align="center">Ctrl+b</td>
+<td align="center">向上移动一页，相当于pageUp</td>
+</tr>
+<tr>
+<td align="center">Ctrl+d</td>
+<td align="center">向下移动半页</td>
+</tr>
+<tr>
+<td align="center">Ctrl+u</td>
+<td align="center">向上移动半页</td>
+</tr>
+<tr>
+<td align="center">0&#x2F;功能键[home]</td>
+<td align="center">将光标移动到该行的开头处</td>
+</tr>
+<tr>
+<td align="center">$&#x2F;功能键[end]</td>
+<td align="center">将光标移动到该行的结尾处</td>
+</tr>
+<tr>
+<td align="center">H</td>
+<td align="center">将光标移动到这个屏幕第一行的第一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">将光标移动到这个屏幕中央的那一行的第一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td align="center">将光标移动到这个屏幕最后一行的一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">G</td>
+<td align="center">将光标移动到这个屏幕最后一行的一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">nG</td>
+<td align="center">n代表数字，表示移动到该文件的第几行</td>
+</tr>
+<tr>
+<td align="center">gg</td>
+<td align="center">移动到这个文件的第一行</td>
+</tr>
+<tr>
+<td align="center">n&lt;回车&gt;</td>
+<td align="center">光标向下移动n个字符（单独摁空格光标向下移动一个字符）</td>
+</tr>
+<tr>
+<td align="center">n&lt;退格键&gt;</td>
+<td align="center">光标向左移动n个字符（单独摁退格键光标向左移动一个字符）</td>
+</tr>
+<tr>
+<td align="center"><strong>n&lt;空格&gt;</strong></td>
+<td align="center"><strong>光标向右移动n个字符（单独摁空格光标向右移动一个字符）</strong></td>
+</tr>
+</tbody></table>
+<h5 id="替换搜索"><a href="#替换搜索" class="headerlink" title="替换搜索"></a>替换搜索</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>&#x2F; keyword</strong></td>
+<td align="center"><strong>向下查询字符串keyword</strong></td>
+</tr>
+<tr>
+<td align="center">？keyword</td>
+<td align="center">向上查询字符串keyword</td>
+</tr>
+<tr>
+<td align="center"><strong>n</strong></td>
+<td align="center"><strong>继续当前的查询动作</strong></td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td align="center">反向进行当前的查询动作</td>
+</tr>
+</tbody></table>
+<h5 id="删除、复制、黏贴"><a href="#删除、复制、黏贴" class="headerlink" title="删除、复制、黏贴"></a>删除、复制、黏贴</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x ，X</td>
+<td align="center">删除当前光标所在的字符</td>
+</tr>
+<tr>
+<td align="center">nx</td>
+<td align="center">n为数字，连续向后删除n个字符</td>
+</tr>
+<tr>
+<td align="center">&lt;数字&gt;dd&#x2F;D</td>
+<td align="center">删除光标所在的那n整行(默认n为1)</td>
+</tr>
+<tr>
+<td align="center">d1G</td>
+<td align="center">删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">dG</td>
+<td align="center">删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">d$</td>
+<td align="center">删除所在光标到该行最后</td>
+</tr>
+<tr>
+<td align="center">d0</td>
+<td align="center">删除所在光标到该行开头</td>
+</tr>
+<tr>
+<td align="center">&lt;数字&gt;yy</td>
+<td align="center">复制那一整行（默认n为1）</td>
+</tr>
+<tr>
+<td align="center">y1G</td>
+<td align="center">复制光标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">yG</td>
+<td align="center">复制光标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">y0</td>
+<td align="center">复制光标所在到该行的开始位置</td>
+</tr>
+<tr>
+<td align="center">y$</td>
+<td align="center">复制光标所在到该行的结束位置</td>
+</tr>
+<tr>
+<td align="center">p，P</td>
+<td align="center">p将复制的数据在光标的下一行黏贴，P将复制的数据在光标的上一行黏贴</td>
+</tr>
+<tr>
+<td align="center">J</td>
+<td align="center">将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td align="center">Ctrl+r</td>
+<td align="center">重做</td>
+</tr>
+<tr>
+<td align="center"><strong>u</strong></td>
+<td align="center"><strong>撤销</strong></td>
+</tr>
+</tbody></table>
+<h5 id="从命令模式切换到输入模式的其他命令"><a href="#从命令模式切换到输入模式的其他命令" class="headerlink" title="从命令模式切换到输入模式的其他命令"></a>从命令模式切换到输入模式的其他命令</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>i、I</strong></td>
+<td><strong>i为在当前光标处进入输入模式，I为在当前光标所在行的第一个字符所在处进入输入模式</strong></td>
+</tr>
+<tr>
+<td align="center">a、A</td>
+<td>a为在当前光标的下一个字符处进入输入模式，A为在当前光标所在行的最后一个字符所在处进入输入模式</td>
+</tr>
+<tr>
+<td align="center">o、O</td>
+<td>o为在当前光标所在行的下一行输入一个新的一行，O为在当前光标所在行的上一行输入一个新的一行</td>
+</tr>
+<tr>
+<td align="center">r、R</td>
+<td>进入取代模式，r为只取代一次，R为一直取代直到按下esc</td>
+</tr>
+<tr>
+<td align="center"><strong>esc</strong></td>
+<td><strong>退出到命令模式</strong></td>
+</tr>
+</tbody></table>
+<h4 id="输入模式（Insert-mode）"><a href="#输入模式（Insert-mode）" class="headerlink" title="输入模式（Insert mode）"></a>输入模式（Insert mode）</h4><p>在此模式下，可以使用以下按键</p>
+<p>这些操作和我们平时用的是一样的</p>
+<h4 id="底线命令模式（Last-Line-mode）"><a href="#底线命令模式（Last-Line-mode）" class="headerlink" title="底线命令模式（Last Line mode）"></a>底线命令模式（Last Line mode）</h4><p>在此模式下，我们的光标会移动到最底下，就可以输入一些命令了</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:w</td>
+<td>保存</td>
+</tr>
+<tr>
+<td align="center">:w！</td>
+<td>若文件为只读属性，强制写入，跟权限有关</td>
+</tr>
+<tr>
+<td align="center">:q</td>
+<td>退出vim</td>
+</tr>
+<tr>
+<td align="center">:q!</td>
+<td>不保存退出</td>
+</tr>
+<tr>
+<td align="center">!在vim中一般表示强制的意思</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><strong>:wq</strong></td>
+<td><strong>保存退出</strong></td>
+</tr>
+<tr>
+<td align="center">:ZZ</td>
+<td>如果档案没有改动，则不储存离开，若修改了，则储存后离开</td>
+</tr>
+<tr>
+<td align="center">:w[filename]</td>
+<td>另存为到另一个文件</td>
+</tr>
+<tr>
+<td align="center">:r[filename]</td>
+<td>在编辑的数据中，读入另一个档案的数据。亦将filename中的内动追加到光标所在行的后面</td>
+</tr>
+<tr>
+<td align="center">:n1,n2 w[filename]</td>
+<td>将n1到n2的数据存储到filename这个文件中</td>
+</tr>
+<tr>
+<td align="center">:!command</td>
+<td>暂时离开vim执行command命令，【例如：:! ls &#x2F;home】</td>
+</tr>
+<tr>
+<td align="center"><strong>:set nu</strong></td>
+<td><strong>显示行号</strong></td>
+</tr>
+<tr>
+<td align="center">:set nonu</td>
+<td>取消显示行号</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" itemprop="url">Linux-文件操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:11:31+08:00">
+                2022-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统no的安全性，Linux系统对于不同的用户访问同一文件夹的权限做出了规定</p>
+<p>先前我们使用<code>ls -al</code>查看了文件属性，我们现在来看看这些开头的字符到底是什么意思吧</p>
+<img src="/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.png" class title="文件属性">
+
+<p>我们将每一行分为六组来看</p>
+<blockquote>
+<p>第一组</p>
+</blockquote>
+<p>这一组固定一共十个字符，拆分为第一个字符和后9个字符来看</p>
+<p>第一个字符的含义</p>
+<ul>
+<li><strong>[d]代表目录</strong></li>
+<li><strong>[-]代表文件</strong></li>
+<li><strong>[l]代表这是一个链接文档（link file）</strong></li>
+<li>[b]代表装置文件，里面可能有供存储的接口设备     </li>
+<li>[c]代表装置文件里面的串行端口设备，例如键盘或者鼠标</li>
+</ul>
+<p>后九个字符的含义</p>
+<p>接下来的字符中以三个为一组，且均是以[rwx]的三个参数的组合</p>
+<p>r–》read读操作</p>
+<p>w–》write写操作</p>
+<p>x–》execute执行操作</p>
+<p>如果对应位置没有权限，就会出现-号</p>
+<p>第一组为属主的权限（该文件的所有者）</p>
+<p>第二组为属组的权限（所有者的同组用户）</p>
+<p>第三组为其他用户的权限（其他用户）</p>
+<blockquote>
+<p>第二组</p>
+</blockquote>
+<p>如果该项是文件夹，该数字表示文件夹中的包含文件数</p>
+<p>如果是文件，则显示1</p>
+<blockquote>
+<p>第三组</p>
+</blockquote>
+<p>第一个参数表示属主</p>
+<p>第二个参数表示属组（root组）</p>
+<blockquote>
+<p>第四组</p>
+</blockquote>
+<p>文件大小</p>
+<blockquote>
+<p>第五组</p>
+</blockquote>
+<p>创建时间</p>
+<blockquote>
+<p>第六组</p>
+</blockquote>
+<p>文件名</p>
+<h3 id="修改文属性件"><a href="#修改文属性件" class="headerlink" title="修改文属性件"></a>修改文属性件</h3><h4 id="更改文件属组"><a href="#更改文件属组" class="headerlink" title="更改文件属组"></a>更改文件属组</h4><p>基础命令：chgrp</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<h4 id="更改文件属主，也可以同时更改文件属组"><a href="#更改文件属主，也可以同时更改文件属组" class="headerlink" title="更改文件属主，也可以同时更改文件属组"></a>更改文件属主，也可以同时更改文件属组</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [-R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<h4 id="更改文件九大属性"><a href="#更改文件九大属性" class="headerlink" title="更改文件九大属性"></a>更改文件九大属性</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomd [-R] xyz 文件或者目录 </span><br></pre></td></tr></table></figure>
+
+<p>Linux文件系统属性有两种设置方法，一种数字，一种符号。</p>
+<p>Linux文件的基本权限有九个，分别是owner&#x2F;group&#x2F;others三种身份各自有自己的read&#x2F;write&#x2F;execute权限</p>
+<p>文件的权限字符是[rwxrwxrwx]，这九个权限是三三一组的！我们可以使用数字来代表各个权限，各个权限的分数对照表如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4   w:2   x:1</span><br></pre></td></tr></table></figure>
+
+<p>每种身份（owner&#x2F;group&#x2F;others）各自的三个权限（r&#x2F;w&#x2F;x）分数是需要累加的，举个栗子：[rwxrwx—]</p>
+<ul>
+<li>owner &#x3D; rwx &#x3D; 4 + 2 + 1&#x3D; 7</li>
+<li>group &#x3D; rwx &#x3D; 4 + 2 + 1&#x3D; 7</li>
+<li>others &#x3D; —  &#x3D; 0</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h3><p>Linux系统中使用以下命令来查看文件的内容</p>
+<ul>
+<li>cat 由第一行开始显示文件的内容</li>
+<li>tac 由最后一行开始显示文件的内容</li>
+<li>nl 显示的时候，输出行号</li>
+<li>more 一页一页的显示文件的内容<ul>
+<li>空格翻页，enter代表向下看一行，:f代表当前行数，退出查看输入q，向下查询字符串使用命令<code>/要查找的字符串</code>向上查询使用命令<code>?要查找的字符串</code>，n代表继续搜寻下一个，N代表继续搜寻上一个</li>
+</ul>
+</li>
+<li>less 与 more相似，但是他可以往前翻页<ul>
+<li>上下键代表向上下翻页</li>
+</ul>
+</li>
+<li>head 只查看前几行<ul>
+<li>通过  -n 参数可以控制查看几行</li>
+</ul>
+</li>
+<li>tail 只查看尾巴几行<ul>
+<li>通过  -n 参数可以控制查看几行</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/8/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">&gt;</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李智</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
