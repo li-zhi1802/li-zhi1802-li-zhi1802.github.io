@@ -763,7 +763,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -782,7 +782,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/" itemprop="url">Redis-缓存穿透和雪崩</a></h1>
+                <a class="post-title-link" href="/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/" itemprop="url">Redis-缓存穿透和雪崩</a></h1>
         
 
         <div class="post-meta">
@@ -817,7 +817,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
                     <span itemprop="name">Redis</span>
                   </a>
                 </span>
@@ -835,8 +846,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/" itemprop="commentCount"></span>
+                <a href="/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -893,14 +904,14 @@
 <li>布隆过滤器</li>
 </ol>
 <p>布隆过滤器是一种数据结构，对所有能查询到的参数以hash的形式存储，在控制层先进行校验，不符合则该请求直接丢弃，从而解决问题</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8.png" class title="布隆过滤器">
+<img src="/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8.png" class title="布隆过滤器">
 
 <ol start="2">
 <li>置空缓存</li>
 </ol>
 <p>当存储层未命中的时候，及时返回的是null对象，缓存也将其存储起来同时设置一个过期时间，之后再从数据库中查询，保护了mysql</p>
 <p>问题：</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E8%AE%BE%E7%BD%AE%E7%A9%BA%E5%80%BC.png" class title="设置空值">
+<img src="/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E8%AE%BE%E7%BD%AE%E7%A9%BA%E5%80%BC.png" class title="设置空值">
 
 <ol>
 <li>有可能会存放很多很多值为空的键值对，浪费文件</li>
@@ -913,10 +924,10 @@
 </ol>
 <h3 id="雪崩"><a href="#雪崩" class="headerlink" title="雪崩"></a>雪崩</h3><p><strong>概念：</strong>指的是在某一时间段，缓存集中过期失效或者集中宕机</p>
 <p>正常：</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E6%AD%A3%E5%B8%B8%E7%BC%93%E5%AD%98.png" class title="正常缓存">
+<img src="/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E6%AD%A3%E5%B8%B8%E7%BC%93%E5%AD%98.png" class title="正常缓存">
 
 <p>雪崩：</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E9%9B%AA%E5%B4%A9.png" class title="雪崩">
+<img src="/javaEE/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E9%9B%AA%E5%B4%A9.png" class title="雪崩">
 
 <p>如果是自然key过期，倒是影响不大，但是如果是节点宕机或者断电，这就很有可能会将数据库冲垮</p>
 <p><strong>解决方案：</strong></p>
@@ -1115,7 +1126,7 @@
 <img src="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6.png" class title="主从复制">
 
 <p>一般来说，要将Redis运用于工程项目中，只使用一台Redis是万万不能的，最少三台（一主二从）</p>
-<p>​    1、从结构上，单个Redis服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力较大<br>​    2、从容量上，不能将一台服务所有内存用作Redis存储内存，单台Redis最大使用内存不应该超过<strong>20G</strong>。</p>
+<p>​	1、从结构上，单个Redis服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力较大<br>​	2、从容量上，不能将一台服务所有内存用作Redis存储内存，单台Redis最大使用内存不应该超过<strong>20G</strong>。</p>
 <h3 id="配置子节点"><a href="#配置子节点" class="headerlink" title="配置子节点"></a>配置子节点</h3><p>我们这里使用docker来做</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制两份配置文件给从节点镜像使用</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># ls</span></span><br><span class="line">redis-01.conf  redis-02.conf  redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要修改这三份文件，将绑定本地的配置注释掉，关闭安全模式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分别以后台方式启动两个从节点</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker run -P -it -d -v /home/redis/redis-01.conf:/etc/redis/redis.conf --name=salveRedis01 redis</span></span><br><span class="line">a593c51bc1100e892f5d18c34ba5a05f637d1b3a4a29e5840cfeb18a633355f5</span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker run -P -it -d -v /home/redis/redis-02.conf:/etc/redis/redis.conf --name=salveRedis02 redis</span></span><br><span class="line">08833de79be2cf719402b4f4cf42bf06d0f0a84a22e188f2b2f4d03f54ca48c1</span><br><span class="line"><span class="comment"># 查看映射端口，这里一定一定要注意！！服务器要开安全组！！！不然就是连接失败哎！！！</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS              PORTS                                               NAMES</span><br><span class="line">a593c51bc110   redis          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   24 minutes ago   Up About a minute   0.0.0.0:49169-&gt;6379/tcp                             salveRedis01</span><br><span class="line">08833de79be2   redis          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   24 minutes ago   Up About a minute   0.0.0.0:49170-&gt;6379/tcp                             salveRedis02</span><br><span class="line">0e9919007f5d   redis          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   38 minutes ago   Up 2 minutes        0.0.0.0:49168-&gt;6379/tcp                             masterRedis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看主节点的基本信息</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ ~]<span class="comment"># docker exec -it masterRedis redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master          <span class="comment"># 当前节点的角色</span></span><br><span class="line">connected_slaves:0   <span class="comment"># 当前节点的子节点</span></span><br><span class="line">master_failover_state:no-failover</span><br><span class="line">master_replid:f37ca91dd3b3578e83031f9ea087d64f9994dd9a</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:0</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:0</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:0</span><br><span class="line">repl_backlog_histlen:0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入子节点1号的客户端，并配置父节点</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker exec -it salveRedis01 redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; SLAVEOF 116.62.151.26 49168</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; role</span><br><span class="line">1) <span class="string">&quot;slave&quot;</span></span><br><span class="line">2) <span class="string">&quot;116.62.151.26&quot;</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 49168</span><br><span class="line">4) <span class="string">&quot;connected&quot;</span>         <span class="comment">#说明连接成功，如果没开安全组的话，这一行会是connecting下一行是-1，表示连接失败</span></span><br><span class="line">5) (<span class="built_in">integer</span>) 42</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入子节点2号的客户端，并配置父节点</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker exec -it salveRedis02 redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; SLAVEOF 116.62.151.26 49168</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; role</span><br><span class="line">1) <span class="string">&quot;slave&quot;</span></span><br><span class="line">2) <span class="string">&quot;116.62.151.26&quot;</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 49168</span><br><span class="line">4) <span class="string">&quot;connected&quot;</span></span><br><span class="line">5) (<span class="built_in">integer</span>) 112</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看父节点的基本信息</span></span><br><span class="line">127.0.0.1:6379&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:2              <span class="comment"># 两个子节点</span></span><br><span class="line">slave0:ip=116.62.151.26,port=6379,state=online,offset=112,lag=0</span><br><span class="line">slave1:ip=116.62.151.26,port=6379,state=online,offset=112,lag=1</span><br><span class="line">master_failover_state:no-failover</span><br><span class="line">master_replid:92ee701d04326eb2c74d8de1ea0fc2ec010f97df</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:112</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:112</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在父节点测试是否数据同步</span></span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">(empty array)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment"># 子节点1号查询</span></span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 子节点2号查询</span></span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -2966,7 +2977,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3085,7 +3096,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">101.2k</span>
+    <span title="站点总字数">102.2k</span>
   
 </div>
 

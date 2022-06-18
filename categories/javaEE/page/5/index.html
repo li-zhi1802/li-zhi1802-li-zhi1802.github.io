@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Redis," />
+  <meta name="keywords" content="芝麻的blog" />
 
 
 
@@ -86,23 +86,16 @@
 
 
 
-<meta name="description" content="缓存穿透和雪崩缓存的时候，大大提高了应用程序的性能和效率，特别是数据查询方面。但同时，它带来好处的同时，也带来了问题。 缓存穿透和雪崩就是两个经典的问题，当然业界也已经有了比较流行的解决方案 缓存穿透（查不到）概念：缓存穿透的概念很简单，用户想要查询一个数据，发现Redis内存数据库中没有，也就是缓存没有命中，于是去持久层数据库查询。发现也没有，于是本次查询失败。当这种查询情况很多的时候，缓存都没">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Redis-缓存穿透和雪崩">
-<meta property="og:url" content="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/index.html">
+<meta name="description" content="芝麻的blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="芝麻的blog">
+<meta property="og:url" content="http://li-zhi.net.cn/categories/javaEE/page/5/index.html">
 <meta property="og:site_name" content="芝麻的blog">
-<meta property="og:description" content="缓存穿透和雪崩缓存的时候，大大提高了应用程序的性能和效率，特别是数据查询方面。但同时，它带来好处的同时，也带来了问题。 缓存穿透和雪崩就是两个经典的问题，当然业界也已经有了比较流行的解决方案 缓存穿透（查不到）概念：缓存穿透的概念很简单，用户想要查询一个数据，发现Redis内存数据库中没有，也就是缓存没有命中，于是去持久层数据库查询。发现也没有，于是本次查询失败。当这种查询情况很多的时候，缓存都没">
+<meta property="og:description" content="芝麻的blog">
 <meta property="og:locale">
-<meta property="og:image" content="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8.png">
-<meta property="og:image" content="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E8%AE%BE%E7%BD%AE%E7%A9%BA%E5%80%BC.png">
-<meta property="og:image" content="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E6%AD%A3%E5%B8%B8%E7%BC%93%E5%AD%98.png">
-<meta property="og:image" content="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E9%9B%AA%E5%B4%A9.png">
-<meta property="article:published_time" content="2022-02-25T13:37:11.000Z">
-<meta property="article:modified_time" content="2022-02-25T14:10:06.283Z">
 <meta property="article:author" content="芝麻">
-<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="个人学习笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8.png">
 
 
 
@@ -132,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://li-zhi.net.cn/Redis/2022/02/25/Redis-缓存穿透和雪崩/"/>
+  <link rel="canonical" href="http://li-zhi.net.cn/categories/javaEE/page/5/"/>
 
 
 
 
 
-  <title>Redis-缓存穿透和雪崩 | 芝麻的blog</title>
+  <title>分类: javaEE | 芝麻的blog</title>
   
 
 
@@ -158,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -296,275 +289,59 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>javaEE<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/javaEE/Maven/2022/01/26/Maven/" itemprop="url">
+              
+                <span itemprop="name">Maven</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">Redis-缓存穿透和雪崩</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-25T21:37:11+08:00">
-                2022-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>阅读量
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  877
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="缓存穿透和雪崩"><a href="#缓存穿透和雪崩" class="headerlink" title="缓存穿透和雪崩"></a>缓存穿透和雪崩</h2><p>缓存的时候，大大提高了应用程序的性能和效率，特别是数据查询方面。但同时，它带来好处的同时，也带来了问题。</p>
-<p>缓存穿透和雪崩就是两个经典的问题，当然业界也已经有了比较流行的解决方案</p>
-<h3 id="缓存穿透（查不到）"><a href="#缓存穿透（查不到）" class="headerlink" title="缓存穿透（查不到）"></a>缓存穿透（查不到）</h3><p><strong>概念：</strong>缓存穿透的概念很简单，用户想要查询一个数据，发现Redis内存数据库中没有，也就是缓存没有<strong>命中</strong>，于是去持久层数据库查询。发现也没有，于是本次查询失败。当这种查询情况很多的时候，缓存都没有命中，都时去请求了持久层数据库。就是意味着该缓存无用，也就是缓存穿透。</p>
-<p><strong>解决方案：</strong></p>
-<ol>
-<li>布隆过滤器</li>
-</ol>
-<p>布隆过滤器是一种数据结构，对所有能查询到的参数以hash的形式存储，在控制层先进行校验，不符合则该请求直接丢弃，从而解决问题</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8.png" class title="布隆过滤器">
-
-<ol start="2">
-<li>置空缓存</li>
-</ol>
-<p>当存储层未命中的时候，及时返回的是null对象，缓存也将其存储起来同时设置一个过期时间，之后再从数据库中查询，保护了mysql</p>
-<p>问题：</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E8%AE%BE%E7%BD%AE%E7%A9%BA%E5%80%BC.png" class title="设置空值">
-
-<ol>
-<li>有可能会存放很多很多值为空的键值对，浪费文件</li>
-<li>及时设置了过期时间，但是如果mysql在这个过期时间还没到的时候，已经有查询结果了，但是因为过期时间没到，却还是访问不了mysql，从而查询到数据</li>
-</ol>
-<h3 id="缓存击穿（查得太多了）"><a href="#缓存击穿（查得太多了）" class="headerlink" title="缓存击穿（查得太多了）"></a>缓存击穿（查得太多了）</h3><p><strong>概述：</strong>这里需要注意和缓存击穿的区别，缓存击穿，是指一个key在不停的扛着大并发，大并发集中对<strong>这一个点</strong>进行访问，当这个key在失效的瞬间，持续的大并发就穿破缓存，直接请求数据库，就像在一个屏障上凿开了一个洞。当某个key在过期的瞬间，有大量的请求并发访问，这类数据一般是热点数据，由于缓存过期，会同时访问数据库来查询最新数据，并且回写缓存，会导使数据库瞬间压力过大。<br><strong>解决方案：</strong></p>
-<ol>
-<li>设置热点数据永不过期，从缓存层面来看，没有设置过期时间，所以不会出现热点 key 过期后产生的问题。</li>
-<li>加互斥锁分布式锁：使用分布式锁，保证对于每个key同时只有一个线程去查询后端服务，其他线程没有获得分布式锁的权限</li>
-</ol>
-<h3 id="雪崩"><a href="#雪崩" class="headerlink" title="雪崩"></a>雪崩</h3><p><strong>概念：</strong>指的是在某一时间段，缓存集中过期失效或者集中宕机</p>
-<p>正常：</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E6%AD%A3%E5%B8%B8%E7%BC%93%E5%AD%98.png" class title="正常缓存">
-
-<p>雪崩：</p>
-<img src="/Redis/2022/02/25/Redis-%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9/%E9%9B%AA%E5%B4%A9.png" class title="雪崩">
-
-<p>如果是自然key过期，倒是影响不大，但是如果是节点宕机或者断电，这就很有可能会将数据库冲垮</p>
-<p><strong>解决方案：</strong></p>
-<ol>
-<li>redis集群</li>
-<li>限流降级：在缓存失效后，通过加锁或者队列来控制数据库写缓存的线程个数</li>
-<li>数据预热：在正式部署前，先把可能的数据预先访问一遍，这样的话可能大量访问的数据就会加载到缓存中去，在即将发生高并发访问前，手动触发加载器缓存不同的key，设置不同的过期时间，让缓存过期时间点比较均匀</li>
-</ol>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>给作者买杯咖啡吧~~~</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" 微信支付"/>
-        <p>微信支付</p>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2022-01-26T23:36:37+08:00"
+              content="2022-01-26" >
+          01-26
+        </time>
       </div>
-    
 
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" rel="next" title="Redis-主从复制">
-                <i class="fa fa-chevron-left"></i> Redis-主从复制
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/%E7%AE%97%E6%B3%95/2022/02/25/%E3%80%90537-Easy%E3%80%91%E5%A4%8D%E6%95%B0%E4%B9%98%E6%B3%95/" rel="prev" title="【537-Easy】复数乘法">
-                【537-Easy】复数乘法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/categories/javaEE/page/4/">&lt;</a><a class="page-number" href="/categories/javaEE/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/javaEE/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+
+
 
 
           </div>
@@ -572,13 +349,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
 
         </div>
         
@@ -599,17 +369,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -639,7 +400,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -718,22 +479,6 @@ setInterval(function(){
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E5%92%8C%E9%9B%AA%E5%B4%A9"><span class="nav-text">缓存穿透和雪崩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%EF%BC%88%E6%9F%A5%E4%B8%8D%E5%88%B0%EF%BC%89"><span class="nav-text">缓存穿透（查不到）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%88%E6%9F%A5%E5%BE%97%E5%A4%AA%E5%A4%9A%E4%BA%86%EF%BC%89"><span class="nav-text">缓存击穿（查得太多了）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%AA%E5%B4%A9"><span class="nav-text">雪崩</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -774,7 +519,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">101.2k</span>
+    <span title="站点总字数">102.2k</span>
   
 </div>
 
@@ -910,10 +655,6 @@ setInterval(function(){
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

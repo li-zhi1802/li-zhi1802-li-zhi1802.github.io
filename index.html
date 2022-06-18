@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  123
+                  1.1k
                 </span>
               
 
@@ -426,9 +426,73 @@
       
         
           
-            <h2 id="二叉树（纲领）"><a href="#二叉树（纲领）" class="headerlink" title="二叉树（纲领）"></a>二叉树（纲领）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    traverse(root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">        res = Math.max(depth,res);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 前序位置</span></span><br><span class="line">    <span class="comment">// 刚刚进入这个节点</span></span><br><span class="line">    depth++;</span><br><span class="line">    traverse(root.left);</span><br><span class="line">    <span class="comment">// 中序位置</span></span><br><span class="line">    <span class="comment">// 左子树遍历完了，开始遍历右子树</span></span><br><span class="line">    traverse(root.right);</span><br><span class="line">    <span class="comment">// 后序位置</span></span><br><span class="line">    <span class="comment">// 离开该二叉树节点</span></span><br><span class="line">    depth--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h2 id="二叉树（纲领）"><a href="#二叉树（纲领）" class="headerlink" title="二叉树（纲领）"></a>二叉树（纲领）</h2><p>二叉树的解题思路有两个方向</p>
+<blockquote>
+<p>通过遍历一棵树得到答案，即<strong>遍历</strong>的思想</p>
+</blockquote>
+<blockquote>
+<p>通过递归，将整个问题分解为子问题推导出问题的答案，即<strong>分解</strong>的思想</p>
+</blockquote>
+<p>首先我们来回顾以下二叉树的几种遍历方式</p>
+<ul>
+<li>前序遍历</li>
+<li>中序遍历</li>
+<li>后序遍历</li>
+<li>层次遍历</li>
+</ul>
+<p>大家在课内学习的时候，应该是这么背的</p>
+<p>前序是<code>根左右</code>，中序是<code>左根右</code>，后序是<code>左右根</code>，层次遍历就是一层一层写</p>
+<img src="/%E7%AE%97%E6%B3%95/2022/05/07/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E7%BA%B2%E9%A2%86%EF%BC%89/example.png" class title="栗图">
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> left = maxDepth(root.left);</span><br><span class="line">    <span class="keyword">int</span> right = maxDepth(root.right);</span><br><span class="line">    <span class="keyword">int</span> max  = Math.max(left,right)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前序遍历集合：<code>ABDHIECFG</code></p>
+<p>中序遍历集合：<code>HDIBEAFCG</code></p>
+<p>后序遍历集合：<code>HIDEBFGCA</code></p>
+<p>层次遍历集合：<code>ABCDEFGHI</code></p>
+<p>相信这个对于大家来说都没有难度，理解前中后序对于做二叉树问题十分重要，这里给出遍历二叉树的模板代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 前序位置</span></span><br><span class="line">    traverse(root.left);</span><br><span class="line">    <span class="comment">// 中序位置</span></span><br><span class="line">    traverse(root.right);</span><br><span class="line">    <span class="comment">// 后序位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面请你对照这段模板，看下面这张图</p>
+<img src="/%E7%AE%97%E6%B3%95/2022/05/07/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E7%BA%B2%E9%A2%86%EF%BC%89/%E5%89%8D%E4%B8%AD%E5%90%8E%E5%BA%8F%E4%BD%8D%E7%BD%AE.png" class title="前中后序位置">
+
+<p>你会发现，每个节点都会有唯一属于自己的前中后序位置，前中后序其实对应就是处理每一个节点的三个特殊时间点。</p>
+<p>二叉树的问题，其实就是在这三个时间点注入自己的代码逻辑，只需要单独考虑每一个节点在每个时间点该做些什么，其他的交给二叉树遍历框架即可。</p>
+<h3 id="前序输出集合"><a href="#前序输出集合" class="headerlink" title="前序输出集合"></a>前序输出集合</h3><p>我们来写一下前序遍历，方法签名如下<code>public List&lt;TreeNOde&gt; getPreorderList(TreeNOde root)&#123;&#125;</code></p>
+<h4 id="一、遍历"><a href="#一、遍历" class="headerlink" title="一、遍历"></a>一、遍历</h4><p>借助traverse函数和一个外部变量即可完成</p>
+<p>在进入一个节点的时候将其加入到结果集中去，最后将结果集返回</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">List&lt;TreeNode&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;TreeNOde&gt; <span class="title">getPreorderList</span><span class="params">(TreeNOde root)</span></span>&#123;</span><br><span class="line">    traverse(root);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    res.add(root);</span><br><span class="line">    traverse(root.left);</span><br><span class="line">    traverse(root.right);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、分解问题"><a href="#二、分解问题" class="headerlink" title="二、分解问题"></a>二、分解问题</h4><p>求一整个树的前序遍历即求其子树的前序遍历集合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">getPreorderList</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    List&lt;TreeNode&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将当前节点放入集合</span></span><br><span class="line">    res.add(root);</span><br><span class="line">    <span class="comment">// 将左节点的前序遍历放入集合</span></span><br><span class="line">    res.addAll(getPreorderList(root.left));</span><br><span class="line">    <span class="comment">// 将右节点的前序遍历放入集合</span></span><br><span class="line">    res.addAll(getPreorderList(root.right));</span><br><span class="line">    <span class="comment">// 讲结果集返回</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="104-二叉树的最大深度"><a href="#104-二叉树的最大深度" class="headerlink" title="104. 二叉树的最大深度"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">104. 二叉树的最大深度</a></h3><p>给定一个二叉树，找出其最大深度。</p>
+<p>二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
+<p><code>说明: 叶子节点是指没有子节点的节点。</code></p>
+<blockquote>
+<p>示例：</p>
+</blockquote>
+<p>给定二叉树 [3,9,20,null,null,15,7]</p>
+<pre><code>    3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre>
+<p>返回它的最大深度 3 。</p>
+<p>我们来使用两种上述思维来看这道题</p>
+<h4 id="一、遍历-1"><a href="#一、遍历-1" class="headerlink" title="一、遍历"></a>一、遍历</h4><p>如何得到最大深度，即得到每一个节点的深度，在叶子节点处将当前深度和当前最大深度取最大，然后将最大的深度返回即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> depth=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> max=<span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        traverse(root);</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 前序位置</span></span><br><span class="line">        depth++;</span><br><span class="line">        <span class="comment">// 在叶子节点处更新最大深度</span></span><br><span class="line">        <span class="keyword">if</span>(root.left==<span class="keyword">null</span>&amp;&amp;root.right==<span class="keyword">null</span>)&#123;</span><br><span class="line">            max=Math.max(max,depth);</span><br><span class="line">        &#125;</span><br><span class="line">        traverse(root.left);</span><br><span class="line">        <span class="comment">// 中序位置</span></span><br><span class="line">        traverse(root.right);</span><br><span class="line">        <span class="comment">// 后序位置</span></span><br><span class="line">        depth--;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前序位置是进入一个节点的时候，中序位置是从左子树切到右子树的时候，后序位置是离开一个节点返回其父母节点的时候</p>
+<p>depth记录着当前深度，max记录着最大深度</p>
+<p>在进入一个新的节点的时候，depth自增1，在离开这个节点的时候，depth自减1</p>
+<h4 id="二、分解问题-1"><a href="#二、分解问题-1" class="headerlink" title="二、分解问题"></a>二、分解问题</h4><p>求树的最大深度即求树的高度</p>
+<p>求树的高度即可分解问题，分解到由子树高度推导出完整的树的高度</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 左子树的高度</span></span><br><span class="line">    <span class="keyword">int</span> left = maxDepth(root.left);</span><br><span class="line">    <span class="comment">// 右子树的高度</span></span><br><span class="line">    <span class="keyword">int</span> right = maxDepth(root.right);</span><br><span class="line">    <span class="comment">// 返回自身高度</span></span><br><span class="line">    <span class="keyword">int</span> max  = Math.max(left,right)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 
           
         
@@ -814,11 +878,11 @@
 <li>递归出口</li>
 </ul>
 <p>3、尾递归</p>
-<p>​    特点：</p>
+<p>​	特点：</p>
 <pre><code>* 函数中所有的递归形式的调用都出现在函数的末尾
 * 递归调用不属于表达式的一部分
 </code></pre>
-<p>​    作用：</p>
+<p>​	作用：</p>
 <pre><code>* 不会在栈中创建一个新的栈
 * 覆盖当前活动记录
 </code></pre>
@@ -2892,7 +2956,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3011,7 +3075,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">101.2k</span>
+    <span title="站点总字数">102.2k</span>
   
 </div>
 
