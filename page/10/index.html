@@ -304,6 +304,745 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Linux/2022/01/31/Linux-vim%E7%BC%96%E8%BE%91%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/Linux/2022/01/31/Linux-vim%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="url">Linux-vim编辑器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:12:29+08:00">
+                2022-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/Linux/2022/01/31/Linux-vim%E7%BC%96%E8%BE%91%E5%99%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Linux/2022/01/31/Linux-vim%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="VIM编辑器"><a href="#VIM编辑器" class="headerlink" title="VIM编辑器"></a>VIM编辑器</h2><blockquote>
+<p>什么是VIM编辑器</p>
+</blockquote>
+<p>VIM是从vi发展出来的一个文本编辑器，代码补全，编译，及错误跳转等功能特别丰富。Linux中必须会使用vim</p>
+<h3 id="三种使用模式"><a href="#三种使用模式" class="headerlink" title="三种使用模式"></a>三种使用模式</h3><p>基本上vim&#x2F;vi分为三种使用模式，分别是命令模式（Command mode）、输入模式（Insert mode）、底线命令模式（Last Line mode）</p>
+<h4 id="命令模式（Command-mode）"><a href="#命令模式（Command-mode）" class="headerlink" title="命令模式（Command mode）"></a>命令模式（Command mode）</h4><p>用户刚刚启动vim，便进入了命令模式</p>
+<p>此状态下敲击键盘会被识别为命令，不会输入字符</p>
+<p>以下为常用命令：</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i</td>
+<td align="center">切换到输入模式</td>
+</tr>
+<tr>
+<td align="center">：</td>
+<td align="center">切换到底线命令模式</td>
+</tr>
+<tr>
+<td align="center">k或者上箭头</td>
+<td align="center">光标向上移</td>
+</tr>
+<tr>
+<td align="center">j或者下箭头</td>
+<td align="center">光标向下移</td>
+</tr>
+<tr>
+<td align="center">h或者左箭头</td>
+<td align="center">光标向左移</td>
+</tr>
+<tr>
+<td align="center">l或者右箭头</td>
+<td align="center">光标向右移</td>
+</tr>
+<tr>
+<td align="center">Ctrl+f</td>
+<td align="center">向下移动一页，相当于pageDown</td>
+</tr>
+<tr>
+<td align="center">Ctrl+b</td>
+<td align="center">向上移动一页，相当于pageUp</td>
+</tr>
+<tr>
+<td align="center">Ctrl+d</td>
+<td align="center">向下移动半页</td>
+</tr>
+<tr>
+<td align="center">Ctrl+u</td>
+<td align="center">向上移动半页</td>
+</tr>
+<tr>
+<td align="center">0&#x2F;功能键[home]</td>
+<td align="center">将光标移动到该行的开头处</td>
+</tr>
+<tr>
+<td align="center">$&#x2F;功能键[end]</td>
+<td align="center">将光标移动到该行的结尾处</td>
+</tr>
+<tr>
+<td align="center">H</td>
+<td align="center">将光标移动到这个屏幕第一行的第一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">将光标移动到这个屏幕中央的那一行的第一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td align="center">将光标移动到这个屏幕最后一行的一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">G</td>
+<td align="center">将光标移动到这个屏幕最后一行的一个字符所在的位置</td>
+</tr>
+<tr>
+<td align="center">nG</td>
+<td align="center">n代表数字，表示移动到该文件的第几行</td>
+</tr>
+<tr>
+<td align="center">gg</td>
+<td align="center">移动到这个文件的第一行</td>
+</tr>
+<tr>
+<td align="center">n&lt;回车&gt;</td>
+<td align="center">光标向下移动n个字符（单独摁空格光标向下移动一个字符）</td>
+</tr>
+<tr>
+<td align="center">n&lt;退格键&gt;</td>
+<td align="center">光标向左移动n个字符（单独摁退格键光标向左移动一个字符）</td>
+</tr>
+<tr>
+<td align="center"><strong>n&lt;空格&gt;</strong></td>
+<td align="center"><strong>光标向右移动n个字符（单独摁空格光标向右移动一个字符）</strong></td>
+</tr>
+</tbody></table>
+<h5 id="替换搜索"><a href="#替换搜索" class="headerlink" title="替换搜索"></a>替换搜索</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>&#x2F; keyword</strong></td>
+<td align="center"><strong>向下查询字符串keyword</strong></td>
+</tr>
+<tr>
+<td align="center">？keyword</td>
+<td align="center">向上查询字符串keyword</td>
+</tr>
+<tr>
+<td align="center"><strong>n</strong></td>
+<td align="center"><strong>继续当前的查询动作</strong></td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td align="center">反向进行当前的查询动作</td>
+</tr>
+</tbody></table>
+<h5 id="删除、复制、黏贴"><a href="#删除、复制、黏贴" class="headerlink" title="删除、复制、黏贴"></a>删除、复制、黏贴</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">x ，X</td>
+<td align="center">删除当前光标所在的字符</td>
+</tr>
+<tr>
+<td align="center">nx</td>
+<td align="center">n为数字，连续向后删除n个字符</td>
+</tr>
+<tr>
+<td align="center">&lt;数字&gt;dd&#x2F;D</td>
+<td align="center">删除光标所在的那n整行(默认n为1)</td>
+</tr>
+<tr>
+<td align="center">d1G</td>
+<td align="center">删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">dG</td>
+<td align="center">删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">d$</td>
+<td align="center">删除所在光标到该行最后</td>
+</tr>
+<tr>
+<td align="center">d0</td>
+<td align="center">删除所在光标到该行开头</td>
+</tr>
+<tr>
+<td align="center">&lt;数字&gt;yy</td>
+<td align="center">复制那一整行（默认n为1）</td>
+</tr>
+<tr>
+<td align="center">y1G</td>
+<td align="center">复制光标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">yG</td>
+<td align="center">复制光标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="center">y0</td>
+<td align="center">复制光标所在到该行的开始位置</td>
+</tr>
+<tr>
+<td align="center">y$</td>
+<td align="center">复制光标所在到该行的结束位置</td>
+</tr>
+<tr>
+<td align="center">p，P</td>
+<td align="center">p将复制的数据在光标的下一行黏贴，P将复制的数据在光标的上一行黏贴</td>
+</tr>
+<tr>
+<td align="center">J</td>
+<td align="center">将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td align="center">Ctrl+r</td>
+<td align="center">重做</td>
+</tr>
+<tr>
+<td align="center"><strong>u</strong></td>
+<td align="center"><strong>撤销</strong></td>
+</tr>
+</tbody></table>
+<h5 id="从命令模式切换到输入模式的其他命令"><a href="#从命令模式切换到输入模式的其他命令" class="headerlink" title="从命令模式切换到输入模式的其他命令"></a>从命令模式切换到输入模式的其他命令</h5><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>i、I</strong></td>
+<td><strong>i为在当前光标处进入输入模式，I为在当前光标所在行的第一个字符所在处进入输入模式</strong></td>
+</tr>
+<tr>
+<td align="center">a、A</td>
+<td>a为在当前光标的下一个字符处进入输入模式，A为在当前光标所在行的最后一个字符所在处进入输入模式</td>
+</tr>
+<tr>
+<td align="center">o、O</td>
+<td>o为在当前光标所在行的下一行输入一个新的一行，O为在当前光标所在行的上一行输入一个新的一行</td>
+</tr>
+<tr>
+<td align="center">r、R</td>
+<td>进入取代模式，r为只取代一次，R为一直取代直到按下esc</td>
+</tr>
+<tr>
+<td align="center"><strong>esc</strong></td>
+<td><strong>退出到命令模式</strong></td>
+</tr>
+</tbody></table>
+<h4 id="输入模式（Insert-mode）"><a href="#输入模式（Insert-mode）" class="headerlink" title="输入模式（Insert mode）"></a>输入模式（Insert mode）</h4><p>在此模式下，可以使用以下按键</p>
+<p>这些操作和我们平时用的是一样的</p>
+<h4 id="底线命令模式（Last-Line-mode）"><a href="#底线命令模式（Last-Line-mode）" class="headerlink" title="底线命令模式（Last Line mode）"></a>底线命令模式（Last Line mode）</h4><p>在此模式下，我们的光标会移动到最底下，就可以输入一些命令了</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:w</td>
+<td>保存</td>
+</tr>
+<tr>
+<td align="center">:w！</td>
+<td>若文件为只读属性，强制写入，跟权限有关</td>
+</tr>
+<tr>
+<td align="center">:q</td>
+<td>退出vim</td>
+</tr>
+<tr>
+<td align="center">:q!</td>
+<td>不保存退出</td>
+</tr>
+<tr>
+<td align="center">!在vim中一般表示强制的意思</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><strong>:wq</strong></td>
+<td><strong>保存退出</strong></td>
+</tr>
+<tr>
+<td align="center">:ZZ</td>
+<td>如果档案没有改动，则不储存离开，若修改了，则储存后离开</td>
+</tr>
+<tr>
+<td align="center">:w[filename]</td>
+<td>另存为到另一个文件</td>
+</tr>
+<tr>
+<td align="center">:r[filename]</td>
+<td>在编辑的数据中，读入另一个档案的数据。亦将filename中的内动追加到光标所在行的后面</td>
+</tr>
+<tr>
+<td align="center">:n1,n2 w[filename]</td>
+<td>将n1到n2的数据存储到filename这个文件中</td>
+</tr>
+<tr>
+<td align="center">:!command</td>
+<td>暂时离开vim执行command命令，【例如：:! ls &#x2F;home】</td>
+</tr>
+<tr>
+<td align="center"><strong>:set nu</strong></td>
+<td><strong>显示行号</strong></td>
+</tr>
+<tr>
+<td align="center">:set nonu</td>
+<td>取消显示行号</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Linux/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/Linux/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" itemprop="url">Linux-文件操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-31T14:11:31+08:00">
+                2022-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/Linux/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Linux/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  886
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统no的安全性，Linux系统对于不同的用户访问同一文件夹的权限做出了规定</p>
+<p>先前我们使用<code>ls -al</code>查看了文件属性，我们现在来看看这些开头的字符到底是什么意思吧</p>
+<img src="/javaEE/Linux/2022/01/31/Linux-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7.png" class title="文件属性">
+
+<p>我们将每一行分为六组来看</p>
+<blockquote>
+<p>第一组</p>
+</blockquote>
+<p>这一组固定一共十个字符，拆分为第一个字符和后9个字符来看</p>
+<p>第一个字符的含义</p>
+<ul>
+<li><strong>[d]代表目录</strong></li>
+<li><strong>[-]代表文件</strong></li>
+<li><strong>[l]代表这是一个链接文档（link file）</strong></li>
+<li>[b]代表装置文件，里面可能有供存储的接口设备     </li>
+<li>[c]代表装置文件里面的串行端口设备，例如键盘或者鼠标</li>
+</ul>
+<p>后九个字符的含义</p>
+<p>接下来的字符中以三个为一组，且均是以[rwx]的三个参数的组合</p>
+<p>r–》read读操作</p>
+<p>w–》write写操作</p>
+<p>x–》execute执行操作</p>
+<p>如果对应位置没有权限，就会出现-号</p>
+<p>第一组为属主的权限（该文件的所有者）</p>
+<p>第二组为属组的权限（所有者的同组用户）</p>
+<p>第三组为其他用户的权限（其他用户）</p>
+<blockquote>
+<p>第二组</p>
+</blockquote>
+<p>如果该项是文件夹，该数字表示文件夹中的包含文件数</p>
+<p>如果是文件，则显示1</p>
+<blockquote>
+<p>第三组</p>
+</blockquote>
+<p>第一个参数表示属主</p>
+<p>第二个参数表示属组（root组）</p>
+<blockquote>
+<p>第四组</p>
+</blockquote>
+<p>文件大小</p>
+<blockquote>
+<p>第五组</p>
+</blockquote>
+<p>创建时间</p>
+<blockquote>
+<p>第六组</p>
+</blockquote>
+<p>文件名</p>
+<h3 id="修改文属性件"><a href="#修改文属性件" class="headerlink" title="修改文属性件"></a>修改文属性件</h3><h4 id="更改文件属组"><a href="#更改文件属组" class="headerlink" title="更改文件属组"></a>更改文件属组</h4><p>基础命令：chgrp</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<h4 id="更改文件属主，也可以同时更改文件属组"><a href="#更改文件属主，也可以同时更改文件属组" class="headerlink" title="更改文件属主，也可以同时更改文件属组"></a>更改文件属主，也可以同时更改文件属组</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [-R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<h4 id="更改文件九大属性"><a href="#更改文件九大属性" class="headerlink" title="更改文件九大属性"></a>更改文件九大属性</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chomd [-R] xyz 文件或者目录 </span><br></pre></td></tr></table></figure>
+
+<p>Linux文件系统属性有两种设置方法，一种数字，一种符号。</p>
+<p>Linux文件的基本权限有九个，分别是owner&#x2F;group&#x2F;others三种身份各自有自己的read&#x2F;write&#x2F;execute权限</p>
+<p>文件的权限字符是[rwxrwxrwx]，这九个权限是三三一组的！我们可以使用数字来代表各个权限，各个权限的分数对照表如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4   w:2   x:1</span><br></pre></td></tr></table></figure>
+
+<p>每种身份（owner&#x2F;group&#x2F;others）各自的三个权限（r&#x2F;w&#x2F;x）分数是需要累加的，举个栗子：[rwxrwx—]</p>
+<ul>
+<li>owner &#x3D; rwx &#x3D; 4 + 2 + 1&#x3D; 7</li>
+<li>group &#x3D; rwx &#x3D; 4 + 2 + 1&#x3D; 7</li>
+<li>others &#x3D; —  &#x3D; 0</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h3><p>Linux系统中使用以下命令来查看文件的内容</p>
+<ul>
+<li>cat 由第一行开始显示文件的内容</li>
+<li>tac 由最后一行开始显示文件的内容</li>
+<li>nl 显示的时候，输出行号</li>
+<li>more 一页一页的显示文件的内容<ul>
+<li>空格翻页，enter代表向下看一行，:f代表当前行数，退出查看输入q，向下查询字符串使用命令<code>/要查找的字符串</code>向上查询使用命令<code>?要查找的字符串</code>，n代表继续搜寻下一个，N代表继续搜寻上一个</li>
+</ul>
+</li>
+<li>less 与 more相似，但是他可以往前翻页<ul>
+<li>上下键代表向上下翻页</li>
+</ul>
+</li>
+<li>head 只查看前几行<ul>
+<li>通过  -n 参数可以控制查看几行</li>
+</ul>
+</li>
+<li>tail 只查看尾巴几行<ul>
+<li>通过  -n 参数可以控制查看几行</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Linux/2022/01/31/Linux-%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2132,825 +2871,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/MyBatis/2022/01/27/MyBatis%E6%98%A0%E5%B0%84%E5%99%A8%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/javaEE/MyBatis/2022/01/27/MyBatis%E6%98%A0%E5%B0%84%E5%99%A8%E6%96%87%E4%BB%B6/" itemprop="url">MyBatis映射器文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-27T18:59:36+08:00">
-                2022-01-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/MyBatis/" itemprop="url" rel="index">
-                    <span itemprop="name">MyBatis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/javaEE/MyBatis/2022/01/27/MyBatis%E6%98%A0%E5%B0%84%E5%99%A8%E6%96%87%E4%BB%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/MyBatis/2022/01/27/MyBatis%E6%98%A0%E5%B0%84%E5%99%A8%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.9k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="映射器文件"><a href="#映射器文件" class="headerlink" title="映射器文件"></a>映射器文件</h2><p>mybatis的真正强大之处就在于它的语句映射。</p>
-<p>正是因为此映射器文件，才使我们减少了将近95%的JDBC代码，使我们更专注于书写SQL语句</p>
-<p>映射器文件只有这些顶级元素</p>
-<ul>
-<li>cache</li>
-<li>cache-ref</li>
-<li>delete</li>
-<li>insert</li>
-<li>resultMap</li>
-<li>select</li>
-<li>sql</li>
-<li>update</li>
-</ul>
-<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><p>该标签对标SQL语句的DQL语句，也就是select语句</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getStudentById&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这个select语句映射namespace绑定的接口中的listTeachers方法</p>
-<p>resultType定义返回值类型</p>
-<p>#{id}是取到方法传入的参数</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>id</code></td>
-<td align="left">在命名空间中唯一的标识符，可以被用来引用这条语句。</td>
-</tr>
-<tr>
-<td align="left"><code>parameterType</code></td>
-<td align="left">将会传入这条语句的参数的类全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过类型处理器（TypeHandler）推断出具体传入语句的参数，默认值为未设置（unset）。</td>
-</tr>
-<tr>
-<td align="left"><code>resultType</code></td>
-<td align="left">期望从这条语句中返回结果的类全限定名或别名。 注意，如果返回的是集合，那应该设置为集合包含的类型，而不是集合本身的类型。 resultType 和 resultMap 之间只能同时使用一个。</td>
-</tr>
-<tr>
-<td align="left"><code>resultMap</code></td>
-<td align="left">对外部 resultMap 的命名引用。结果映射是 MyBatis 最强大的特性，如果你对其理解透彻，许多复杂的映射问题都能迎刃而解。 resultType 和 resultMap 之间只能同时使用一个。</td>
-</tr>
-<tr>
-<td align="left"><code>useCache</code></td>
-<td align="left">将其设置为 true 后，将会导致本条语句的结果被二级缓存缓存起来，默认值：对 select 元素为 true。</td>
-</tr>
-<tr>
-<td align="left"><code>flushCache</code></td>
-<td align="left">将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false。</td>
-</tr>
-<tr>
-<td align="left"><code>statementType</code></td>
-<td align="left">可选 STATEMENT，PREPARED 或 CALLABLE。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
-</tr>
-<tr>
-<td align="left"><code>timeout</code></td>
-<td align="left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为未设置（unset）（依赖数据库驱动）。</td>
-</tr>
-</tbody></table>
-<h3 id="insert，update和delete"><a href="#insert，update和delete" class="headerlink" title="insert，update和delete"></a>insert，update和delete</h3><p>这三个标签对标SQL语句的DML语句</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>id</code></td>
-<td align="left">在命名空间中唯一的标识符，可以被用来引用这条语句。</td>
-</tr>
-<tr>
-<td align="left"><code>parameterType</code></td>
-<td align="left">将会传入这条语句的参数的类全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过类型处理器（TypeHandler）推断出具体传入语句的参数，默认值为未设置（unset）。</td>
-</tr>
-<tr>
-<td align="left"><code>parameterMap</code></td>
-<td align="left">用于引用外部 parameterMap 的属性，目前已被废弃。请使用行内参数映射和 parameterType 属性。</td>
-</tr>
-<tr>
-<td align="left"><code>flushCache</code></td>
-<td align="left">将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：（对 insert、update 和 delete 语句）true。</td>
-</tr>
-<tr>
-<td align="left"><code>timeout</code></td>
-<td align="left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为未设置（unset）（依赖数据库驱动）。</td>
-</tr>
-<tr>
-<td align="left"><code>statementType</code></td>
-<td align="left">可选 STATEMENT，PREPARED 或 CALLABLE。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
-</tr>
-<tr>
-<td align="left"><code>useGeneratedKeys</code></td>
-<td align="left">（仅适用于 insert 和 update）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系型数据库管理系统的自动递增字段），默认值：false。</td>
-</tr>
-<tr>
-<td align="left"><code>keyProperty</code></td>
-<td align="left">（仅适用于 insert 和 update）指定能够唯一识别对象的属性，MyBatis 会使用 getGeneratedKeys 的返回值或 insert 语句的 selectKey 子元素设置它的值，默认值：未设置（<code>unset</code>）。如果生成列不止一个，可以用逗号分隔多个属性名称。</td>
-</tr>
-</tbody></table>
-<h3 id="sql"><a href="#sql" class="headerlink" title="sql"></a>sql</h3><p>该标签用来定义sql片段，一般用来定义一些可复用的SQL语句片段，使用include标签以在其他语句中使用</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;userColumns&quot;</span>&gt;</span> $&#123;alias&#125;.id,$&#123;alias&#125;.username,$&#123;alias&#125;.password <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectUsers&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;map&quot;</span>&gt;</span></span><br><span class="line">  select</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;userColumns&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;alias&quot;</span> <span class="attr">value</span>=<span class="string">&quot;t1&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">include</span>&gt;</span>,</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;userColumns&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;alias&quot;</span> <span class="attr">value</span>=<span class="string">&quot;t2&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">  from some_table t1</span><br><span class="line">    cross join some_table t2</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>如果传入一个复杂的对象，行为就会有点不一样了。比如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;insertUser&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">  insert into users (id, username, password)</span><br><span class="line">  values (#&#123;id&#125;, #&#123;username&#125;, #&#123;password&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>JDBC 要求，如果一个列允许使用 null 值，并且可能会使用值为 null 的参数，就必须要指定 JDBC 类型（jdbcType)</strong></p>
-<h4 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h4><p>默认情况下，使用#{}获取参数的值的时候，mybatis会创建一个PreparedStatement对象，通过预编译，生成与#{}出现次数相同的占位符（即 ? ）这样更安全并且更迅速。</p>
-<p>但是有时候想直接在SQL语句中插入一个字符串，不需要转义此字符串（即不需要占位符），比如ORDER BY语句，这时候可以使用${}语句，这样的话，mybatis就不会转义该字符串了</p>
-<p>当 SQL 语句中的元数据（如表名或列名）是动态生成的时候，字符串替换将会非常有用。</p>
-<blockquote>
-<p>举个栗子，如果你想 <code>select</code> 一个表任意一列的数据时，不需要这样写：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from user where id = #&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="function">User <span class="title">findById</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span> <span class="keyword">long</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Select(&quot;select * from user where name = #&#123;name&#125;&quot;)</span></span><br><span class="line"><span class="function">User <span class="title">findByName</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String name)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Select(&quot;select * from user where email = #&#123;email&#125;&quot;)</span></span><br><span class="line"><span class="function">User <span class="title">findByEmail</span><span class="params">(<span class="meta">@Param(&quot;email&quot;)</span> String email)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 其它的 &quot;findByXxx&quot; 方法</span></span><br></pre></td></tr></table></figure>
-
-<p>而是可以只写这样一个方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select(&quot;select * from user where $&#123;column&#125; = #&#123;value&#125;&quot;)</span></span><br><span class="line"><span class="function">User <span class="title">findByColumn</span><span class="params">(<span class="meta">@Param(&quot;column&quot;)</span> String column, <span class="meta">@Param(&quot;value&quot;)</span> String value)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>其中 <code>$&#123;column&#125;</code> 会被直接替换，而 <code>#&#123;value&#125;</code> 会使用 <code>?</code> 预处理。 这样，就能完成同样的任务：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User userOfId1 = userMapper.findByColumn(<span class="string">&quot;id&quot;</span>, <span class="number">1L</span>);</span><br><span class="line">User userOfNameKid = userMapper.findByColumn(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;kid&quot;</span>);</span><br><span class="line">User userOfEmail = userMapper.findByColumn(<span class="string">&quot;email&quot;</span>, <span class="string">&quot;noone@nowhere.com&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="结果集映射"><a href="#结果集映射" class="headerlink" title="结果集映射"></a>结果集映射</h4><p>可以自定义一些复杂的返回值对象</p>
-<h5 id="简单结果集映射"><a href="#简单结果集映射" class="headerlink" title="简单结果集映射"></a>简单结果集映射</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@Alias(&quot;aliasStudent&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer tid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getStudentById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;studentMap&quot;</span>&gt;</span></span><br><span class="line">    select student_id,student_name,student_tid from student where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;studentMap&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;student_id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;student_name&quot;</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;student_tid&quot;</span> <span class="attr">property</span>=<span class="string">&quot;tid&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="高级结果集映射"><a href="#高级结果集映射" class="headerlink" title="高级结果集映射"></a>高级结果集映射</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;teacherMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.lizhi.pojo.Teacher&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tname&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;students&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;student&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;sid&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;sname&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">&quot;teacher&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;teacher&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tname&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>resultMap的子标签</p>
-<ul>
-<li><p><code>constructor</code></p>
-<p>用于在实例化类时，注入结果到构造方法中</p>
-<ul>
-<li><code>idArg</code> - ID 参数；标记出作为 ID 的结果可以帮助提高整体性能</li>
-<li><code>arg</code> - 将被注入到构造方法的一个普通结果</li>
-</ul>
-</li>
-<li><p><code>id</code> – 一个 ID 结果；标记出作为 ID 的结果可以帮助提高整体性能</p>
-</li>
-<li><p><code>result</code> – 注入到字段或 JavaBean 属性的普通结果</p>
-</li>
-<li><p><code>association</code></p>
-<p>一个复杂类型的关联,许多结果将包装成这种类型</p>
-<ul>
-<li>嵌套结果映射 – 关联可以是 <code>resultMap</code> 元素，或是对其它结果映射的引用</li>
-</ul>
-</li>
-<li><p><code>collection</code></p>
-<p>一个复杂类型的集合</p>
-<ul>
-<li>嵌套结果映射 – 集合可以是 <code>resultMap</code> 元素，或是对其它结果映射的引用</li>
-</ul>
-</li>
-</ul>
-<h6 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h6><p>有些情况下，你会使用一个不可变类，即那些很少改变或者基本不变的类，即可以使用构造方法注入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">constructor</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">idArg</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">arg</span> <span class="attr">column</span>=<span class="string">&quot;age&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;_int&quot;</span> <span class="attr">name</span>=<span class="string">&quot;age&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">arg</span> <span class="attr">column</span>=<span class="string">&quot;username&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;String&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">constructor</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="id-amp-result"><a href="#id-amp-result" class="headerlink" title="id &amp; result"></a>id &amp; result</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;post_id&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;subject&quot;</span> <span class="attr">column</span>=<span class="string">&quot;post_subject&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这些元素是结果映射的基础。</p>
-<p><em>id</em> 和 <em>result</em> 元素都将一个列的值映射到一个简单数据类型（String, int, double, Date 等）的属性或字段。</p>
-<p>这两者之间的唯一不同是，<em>id</em> 元素对应的属性会被标记为对象的标识符，在比较对象实例时使用。</p>
-<p> 这样可以提高整体的性能，尤其是进行缓存和嵌套结果映射（也就是连接映射）的时候。</p>
-<p>两个元素都有一些属性：</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>property</code></td>
-<td align="left">映射到列结果的字段或属性。如果 JavaBean 有这个名字的属性（property），会先使用该属性。否则 MyBatis 将会寻找给定名称的字段（field）。</td>
-</tr>
-<tr>
-<td align="left"><code>column</code></td>
-<td align="left">数据库中的列名，或者是列的别名。</td>
-</tr>
-<tr>
-<td align="left"><code>javaType</code></td>
-<td align="left">一个 Java 类的全限定名，或一个类型别名（关于内置的类型别名，可以参考上面的表格）。 如果你映射到一个 JavaBean，MyBatis 通常可以推断类型。然而，如果你映射到的是 HashMap，那么你应该明确地指定 javaType 来保证行为与期望的相一致。</td>
-</tr>
-<tr>
-<td align="left"><code>jdbcType</code></td>
-<td align="left">JDBC 类型，所支持的 JDBC 类型参见这个表格之后的“支持的 JDBC 类型”。 只需要在可能执行插入、更新和删除的且允许空值的列上指定 JDBC 类型。这是 JDBC 的要求而非 MyBatis 的要求。如果你直接面向 JDBC 编程，你需要对可以为空值的列指定这个类型。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>jdbcType支持的 JDBC 类型</p>
-</blockquote>
-<p>为了以后可能的使用场景，MyBatis 通过内置的 jdbcType 枚举类型支持下面的 JDBC 类型。</p>
-<table>
-<thead>
-<tr>
-<th><code>BIT</code></th>
-<th><code>FLOAT</code></th>
-<th><code>CHAR</code></th>
-<th><code>TIMESTAMP</code></th>
-<th><code>OTHER</code></th>
-<th><code>UNDEFINED</code></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>TINYINT</code></td>
-<td><code>REAL</code></td>
-<td><code>VARCHAR</code></td>
-<td><code>BINARY</code></td>
-<td><code>BLOB</code></td>
-<td><code>NVARCHAR</code></td>
-</tr>
-<tr>
-<td><code>SMALLINT</code></td>
-<td><code>DOUBLE</code></td>
-<td><code>LONGVARCHAR</code></td>
-<td><code>VARBINARY</code></td>
-<td><code>CLOB</code></td>
-<td><code>NCHAR</code></td>
-</tr>
-<tr>
-<td><code>INTEGER</code></td>
-<td><code>NUMERIC</code></td>
-<td><code>DATE</code></td>
-<td><code>LONGVARBINARY</code></td>
-<td><code>BOOLEAN</code></td>
-<td><code>NCLOB</code></td>
-</tr>
-<tr>
-<td><code>BIGINT</code></td>
-<td><code>DECIMAL</code></td>
-<td><code>TIME</code></td>
-<td><code>NULL</code></td>
-<td><code>CURSOR</code></td>
-<td><code>ARRAY</code></td>
-</tr>
-</tbody></table>
-<h5 id="association"><a href="#association" class="headerlink" title="association"></a>association</h5><p>该标签处理一个对象聚合另一个对象的关系。</p>
-<p>mybatis有两种不同方式去加载关联</p>
-<ol>
-<li>嵌套select查询：通过另一个SQL语句去加载复杂对象</li>
-<li>嵌套结果查询：通过连接查询直接将所有的结果查询出来，放在一张表里面</li>
-</ol>
-<h6 id="嵌套select查询（不推荐）"><a href="#嵌套select查询（不推荐）" class="headerlink" title="嵌套select查询（不推荐）"></a>嵌套select查询（不推荐）</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;StudentMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;student&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span> <span class="attr">property</span>=<span class="string">&quot;tid&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">&quot;teacher&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;teacher&quot;</span> <span class="attr">select</span>=<span class="string">&quot;getTeacherById&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getTeacherById&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;teacher&quot;</span>&gt;</span></span><br><span class="line">    select * from teacher where id = #&#123;tid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getStudentById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;StudentMap&quot;</span>&gt;</span></span><br><span class="line">    select * from student where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>优点：SQL语句写起来方便</p>
-<p>缺点：多层SQL嵌套，不易于维护，使用了mybatis的相关插件会导致select语句爆红，看起来不舒服</p>
-<p>对于大型数据上，这里有一个“N+1查询问题”，问题描述如下</p>
-<ul>
-<li>执行了一个单独的SQL语句去加载每一条记录的详细信息（就是+1）</li>
-<li>对返回的列表的每一条记录，都需要执行这样的一个单独的SQL语句去加载详细信息（就是N）</li>
-</ul>
-<p>这样会导致运行成千上万条sql语句，大大增加系统开销，这是我们不希望看到的</p>
-<h6 id="嵌套结果查询（推荐）"><a href="#嵌套结果查询（推荐）" class="headerlink" title="嵌套结果查询（推荐）"></a>嵌套结果查询（推荐）</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;studentMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;student&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;sid&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;_int&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;sname&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;string&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;tid&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;_int&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">&quot;teacher&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;teacher&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;_int&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tname&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;string&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getStudentById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;studentMap&quot;</span>&gt;</span></span><br><span class="line">    select</span><br><span class="line">    s.id sid, s.name sname, tid, t.name tname</span><br><span class="line">    from student s inner join teacher t</span><br><span class="line">    on s.id = #&#123;id&#125; and tid = t.id</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>优点：配置resultMap十分方便，逻辑十分清楚，方便查错和维护</p>
-<p>缺点：连接查询的SQL语句写起来难度大，</p>
-<h5 id="collection"><a href="#collection" class="headerlink" title="collection"></a>collection</h5><p>collection可以说是多个类型的关联，所以与association的处理十分相似</p>
-<h6 id="嵌套select查询"><a href="#嵌套select查询" class="headerlink" title="嵌套select查询"></a>嵌套select查询</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;teacherMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;teacher&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;students&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;ArrayList&quot;</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;student&quot;</span>  <span class="attr">select</span>=<span class="string">&quot;getStudentsByTid&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getStudentsByTid&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;student&quot;</span>&gt;</span></span><br><span class="line">    select * from student where tid = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getTeacherById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;teacherMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM teacher WHERE id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><em>注意</em>：<em>这里需要使用ofType来指定集合的泛型</em></p>
-<h6 id="嵌套结果查询"><a href="#嵌套结果查询" class="headerlink" title="嵌套结果查询"></a>嵌套结果查询</h6><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;teacherMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;teacher&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tname&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;students&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;student&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;sid&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;sname&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;tid&quot;</span> <span class="attr">column</span>=<span class="string">&quot;tid&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getTeacherById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;teacherMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT</span><br><span class="line">    t.name tname,t.id tid,s.id sid, s.name sname</span><br><span class="line">    FROM teacher t inner join student s on t.id=#&#123;id&#125; and s.tid=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>首先我们先来看一下到底什么是缓存？</p>
-<p>缓存这个词，相信大家对其不会陌生，因为我们在b站，腾讯视频这一类视频APP中都会缓存过一些视频。</p>
-<p>那我们可以从中归纳出，缓存就是程序以某种形式将数据保存下来，方便下一次的使用。</p>
-<p>那我们为什么需要使用缓存呢？</p>
-<p>我们都知道，我们程序员要追求三高，当然不会是高血脂，高血糖，高血压。我们所说的三高是高并发，高可用，高性能。众所周知，对于数据库的操作是比较消耗资源的。因此，多次连接数据库不利于我们达到三高，那么缓存就是会帮助我们达到三高的一种技术。</p>
-<p>我们将用户经常查询，并且很少发生改变的数据放入缓存中，当用户下一次查询同样的数据时，就不用再去连接数据库查询数据了，减少了访问数据库的次数，减少了系统开销，从而提高了性能。</p>
-<hr>
-<p>在mybatis中，存在着两种缓存机制：一级缓存和二级缓存</p>
-<h4 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h4><p>该级别的缓存，mybatis是默认开启的，并且无法关闭。</p>
-<p>该缓存是sqlSession级别的，也就是说作用域和我们之前谈过的sqlSession的作用域一致</p>
-<p>因为用户大部分操作都是查询，但是如果出现了DML语句（即增删改）的时候，可能会对缓存中的数据造成了修改，为了安全起见，当发生增删改操作的时候，一级缓存即刻失效。</p>
-<p>当然我们也可以手动清理缓存</p>
-<h4 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h4><p>该级别的缓存，是默认关闭的，需手动打开</p>
-<ol>
-<li>在mapper映射器文件中，添加以下一行代码</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span>/&gt;</span></span><br><span class="line">//或者加一些配置</span><br><span class="line"><span class="tag">&lt;<span class="name">cache</span></span></span><br><span class="line"><span class="tag">  <span class="attr">eviction</span>=<span class="string">&quot;FIFO&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushInterval</span>=<span class="string">&quot;60000&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">size</span>=<span class="string">&quot;512&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">readOnly</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在mybatis-config.xml文件中</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//可能有的小伙伴会说，该设置默认就是true，不需要写这一行代码</span><br><span class="line">//但是，为了显式说明我们开启了二级缓存，最好还是标注出来</span><br><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;cacheEnabled&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注：如果在cache标签中没有加入readOnly&#x3D;“true”，则需要将模型类实现序列化接口（Serializable）</p>
-</blockquote>
-<p>该缓存是namespace级别的，也就是和应用程序的生命周期一致</p>
-<hr>
-<p>附上一张关于mybatis的原理图，仅供参考</p>
-<img src="/javaEE/MyBatis/2022/01/27/MyBatis%E6%98%A0%E5%B0%84%E5%99%A8%E6%96%87%E4%BB%B6/mybatis%E5%8E%9F%E7%90%86%E5%9B%BE.png" class title="mybatis原理图">
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Spring/2022/01/27/Spring-aop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/javaEE/Spring/2022/01/27/Spring-aop/" itemprop="url">Spring-aop</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-27T16:25:19+08:00">
-                2022-01-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/javaEE/Spring/2022/01/27/Spring-aop/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Spring/2022/01/27/Spring-aop/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.7k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h1><p>AOP为Aspect Oriented Programming的缩写，意思是面向切面编程，是通过预编译和运行期动态代理实现程序功能的统一维护的一种技术。</p>
-<p>Spring框架两大重点，AOP和IOC(Inversion Of Control)控制反转</p>
-<p>AOP是OOP的延续,是软件开发中的一个热点, 也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。</p>
-<p>利用AOP可以对业务逻辑的各个部分进行解耦合,从而使得业务逻辑各部分之间的耦合度降低,提高程序的可重用性，同时提高了开发的效率。</p>
-<blockquote>
-<p>作用及优势</p>
-</blockquote>
-<ul>
-<li>作用：在程序运行期间，在不修改源码的情况下进行功能增强</li>
-<li>优势：减少代码重复性，提高开发效率，并且便于维护</li>
-</ul>
-<h3 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h3><p>实际上，AOP的底层是通过Spring提供的的动态代理技术实现的。</p>
-<p>在运行期间，Spring通过动态代理技术动态的生成代理对象，代理对象方法执行时进行增强功能的介入，在去调用目标对象的方法，从而完成功能的增强。</p>
-<blockquote>
-<p>常用代理技术</p>
-</blockquote>
-<ul>
-<li>JDK代理：基于接口的动态代理技术</li>
-</ul>
-<img src="/javaEE/Spring/2022/01/27/Spring-aop/JDK%E4%BB%A3%E7%90%86.png" class title="JDK代理">
-
-<p>Adivce.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Advice</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;前置增强&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;后置增强&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>TargetInterface.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TargetInterface</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Target.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Target</span> <span class="keyword">implements</span> <span class="title">TargetInterface</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;saving running......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>ProxyTest.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Target = <span class="keyword">new</span> Target();</span><br><span class="line">        <span class="keyword">final</span> Adivice = <span class="keyword">new</span> Advice();</span><br><span class="line">		</span><br><span class="line">        TargetInterface proxy = (TargetInterface) Proxy.newProxyInstance(</span><br><span class="line">        	target.getClass().getClassLoader(),</span><br><span class="line">           	target.getClass().getInterfaces(),</span><br><span class="line">            <span class="keyword">new</span> InvocationHandle()&#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy,Method method,Object[] args)</span> 							<span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                    advice.before();</span><br><span class="line">                    Object invoke = method.invoke(target,args);</span><br><span class="line">                    advice.after();</span><br><span class="line">                    <span class="keyword">return</span> invoke;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">        proxy.save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>cglib代理：基于父类的动态代理技术</li>
-</ul>
-<img src="/javaEE/Spring/2022/01/27/Spring-aop/cglib%E4%BB%A3%E7%90%86.png" class title="cglib代理">
-
-<p>ProxyTest.java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Target target = <span class="keyword">new</span> Target();</span><br><span class="line">        Enhance enhance = <span class="keyword">new</span> Enhance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建增强其</span></span><br><span class="line">        Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">        <span class="comment">//设置父类</span></span><br><span class="line">        enhancer.setSuperclass(Target.class);</span><br><span class="line">        <span class="comment">//设置回调</span></span><br><span class="line">        enhancer.setCallback(<span class="keyword">new</span> MethodInterceptor() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                enhance.before();</span><br><span class="line">                Object invoke = method.invoke(target, args);</span><br><span class="line">                enhance.after();</span><br><span class="line">                <span class="keyword">return</span> invoke;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//创建代理对象</span></span><br><span class="line">        Target proxy = (Target) enhancer.create();</span><br><span class="line">        proxy.save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="AOP相关术语"><a href="#AOP相关术语" class="headerlink" title="AOP相关术语"></a>AOP相关术语</h3><p>Spring的AOP实现底层就是对上面的动态代理的代码进行了封装,封装后我们只需要对需要关注的部分进行代码编写,并通过配置的方式完成指定目标的方法增强。</p>
-<ul>
-<li><p>Target (目标对象) :代理的目标对象</p>
-</li>
-<li><p>Proxy (代理) :一个类被AOP织入增强后,就产生一 个结果代理类</p>
-</li>
-<li><p>Joinpoint (连接点) :所谓连接点是指那些被拦截到的点。在spring中,这些点指的是方法，因为spring只支持方法类型的连接点</p>
-</li>
-<li><p>Pointcut (切入点) :所谓切入点是指我们要对哪些Joinpoint进行拦截的定义</p>
-</li>
-<li><p>Advice (通知&#x2F;增強) :所谓通知是指拦截到Joinpoint之后所要做的事情就是通知</p>
-</li>
-<li><p>Aspect (切面) :是切入点和通知(引介)的结合</p>
-</li>
-<li><p>Weaving (织入) :是指把增强应用到目标对象来创建新的代理对象的过程。spring采用动态代理织入,而Aspect采用编译期织入和类装载期织入</p>
-</li>
-</ul>
-<h3 id="开发明确事项"><a href="#开发明确事项" class="headerlink" title="开发明确事项"></a>开发明确事项</h3><blockquote>
-<p>需要编写的内容</p>
-</blockquote>
-<ul>
-<li><p>编写核心业务代码(目标类的目标方法)</p>
-</li>
-<li><p>编写切面类,切面类中有通知(增强功能方法)</p>
-</li>
-<li><p>在配置文件中，配置织入关系,即将哪些通知与哪些连接点进行结合</p>
-</li>
-</ul>
-<blockquote>
-<p>AOP技术实现的内容</p>
-</blockquote>
-<p>Spring框架监控切入点方法的执行。</p>
-<p>一旦监控到切入点方法被运行，使用代理机制，动态创建目标对象的代理对象，根据通知类别，在代理对象的对应位置,将通知对应的功能织入，完成完整的代码逻辑运行。</p>
-<h3 id="基于XML的AOP开发"><a href="#基于XML的AOP开发" class="headerlink" title="基于XML的AOP开发"></a>基于XML的AOP开发</h3><blockquote>
-<p>步骤</p>
-</blockquote>
-<ol>
-<li>导入AOP坐标</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.8.M1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>创建目标类和目标接口</p>
-</li>
-<li><p>创建切面类（内部有增强方法）</p>
-</li>
-<li><p>将目标类和切面类的对象的创建权交给Spring</p>
-</li>
-<li><p>在applicationContext.xml中配置中织入关系</p>
-</li>
-<li><p>测试</p>
-</li>
-</ol>
-<h4 id="切点表达式"><a href="#切点表达式" class="headerlink" title="切点表达式"></a>切点表达式</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">execution</span><span class="params">([修饰符]返回值类型 包名.类名.方法名(参数列表)</span></span>)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>访问修饰符可以省略</p>
-</li>
-<li><p>返回值类型、 包名、类名、方法名可以使用星号*代表任意</p>
-</li>
-<li><p>包名与类名之间一 个点.代表当前包下的类,两个点.. 表示当前包及其子包下的类</p>
-</li>
-<li><p>参数列表可以使用两个点 .. 表示任意个数,任意类型的参数列表</p>
-</li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代表切口是com.lizhi.aop.Target类的返回void的method的无参数方法</span></span><br><span class="line">execution (public void com<span class="selector-class">.itheima</span><span class="selector-class">.aop</span><span class="selector-class">.Target</span><span class="selector-class">.method</span>() )</span><br><span class="line"></span><br><span class="line"><span class="comment">//代表切口是com.lizhi.aop.Target类的返回void的所有方法，参数个数为任意</span></span><br><span class="line">execution (void com<span class="selector-class">.itheima</span><span class="selector-class">.aop</span><span class="selector-class">.Target</span>.*(.. ))</span><br><span class="line"></span><br><span class="line"><span class="comment">//代表切口是com.lizhi.aop包下的所有类的所有方法，参数个数为任意</span></span><br><span class="line"><span class="function"><span class="title">execution</span><span class="params">(* com.lizhi.aop.*.*(..)</span></span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//代表切口是com.lizhi.aop包及其子包下的所有类所有方法，参数个数为任意</span></span><br><span class="line"><span class="function"><span class="title">execution</span><span class="params">(* com.lizhi.aop..*.* (..)</span></span> )</span><br><span class="line"></span><br><span class="line"><span class="comment">//代表切口是项目下的所有包的所有方法，参数为任意参数</span></span><br><span class="line"><span class="function"><span class="title">execution</span><span class="params">(* *..*.*(..)</span></span> )</span><br></pre></td></tr></table></figure>
-
-<h4 id="通知类型"><a href="#通知类型" class="headerlink" title="通知类型"></a>通知类型</h4><table>
-<thead>
-<tr>
-<th>名称</th>
-<th>通知类型</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>前置通知</td>
-<td>aop:before</td>
-<td>指定增强的方法在切入点之前执行</td>
-</tr>
-<tr>
-<td>后置通知</td>
-<td>aop:after-returning</td>
-<td>指定增强的方法在切入点之后执行</td>
-</tr>
-<tr>
-<td>环绕通知</td>
-<td>aop:around</td>
-<td>指定增强的方法在切入点之前和之后都会执行</td>
-</tr>
-<tr>
-<td>异常抛出通知</td>
-<td>aop:throwing</td>
-<td>指定增强的方法在出现切点异常时执行</td>
-</tr>
-<tr>
-<td>最终通知</td>
-<td>aop:after</td>
-<td>无论增强方式执行是否有异常都会执行</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>around</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ProceedingJoinPoint指的是正在执行的连接点==切点</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">around</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;环绕前增强。。。。。&quot;</span>);</span><br><span class="line">    Object obj = pjp.proceed();<span class="comment">//切点方法</span></span><br><span class="line">    System.out.println(<span class="string">&quot;环绕后增强。。。。。&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>切点表达式的抽取</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">apo:config</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">apo:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;myPointcut&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;excution( * com.lizhi.apo.*.*(..))&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">apo:pointcut</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">apo:before</span> <span class="attr">method</span>=<span class="string">&quot;before&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;myPointcut&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">apo:before</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">apo:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="基于注解的AOP开发"><a href="#基于注解的AOP开发" class="headerlink" title="基于注解的AOP开发"></a>基于注解的AOP开发</h3><ol>
-<li>创建目标接口和目标类(内部有切点)</li>
-<li>创建切面类(内部有增强方法)</li>
-<li>将目标类和切面类的对象创建权交给spring</li>
-<li>在切面类中使用注解配置织入关系</li>
-<li>在配置文件中开启组件扫描和AOP的自动代理</li>
-<li>测试</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3005,7 +2925,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3016,7 +2936,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3027,7 +2947,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3135,7 +3055,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">102.2k</span>
+    <span title="站点总字数">105.9k</span>
   
 </div>
 

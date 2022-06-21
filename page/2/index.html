@@ -304,6 +304,493 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" itemprop="url">JVM-类加载器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-11T22:47:01+08:00">
+                2022-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h2><p>类的加载过程分三个阶段</p>
+<p>类的加载 &#x3D;&#x3D;》类的链接 &#x3D;&#x3D;》类的初始化</p>
+<img src="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.png" class title="类加载过程">
+
+<ul>
+<li><strong>类的加载：</strong>将Class文件字节码加载到内存中，并将这些静态数据转换为方法区的运行时数据结构，然后在堆中（方法区）生成一个代表该类的Class对象，作为类数据的访问入口，可以使用反射获取该类的所有信息。</li>
+<li><strong>类的链接：</strong>将Java类的二进制代码合并到JVM中<ul>
+<li>验证：确保加载的类符合JVM规范</li>
+<li>准备：为静态变量分配内存并设置成员变量的默认值</li>
+<li>解析：JVM常量池内的符号引用（常量名）替换为直接引用（地址）的过程</li>
+</ul>
+</li>
+<li><strong>类的初始化：</strong>执行类构造器&lt; clinit &gt;()方法的过程<ul>
+<li>类构造器方法是由编译期按顺序收集类中所有类变量的赋值动作和静态代码块中的语句合并而成的（类构造器是构造类信息的，不是对象构造器）</li>
+<li>当初始化一个类的时候，如果其父类为初始化，则先初始化其父类</li>
+<li>JVM会保证类构造器在多线程环境下被正确加锁</li>
+</ul>
+</li>
+</ul>
+<p>类的链接为黑盒实现</p>
+<h4 id="类的主动引用（一定会发生类的初始化）"><a href="#类的主动引用（一定会发生类的初始化）" class="headerlink" title="类的主动引用（一定会发生类的初始化）"></a>类的主动引用（一定会发生类的初始化）</h4><ul>
+<li>当JVM启动的时候，先初始化main方法所在的类</li>
+<li>new 一个类的对象</li>
+<li>调用该类的静态成员（除了final）和静态方法</li>
+<li>使用反射对其类进行反射调用</li>
+<li>当初始化一个类时，其父类若没有初始化，则先初始化其父类</li>
+</ul>
+<h4 id="类的被动引用（不会发生类的初始化）"><a href="#类的被动引用（不会发生类的初始化）" class="headerlink" title="类的被动引用（不会发生类的初始化）"></a>类的被动引用（不会发生类的初始化）</h4><ul>
+<li>当访问一个静态域的时候，只有真正声明该域的类才会被初始化。举个栗子：当通过子类调用父类的静态变量，该子类是不会被初始化的</li>
+<li>通过数组定义类引用，不会导致初始化</li>
+<li>引用常量不会导致初始化</li>
+</ul>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>市面上有三种JVM，不同的JVM对类加载器的实现是不同的，我们主要学习的并且使用的是Sun公司的HotSpot</p>
+<img src="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/%E4%B8%89%E7%A7%8DJVM.png" class title="三种JVM">
+
+<p>类加载器的作用就是将类（class）装进内存的</p>
+<img src="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A81.png" class title="类加载器">
+
+<p>JVM规定了以下类型的加载器</p>
+<img src="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8.png" class title="类加载器">
+
+<p><strong>引导类加载器：</strong>用<strong>C++<strong>编写的，是JVM自带的类加载器，</strong>负责java平台的核心库</strong>，用来装载核心类库，该加载器无法直接获取（获取的时候会是null）</p>
+<p><strong>扩展类加载器（ExtClassLoader）：</strong>负责**<JAVA_HOME>&#x2F;lib&#x2F;etc**目录下的jar包户或者 -d java.ext.dirs指定目录下的jar包装入工作库</JAVA_HOME></p>
+<p><strong>系统类加载器（AppClassLoader）：</strong>负责<strong>java -classpath</strong>或者<strong>java.class.path</strong>指定目录下的类与jar包</p>
+<p><strong>用户加载器（User ClassLoader）：</strong>用户自定义的加载器</p>
+<p>扩展类加载器、系统类加载器、用户加载器都是继承自<code>java.lang.ClassLoader</code></p>
+<p>JVM规范：每个类加载器都有属于自己的命名空间</p>
+<h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><p>检查顺序从下至上，加载顺序从顶至下</p>
+<p>举个栗子：我写了一个Student类，我要加载它需要经过以下过程</p>
+<ol>
+<li>先将该任务委托给AppClassLoader</li>
+<li>AppClassLoader很懒，它不想加载，将任务向上委托给ExtClassLoader</li>
+<li>ExtClassLoader也很懒，它不想加载，继续将任务向上委托给BootStrapClassLoader</li>
+<li>BootStrapClassLoader没法偷懒了，只能自己加载，但是在自己管理的lib目录下并没有找到该类，只能将任务再次交给ExtClassLoader去加载</li>
+<li>那ExtClassLoader没法偷懒了，只能在自己管理的ext目录下找该类，但是也没有找到，只能将任务继续向下转交给AppClassLoader</li>
+<li>AppClassLoader不得不自己去尝试加载该类，于是加载成功</li>
+</ol>
+<blockquote>
+<p>既然最后还是AppClassLoader去加载Student类何必绕一个大圈子呢？</p>
+</blockquote>
+<p>这是为了防止原始类被用户写的类所覆盖。</p>
+<p>再举个栗子：我自己写了一个String类，我要加载它会经历以下过程</p>
+<ol>
+<li>先将该任务委托给AppClassLoader</li>
+<li>ExtClassLoader也很懒，它不想加载，继续将任务向上委托给BootStrapClassLoader</li>
+<li>BootStrapClassLoader没法偷懒了，只能自己加载，于是在自己管理的lib目录下找到该类并加载，将加载结果向下一直传递到用户</li>
+</ol>
+<h3 id="对双亲委派模型的破坏"><a href="#对双亲委派模型的破坏" class="headerlink" title="对双亲委派模型的破坏"></a>对双亲委派模型的破坏</h3><p>1、自定义类加载器</p>
+<p>我们写一个类继承<code>java.lang.ClassLoader</code>，重写loadClass方法，双亲委派的逻辑就在这个方法中，但是我自定义的类加载器可以不这么写，也就破坏了双亲委派。在jdk1.2之后，jdk增加了一个<code>findClass</code>方法提供给上层重写，也就有效地防止了双亲委派被破坏</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line">    ClassLoader myClassLoader = <span class="keyword">new</span> ClassLoader()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Class&lt;?&gt; loadClass(String name) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                String fileName = name.substring(name.lastIndexOf(<span class="string">&quot;.&quot;</span>)+<span class="number">1</span>)+<span class="string">&quot;.class&quot;</span>;</span><br><span class="line">                InputStream is = getClass().getResourceAsStream(fileName);</span><br><span class="line">                <span class="keyword">if</span>(is==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">super</span>.loadClass(name);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[is.available()];</span><br><span class="line">                is.read(buffer);</span><br><span class="line">                <span class="keyword">return</span> defineClass(name,buffer,<span class="number">0</span>, buffer.length);</span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ClassNotFoundException(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    Object o = myClassLoader.loadClass(<span class="string">&quot;com.test.A&quot;</span>).newInstance();</span><br><span class="line">    System.out.println(o.getClass());</span><br><span class="line">    System.out.println(o <span class="keyword">instanceof</span> com.test.A);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class com.test.A</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>这不仅破坏了双亲委派，并且证明了每个类加载器都有自己的命名空间</p>
+<p>2、SPI（Service Provider Interface）服务发现机制</p>
+<p>JDK中定义了JDBC的接口，规范各大厂家。对于JDK中的接口，使用的是<code>BootstrapClassLoader</code>但是对于各大厂家的实现类，使用的是<code>ApplClassLoader</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CallerSensitive</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Driver <span class="title">getDriver</span><span class="params">(String url)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line"></span><br><span class="line">    println(<span class="string">&quot;DriverManager.getDriver(\&quot;&quot;</span> + url + <span class="string">&quot;\&quot;)&quot;</span>);</span><br><span class="line"></span><br><span class="line">    ensureDriversInitialized();</span><br><span class="line"></span><br><span class="line">    Class&lt;?&gt; callerClass = Reflection.getCallerClass();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Walk through the loaded registeredDrivers attempting to locate someone</span></span><br><span class="line">    <span class="comment">// who understands the given URL.</span></span><br><span class="line">    <span class="keyword">for</span> (DriverInfo aDriver : registeredDrivers) &#123;</span><br><span class="line">        <span class="comment">// If the caller does not have permission to load the driver then</span></span><br><span class="line">        <span class="comment">// skip it.</span></span><br><span class="line">        <span class="keyword">if</span> (isDriverAllowed(aDriver.driver, callerClass)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (aDriver.driver.acceptsURL(url)) &#123;</span><br><span class="line">                    <span class="comment">// Success!</span></span><br><span class="line">                    println(<span class="string">&quot;getDriver returning &quot;</span> + aDriver.driver.getClass().getName());</span><br><span class="line">                <span class="keyword">return</span> (aDriver.driver);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">catch</span>(SQLException sqe) &#123;</span><br><span class="line">                <span class="comment">// Drop through and try the next driver.</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            println(<span class="string">&quot;    skipping: &quot;</span> + aDriver.driver.getClass().getName());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    println(<span class="string">&quot;getDriver: no suitable driver&quot;</span>);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">&quot;No suitable driver&quot;</span>, <span class="string">&quot;08001&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/spi.png" class title="spi">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CallerSensitive</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;S&gt; <span class="function">ServiceLoader&lt;S&gt; <span class="title">load</span><span class="params">(Class&lt;S&gt; service)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 当前线程的ClassLoader默认为AppClassLoader</span></span><br><span class="line">    ClassLoader cl = Thread.currentThread().getContextClassLoader();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ServiceLoader&lt;&gt;(Reflection.getCallerClass(), service, cl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、热部署</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/" itemprop="url">算法-差分数组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-11T12:45:24+08:00">
+                2022-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="差分数组"><a href="#差分数组" class="headerlink" title="差分数组"></a>差分数组</h2><p>该技巧和前缀和数组一样都是用在<strong>数组</strong>上的，</p>
+<p>前缀和数组是用来简化 任意区间的元素之和的，</p>
+<p>差分数组是用来简化 频繁在任意区间减去某个值或者在任意区间加上某个值，最后输出最后的数组结果的</p>
+<p>比如，给你一个数组<code>nums[2,4,1,45,21,54,12,43]</code>，我需要先将<code>[2,4]</code>都加3，再将<code>[3,6]</code>都减1，再…..，最后输出最后的数组结果</p>
+<p>如果没学过差分数组，那么应该是使用for循环将范围内的数都进行操作，最后输出数组，</p>
+<p>对<code>nums</code>的操作十分频繁，这样的效率十分低下</p>
+<p>这里我们就使用差分数组来提高我们的效率</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] diff = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">diff[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">    diff[i] = nums[i] - nums[i-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84.png" class title="差分数组">
+
+<p>当<code>i!=0</code>的时候<code>diff[i]</code>代表<code>nums[i]-nums[i-1]</code>的值，即当前值与前一个值的差</p>
+<p>那有了这个差分数组，我们怎么将数组还原呢？</p>
+<img src="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84%E5%8F%8D%E6%8E%A8%E6%95%B0%E7%BB%84-process01.png" class title="差分数组反推数组-process01">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84%E5%8F%8D%E6%8E%A8%E6%95%B0%E7%BB%84-process02.png" class title="差分数组反推数组-process02">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84%E5%8F%8D%E6%8E%A8%E6%95%B0%E7%BB%84-process03.png" class title="差分数组反推数组-process03">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84%E5%8F%8D%E6%8E%A8%E6%95%B0%E7%BB%84-process04.png" class title="差分数组反推数组-process04">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84%E5%8F%8D%E6%8E%A8%E6%95%B0%E7%BB%84-process05.png" class title="差分数组反推数组-process05">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[diff.length];</span><br><span class="line">res[<span class="number">0</span>] = diff[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; diff.length; i++) &#123;</span><br><span class="line">    res[i] = res[i-<span class="number">1</span>] + diff[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>diff</code>的还原是先new一个新的数组来存放最后的结果，对于0之后的元素，<code>res[i]</code>等于前一个元素加上当前索引的<code>diff</code></p>
+<p>如果我要将<code>[i,j]</code>区间加2，那么就将<code>diff[i]+=2;diff[j+1]-=2</code>即可</p>
+<p>我将<code>diff[i]+=2</code>，即达到<code>res[i]</code>到最后都会被加上2的效果</p>
+<p>我将<code>diff[j+1]-=2</code>，即达到<code>res[j+1]</code>之后，会将前面的加2抵消，所以<code>j</code>之后的元素就不会被影响了</p>
+<p>我们来和之前的那道前缀和数组一样，抽象出来一个类来处理数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Diff</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] diff;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Diff</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">increase</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] getResult()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大家可以先自己写一下</p>
+<p>这是实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Diff</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] diff;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Diff</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        diff = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        diff[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            diff[i] = nums[i]-nums[i-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">increase</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> step)</span></span>&#123;</span><br><span class="line">        diff[left]+=step;</span><br><span class="line">        <span class="keyword">if</span>(right&lt;diff.length-<span class="number">1</span>)&#123;</span><br><span class="line">            diff[right+<span class="number">1</span>]-=step;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] getResult()&#123;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[diff.length];</span><br><span class="line">        result[<span class="number">0</span>]=diff[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; diff.length; i++) &#123;</span><br><span class="line">            result[i] = result[i-<span class="number">1</span>]+diff[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来就要实践出真知，来看一下这道力扣题，这道题在力扣上是plus会员才可以查看，这里直接将题目简述给大家</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-addition/">力扣370：区间加法</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 370.区间加法</span></span><br><span class="line">假设你有一个长度为 n 的数组nums，初始情况下所有的数字均为 0，你将会被给出 k 个更新的操作。</span><br><span class="line">其中，每个操作会被表示为一个三元组：[left,right,step]，你需要该区间[left,right] (包括left和right)增加step。</span><br><span class="line">请你返回 k 次操作后的数组。</span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">len=5,updates=[[1,3,3],[2,4,-5],[0,3,4]]</span><br><span class="line">原数组变为 [0,0,0,0,0]</span><br><span class="line">原数组变为 [0,3,3,3,0]</span><br><span class="line">原数组变为 [0,3,-2,-2,-5]</span><br><span class="line">原数组变为 [4,7,2,2,-5]</span><br><span class="line">result: [4,7,2,2,-5]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法签名</span></span><br><span class="line">public int[] getModifiedArray(int[] nums, int[][] updates) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要懂了上面的<code>Diff</code>类的写法，这题轻轻松松拿下！</p>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getModifiedArray(<span class="keyword">int</span>[] nums, <span class="keyword">int</span>[][] updates) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] diff  = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    diff[<span class="number">0</span>]=nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; diff.length; i++) &#123;</span><br><span class="line">        diff[i] = nums[i]-nums[i-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>[] update : updates) &#123;</span><br><span class="line">        diff[update[<span class="number">0</span>]]+=update[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">if</span>(update[<span class="number">1</span>]+<span class="number">1</span>&lt;diff.length)&#123;</span><br><span class="line">            diff[update[<span class="number">1</span>]+<span class="number">1</span>]-=update[<span class="number">2</span>];            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[diff.length];</span><br><span class="line">    result[<span class="number">0</span>]=diff[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">        result[i] = result[i-<span class="number">1</span>]+diff[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>既然我们之前写了<code>Diff</code>那么我们就可以使用它</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getModifiedArray1(<span class="keyword">int</span>[] nums, <span class="keyword">int</span>[][] updates) &#123;</span><br><span class="line">    Diff diff = <span class="keyword">new</span> Diff(nums);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span>[] update : updates) &#123;</span><br><span class="line">        diff.increase(update[<span class="number">0</span>],update[<span class="number">1</span>],update[<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> diff.getResult();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们来尝试一下这道实际应用题<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/corporate-flight-bookings/">力扣1109：航班预订统计</a></p>
+<p>本质是一样的，只不过这边需要注意一下索引和编号的对应关系，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] corpFlightBookings(<span class="keyword">int</span>[][] bookings, <span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] diff = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] booking : bookings) &#123;</span><br><span class="line">            diff[booking[<span class="number">0</span>]-<span class="number">1</span>]+=booking[<span class="number">2</span>];</span><br><span class="line">            <span class="keyword">if</span>(booking[<span class="number">1</span>]&lt;n)&#123;</span><br><span class="line">                diff[booking[<span class="number">1</span>]]-=booking[<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] answer = <span class="keyword">new</span> <span class="keyword">int</span>[diff.length];</span><br><span class="line">        answer[<span class="number">0</span>]= diff[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; answer.length; i++) &#123;</span><br><span class="line">            answer[i] = answer[i-<span class="number">1</span>]+ diff[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相信学完这些，你对差分数组的理解也比较深刻了</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/10/%E7%AE%97%E6%B3%95-%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2063,412 +2550,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-模板方法模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-02T17:24:31+08:00">
-                2022-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  205
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><p><strong>定义：</strong>定义一个操作的算法骨架，将一些操作延迟到子类实现。Template Method使得子类可以在不改变算法结构的基础上即可重新定义算法的某些特定步骤</p>
-<p>其实该模式很简单，就是定义一个抽象类，然后定义一个抽象方法给子类去实现。</p>
-<p>处理器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Handler</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;做前期准备&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;准备就绪，开始处理&quot;</span>);</span><br><span class="line">        doHandler();</span><br><span class="line">        System.out.println(<span class="string">&quot;处理完毕&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">doHandler</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>字符处理器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CharHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;将字符串转化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>字符串处理器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringHandler</span> <span class="keyword">extends</span> <span class="title">Handler</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">doHandler</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;字符串转化&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-策略模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-02T12:11:02+08:00">
-                2022-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  797
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p><strong>定义：</strong>定义了算法族，分别封装起来，让他们之间可以互相替换，此模式的变化独立于算法的使用者</p>
-<p>有一个电商平台，当用户消费满1000元，根据vip等级可享受优惠</p>
-<ul>
-<li>普通会员			 不打折</li>
-<li>白银会员             优惠50元</li>
-<li>黄金会员             打8折</li>
-<li>白金会员             优惠50元，再打七折</li>
-</ul>
-<h3 id="Version-1-0"><a href="#Version-1-0" class="headerlink" title="Version 1.0"></a>Version 1.0</h3><p>会员类型枚举</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">UserType</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * ORDINARY_VIP: 普通会员</span></span><br><span class="line"><span class="comment">     * SILVER_VIP: 白银会员</span></span><br><span class="line"><span class="comment">     * GOLD_VIP： 黄金会员</span></span><br><span class="line"><span class="comment">     * PLATINUM_VIP：白金会员</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    ORDINARY_VIP(<span class="number">1</span>),</span><br><span class="line">    SILVER_VIP(<span class="number">2</span>),</span><br><span class="line">    GOLD_VIP(<span class="number">3</span>),</span><br><span class="line">    PLATINUM_VIP(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code;</span><br><span class="line">    UserType(<span class="keyword">int</span> code) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">long</span> money, <span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = money;</span><br><span class="line">    <span class="keyword">if</span>(money &gt;= <span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(type == UserType.SILVER_VIP.getCode())&#123;</span><br><span class="line">            result = money - <span class="number">50</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.GOLD_VIP.getCode())&#123;</span><br><span class="line">            result = money * <span class="number">0.8</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.PLATNUM_VIP.getCode())&#123;</span><br><span class="line">            result = (money - <span class="number">50</span>)*<span class="number">0.7</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面使用策略模式来优化</p>
-<h3 id="Version-1-2"><a href="#Version-1-2" class="headerlink" title="Version 1.2"></a>Version 1.2</h3><p>策略接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>普通会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrdinaryStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>黄金会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoldStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money*<span class="number">0.8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>白金会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlatinumStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (money-<span class="number">50</span>)*<span class="number">0.7</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>白银会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SilverStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money-<span class="number">50</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">long</span> money,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = money;</span><br><span class="line">    <span class="keyword">if</span>(money&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(type== UserType.ORDINARY_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> OrdinaryStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.SILVER_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> SilverStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type == UserType.GOLD_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> GoldStrategy().compute(money);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type==UserType.PLATINUM_VIP.getCode())&#123;</span><br><span class="line">        result = <span class="keyword">new</span> PlatinumStrategy().compute(money);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Version-2-1"><a href="#Version-2-1" class="headerlink" title="Version 2.1"></a>Version 2.1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;Integer,Strategy&gt; map;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StrategyFactory</span><span class="params">()</span></span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        map.put(UserType.ORDINARY_VIP.getCode(), <span class="keyword">new</span> OrdinaryStrategy());</span><br><span class="line">        map.put(UserType.SILVER_VIP.getCode(), <span class="keyword">new</span> SilverStrategy());</span><br><span class="line">        map.put(UserType.GOLD_VIP.getCode(),<span class="keyword">new</span> GoldStrategy());</span><br><span class="line">        map.put(UserType.PLATINUM_VIP.getCode(),<span class="keyword">new</span> PlatinumStrategy());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">int</span> userType, <span class="keyword">long</span> money)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(money&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(StrategyFactory.map.get(userType)==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;参数错误，无此类型的用户&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(userType).compute(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里的工厂还可以通过这种方式来实现</p>
-<h3 id="Version-2-2"><a href="#Version-2-2" class="headerlink" title="Version 2.2"></a>Version 2.2</h3><p>策略接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>黄金会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoldStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money*<span class="number">0.8</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.GOLD_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>普通会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrdinaryStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.ORDINARY_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>白金会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PlatinumStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (money-<span class="number">50</span>)*<span class="number">0.7</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.PLATINUM_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>白银会员</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SilverStrategy</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">compute</span><span class="params">(<span class="keyword">long</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money-<span class="number">50</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> UserType.SILVER_VIP.getCode();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>策略工厂</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;Integer, Strategy&gt; map;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StrategyFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        map=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;Strategy&gt; strategies=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        strategies.add(<span class="keyword">new</span> GoldStrategy());</span><br><span class="line">        strategies.add(<span class="keyword">new</span> OrdinaryStrategy());</span><br><span class="line">        strategies.add(<span class="keyword">new</span> PlatinumStrategy());</span><br><span class="line">        strategies.add(<span class="keyword">new</span> SilverStrategy());</span><br><span class="line">        map=strategies.stream().collect(Collectors.toMap(Strategy::getType,strategy -&gt; strategy));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">(<span class="keyword">int</span> userType, <span class="keyword">long</span> money)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(money&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(StrategyFactory.map.get(userType)==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;参数错误，无此类型的用户&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map.get(userType).compute(money);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2523,7 +2604,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2534,7 +2615,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2545,7 +2626,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2653,7 +2734,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">102.2k</span>
+    <span title="站点总字数">105.9k</span>
   
 </div>
 

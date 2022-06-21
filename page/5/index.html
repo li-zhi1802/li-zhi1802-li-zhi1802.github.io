@@ -304,6 +304,431 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" itemprop="url">【剑指offerII26-Medium】重排链表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-26T22:04:54+08:00">
+                2022-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  527
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="重排链表"><a href="#重排链表" class="headerlink" title="重排链表"></a>重排链表</h2><p>给定一个单链表 <code>L</code> 的头节点 <code>head</code> ，单链表 <code>L</code> 表示为：</p>
+<p><code>L0 → L1 → … → Ln-1 → Ln</code><br>请将其重新排列后变为：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">L0</span> → Ln → L<span class="number">1</span> → Ln-<span class="number">1</span> → L<span class="number">2</span> → Ln-<span class="number">2</span> → …</span><br></pre></td></tr></table></figure>
+
+<p>不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。</p>
+<p><strong>示例 1:</strong></p>
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B1.png" class title="示例1">
+
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = [<span class="number">1,2,3,4</span>]</span><br><span class="line">输出: [<span class="number">1,4,2,3</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/%E7%A4%BA%E4%BE%8B2.png" class title="示例2">
+
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: head = <span class="string">[1,2,3,4,5]</span></span><br><span class="line">输出: <span class="string">[1,5,2,4,3]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表的长度范围为 <code>[1, 5 * 104]</code></li>
+<li><code>1 &lt;= node.val &lt;= 1000</code></li>
+</ul>
+<p><strong>注意：</strong>本题与主站 143 题相同：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reorder-list/">https://leetcode-cn.com/problems/reorder-list/</a></p>
+<p><strong>Related Topics</strong></p>
+<ul>
+<li>栈</li>
+<li>递归</li>
+<li>链表</li>
+<li>双指针</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    ListNode() &#123;&#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val) &#123; <span class="keyword">this</span>.val = val; &#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val, ListNode next) &#123; <span class="keyword">this</span>.val = val; <span class="keyword">this</span>.next = next; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="法一：暴力"><a href="#法一：暴力" class="headerlink" title="法一：暴力"></a>法一：暴力</h3><p><strong>分析：</strong>使用笨办法，可以先遍历链表将所有的节点都放入队列中，用len递增来得到链表的长度。</p>
+<p>当长度为偶数时，我需要保留半数加一个节点。</p>
+<p>当长度为奇数时，我需要保留半数加一个节点，将这个数字赋给len（这个可以自行推演一下）</p>
+<p>然后出队len个元素，将最后一个出队的元素的next置空</p>
+<p>这时候需要插入的节点就按顺序保存在队列中了</p>
+<p>接着按队列出队顺序间隔插入到原链表中</p>
+<p>对于实例二的流程图：</p>
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-01.png" class title="process-01">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-02.png" class title="process-02">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-03.png" class title="process-03">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-04.png" class title="process-04">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-05.png" class title="process-05">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-06.png" class title="process-06">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-07.png" class title="process-07">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-08.png" class title="process-08">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-09.png" class title="process-09">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-10.png" class title="process-10">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-11.png" class title="process-11">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-12.png" class title="process-12">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-13.png" class title="process-13">
+
+<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90%E5%89%91%E6%8C%87offerII26-Medium%E3%80%91%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/process-14.png" class title="process-14">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        LinkedList&lt;ListNode&gt; nodes = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(temp!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            nodes.add(temp);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">            len++;</span><br><span class="line">        &#125;</span><br><span class="line">        len = len/<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            temp = nodes.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        temp.next=<span class="keyword">null</span>;</span><br><span class="line">        temp = head;</span><br><span class="line">        ListNode now;</span><br><span class="line">        <span class="keyword">while</span>(!nodes.isEmpty())&#123;</span><br><span class="line">            now = nodes.pollLast();</span><br><span class="line">            now.next = temp.next;</span><br><span class="line">            temp.next = now;</span><br><span class="line">            temp = now.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用栈也是可以的，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        Stack&lt;ListNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        ListNode temp = head;</span><br><span class="line">        <span class="keyword">while</span>(temp!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            len++;</span><br><span class="line">            stack.push(temp);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        len = (<span class="keyword">int</span>) (len/<span class="number">2.0</span>-<span class="number">0.5</span>);</span><br><span class="line">        temp = head;</span><br><span class="line">        ListNode now;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            now = stack.pop();</span><br><span class="line">            now.next = temp.next ;</span><br><span class="line">            temp.next = now;</span><br><span class="line">            temp = now.next;</span><br><span class="line">        &#125;</span><br><span class="line">        stack.pop().next = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-享元模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-26T13:05:48+08:00">
+                2022-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  259
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><p><strong>定义：</strong>运用共享技术有效地支持大量<strong>细粒度</strong>的对象</p>
+<p><strong>优点：</strong>如果系统有大量类似的对象，可以节省大量的内存和CPU资源</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p><strong>场景：</strong>假如我要开发一款游戏，然后游戏里面的地图有很多树木</p>
+<p>这个时候，我们不可能创建几万个树的对象</p>
+<p>Tree</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tree</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TreeNode</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Tree tree;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TreeFactory</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ConcurrentHashMap&lt;String, Tree&gt; map = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Tree <span class="title">getTree</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(name))&#123;</span><br><span class="line">            <span class="keyword">return</span> map.get(name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addTree</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">        map.put(name,<span class="keyword">new</span> Tree(name));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    TreeFactory.addTree(<span class="string">&quot;梧桐树&quot;</span>);</span><br><span class="line">    TreeFactory.addTree(<span class="string">&quot;香樟树&quot;</span>);</span><br><span class="line">    TreeFactory.addTree(<span class="string">&quot;银杏树&quot;</span>);</span><br><span class="line">    TreeFactory.addTree(<span class="string">&quot;面包树&quot;</span>);</span><br><span class="line">    TreeNode treeNode1 = <span class="keyword">new</span> TreeNode(TreeFactory.getTree(<span class="string">&quot;梧桐树&quot;</span>),<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    TreeNode treeNode2 = <span class="keyword">new</span> TreeNode(TreeFactory.getTree(<span class="string">&quot;梧桐树&quot;</span>),<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    TreeNode treeNode3 = <span class="keyword">new</span> TreeNode(TreeFactory.getTree(<span class="string">&quot;梧桐树&quot;</span>),<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/25/%E3%80%9064-Medium%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2501,417 +2926,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A6%82%E8%BF%B0/" itemprop="url">设计模式-概述</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T22:36:38+08:00">
-                2022-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  215
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="什么是设计模式？"><a href="#什么是设计模式？" class="headerlink" title="什么是设计模式？"></a>什么是设计模式？</h2><p>Design Pattern是前辈们对代码开发经验的总结与归纳，是解决特定问题的一系列解决方案。</p>
-<p>1995年，由GoF（Gang of Four）四人帮合作出版了《设计模式：可复用面向对象软件的基础》一书，一共收录了23种设计模式，人称Gof23设计模式</p>
-<h3 id="创建型模式："><a href="#创建型模式：" class="headerlink" title="创建型模式："></a>创建型模式：</h3><ul>
-<li>单例模式</li>
-<li>简单工厂模式</li>
-<li>抽象工厂模式</li>
-<li>建造者模式</li>
-<li>原型模式</li>
-</ul>
-<h3 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h3><ul>
-<li>适配器模式</li>
-<li>桥接模式</li>
-<li>装饰器模式</li>
-<li>组合模式</li>
-<li>门面模式</li>
-<li>享元模式</li>
-<li>代理模式</li>
-</ul>
-<h3 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h3><ul>
-<li>模板方法模式</li>
-<li>命令模式</li>
-<li>迭代器模式</li>
-<li>观察者模式</li>
-<li>中介者模式</li>
-<li>备忘录模式</li>
-<li>解释器模式</li>
-<li>状态模式</li>
-<li>策略模式</li>
-<li>职责链模式</li>
-<li>访问者模式</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/24/%E3%80%90350-Easy%E3%80%91%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/24/%E3%80%90350-Easy%E3%80%91%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/" itemprop="url">【350-Easy】两个数组的交集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T21:17:21+08:00">
-                2022-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/02/24/%E3%80%90350-Easy%E3%80%91%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/24/%E3%80%90350-Easy%E3%80%91%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="两个数组的交集"><a href="#两个数组的交集" class="headerlink" title="两个数组的交集"></a>两个数组的交集</h2><p>给你两个整数数组 <code>nums1</code> 和 <code>nums2</code> ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = <span class="comment">[1,2,2,1]</span>, nums2 = <span class="comment">[2,2]</span></span><br><span class="line">输出：<span class="comment">[2,2]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 = <span class="comment">[4,9,5]</span>, nums2 = <span class="comment">[9,4,9,8,4]</span></span><br><span class="line">输出：<span class="comment">[4,9]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= nums1.length, nums2.length &lt;= 1000</code></li>
-<li><code>0 &lt;= nums1[i], nums2[i] &lt;= 1000</code></li>
-</ul>
-<p><strong>Related Topics</strong></p>
-<ul>
-<li>数组</li>
-<li>哈希表</li>
-<li>双指针</li>
-<li>二分查找</li>
-</ul>
-<p>排序</p>
-<p>**<em>*进阶*<em>：</em></em></p>
-<ul>
-<li>如果给定的数组已经排好序呢？你将如何优化你的算法？</li>
-<li>如果 <code>nums1</code> 的大小比 <code>nums2</code> 小，哪种方法更优？</li>
-</ul>
-<h3 id="法一：暴力"><a href="#法一：暴力" class="headerlink" title="法一：暴力"></a>法一：暴力</h3><p>先将其中一个数组放到map中key存储值，value先存为0。遍历另一个数组，从map中拿值，如果有，则说明这是相交的元素，将value自增1，然后遍历map，如果value为1，说明该元素在两数组中都存在，并且只存在一次，直接将其放入list中。如果大于等于2，则说明第两个数组中相同的该元素大于了2不能确定最小出现的次数，所以只能分别遍历两个数组找最小出现次数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] intersect(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums1) &#123;</span><br><span class="line">            map.put(num, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> v : nums2) &#123;</span><br><span class="line">            <span class="keyword">if</span>(map.get(v)!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                map.put(v,map.get(v)+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Integer v : map.keySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(map.get(v)==<span class="number">1</span>)&#123;</span><br><span class="line">                list.add(v);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; Math.min(showTimes(nums1,v),showTimes(nums2,v)); i++) &#123;</span><br><span class="line">                list.add(v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">            result[i]= list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">showTimes</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> time=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span>(num==value)&#123;</span><br><span class="line">                time++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> time;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>优化：</strong></p>
-<p>一开始的map就用来存储最小的那一个数组的k（数组元素）-v（出现次数）</p>
-<p>遍历另一个数组，从map中取值，如果该值不为空且大于0则将其放入list，并自减1</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] intersect(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">        <span class="comment">//key存储值，value存出现次数</span></span><br><span class="line">        <span class="keyword">if</span>(nums1.length&gt; nums2.length)&#123;</span><br><span class="line">            <span class="keyword">int</span>[] temp = nums1;</span><br><span class="line">            nums1=nums2;</span><br><span class="line">            nums2=temp;</span><br><span class="line">        &#125;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums1) &#123;</span><br><span class="line">            map.merge(num, <span class="number">1</span>, Integer::sum);</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Integer temp;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> t : nums2) &#123;</span><br><span class="line">            temp = map.get(t);</span><br><span class="line">            <span class="keyword">if</span>(temp!=<span class="keyword">null</span>&amp;&amp;temp&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                list.add(t);</span><br><span class="line">                map.put(t,temp-<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">            result[i]= list.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>同一思路的官方代码：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] intersect(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums1.length &gt; nums2.length) &#123;</span><br><span class="line">            <span class="comment">// 保证我是给最短的数组进行哈希映射</span></span><br><span class="line">            <span class="keyword">return</span> intersect(nums2, nums1);</span><br><span class="line">        &#125;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="comment">// 将nums数组放入map中key为元素，value为出现次数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums1) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = map.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">            map.put(num, count);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// new一个最大的数组用来存放值</span></span><br><span class="line">        <span class="keyword">int</span>[] intersection = <span class="keyword">new</span> <span class="keyword">int</span>[nums1.length];</span><br><span class="line">        <span class="comment">// 充当索引，也是最后该返回的数组长度</span></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 遍历nums2</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums2) &#123;</span><br><span class="line">            <span class="comment">// 在map中拿值</span></span><br><span class="line">            <span class="keyword">int</span> count = map.getOrDefault(num, <span class="number">0</span>);</span><br><span class="line">            <span class="comment">// 如果大于0，说明该元素是重合的</span></span><br><span class="line">            <span class="comment">// 个人觉得这里的移除元素没有必要</span></span><br><span class="line">            <span class="comment">// 这一段可以改为</span></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">            if(count&gt;0)&#123;</span></span><br><span class="line"><span class="comment">                intersection[index++] = num;</span></span><br><span class="line"><span class="comment">                map.put(num,--count);</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            **/</span></span><br><span class="line">            <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// 将该元素放入intersection中</span></span><br><span class="line">                intersection[index++] = num;</span><br><span class="line">                <span class="comment">// 出现次数减一</span></span><br><span class="line">                count--;</span><br><span class="line">                <span class="comment">// 如果出现次数还是大于0的，则更新，如果已经等于0了，则移除该元素</span></span><br><span class="line">                <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    map.put(num, count);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    map.remove(num);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Arrays.copyOfRange(intersection, <span class="number">0</span>, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="进阶："><a href="#进阶：" class="headerlink" title="进阶："></a>进阶：</h3><p>如果是已经排序好的。</p>
-<p>i作为短数组nums1的索引，j作为长数组nums2的索引</p>
-<p>挑选一个长度小的遍历，遇到一样的则放入list，如果不一样，则比大小，如果nums[j]比nums[i]大，则i往后走，然则j往后走</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] intersect2(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line">    <span class="keyword">if</span>(nums1.length&gt; nums2.length)&#123;</span><br><span class="line">        <span class="keyword">int</span>[] temp = nums1;</span><br><span class="line">        nums1=nums2;</span><br><span class="line">        nums2=temp;</span><br><span class="line">    &#125;</span><br><span class="line">    Arrays.sort(nums1);</span><br><span class="line">    Arrays.sort(nums2);</span><br><span class="line">    <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums1.length; ) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums1[i]==nums2[j])&#123;</span><br><span class="line">            list.add(nums1[i]);</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums1[i]&gt;nums2[j])&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">        result[i]= list.get(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2966,7 +2980,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-count">107</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2977,7 +2991,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2988,7 +3002,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3096,7 +3110,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">102.2k</span>
+    <span title="站点总字数">105.9k</span>
   
 </div>
 
