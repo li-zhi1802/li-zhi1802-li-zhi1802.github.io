@@ -304,6 +304,394 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-装饰者模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-01T11:31:14+08:00">
+                2022-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  261
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><p><strong>定义：</strong>在不改变原有对象的基础上，将功能附加到对象上</p>
+<p>这个其实大家在平时写代码的时候就已经用过了，只是不知道这是一个模式</p>
+<p>下面看一个案例</p>
+<p>有一个组件的接口，然后我有一个具体的实现类，现在我需要在这个具体实现类的基础上进行功能拓展</p>
+<p>组件接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体接口实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteComponent</span> <span class="keyword">implements</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;实现组件功能&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拓展功能抽象类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">EnhanceComponent</span> <span class="keyword">implements</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> Component component;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">EnhanceComponent</span><span class="params">(Component component)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.component = component;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体增强类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteEnhanceComponent</span> <span class="keyword">extends</span> <span class="title">EnhanceComponent</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteEnhanceComponent</span><span class="params">(Component component)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(component);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">operation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        component.operation();</span><br><span class="line">        System.out.println(<span class="string">&quot;拓展功能一&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>优点：</p>
+<ol>
+<li>不改变原有代码的情况下，对原来的类进行增强</li>
+<li>使用不同的组合可以实现不同的人效果</li>
+<li>符合开闭原则</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-适配器模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-01T11:10:43+08:00">
+                2022-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/03/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  385
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p><strong>定义：</strong>将一个类的接口转换为用户希望的另一个接口。这使得原本由于接口不兼容而不能一起工作的那些类就可以一起工作了</p>
+<p>接下来我们来模拟USB转接网线口，从而使电脑上网的案例</p>
+<p>网线接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">NetWorkThread</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">connectNetWork</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>华为的网线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HuaWeiNetWorkThread</span> <span class="keyword">implements</span> <span class="title">NetWorkThread</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectNetWork</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;华为网线连接网络，可以上网了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>自制的网线</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerNetWorkThread</span> <span class="keyword">implements</span> <span class="title">NetWorkThread</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectNetWork</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;自制网线，可以上网了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>适配器（网线口变为USB口）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">netWorkToUSB</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>华为的适配器（转接口）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HuaWeiAdapter</span> <span class="keyword">implements</span> <span class="title">Adapter</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> NetWorkThread netWorkThread;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNetWorkThread</span><span class="params">(NetWorkThread netWorkThread)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.netWorkThread = netWorkThread;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">netWorkToUSB</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(netWorkThread==<span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;适配器没有网线插入！&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;华为适配器适配了网线&quot;</span>);</span><br><span class="line">        netWorkThread.connectNetWork();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>电脑</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Adapter adapter;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAdapter</span><span class="params">(Adapter adapter)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.adapter = adapter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connectToNetWork</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(adapter!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            adapter.netWorkToUSB();</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;没有插网线！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Computer computer = <span class="keyword">new</span> Computer();</span><br><span class="line">        computer.connectToNetWork();</span><br><span class="line">        System.out.println(<span class="string">&quot;===================&quot;</span>);</span><br><span class="line">        HuaWeiAdapter huaWeiAdapter = <span class="keyword">new</span> HuaWeiAdapter();</span><br><span class="line">        computer.setAdapter(huaWeiAdapter);</span><br><span class="line">        computer.connectToNetWork();</span><br><span class="line">        System.out.println(<span class="string">&quot;===================&quot;</span>);</span><br><span class="line">        huaWeiAdapter.setNetWorkThread(<span class="keyword">new</span> HuaWeiNetWorkThread());</span><br><span class="line">        computer.connectToNetWork();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">没有插网线！</span><br><span class="line">===================</span><br><span class="line">适配器没有网线插入！</span><br><span class="line">===================</span><br><span class="line">华为适配器适配了网线</span><br><span class="line">华为网线连接网络，可以上网了</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/28/%E3%80%905-Medium%E3%80%91%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2051,449 +2439,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" itemprop="url">【206-Easy】反转链表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-26T23:42:36+08:00">
-                2022-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  546
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h2><p>给你单链表的头节点 <code>head</code> ，请你反转链表，并返回反转后的链表。</p>
-<p><strong>示例 1：</strong></p>
-
-
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = <span class="string">[1,2,3,4,5]</span></span><br><span class="line">输出：<span class="string">[5,4,3,2,1]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-
-
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = <span class="comment">[1,2]</span></span><br><span class="line">输出：<span class="comment">[2,1]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = <span class="comment">[]</span></span><br><span class="line">输出：<span class="comment">[]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目范围是 <code>[0, 5000]</code></li>
-<li><code>-5000 &lt;= Node.val &lt;= 5000</code></li>
-</ul>
-<p><strong>进阶：</strong>链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？</p>
-<p><strong>Related Topics</strong></p>
-<ul>
-<li>递归</li>
-<li>链表</li>
-</ul>
-<h3 id="法一：迭代"><a href="#法一：迭代" class="headerlink" title="法一：迭代"></a>法一：迭代</h3><p>使用三个节点分别存储当前节点（now），前置节点（prev），后置节点（suffix）</p>
-<p>将now的next指向前置节点，</p>
-<p>将prev指向now，</p>
-<p>将now指向suffix，</p>
-<p>然后suffix向后走一位。</p>
-<p>这样一次循环就走完了。</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-01.jpg" class title="process1-01">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-02.jpg" class title="process1-02">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-03.jpg" class title="process1-03">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-04.jpg" class title="process1-04">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-05.jpg" class title="process1-05">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90206-Easy%E3%80%91%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/process1-06.jpg" class title="process1-06">
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">        ListNode now = head;</span><br><span class="line">        <span class="keyword">if</span>(head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode suffix = now.next;</span><br><span class="line">        <span class="keyword">while</span>(now.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            now.next=prev;</span><br><span class="line">            prev = now;</span><br><span class="line">            now = suffix;</span><br><span class="line">            suffix = suffix.next;</span><br><span class="line">        &#125;</span><br><span class="line">        now.next=prev;</span><br><span class="line">        head = now;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>优化：</strong>将获取suffix的步骤放到了每次循环的最前面，根据now来拿到，而不是自己往后走。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">        ListNode now = head;</span><br><span class="line">        ListNode suffix;</span><br><span class="line">        <span class="keyword">while</span>(now!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            suffix = now.next;</span><br><span class="line">            now.next=prev;</span><br><span class="line">            prev = now;</span><br><span class="line">            now = suffix;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="法二：递归"><a href="#法二：递归" class="headerlink" title="法二：递归"></a>法二：递归</h3><p>使用递归的，有一个缺点，就是如果链表过于长，那么就会报异常<code>StackOverFlowException</code></p>
-<p>思路和之前是一模一样的，直接上代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> reverse(<span class="keyword">null</span>,head);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode prev, ListNode curr)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(curr==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> prev;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode suffix=curr.next;</span><br><span class="line">        curr.next = prev;</span><br><span class="line">        <span class="keyword">return</span> reverse(curr,suffix);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>或者不想在外面定义一个递归也可以这样写</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = reverseList(head.next);</span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种递归写的就比较烂了，看看就过去了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList3</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode temp= head;</span><br><span class="line">    ListNode tail;</span><br><span class="line">    <span class="keyword">while</span>(temp.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        temp = temp.next;</span><br><span class="line">    &#125;</span><br><span class="line">    tail = temp;</span><br><span class="line">    reverse3(head);</span><br><span class="line">    <span class="keyword">return</span> tail;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse3</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode suffix = reverse3(head.next);</span><br><span class="line">    suffix.next = head;</span><br><span class="line">    head.next = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/" itemprop="url">【876-Easy】链表的中间节点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-26T23:41:52+08:00">
-                2022-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  392
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="链表的中间节点"><a href="#链表的中间节点" class="headerlink" title="链表的中间节点"></a>链表的中间节点</h2><p>给定一个头结点为 <code>head</code> 的非空单链表，返回链表的中间结点。</p>
-<p>如果有两个中间结点，则返回第二个中间结点。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="selector-attr">[1,2,3,4,5]</span></span><br><span class="line">输出：此列表中的结点 <span class="number">3</span> (序列化形式：<span class="selector-attr">[3,4,5]</span>)</span><br><span class="line">返回的结点值为 <span class="number">3</span> 。 (测评系统对该结点序列化表述是 <span class="selector-attr">[3,4,5]</span>)。</span><br><span class="line">注意，我们返回了一个 ListNode 类型的对象 ans，这样：</span><br><span class="line">ans<span class="selector-class">.val</span> = <span class="number">3</span>, ans<span class="selector-class">.next</span><span class="selector-class">.val</span> = <span class="number">4</span>, ans<span class="selector-class">.next</span><span class="selector-class">.next</span><span class="selector-class">.val</span> = <span class="number">5</span>, 以及 ans<span class="selector-class">.next</span><span class="selector-class">.next</span><span class="selector-class">.next</span> = NULL.</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="selector-attr">[1,2,3,4,5,6]</span></span><br><span class="line">输出：此列表中的结点 <span class="number">4</span> (序列化形式：<span class="selector-attr">[4,5,6]</span>)</span><br><span class="line">由于该列表有两个中间结点，值分别为 <span class="number">3</span> 和 <span class="number">4</span>，我们返回第二个结点。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>给定链表的结点数介于 <code>1</code> 和 <code>100</code> 之间。</li>
-</ul>
-<p><strong>Related Topics</strong></p>
-<ul>
-<li>链表</li>
-<li>双指针</li>
-</ul>
-<h3 id="法一：hash映射"><a href="#法一：hash映射" class="headerlink" title="法一：hash映射"></a>法一：hash映射</h3><p>遍历链表</p>
-<p>将索引当做key</p>
-<p>ListNode当做value</p>
-<p>最后返回索引为长度减1的那个节点</p>
-<p>上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">middleNode</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, ListNode&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        ListNode curr=head;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(curr!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            map.put(i++,curr);</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map.get(i/<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="法二：快慢指针法"><a href="#法二：快慢指针法" class="headerlink" title="法二：快慢指针法"></a>法二：快慢指针法</h3><p>使用两个指针，slow，fast</p>
-<p>slow一次走一步</p>
-<p>fast一次走两步</p>
-<p>当fasf走到底的时候slow就在中间</p>
-<p>节点数目为奇数</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-01.png" class title="process1-01">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-02.png" class title="process1-02">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process1-03.png" class title="process1-03">
-
-<p>节点数目为偶数</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-01.png" class title="process2-01">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-02.png" class title="process2-02">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/02/26/%E3%80%90876-Easy%E3%80%91%E9%93%BE%E8%A1%A8%E7%9A%84%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9/process2-03.png" class title="process2-03">
-
-<p>上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">middleNode1</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head;</span><br><span class="line">    <span class="keyword">while</span>(fast!=<span class="keyword">null</span>&amp;&amp;fast.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2548,7 +2493,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2678,7 +2623,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">105.9k</span>
+    <span title="站点总字数">112.8k</span>
   
 </div>
 

@@ -304,6 +304,484 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-原型模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-25T09:26:59+08:00">
+                2022-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  840
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>该设计模式主要用于<strong>对象的复制</strong></p>
+<p>此设计模式有多种实现：</p>
+<ol>
+<li>jdk内置cloneable接口</li>
+<li>自定义接口</li>
+</ol>
+<h3 id="jdk内置cloneable接口"><a href="#jdk内置cloneable接口" class="headerlink" title="jdk内置cloneable接口"></a>jdk内置cloneable接口</h3><p>我们都知道object中有一个protected方法，叫clone，可以看到这是一个native方法（即该方法是由C++编写的，具体实现是根据操作系统而定）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HotSpotIntrinsicCandidate</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">native</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们来自己重写一个这个方法试一试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Video</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Date gmtCreated;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Video</span><span class="params">(String name, Date gmtCreated)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.gmtCreated = gmtCreated;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Video</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getGmtCreated</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gmtCreated;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGmtCreated</span><span class="params">(Date gmtCreated)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.gmtCreated = gmtCreated;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Video <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (Video)<span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Video&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, gmtCreated=&quot;</span> + gmtCreated +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主程序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">    Video video = <span class="keyword">new</span> Video();</span><br><span class="line">    video.setName(<span class="string">&quot;视频一号&quot;</span>);</span><br><span class="line">    video.setGmtCreated(<span class="keyword">new</span> Date());</span><br><span class="line">    System.out.println(video);</span><br><span class="line">    System.out.println(video.hashCode());</span><br><span class="line">    System.out.println(video.getGmtCreated().hashCode());</span><br><span class="line">    System.out.println(<span class="string">&quot;=============克隆后================&quot;</span>);</span><br><span class="line">    Video clone = (Video) video.clone();</span><br><span class="line">    System.out.println(clone);</span><br><span class="line">    System.out.println(clone.hashCode());</span><br><span class="line">    System.out.println(clone.getGmtCreated().hashCode());</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Video&#123;name=<span class="string">&#x27;视频一号&#x27;</span>, gmtCreated=Fri Feb 25 10:31:04 CST 2022&#125;</span><br><span class="line">269468037</span><br><span class="line">784235907</span><br><span class="line">=============克隆后================</span><br><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> java.lang.CloneNotSupportedException: com.lizhi.demo1.Video</span><br><span class="line">	at java.base/java.lang.Object.clone(Native Method)</span><br><span class="line">	at com.lizhi.demo1.Video.clone(Video.java:35)</span><br><span class="line">	at com.lizhi.demo1.CloneApplication.main(CloneApplication.java:13)</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，报错了，这是怎么回事，我不是已经重写了方法吗？</p>
+<p>其实原因就是该类没有一个标记接口Cloneable</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A class implements the &lt;code&gt;Cloneable&lt;/code&gt; interface to</span></span><br><span class="line"><span class="comment"> * indicate to the &#123;<span class="doctag">@link</span> java.lang.Object#clone()&#125; method that it</span></span><br><span class="line"><span class="comment"> * is legal for that method to make a</span></span><br><span class="line"><span class="comment"> * field-for-field copy of instances of that class.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Invoking Object&#x27;s clone method on an instance that does not implement the</span></span><br><span class="line"><span class="comment"> * &lt;code&gt;Cloneable&lt;/code&gt; interface results in the exception</span></span><br><span class="line"><span class="comment"> * &lt;code&gt;CloneNotSupportedException&lt;/code&gt; being thrown.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * By convention, classes that implement this interface should override</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> Object.clone&#125; (which is protected) with a public method.</span></span><br><span class="line"><span class="comment"> * See &#123;<span class="doctag">@link</span> java.lang.Object#clone()&#125; for details on overriding this</span></span><br><span class="line"><span class="comment"> * method.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * Note that this interface does &lt;i&gt;not&lt;/i&gt; contain the &#123;<span class="doctag">@code</span> clone&#125; method.</span></span><br><span class="line"><span class="comment"> * Therefore, it is not possible to clone an object merely by virtue of the</span></span><br><span class="line"><span class="comment"> * fact that it implements this interface.  Even if the clone method is invoked</span></span><br><span class="line"><span class="comment"> * reflectively, there is no guarantee that it will succeed.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>  unascribed</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.CloneNotSupportedException</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     java.lang.Object#clone()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span>   1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将video实现该接口后，启动程序，控制台输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Video&#123;name=<span class="string">&#x27;视频一号&#x27;</span>, gmtCreated=Fri Feb 25 10:37:07 CST 2022&#125;</span><br><span class="line">269468037</span><br><span class="line">784153335</span><br><span class="line">=============克隆后================</span><br><span class="line">Video&#123;name=<span class="string">&#x27;视频一号&#x27;</span>, gmtCreated=Fri Feb 25 10:37:07 CST 2022&#125;</span><br><span class="line">1681595665</span><br><span class="line">784153335</span><br></pre></td></tr></table></figure>
+
+<p>我们可以惊奇的发现，</p>
+<p>两者的内容打印出来一模一样，两者的对象主体的hashcode是不同的，说明video和clone是货真价实的两个对象。</p>
+<p>但是我们也发现他们的gmtCreated变量的hashcode是一样的，这说明两者指向的是同一个gmtCreated，有时候我们会有这样的需求，有时候我们不需要将复制后的对象内部指向的对象还是原来的那个对象，这时候我们就要修改clone方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">    Object obj = <span class="keyword">super</span>.clone();</span><br><span class="line">    Video v = (Video) obj;</span><br><span class="line">    v.setGmtCreated((Date) v.getGmtCreated().clone());</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义接口"><a href="#自定义接口" class="headerlink" title="自定义接口"></a>自定义接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Copyable</span> </span>&#123;</span><br><span class="line">    <span class="function">Object <span class="title">copy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体实现就不写啦，本质是一样的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" itemprop="url">设计模式-建造者模式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-25T09:26:35+08:00">
+                2022-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><p>该设计模式解决的问题是在用户不知道对象的建造过程和细节的情况下就可以直接创建<strong>复杂的对象</strong>。</p>
+<p>该模式有两种实现方向：</p>
+<ol>
+<li>有一个制造者有自己的一套制造方案来制造该对象</li>
+<li>自己指定制造计划</li>
+</ol>
+<h3 id="制造者制造"><a href="#制造者制造" class="headerlink" title="制造者制造"></a>制造者制造</h3><p>场景：造汽车</p>
+<p>汽车类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> CarBody carBody;</span><br><span class="line">    <span class="keyword">private</span> Engine engine;</span><br><span class="line">    <span class="keyword">private</span> Lamp lamp;</span><br><span class="line">    <span class="keyword">private</span> Window window;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isWhole</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(carBody!=<span class="keyword">null</span>&amp;&amp;engine!=<span class="keyword">null</span>&amp;&amp;lamp!=<span class="keyword">null</span>&amp;&amp;window!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>车身</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CarBody</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>引擎</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Engine</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>车窗</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Window</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好的车身</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodCarBody</span> <span class="keyword">implements</span> <span class="title">CarBody</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;好的车身&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不好的车身</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BadCarBody</span> <span class="keyword">implements</span> <span class="title">CarBody</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;差的车身&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好的引擎</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodEngine</span> <span class="keyword">implements</span> <span class="title">Engine</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;好的发动机&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不好的引擎</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BadEngine</span> <span class="keyword">implements</span> <span class="title">Engine</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;差的发动机&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好的车窗</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodWindow</span> <span class="keyword">implements</span> <span class="title">Window</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;好的车窗&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不好的车窗</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BadWindow</span> <span class="keyword">implements</span> <span class="title">Window</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;差的车窗&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>车的建造者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CarBuilder</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addCarBody</span><span class="params">(CarBody carBody)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addWindow</span><span class="params">(Window window)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addLamp</span><span class="params">(Lamp lamp)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addEngine</span><span class="params">(Engine engine)</span></span>;</span><br><span class="line">    <span class="function">Car <span class="title">getCar</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体的建造者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaZhongCarBulder</span> <span class="keyword">implements</span> <span class="title">CarBuilder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DaZhongCarBulder</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car = <span class="keyword">new</span> Car();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCarBody</span><span class="params">(CarBody carBody)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(carBody==<span class="keyword">null</span>)&#123;</span><br><span class="line">            car.setCarBody(<span class="keyword">new</span> GoodCarBody());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        car.setCarBody(carBody);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWindow</span><span class="params">(Window window)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(window==<span class="keyword">null</span>)&#123;</span><br><span class="line">            car.setWindow(<span class="keyword">new</span> GoodWindow());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        car.setWindow(window);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLamp</span><span class="params">(Lamp lamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(lamp==<span class="keyword">null</span>)&#123;</span><br><span class="line">            car.setLamp(<span class="keyword">new</span> GoodLamp());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        car.setLamp(lamp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEngine</span><span class="params">(Engine engine)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(engine==<span class="keyword">null</span>)&#123;</span><br><span class="line">            car.setEngine(<span class="keyword">new</span> GoodEngine());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        car.setEngine(engine);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Car <span class="title">getCar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!car.isWhole())&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;零件不齐，车不能出厂&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> car;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>指导者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Director</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Car <span class="title">getCar</span><span class="params">(CarBuilder carBuilder)</span></span>&#123;</span><br><span class="line">        carBuilder.addWindow(<span class="keyword">null</span>);</span><br><span class="line">        carBuilder.addCarBody(<span class="keyword">null</span>);</span><br><span class="line">        carBuilder.addLamp(<span class="keyword">new</span> BadLamp());</span><br><span class="line">        carBuilder.addEngine(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> carBuilder.getCar();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义建造"><a href="#自定义建造" class="headerlink" title="自定义建造"></a>自定义建造</h3><p>我们发现，有车由四部分组成，这四部分可以是同一个工厂造出来的，所以我们可以结合一个抽象工厂模式，将产品制造交给工厂。</p>
+<p>组件工厂接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ComponentFactory</span> </span>&#123;</span><br><span class="line">    <span class="function">CarBody <span class="title">getCarBody</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Engine <span class="title">getEngine</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Window <span class="title">getWindow</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Lamp <span class="title">getLamp</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不好的组件工厂</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BadFactory</span> <span class="keyword">implements</span> <span class="title">ComponentFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarBody <span class="title">getCarBody</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BadCarBody();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Engine <span class="title">getEngine</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BadEngine();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Window <span class="title">getWindow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BadWindow();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Lamp <span class="title">getLamp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> BadLamp();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好的组件工厂</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodFactory</span> <span class="keyword">implements</span> <span class="title">ComponentFactory</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarBody <span class="title">getCarBody</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GoodCarBody();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Engine <span class="title">getEngine</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GoodEngine();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Window <span class="title">getWindow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GoodWindow();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Lamp <span class="title">getLamp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GoodLamp();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改造CarBuilder</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CarBuilder</span> </span>&#123;</span><br><span class="line">    <span class="function">CarBuilder <span class="title">addCarBody</span><span class="params">(CarBody carBody)</span></span>;</span><br><span class="line">    <span class="function">CarBuilder <span class="title">addWindow</span><span class="params">(Window window)</span></span>;</span><br><span class="line">    <span class="function">CarBuilder <span class="title">addLamp</span><span class="params">(Lamp lamp)</span></span>;</span><br><span class="line">    <span class="function">CarBuilder <span class="title">addEngine</span><span class="params">(Engine engine)</span></span>;</span><br><span class="line">    <span class="function">Car <span class="title">getCar</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体制造商</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaZhongCarBulder</span> <span class="keyword">implements</span> <span class="title">CarBuilder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Car car;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DaZhongCarBulder</span><span class="params">()</span></span>&#123;</span><br><span class="line">        car = <span class="keyword">new</span> Car();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarBuilder <span class="title">addCarBody</span><span class="params">(CarBody carBody)</span> </span>&#123;</span><br><span class="line">        car.setCarBody(carBody);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarBuilder <span class="title">addWindow</span><span class="params">(Window window)</span> </span>&#123;</span><br><span class="line">        car.setWindow(window);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarBuilder <span class="title">addLamp</span><span class="params">(Lamp lamp)</span> </span>&#123;</span><br><span class="line">        car.setLamp(lamp);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarBuilder <span class="title">addEngine</span><span class="params">(Engine engine)</span> </span>&#123;</span><br><span class="line">        car.setEngine(engine);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Car <span class="title">getCar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!car.isWhole())&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;零件不齐，车不能出厂&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> car;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>客户端自定义制造</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DaZhongCarBulder daZhongCarBulder = <span class="keyword">new</span> DaZhongCarBulder();</span><br><span class="line">        ComponentFactory goodFactory = <span class="keyword">new</span> GoodFactory();</span><br><span class="line">        ComponentFactory badFactory = <span class="keyword">new</span> BadFactory();</span><br><span class="line">        <span class="comment">// 这就是链式编程</span></span><br><span class="line">        Car car = daZhongCarBulder</span><br><span class="line">                .addCarBody(goodFactory.getCarBody())</span><br><span class="line">                .addEngine(badFactory.getEngine())</span><br><span class="line">                .addLamp(goodFactory.getLamp())</span><br><span class="line">                .addWindow(goodFactory.getWindow())</span><br><span class="line">                .getCar();</span><br><span class="line">        System.out.println(car);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="加深理解"><a href="#加深理解" class="headerlink" title="加深理解"></a>加深理解</h3><p>再来个案例：kfc点餐</p>
+<p>首先食物接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>饮料接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Drink</span> <span class="keyword">extends</span> <span class="title">Food</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>薯条接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Chip</span> <span class="keyword">extends</span> <span class="title">Food</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eatChip</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>炸鸡接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Chicken</span> <span class="keyword">extends</span> <span class="title">Food</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eatChicken</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>奥尔良炸鸡</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrleansFriedChicken</span> <span class="keyword">implements</span> <span class="title">Chicken</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eatChicken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;奥尔良炸鸡&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>孜然炸鸡</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CuminFriedChicken</span> <span class="keyword">implements</span> <span class="title">Chicken</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eatChicken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;孜然炸鸡&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可乐</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cola</span> <span class="keyword">implements</span> <span class="title">Drink</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;可口可乐&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大薯条</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BigChip</span> <span class="keyword">implements</span> <span class="title">Chip</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eatChip</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;大份薯条&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>百事可乐</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaiShi</span> <span class="keyword">implements</span> <span class="title">Drink</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drink</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;百事可乐&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>订单</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Food&gt; foods;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Order</span><span class="params">()</span></span>&#123;</span><br><span class="line">        foods = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addFood</span><span class="params">(Food food)</span></span>&#123;</span><br><span class="line">        foods.add(food);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>点单小程序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderApplication</span> <span class="keyword">implements</span> <span class="title">Builder</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Order order;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderApplication</span><span class="params">()</span></span>&#123;</span><br><span class="line">        order = <span class="keyword">new</span> Order();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Builder <span class="title">addFood</span><span class="params">(Food food)</span> </span>&#123;</span><br><span class="line">        order.addFood(food);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Order <span class="title">getOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(order.getFoods().size()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;您未点单！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>客户端</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    OrderApplication orderApplication = <span class="keyword">new</span> OrderApplication();</span><br><span class="line">    Order order = orderApplication</span><br><span class="line">            .addFood(<span class="keyword">new</span> BigChip())</span><br><span class="line">            .addFood(<span class="keyword">new</span> OrleansFriedChicken())</span><br><span class="line">            .addFood(<span class="keyword">new</span> Cola())</span><br><span class="line">            .getOrder();</span><br><span class="line">    System.out.println(order);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1956,496 +2434,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/" itemprop="url">Redis-实现乐观锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T11:07:07+08:00">
-                2022-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  257
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="浅实现一下乐观锁"><a href="#浅实现一下乐观锁" class="headerlink" title="浅实现一下乐观锁"></a>浅实现一下乐观锁</h3><p>这里需要使用watch，直接上案例吧</p>
-<p>需求：现有存款100元，花出去30元，还剩下70元</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 100</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> out 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; watch money</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 30</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 30</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) (<span class="built_in">integer</span>) 70</span><br><span class="line">2) (<span class="built_in">integer</span>) 30</span><br><span class="line"><span class="comment"># watch在事务执行结束后就失效了</span></span><br></pre></td></tr></table></figure>
-
-<p>现在我们开两个客户端cli-1和cli-2，按照以下的命令和顺序执行</p>
-<p><strong>cli-1</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; watch money</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 20</span><br><span class="line">QUEUED</span><br></pre></td></tr></table></figure>
-
-<p><strong>cli-2</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">&quot;70&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; incrby money 230</span><br><span class="line">(<span class="built_in">integer</span>) 300</span><br><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">&quot;300&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>cli-1</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span> <span class="comment"># 监视的值发生了改变，所以该事务执行失败，这个时候money上的watch没有解除，可以通过unwactch解除</span></span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">&quot;300&quot;</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/" itemprop="url">多并发中的锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-23T15:56:59+08:00">
-                2022-02-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/JUC/" itemprop="url" rel="index">
-                    <span itemprop="name">JUC</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="为什么需要锁？"><a href="#为什么需要锁？" class="headerlink" title="为什么需要锁？"></a>为什么需要锁？</h3><p>在单线程环境下，不论怎么操作数据都不会出现什么致命的操作，但是在这个多并发的时代，我们更多的要考虑多并发，并保证多并发环境的安全性。</p>
-<p>在并发环境下，多个线程争抢操作<strong>同一份数据</strong>，这样可能会导致数据异常，这个时候就需要一种机制来保证这一份数据的安全性。</p>
-<img src="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/JVM%E5%86%85%E5%AD%98%E7%AE%80%E7%95%A5%E5%9B%BE.png" class title="JVM内存简略图">
-
-<h3 id="锁是如何实现的？"><a href="#锁是如何实现的？" class="headerlink" title="锁是如何实现的？"></a>锁是如何实现的？</h3><p>在java中，每一个Object都有一把锁，这把锁放在对象的对象头中，锁中记录了当前对象被哪个线程所占用。</p>
-<h4 id="内存中的对象结构"><a href="#内存中的对象结构" class="headerlink" title="内存中的对象结构"></a>内存中的对象结构</h4><img src="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84.png" class title="对象结构">
-
-<p><strong>对齐填充字节</strong>是为了满足java对象必须是8比特的倍数这一条件所设计的</p>
-<p><strong>实例数据</strong>是为了保存对象属性和方法的</p>
-<p><strong>对象头</strong>是为了保存对象的运行时数据，对象头包含了两部分，一个是Mark Word 一个是Class Pointer</p>
-<ul>
-<li><p>Class Pointer 指向Class对象</p>
-</li>
-<li><p>Mark Word (32 bit)存放了很多和当前对象运行时状态有关的数据</p>
-<ul>
-<li>hashCode</li>
-<li>锁状态</li>
-</ul>
-</li>
-</ul>
-<img src="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%AF%B9%E8%B1%A1%E5%A4%B4%E7%9A%84MarkWord.png" class title="对象头的MarkWord">
-
-<h3 id="synchronized实现原理"><a href="#synchronized实现原理" class="headerlink" title="synchronized实现原理"></a>synchronized实现原理</h3><p>synchronized被编译后会生成monitorenter和monitorexit两个字节码指令，依赖这两个指令就可以实现锁的机制，从而实现线程的同步</p>
-<p>这是未上锁的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSync</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TimeUnit.MILLISECONDS.sleep(<span class="number">30</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:===&gt;&quot;</span>+count++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    TestSync ts = <span class="keyword">new</span> TestSync();</span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            ts.add();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            ts.add();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">    <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            ts.add();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>我们来加一下synchronized代码块</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSync</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep(<span class="number">30</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:===&gt;&quot;</span>+count++);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/%E5%8A%A0%E9%94%81%E7%9A%84%E7%BB%93%E6%9E%9C.png" class title="加锁的结果">
-
-<p>可以发现结果十分正确，我们来反编译一下，得到以下字节码文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">javap -c .\TestSync.class</span><br><span class="line">Compiled from <span class="string">&quot;TestSync.java&quot;</span></span><br><span class="line">public class com.lizhi.TestSync &#123;</span><br><span class="line">  public com.lizhi.TestSync();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: invokespecial <span class="comment">#1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">       4: <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">  public void add();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: dup</span><br><span class="line">       2: astore_1</span><br><span class="line">       3: monitorenter</span><br><span class="line">       4: getstatic     <span class="comment">#2                  // Field java/util/concurrent/TimeUnit.MILLISECONDS:Ljava/util/concurrent/TimeUnit;</span></span><br><span class="line">       7: ldc2_w        <span class="comment">#3                  // long 30l</span></span><br><span class="line">      10: invokevirtual <span class="comment">#5                  // Method java/util/concurrent/TimeUnit.sleep:(J)V</span></span><br><span class="line">      13: goto          21</span><br><span class="line">      16: astore_2</span><br><span class="line">      17: aload_2</span><br><span class="line">      18: invokevirtual <span class="comment">#7                  // Method java/lang/InterruptedException.printStackTrace:()V</span></span><br><span class="line">      21: getstatic     <span class="comment">#8                  // Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">      24: invokestatic  <span class="comment">#9                  // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;</span></span><br><span class="line">      27: invokevirtual <span class="comment">#10                 // Method java/lang/Thread.getName:()Ljava/lang/String;</span></span><br><span class="line">      30: aload_0</span><br><span class="line">      31: dup</span><br><span class="line">      32: getfield      <span class="comment">#11                 // Field count:I</span></span><br><span class="line">      35: dup_x1</span><br><span class="line">      36: iconst_1</span><br><span class="line">      37: iadd</span><br><span class="line">      38: putfield      <span class="comment">#11                 // Field count:I</span></span><br><span class="line">      41: invokedynamic <span class="comment">#12,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;I)Ljava/lang/String;</span></span><br><span class="line">      46: invokevirtual <span class="comment">#13                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V</span></span><br><span class="line">      49: aload_1</span><br><span class="line">      50: monitorexit</span><br><span class="line">      51: goto          59</span><br><span class="line">      54: astore_3</span><br><span class="line">      55: aload_1</span><br><span class="line">      56: monitorexit</span><br><span class="line">      57: aload_3</span><br><span class="line">      58: athrow</span><br><span class="line">      59: <span class="built_in">return</span></span><br><span class="line">    Exceptio n table:</span><br><span class="line">       from    to  target <span class="built_in">type</span></span><br><span class="line">           4    13    16   Class java/lang/InterruptedException</span><br><span class="line">           4    51    54   any</span><br><span class="line">          54    57    54   any</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到在第3行和第50行出现了monitorenter和monitorexit</p>
-<h4 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h4><p>该单词的意思是监视器，可以将其想成一间宾馆的客房，把各个线程想像成客人。如果客人未退房，在这之后的客人则无法入住，只能等待这个客人退房后方可入住。</p>
-  <img src="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/monitor%E7%9A%84%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6.jpg" class title="monitor的等待机制">
-
-<p><strong>monitor是依赖于操作系统的mutex lock来实现的</strong></p>
-<p>java线程实际上是对操作系统线程的映射，每当挂起或者唤醒一个线程都要切换</p>
-<p>操作系统内核态，这种操作是比较重量级的，在一些情况下甚至切换时间会超过任务本身执行的时间，这样的情况下，使用synchronized的会对系统的性能产生很严重的影响，但是从java6开始，synchronized进行了优化，引入了偏向锁和轻量级锁。</p>
-<h4 id="锁的四种状态"><a href="#锁的四种状态" class="headerlink" title="锁的四种状态"></a>锁的四种状态</h4><p>由低到高分别是：无锁、偏向锁、轻量级锁、重量级锁。</p>
-<p>这就与Mark Word中的四种状态对应上了</p>
-<p>注意：锁只能升级不能降级</p>
-<p><strong>无锁</strong></p>
-<p>无锁即<strong>没有</strong>对自身资源上锁，所有线程都可以拿到资源并操作</p>
-<p>这就可能出现两种情况</p>
-<ol>
-<li>某个对象不会出现在多线程环境下，或者说即使出现在多线程环境下也不会出现竞争的情况</li>
-<li>资源会被竞争，但是我不想对资源锁定，不过这样也不行，会导致一些问题，就想通过一种其他机制来控制多线程，</li>
-</ol>
-<p>比如说，如果有多个进程想修改同一个值，但是只能有一个线程修改成功，其他失败的线程需要不断尝试，直到修改成功 ，这就是CAS（Compare And Swap）,CAS在操作系统中通过一条指令来实现，所以其就可以保证原子性，有了这种机制，我们就可以实现无锁编程</p>
-<p><strong>偏向锁</strong></p>
-<p>假如一个对象被加锁了，那么在实际运行过程中只有一个线程会获得这个对象锁，并只有当线程执行完任务，才会将锁释放。</p>
-<p>我们设想的是，最好这个对象能够认识这个线程，当这个线程过来，那么这个对象就把自己的锁给他，这可以说这个对象偏爱这个线程，这就是偏向锁的概念</p>
-<p>那么这个认识的人，被这个对象记在哪里呢？那就是在对象头中MarkWord的线程ID中，假如情况发生了变化，这个对象发现，不止有一个线程在争抢锁，那么该偏向锁会直接升级成轻量级锁</p>
-<p><strong>轻量级锁</strong></p>
-<p>那当锁升级为轻量级锁的时候，如何判断线程和所之间的绑定关系呢？可以再看下那张markword的表，这里已经不再使用线程ID这个字段了，而是将30bit变为指向线程栈中的锁记录（Lock Record）的指针</p>
-<p>当一个线程想要获得对象的锁的时候，加入看到锁的标志位为00那么就知道它是轻量级锁，这时候线程会在自己的虚拟机栈中开辟一块被称为Lock Record的空间（线程私有的哦），该控件用来存放对象头中的Mark word的副本以及owner指针，线程通过CAS去尝试获得锁，一旦获取那么将会复制该对象头中的markword到本线程的Lock record中并且将Locker record中的owner指针指向该对象，并且对象的前三十位将会生成一个指针，指向线程虚拟机栈中的Lock Record，这样一来就实现了线程和对象锁的绑定。</p>
-<p>当线程已经被抢占了，那其他想抢占的线程会自旋等待（可以理解为轮询），不断尝试拿到锁，这种操作区别于被操作系统挂起阻塞，如果对象的锁很快就被释放的话，自旋就不需要进行系统中断和重新恢复，所以它的效率会更高。</p>
-<p>自旋相当于CPU空转，如果CPU空转时间过长，性能也会产生损耗，然后就有了一种优化，就是适应性自旋。简单来说，就是自旋的时间会根据上一次在同一个锁上自旋的时间以及锁的状态来决定的</p>
-<p><strong>重量级锁</strong></p>
-<p>如果同时有多个线程要获得这个对象锁，也就是说一旦自旋等待的线程超过一个，则会升级为重量级锁，那么这个时候，这就需要使用monitor来对线程进行控制，此时将会完全锁定资源，对线程的管控也更为严格</p>
-<h3 id="无锁编程"><a href="#无锁编程" class="headerlink" title="无锁编程"></a>无锁编程</h3><p>java中的synchronized就是悲观锁（Pessimistic Concurrency Control），什么叫悲观锁呢？</p>
-<p>简单来说就是操作系统会悲观地认为，如果不严格同步线程调用，那么一定会产生异常，所以互斥锁会锁定资源，直供一个线程使用，而阻塞其他线程，因此叫悲观锁，但是悲观锁不是万能的，如果大部分操作都是读的操作，那么就没有必要在每次调用的时候都锁定资源。可能会出现同步代码块执行的耗时远远小于线程切换的耗时。使用悲观锁，会导致性能十分不容乐观，比如大量用户需要同时读取同一份资源，如果使用的是悲观锁，则同一时间只能有一个用户可以查看，其他用户都在一直白屏，但是！其实对于读的操作，即使是多个线程同时操作该数据，也不会对该数据造成影响，我们能不能在不锁定资源的情况下，也可以对线程调用进行一些协调呢？这时候就出现了乐观锁这种机制，实现原理就是CAS（Compare And Swap）</p>
-<h4 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h4><p>我们来举个栗子：人就是线程，厕所就是对象，该对象有一个值来表示是否被占用occupy 0表示空闲 1表示有人</p>
-<p>很多人要去抢厕所，然后线程A（Old Value &#x3D; 0 ，new Value &#x3D;1）、B（Old Value &#x3D; 0，new Value &#x3D; 1）这两个人冲到了最前面，然后A率先和厕所的occupy比较（Compare）发现和oldValue一致，则将oldValue与厕所的occupy交换（And Swap），这时候B一看自己的oldValue与厕所的occupy（1）不一致，他很不甘心，但也只能在厕所外踱步（自旋），通常在等了一段时间后（设置最大自旋次数），骂出一句国粹后就离去了</p>
-<p>这时候可能就出现了问题，因为Compare和Swap是两个操作，没有原子性，这就有可能出现，当A即将将值改为1的那一刹那，B抢到了时间片，将其改为了1，然后A也将其改为1，这就很尴尬了，两个人一起进入了厕所。</p>
-<p>那么如何保证CS的原子性呢？难道还是锁来实现同步吗？这不就是一个鸡生蛋蛋生鸡的问题了吗？</p>
-<p>其实啊，各种不同架构的CPU都提供了指令级别的CAS原子操作，</p>
-<p>比如在X86架构下，通过cmpxchg指令可以支持CAS</p>
-<p>在ARM下，通过LL&#x2F;SC来实现CS……</p>
-<p>也就是说不通过操作系统的同步原语（比如 mutex），CPU已经实现了CS，上层只需要调用即可，这样我们就可以不依赖锁来进行线程同步，但是这也不意味着无锁可以完全代替有锁</p>
-<h4 id="利用CAS特性来进行无锁编程"><a href="#利用CAS特性来进行无锁编程" class="headerlink" title="利用CAS特性来进行无锁编程"></a>利用CAS特性来进行无锁编程</h4><p>需求：使用三条线程，将一个值，从0累加到1000</p>
-<p>1、错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count =<span class="number">0</span> ;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">while</span>(count&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:==&gt;&quot;</span>+count++);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2、使用synchronized</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count =<span class="number">0</span> ;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">while</span>(count&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">                    <span class="keyword">synchronized</span> (Application2.class)&#123;</span><br><span class="line">                        System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:==&gt;&quot;</span>+count++);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3、无锁</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> AtomicInteger count =<span class="keyword">new</span> AtomicInteger(<span class="number">0</span>) ;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">while</span>(count.get()&lt;<span class="number">1000</span>)&#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName()+<span class="string">&quot;:==&gt;&quot;</span>+count.getAndIncrement());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>探究源码</p>
-<p>AtomicInteger的getAndIncrement方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndIncrement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> U.getAndAddInt(<span class="keyword">this</span>, VALUE, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>U的getAndAddInt方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> jdk.internal.misc.Unsafe U = jdk.internal.misc.Unsafe.getUnsafe();</span><br></pre></td></tr></table></figure>
-
-<p>U是一个操作底层的类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HotSpotIntrinsicCandidate</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object o, <span class="keyword">long</span> offset, <span class="keyword">int</span> delta)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        v = getIntVolatile(o, offset);</span><br><span class="line">    &#125; <span class="keyword">while</span> (!weakCompareAndSetInt(o, offset, v, v + delta));</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HotSpotIntrinsicCandidate</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">weakCompareAndSetInt</span><span class="params">(Object o, <span class="keyword">long</span> offset,</span></span></span><br><span class="line"><span class="params"><span class="function">                                          <span class="keyword">int</span> expected,</span></span></span><br><span class="line"><span class="params"><span class="function">                                          <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> compareAndSetInt(o, offset, expected, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HotSpotIntrinsicCandidate</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">boolean</span> <span class="title">compareAndSetInt</span><span class="params">(Object o, <span class="keyword">long</span> offset,</span></span></span><br><span class="line"><span class="params"><span class="function">                                             <span class="keyword">int</span> expected,</span></span></span><br><span class="line"><span class="params"><span class="function">                                             <span class="keyword">int</span> x)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>启动次数可以通过启动参数来配置，默认是10，所以不会出现死循环</p>
-<blockquote>
-<p>Unsafe</p>
-</blockquote>
-<img src="/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/Unsafe%E7%9A%84%E5%8A%9F%E8%83%BD%E5%9B%BE.png" class title="Unsafe的功能图">
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2500,7 +2488,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2630,7 +2618,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">105.9k</span>
+    <span title="站点总字数">112.8k</span>
   
 </div>
 
