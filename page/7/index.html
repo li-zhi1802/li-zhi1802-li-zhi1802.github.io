@@ -304,6 +304,406 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/24/Redis-%E9%80%9A%E8%BF%87Jedis%E6%93%8D%E4%BD%9CRedis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/Redis/2022/02/24/Redis-%E9%80%9A%E8%BF%87Jedis%E6%93%8D%E4%BD%9CRedis/" itemprop="url">Redis-通过Jredis操作Redis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T11:32:22+08:00">
+                2022-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/Redis/2022/02/24/Redis-%E9%80%9A%E8%BF%87Jedis%E6%93%8D%E4%BD%9CRedis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Redis/2022/02/24/Redis-%E9%80%9A%E8%BF%87Jedis%E6%93%8D%E4%BD%9CRedis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  282
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h2><p>Jedis其实就是java用来操作Redis的一个工具包</p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>1、导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- https://mvnrepository.com/artifact/redis.clients/jedis --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.78<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、使用封装好的对象测试连接Redis</p>
+<img src="/javaEE/Redis/2022/02/24/Redis-%E9%80%9A%E8%BF%87Jedis%E6%93%8D%E4%BD%9CRedis/Jedis%E7%B1%BB%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95.png" class title="Jedis类构造方法">
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPing</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 控制台输出PONG</span></span><br></pre></td></tr></table></figure>
+
+<p>可以点进源码看一下</p>
+<img src="/javaEE/Redis/2022/02/24/Redis-%E9%80%9A%E8%BF%87Jedis%E6%93%8D%E4%BD%9CRedis/Jedis%E7%B1%BB%E6%BA%90%E7%A0%81.png" class title="Jedis类源码">
+
+<p>我们会发现，这些方法不就是我们当时写的那些吗，只不过都被封装成了方法供我们使用。</p>
+<h3 id="实现事务"><a href="#实现事务" class="headerlink" title="实现事务"></a>实现事务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6379</span>);</span><br><span class="line">        jedis.flushDB();</span><br><span class="line">        jedis.set(<span class="string">&quot;money&quot;</span>,<span class="string">&quot;100&quot;</span>);</span><br><span class="line">        jedis.set(<span class="string">&quot;out&quot;</span>,<span class="string">&quot;0&quot;</span>);</span><br><span class="line">        jedis.watch(<span class="string">&quot;money&quot;</span>);</span><br><span class="line">        Transaction multi = jedis.multi();</span><br><span class="line">        jedis.decrBy(<span class="string">&quot;mondy&quot;</span>,<span class="number">30</span>);</span><br><span class="line">        jedis.incrBy(<span class="string">&quot;out&quot;</span>,<span class="number">30</span>);</span><br><span class="line">        multi.exec();</span><br><span class="line">        jedis.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上和命令行的命令是一模一样的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/" itemprop="url">Redis-实现乐观锁</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T11:07:07+08:00">
+                2022-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Redis/2022/02/24/Redis-%E5%AE%9E%E7%8E%B0%E4%B9%90%E8%A7%82%E9%94%81/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  257
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="浅实现一下乐观锁"><a href="#浅实现一下乐观锁" class="headerlink" title="浅实现一下乐观锁"></a>浅实现一下乐观锁</h3><p>这里需要使用watch，直接上案例吧</p>
+<p>需求：现有存款100元，花出去30元，还剩下70元</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> money 100</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> out 0</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; watch money</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 30</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 30</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) (<span class="built_in">integer</span>) 70</span><br><span class="line">2) (<span class="built_in">integer</span>) 30</span><br><span class="line"><span class="comment"># watch在事务执行结束后就失效了</span></span><br></pre></td></tr></table></figure>
+
+<p>现在我们开两个客户端cli-1和cli-2，按照以下的命令和顺序执行</p>
+<p><strong>cli-1</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; watch money</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; decrby money 20</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; incrby out 20</span><br><span class="line">QUEUED</span><br></pre></td></tr></table></figure>
+
+<p><strong>cli-2</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">&quot;70&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; incrby money 230</span><br><span class="line">(<span class="built_in">integer</span>) 300</span><br><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">&quot;300&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>cli-1</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span> <span class="comment"># 监视的值发生了改变，所以该事务执行失败，这个时候money上的watch没有解除，可以通过unwactch解除</span></span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; get money</span><br><span class="line"><span class="string">&quot;300&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JUC/2022/02/23/JUC-%E5%A4%9A%E5%B9%B6%E5%8F%91%E4%B8%AD%E7%9A%84%E9%94%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2083,443 +2483,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/" itemprop="url">【717-Easy】1比特与2比特字符</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-21T20:27:37+08:00">
-                2022-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  440
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1比特与2比特字符"><a href="#1比特与2比特字符" class="headerlink" title="1比特与2比特字符"></a>1比特与2比特字符</h2><p>有两种特殊字符：</p>
-<ul>
-<li>第一种字符可以用一个比特 <code>0</code> 来表示</li>
-<li>第二种字符可以用两个比特(<code>10</code> 或 <code>11</code>)来表示、</li>
-</ul>
-<p>给定一个以 <code>0</code> 结尾的二进制数组 <code>bits</code> ，如果最后一个字符必须是一位字符，则返回 <code>true</code> 。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: bits = [1, 0, 0]</span></span><br><span class="line"><span class="section">输出: true</span></span><br><span class="line"><span class="section">解释: 唯一的编码方式是一个两比特字符和一个一比特字符。</span></span><br><span class="line">所以最后一个字符是一比特字符。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">输入: bits = [1, 1, 1, 0]</span></span><br><span class="line"><span class="section">输出: false</span></span><br><span class="line"><span class="section">解释: 唯一的编码方式是两比特字符和两比特字符。</span></span><br><span class="line">所以最后一个字符不是一比特字符。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示:</strong></p>
-<ul>
-<li><code>1 &lt;= bits.length &lt;= 1000</code></li>
-<li><code>bits[i] == 0 or 1</code></li>
-</ul>
-<p><strong>Related Topics</strong></p>
-<ul>
-<li>数组</li>
-</ul>
-<h3 id="法一：直接正序遍历"><a href="#法一：直接正序遍历" class="headerlink" title="法一：直接正序遍历"></a>法一：直接正序遍历</h3><p>分析：其实这个题目的意思数组中11、10这两种连续的组合就是一个整体，然后0是一个整体，返回的结果就是，这个数组按这种规则组合后，最后的那一个组合是不是0，如果是则返回true，反之则返回false。</p>
-<p>首先，判断最后一个是否是1，如果为1则直接返回false</p>
-<p>然后，遍历该数组到倒数第二个，如果当前的值是1，则用来遍历的计数器额外加1</p>
-<p>最后，返回计时器是否等于数组的长度减1，如果相等，则说明最后一位的0未与倒数第二位匹配，满足题意</p>
-<p>上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isOneBitCharacter</span><span class="params">(<span class="keyword">int</span>[] bits)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = bits.length;</span><br><span class="line">        <span class="keyword">if</span>(bits[length-<span class="number">1</span>]==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;length-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(bits[i]==<span class="number">1</span>)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i==length-<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" itemprop="url">【2-Medium】两数相加</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-21T18:53:00+08:00">
-                2022-02-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.6k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="两数相加"><a href="#两数相加" class="headerlink" title="两数相加"></a>两数相加</h2><p>给你两个 <strong>非空</strong> 的链表，表示两个非负的整数。它们每位数字都是按照 <strong>逆序</strong> 的方式存储的，并且每个节点只能存储 <strong>一位</strong> 数字。</p>
-<p>请你将两个数相加，并以相同形式返回一个表示和的链表。</p>
-<p>你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
-<p>ListNode</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Definition for singly-linked list.</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    ListNode() &#123;&#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val) &#123; <span class="keyword">this</span>.val = val; &#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val, ListNode next) &#123; <span class="keyword">this</span>.val = val; <span class="keyword">this</span>.next = next; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例1:</strong></p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = <span class="comment">[2,4,3]</span>, l2 = <span class="comment">[5,6,4]</span></span><br><span class="line">输出：<span class="comment">[7,0,8]</span></span><br><span class="line">解释：342 + 465 = 807.</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = <span class="comment">[0]</span>, l2 = <span class="comment">[0]</span></span><br><span class="line">输出：<span class="comment">[0]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：l1 = [<span class="number">9,9,9,9</span>,<span class="number">9</span>,<span class="number">9</span>,<span class="number">9</span>], l2 = [<span class="number">9,9,9,9</span>]</span><br><span class="line">输出：[<span class="number">8,9,9,9</span>,<span class="number">0,0,0,1</span>]</span><br></pre></td></tr></table></figure>
-
-<p><strong>图示1：</strong></p>
-<img src="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E5%9B%BE%E7%A4%BA1.png" class title="图示1">
-
-<p><strong>图示2：</strong></p>
-<img src="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E5%9B%BE%E7%A4%BA2.png" class title="图示2">
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>每个链表中的节点数在范围 <code>[1, 100]</code> 内</li>
-<li><code>0 &lt;= Node.val &lt;= 9</code></li>
-<li>题目数据保证列表表示的数字不含前导零</li>
-</ul>
-<p><strong>Related Topics</strong></p>
-<ul>
-<li>递归</li>
-<li>链表</li>
-<li>数学</li>
-</ul>
-<h3 id="法一：链表转值计算"><a href="#法一：链表转值计算" class="headerlink" title="法一：链表转值计算"></a>法一：链表转值计算</h3><p>分析：遇到这种链表的题，首先要先将逻辑图画出来。</p>
-<p>经过观察可知，链表的第一位表示该数字的个位，第二位代表该数字的十位，以此类推。</p>
-<p>一开始解题思路应该是，先将链表表示的数字算出来，然后先将两个数字加起来，然后再用该数字构建出来结果链表。</p>
-<blockquote>
-<p>代码如下</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> sum=compute(l1)+compute(l2);</span><br><span class="line">    ListNode listNode = <span class="keyword">new</span> ListNode();</span><br><span class="line">    <span class="comment">// 这里的listNode是虚拟节点，最后返回的是该节点的下一个节点</span></span><br><span class="line">    ListNode temp = listNode;</span><br><span class="line">    <span class="keyword">while</span> (sum != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 这里需要使用强转</span></span><br><span class="line">        <span class="comment">// (sum%10)的结果是long类型，直接赋值给ListNode的int型的val会报错</span></span><br><span class="line">        temp.next = <span class="keyword">new</span> ListNode((<span class="keyword">int</span>)(sum%<span class="number">10</span>));</span><br><span class="line">        temp = temp.next;</span><br><span class="line">        sum /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> listNode.next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 该函数是为了计算链表所表示的值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">compute</span><span class="params">(ListNode node)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; node != <span class="keyword">null</span> ; node = node.next)&#123;</span><br><span class="line">        result += node.val *i;</span><br><span class="line">        i *= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>我们算一下int的最大值是多少，int是4个字节也就是32位，可以表示2^32个数字，</p>
-<p>再来看long的最大值，long是8个字节也就是64位，可以表示2^64位。</p>
-<p>此方法乍一看确实没问题，但是，请看题目要求</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82.png" class title="题目要求">
-
-<p>题目要求告诉我们，测试的时候可能会出现100位的数字，long类型最大值远远不够，所以当数字很大的时候，该方法就会崩盘。</p>
-<p>这时候就需要考虑其他方法。比如，递归。</p>
-<h3 id="法二：递归"><a href="#法二：递归" class="headerlink" title="法二：递归"></a>法二：递归</h3><p>分析：我们现在有两个链表，我们对其要清楚两点</p>
-<ol>
-<li>两个链表的长度不一定相同</li>
-<li>两个链表相加后，长度不一定不变</li>
-</ol>
-<p>递归需要先将递归退出条件写出来，即两者都到尾部，就简单看看我画的思路图</p>
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        ListNode listNode = <span class="keyword">new</span> ListNode();</span><br><span class="line">        add(l1,l2,listNode);</span><br><span class="line">        <span class="keyword">return</span> listNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">add</span><span class="params">(ListNode a,ListNode b,ListNode temp)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 当两个链表都到头了，则退出递归</span></span><br><span class="line">        <span class="keyword">if</span>(a==<span class="keyword">null</span>&amp;&amp;b==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 此变量是用来标注下一次递归的时候两个链表是否是都尾部了</span></span><br><span class="line">        <span class="keyword">boolean</span> flag=<span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">// 当a到尾部的时候，将temp的数据域变为自身加上b的数据域的值</span></span><br><span class="line">        <span class="keyword">if</span>(a==<span class="keyword">null</span>)&#123;</span><br><span class="line">            temp.val+=b.val;</span><br><span class="line">            <span class="comment">// 在a已经到尾部的情况下，b的next为null，即b将在下一次递归到尾部了，则将flag变为true</span></span><br><span class="line">            <span class="keyword">if</span>(b.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">                flag=<span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 当b到头的时候，将temp的数据域变为自身加上b的数据域的值</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(b==<span class="keyword">null</span>)&#123;</span><br><span class="line">            temp.val+=a.val;</span><br><span class="line">            <span class="comment">// 在b已经到尾部的情况下，a的next为null，即a将在下一次递归到尾部了，则将flag变为true</span></span><br><span class="line">            <span class="keyword">if</span>(a.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">                flag=<span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            temp.val+=a.val+b.val;</span><br><span class="line">            <span class="keyword">if</span>(a.next==<span class="keyword">null</span>&amp;&amp;b.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">                flag=<span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// left用来存储当前这一位的值是否&gt;=10，如果满足，则进1</span></span><br><span class="line">        <span class="keyword">int</span> left=temp.val&gt;=<span class="number">10</span>?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 将left作为初始值new出来temp的下一个指针</span></span><br><span class="line">        temp.next = <span class="keyword">new</span> ListNode(left);</span><br><span class="line">        <span class="comment">// 为了防止超过十，所以这里做了取余的操作，</span></span><br><span class="line">        temp.val = temp.val%<span class="number">10</span>;</span><br><span class="line">        <span class="comment">// 如果下一次递归的时候两者都到了尾部，并且没有进1，则不需要new出来temp的next </span></span><br><span class="line">        <span class="keyword">if</span>(flag&amp;&amp;left==<span class="number">0</span>)&#123;</span><br><span class="line">            temp.next=<span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//递归调用</span></span><br><span class="line">        <span class="keyword">return</span> add(a==<span class="keyword">null</span>?<span class="keyword">null</span>:a.next,b==<span class="keyword">null</span>?<span class="keyword">null</span>:b.next,temp.next);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其实这种递归就是化简为繁了，下面这种做法才是我觉得最好的。</p>
-<p>第二次写</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> add(l1,l2,<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">add</span><span class="params">(ListNode l1, ListNode l2, <span class="keyword">int</span> bit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == <span class="keyword">null</span> &amp;&amp; l2 == <span class="keyword">null</span> &amp;&amp; bit == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> val = bit;</span><br><span class="line">        <span class="comment">// bit就是表示每次是否进位</span></span><br><span class="line">        <span class="keyword">if</span> (l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            val += l1.val;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            val += l2.val;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode node = <span class="keyword">new</span> ListNode(val % <span class="number">10</span>);</span><br><span class="line">        node.next = add(l1, l2, val / <span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="法三：并行遍历"><a href="#法三：并行遍历" class="headerlink" title="法三：并行遍历"></a>法三：并行遍历</h3><p>分析：直接两条链表一起遍历，用left存储是否进位</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        ListNode cur = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode temp = cur;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 当两者有一个没有遍历到尾部就一直遍历</span></span><br><span class="line">        <span class="keyword">while</span>(l1 != <span class="keyword">null</span> || l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> x = (l1 == <span class="keyword">null</span> ? <span class="number">0</span> : l1.val);</span><br><span class="line">            <span class="keyword">int</span> y = (l2 == <span class="keyword">null</span> ? <span class="number">0</span> : l2.val);</span><br><span class="line">            <span class="keyword">int</span> sum = x + y + left;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// left = sum &gt;= 10 ? 1 : 0;两者一样的，但是下者表达更简单</span></span><br><span class="line">            left = sum / <span class="number">10</span>;</span><br><span class="line">            sum = sum % <span class="number">10</span>;</span><br><span class="line">            temp.next = <span class="keyword">new</span> ListNode(sum);</span><br><span class="line"></span><br><span class="line">            temp = temp.next;</span><br><span class="line">            <span class="keyword">if</span>(l1 != <span class="keyword">null</span>)</span><br><span class="line">                l1 = l1.next;</span><br><span class="line">            <span class="keyword">if</span>(l2 != <span class="keyword">null</span>)</span><br><span class="line">                l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 做单独处理</span></span><br><span class="line">        <span class="keyword">if</span>(left == <span class="number">1</span>) &#123;</span><br><span class="line">            temp.next = <span class="keyword">new</span> ListNode(left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第二次写</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        ListNode t1 = l1;</span><br><span class="line">        ListNode t2 = l2;</span><br><span class="line">        int bit = 0;</span><br><span class="line">        ListNode res = new ListNode();</span><br><span class="line">        ListNode temp = res;</span><br><span class="line">        // 三种情况可以继续循环</span><br><span class="line">        // 1、tl未到头</span><br><span class="line">        // 2、t2未到头</span><br><span class="line">        // 3、bit为1，表示进位</span><br><span class="line">        while(t1 != null || t2 != null || bit != 0)&#123;</span><br><span class="line">            int a = t1 == null? 0 : t1.val;</span><br><span class="line">            int b = t2 == null? 0 : t2.val;</span><br><span class="line"></span><br><span class="line">            // a+b+bit表示该位的和，放入该地方的是余数</span><br><span class="line">            temp.next = new ListNode((a+b+bit)%10);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">            // bit表示的是是否满十进位，只要该数除以10，为1则表示该数大于10了</span><br><span class="line">            bit = (a+b+bit)/10;</span><br><span class="line"></span><br><span class="line">            if(t1 != null) t1 = t1.next;</span><br><span class="line">            if(t2 != null) t2 = t2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return res.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2574,7 +2537,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2704,7 +2667,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">109.9k</span>
+    <span title="站点总字数">121.9k</span>
   
 </div>
 
