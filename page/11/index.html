@@ -304,247 +304,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/SpringMVC/2022/01/29/SpringMVC-%E7%AE%80%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/javaEE/SpringMVC/2022/01/29/SpringMVC-%E7%AE%80%E8%BF%B0/" itemprop="url">SpringMVC-简述</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-29T10:01:23+08:00">
-                2022-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/SpringMVC/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringMVC</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/javaEE/SpringMVC/2022/01/29/SpringMVC-%E7%AE%80%E8%BF%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/SpringMVC/2022/01/29/SpringMVC-%E7%AE%80%E8%BF%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  737
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h2><h3 id="Model-1时代"><a href="#Model-1时代" class="headerlink" title="Model 1时代"></a>Model 1时代</h3><p>所有请求直接转发到jsp然后在jsp编写业务代码，然后根据不同的结果跳转不同的页面</p>
-<h3 id="Model-2时代"><a href="#Model-2时代" class="headerlink" title="Model 2时代"></a>Model 2时代</h3><p>Controller</p>
-<ol>
-<li>取得表单数据</li>
-<li>处理业务逻辑</li>
-<li>根据不同的情况跳转不同的页面</li>
-</ol>
-<p>View</p>
-<ol>
-<li>展示数据</li>
-</ol>
-<p>Model</p>
-<ol>
-<li>业务逻辑</li>
-<li>保存数据</li>
-</ol>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>SpringMVC的特点：</p>
-<ol>
-<li>轻量级，简单易学</li>
-<li>与spring无缝结合，可以将mvc中所有需要的类注册到ioc容器中</li>
-<li>高效，基于请求和响应的mvc框架</li>
-<li>功能强大，RESTFUL风格，格式化，数据验证</li>
-<li>约定大于配置</li>
-</ol>
-<p>说白了学它就一个原因，因为它让我们开发变得简单了</p>
-<p><strong>原理</strong></p>
-<h4 id="回顾servlet"><a href="#回顾servlet" class="headerlink" title="回顾servlet"></a>回顾servlet</h4><p>我们都学过java web，那时候我们对于前端的请求都是通过一个servlet来处理的，然后在servlet里面，处理前端传来的数据，调用业务逻辑，返回处理之后的数据，然后servlet根据这些数据，进行重定向或者请求转发</p>
-
-
-<p>一个请求对应一个servlet，这就会导致我们在开发中写了大量的servlet，而且每次都需要在web.xml中注册，十分繁琐。</p>
-<hr>
-<p>没有什么是加一层解决不了的，所以，springmvc在servlet之前加了一层来简化我们的开发</p>
-<p>SpringMVC的web框架是以围绕DispatcherServlet（前端控制器，调度器，请求分发器）设计的。它的作用就是将请求分发到不同的处理器（方法或者类，下面的初识mvc是以类级作为处理器，但是一般都会使用方法级去做处理器）</p>
-<p>下图是DispatcherServlet的结构图，我们可以看到一些在javaweb阶段比较眼熟的类，比如Servlet，GenericServlet，HttpServlet。因此我们可以得出，DispatcherServlet本质就是一个和我们当时写的servlet是一样的，只是他帮我们做了很多事情。</p>
-
-
-<p>人到中年有三大件，枸杞大枣保温杯。</p>
-<p>SpringMVC中也有三大件，分别是</p>
-<ul>
-<li>处理器映射器（HandlerMapping）</li>
-<li>处理器适配器（HandlerAdapter）</li>
-<li>视图解析器（ViewResolver）</li>
-</ul>
-<p>我们来看看这三大件是如何在springmvc中发挥作用的，原理图如下：</p>
-
-
-<p><strong>核心类图</strong></p>
-
-
-<p><strong>简要分析</strong></p>
-<ol>
-<li>DispatcherServlet就可以简单理解为前端控制器，他会将所有客户端的请求拦截</li>
-<li>将该请求发送给HandlerMapping实现类，该实现类根据url查找到对应的控制器，将结果返回给DispatcherServlet</li>
-<li>DispatcherServlet根据HandlerMapping解析的结果，适配并执行对应的控制器的逻辑，</li>
-<li>控制器返回信息，HandlerAdapter实现类接收该信息并将其解析成ModelAndView对象返回到DispatcherServlet</li>
-<li>DispatcherServlet调用ViewResolver实现类将HandlerAdapter实现类传回来的视图逻辑和模型解析</li>
-<li>视图解析器将解析后的逻辑视图名传回DispatcherServlet</li>
-<li>DispatcherServlet根据解析后的视图名称找到该视图</li>
-<li>渲染视图，返回页面，作出响应</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/SpringMVC/2022/01/28/SpringMVC-%E6%8B%A6%E6%88%AA%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3248,11 +3007,160 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/uncategorized/2022/01/16/first/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/uncategorized/2022/01/16/first/" itemprop="url">first</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-16T18:39:26+08:00">
+                2022-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/uncategorized/2022/01/16/first/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/uncategorized/2022/01/16/first/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>测试博客的发布</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span>
   </nav>
 
 
@@ -3302,7 +3210,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3432,7 +3340,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">127.3k</span>
+    <span title="站点总字数">124.2k</span>
   
 </div>
 
