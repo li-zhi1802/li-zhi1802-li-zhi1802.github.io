@@ -304,6 +304,215 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/" itemprop="url">【981-Medium】基于时间的键值存储</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-27T12:15:00+08:00">
+                2022-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  767
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基于时间的键值存储"><a href="#基于时间的键值存储" class="headerlink" title="基于时间的键值存储"></a>基于时间的键值存储</h2><p>设计一个基于时间的键值数据结构，该结构可以在不同时间戳存储对应同一个键的多个值，并针对特定时间戳检索键对应的值。</p>
+<p>实现 <code>TimeMap</code> 类：</p>
+<ul>
+<li><p><code>TimeMap()</code> 初始化数据结构对象</p>
+</li>
+<li><p><code>void set(String key, String value, int timestamp)</code> 存储键 <code>key</code>、值 <code>value</code>，以及给定的时间戳 <code>timestamp</code>。</p>
+</li>
+<li><p>&#96;&#96;&#96;<br>String get(String key, int timestamp)</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">  -</span> 返回先前调用 <span class="code">`set(key, value, timestamp_prev)`</span> 所存储的值，其中 <span class="code">`timestamp_prev &lt;= timestamp`</span> 。</span><br><span class="line"><span class="bullet">  -</span> 如果有多个这样的值，则返回对应最大的 <span class="code">`timestamp_prev`</span> 的那个值。</span><br><span class="line"><span class="bullet">  -</span> 如果没有值，则返回空字符串（<span class="code">`&quot;&quot;`</span>）。</span><br><span class="line"></span><br><span class="line"><span class="strong">**示例：**</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>输入：<br>[“TimeMap”, “set”, “get”, “get”, “set”, “get”, “get”]<br>[[], [“foo”, “bar”, 1], [“foo”, 1], [“foo”, 3], [“foo”, “bar2”, 4], [“foo”, 4], [“foo”, 5]]<br>输出：<br>[null, null, “bar”, “bar”, null, “bar2”, “bar2”]</p>
+</li>
+</ul>
+<p>解释：<br>TimeMap timeMap &#x3D; new TimeMap();<br>timeMap.set(“foo”, “bar”, 1);  &#x2F;&#x2F; 存储键 “foo” 和值 “bar” ，时间戳 timestamp &#x3D; 1<br>timeMap.get(“foo”, 1);         &#x2F;&#x2F; 返回 “bar”<br>timeMap.get(“foo”, 3);         &#x2F;&#x2F; 返回 “bar”, 因为在时间戳 3 和时间戳 2 处没有对应 “foo” 的值，所以唯一的值位于时间戳 1 处（即 “bar”） 。<br>timeMap.set(“foo”, “bar2”, 4); &#x2F;&#x2F; 存储键 “foo” 和值 “bar2” ，时间戳 timestamp &#x3D; 4<br>timeMap.get(“foo”, 4);         &#x2F;&#x2F; 返回 “bar2”<br>timeMap.get(“foo”, 5);         &#x2F;&#x2F; 返回 “bar2”</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```java</span><br><span class="line">/**</span><br><span class="line"> * Your TimeMap <span class="type">object</span> will be instantiated <span class="built_in">and</span> called <span class="keyword">as</span> such:</span><br><span class="line"> * TimeMap obj = <span class="built_in">new</span> TimeMap();</span><br><span class="line"> * obj.<span class="keyword">set</span>(<span class="keyword">key</span>,value,timestamp);</span><br><span class="line"> * <span class="type">String</span> param_2 = obj.<span class="keyword">get</span>(<span class="keyword">key</span>,timestamp);</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= key.length, value.length &lt;= 100</code></li>
+<li><code>key</code> 和 <code>value</code> 由小写英文字母和数字组成</li>
+<li><code>1 &lt;= timestamp &lt;= 107</code></li>
+<li><code>set</code> 操作中的时间戳 <code>timestamp</code> 都是严格递增的</li>
+<li>最多调用 <code>set</code> 和 <code>get</code> 操作 <code>2 * 105</code> 次</li>
+</ul>
+<p><strong>Related Topics</strong></p>
+<ul>
+<li>设计</li>
+<li>哈希表</li>
+<li>字符串</li>
+<li>二分查找</li>
+</ul>
+<h3 id="法一：内置结构Map-lt-Integer-TreeMap-lt-Integer-String-gt-gt"><a href="#法一：内置结构Map-lt-Integer-TreeMap-lt-Integer-String-gt-gt" class="headerlink" title="法一：内置结构Map&lt;Integer,TreeMap&lt;Integer,String&gt;&gt;"></a>法一：内置结构<code>Map&lt;Integer,TreeMap&lt;Integer,String&gt;&gt;</code></h3><p>这是自己写的，但是超时了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeMap</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, TreeMap&lt;Integer,String&gt;&gt; map ;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TimeMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String key, String value, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        TreeMap&lt;Integer, String&gt; sm = map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(sm==<span class="keyword">null</span>) &#123;</span><br><span class="line">            TreeMap&lt;Integer, String&gt; v = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">            v.put(timestamp, value);</span><br><span class="line">            map.put(key, v);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            sm.put(timestamp,value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String key, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        TreeMap&lt;Integer, String&gt; sm = map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(sm==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> find = binarySearch(sm.keySet().toArray(<span class="keyword">new</span> Integer[]&#123;&#125;), timestamp);</span><br><span class="line">        <span class="keyword">if</span>(find==-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> sm.get(find);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(Integer[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left&lt;=right) &#123;</span><br><span class="line">            mid = (left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">return</span> target;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&gt;target)&#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[left-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是我看到评论区写的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeMap</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    HashMap&lt;String, TreeMap&lt;Integer, String&gt;&gt; map;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TimeMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String key, String value, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        map.computeIfAbsent(key, k-&gt; <span class="keyword">new</span> TreeMap()).put(timestamp, value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String key, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这是在对应的TreeMap中找到以timeStamp为天花板的数字</span></span><br><span class="line">        Integer time = map.get(key).floorKey(timestamp);</span><br><span class="line">        <span class="keyword">if</span>(time == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map.get(key).get(time);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>computeIfAbsent这是java8中的操作，关于java8新特性，我后面会专门写一个专栏的</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/uncategorized/2022/02/27/%E3%80%90%E5%89%91%E6%8C%87OfferII68-Easy%E3%80%91%E6%9F%A5%E6%89%BE%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2200,260 +2409,6 @@
 <li>redis集群</li>
 <li>限流降级：在缓存失效后，通过加锁或者队列来控制数据库写缓存的线程个数</li>
 <li>数据预热：在正式部署前，先把可能的数据预先访问一遍，这样的话可能大量访问的数据就会加载到缓存中去，在即将发生高并发访问前，手动触发加载器缓存不同的key，设置不同的过期时间，让缓存过期时间点比较均匀</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" itemprop="url">Redis-主从复制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-25T11:40:53+08:00">
-                2022-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><p>主从复制，是指将一台Redis服务器中的数据，复制到其他的Redis服务器上。</p>
-<p>前者称为主节点(master&#x2F;leader)，后者称为从节点(slave&#x2F;follower)</p>
-<p>数据的复制是<strong>单向</strong>的，只能由主节点到从节点。Master以写为主，Slave 以读为主。</p>
-<p>且一个主节点可以有多个从节点(或没有从节点)，但一个从节点只能有一个主节点。</p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>主从复制的作用主要包括：</p>
-<p>1、<strong>数据冗余：</strong>主从复制实现了数据的热备份，是持久化之外的一种数据冗余方式。<br>2、<strong>故障恢复：</strong>当主节点出现问题时，可以由从节点提供服务，实现快速的故障恢复<br>3、<strong>负载均衡：</strong>在主从复制的基础上，配合<strong>读写分离</strong>，可以由主节点提供写服务，由从节点提供读服务，分担服务器负载；尤其是在写少读多的场景下，通过多个从节点分担读负载，可以大大提高Redis服务器的并发量。<br>4、<strong>高可用（集群）基石：</strong>主从复制还是哨兵模式和部署集群能够实施的基础，因此说主从复制是Redis高可用的基础。</p>
-<img src="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6.png" class title="主从复制">
-
-<p>一般来说，要将Redis运用于工程项目中，只使用一台Redis是万万不能的，最少三台（一主二从）</p>
-<p>​	1、从结构上，单个Redis服务器会发生单点故障，并且一台服务器需要处理所有的请求负载，压力较大<br>​	2、从容量上，不能将一台服务所有内存用作Redis存储内存，单台Redis最大使用内存不应该超过<strong>20G</strong>。</p>
-<h3 id="配置子节点"><a href="#配置子节点" class="headerlink" title="配置子节点"></a>配置子节点</h3><p>我们这里使用docker来做</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制两份配置文件给从节点镜像使用</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># ls</span></span><br><span class="line">redis-01.conf  redis-02.conf  redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要修改这三份文件，将绑定本地的配置注释掉，关闭安全模式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分别以后台方式启动两个从节点</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker run -P -it -d -v /home/redis/redis-01.conf:/etc/redis/redis.conf --name=salveRedis01 redis</span></span><br><span class="line">a593c51bc1100e892f5d18c34ba5a05f637d1b3a4a29e5840cfeb18a633355f5</span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker run -P -it -d -v /home/redis/redis-02.conf:/etc/redis/redis.conf --name=salveRedis02 redis</span></span><br><span class="line">08833de79be2cf719402b4f4cf42bf06d0f0a84a22e188f2b2f4d03f54ca48c1</span><br><span class="line"><span class="comment"># 查看映射端口，这里一定一定要注意！！服务器要开安全组！！！不然就是连接失败哎！！！</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS              PORTS                                               NAMES</span><br><span class="line">a593c51bc110   redis          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   24 minutes ago   Up About a minute   0.0.0.0:49169-&gt;6379/tcp                             salveRedis01</span><br><span class="line">08833de79be2   redis          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   24 minutes ago   Up About a minute   0.0.0.0:49170-&gt;6379/tcp                             salveRedis02</span><br><span class="line">0e9919007f5d   redis          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   38 minutes ago   Up 2 minutes        0.0.0.0:49168-&gt;6379/tcp                             masterRedis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看主节点的基本信息</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ ~]<span class="comment"># docker exec -it masterRedis redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master          <span class="comment"># 当前节点的角色</span></span><br><span class="line">connected_slaves:0   <span class="comment"># 当前节点的子节点</span></span><br><span class="line">master_failover_state:no-failover</span><br><span class="line">master_replid:f37ca91dd3b3578e83031f9ea087d64f9994dd9a</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:0</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:0</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:0</span><br><span class="line">repl_backlog_histlen:0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入子节点1号的客户端，并配置父节点</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker exec -it salveRedis01 redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; SLAVEOF 116.62.151.26 49168</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; role</span><br><span class="line">1) <span class="string">&quot;slave&quot;</span></span><br><span class="line">2) <span class="string">&quot;116.62.151.26&quot;</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 49168</span><br><span class="line">4) <span class="string">&quot;connected&quot;</span>         <span class="comment">#说明连接成功，如果没开安全组的话，这一行会是connecting下一行是-1，表示连接失败</span></span><br><span class="line">5) (<span class="built_in">integer</span>) 42</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入子节点2号的客户端，并配置父节点</span></span><br><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker exec -it salveRedis02 redis-cli</span></span><br><span class="line">127.0.0.1:6379&gt; SLAVEOF 116.62.151.26 49168</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; role</span><br><span class="line">1) <span class="string">&quot;slave&quot;</span></span><br><span class="line">2) <span class="string">&quot;116.62.151.26&quot;</span></span><br><span class="line">3) (<span class="built_in">integer</span>) 49168</span><br><span class="line">4) <span class="string">&quot;connected&quot;</span></span><br><span class="line">5) (<span class="built_in">integer</span>) 112</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看父节点的基本信息</span></span><br><span class="line">127.0.0.1:6379&gt; info replication</span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:2              <span class="comment"># 两个子节点</span></span><br><span class="line">slave0:ip=116.62.151.26,port=6379,state=online,offset=112,lag=0</span><br><span class="line">slave1:ip=116.62.151.26,port=6379,state=online,offset=112,lag=1</span><br><span class="line">master_failover_state:no-failover</span><br><span class="line">master_replid:92ee701d04326eb2c74d8de1ea0fc2ec010f97df</span><br><span class="line">master_replid2:0000000000000000000000000000000000000000</span><br><span class="line">master_repl_offset:112</span><br><span class="line">second_repl_offset:-1</span><br><span class="line">repl_backlog_active:1</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:1</span><br><span class="line">repl_backlog_histlen:112</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在父节点测试是否数据同步</span></span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">(empty array)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment"># 子节点1号查询</span></span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 子节点2号查询</span></span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line"><span class="string">&quot;v1&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以在配置文件中配置父节点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置主节点的ip的端口</span></span><br><span class="line">slaveof 主机ip 端口</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果主机使用了config set masterauth password，或者主机配置文件中 requirepass password</span></span><br><span class="line"><span class="comment"># 则这里配置文件就要加上主机的密码来验证</span></span><br><span class="line">masterauth password</span><br></pre></td></tr></table></figure>
-
-<p>主机可以写入也可以读取，但是从节点是不可以写入的，只可以读取主节点写入的值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">(error) READONLY You can<span class="string">&#x27;t write against a read only replica.</span></span><br></pre></td></tr></table></figure>
-
-<p>主机宕机了之后，从机依旧可以读，但是这样的话，就不能往里面写入数据了。</p>
-<p>（这里需要使用<strong>哨兵模式</strong>，即当主机宕机后，从机中会选举出来一个主机，这样的话就保留了写入操作）</p>
-<p>当主机恢复运行，则恢复写入功能</p>
-<p>从机宕机的话，对主机没有任何影响</p>
-<p>当从机运行后，就恢复主机中的数据</p>
-<h3 id="复制原理"><a href="#复制原理" class="headerlink" title="复制原理"></a>复制原理</h3><p>Slave 启动成功连接到 master 后会发送一个sync命令</p>
-<p>Master 接到命令，启动后台的存盘进程，同时收集所有接收到的用于修改数据集命令，在后台进程执行完毕之后，master将传送<br>整个数据文件到slave，并完成一次完全同步。</p>
-<ul>
-<li><p>全量复制：slave服务在接收到数据库文件数据后，将其存盘并加载到内存中。</p>
-</li>
-<li><p>增量复制：Master 继续将新的所有收集到的修改命令依次传给slave，完成同步</p>
-</li>
-</ul>
-<p>但是只要是重新连接master，一次完全同步（全量复制）将被自动执行</p>
-<h3 id="主从连接的形式"><a href="#主从连接的形式" class="headerlink" title="主从连接的形式"></a>主从连接的形式</h3><ol>
-<li>一对多</li>
-</ol>
-<img src="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6.png" class title="主从复制">
-
-<ol start="2">
-<li>链状</li>
-</ol>
-<img src="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/%E9%93%BE%E7%8A%B6%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6.png" class title="链状主从复制">
-
-<h3 id="哨兵（Sentinel）模式"><a href="#哨兵（Sentinel）模式" class="headerlink" title="哨兵（Sentinel）模式"></a>哨兵（Sentinel）模式</h3><p>该模式就是为了解决当主机宕机后，从机群无法有写入权限的问题。</p>
-<p>该模式下，它会自动监控主机是否故障，当主机宕机后，从机群中会<strong>自立一个主机</strong>，从而就有了写入的功能</p>
-<p>哨兵模式是一种特殊的模式，它是一个独立的进程。</p>
-<p>其原理就是哨兵通过发送命令，等待redis服务器响应，从而监控多个Redis实例的功能</p>
-<img src="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F.png" class title="哨兵模式">
-
-<p>这里的哨兵有两个作用</p>
-<ol>
-<li>监控服务器的状态</li>
-<li>当主机宕机后，会自动选择一个子节点作为主机，然后通过<strong>发布订阅模式</strong>通知其他子节点，修改配置文件</li>
-</ol>
-<p>当然，如果哨兵挂了怎么办？所以需要配置多个哨兵，然后这几个哨兵再互相监视</p>
-<img src="/javaEE/Redis/2022/02/25/Redis-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4.png" class title="哨兵集群">
-
-<p>假设主服务器宕机，哨兵1先检测到这个结果，系统并不会马上进行重新选举的过程，仅仅是哨兵1主观的认为主服务器不可用，这个现象称为<strong>主观下线</strong>。当后面的哨兵也检测到主服务器不可用，并且数量达到一定值时，那么哨兵之间就会进行一次投票，投票的结果由一个哨兵发起，进行failover（故障转移）操作。</p>
-<p>切换成功后，就会通过发布订阅模式，让各个哨兵把自己监控的从服务器实现切换主机，这个过程称为<strong>客观下线</strong>。</p>
-<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 哨兵进程的端口</span></span><br><span class="line">port 26379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否以后台运行</span></span><br><span class="line">daemonize no</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定的线程</span></span><br><span class="line">pidfile /var/run/redis-sentinel.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志名称</span></span><br><span class="line">logfile <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志保存目录</span></span><br><span class="line">dir /tmp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置监视谁</span></span><br><span class="line"><span class="comment"># 2代表至少要有结果哨兵确认主机宕机</span></span><br><span class="line">sentinel monitor mymaster 127.0.0.1 6379 2</span><br><span class="line"></span><br><span class="line">sentinel down-after-milliseconds mymaster 30000</span><br><span class="line"></span><br><span class="line">acllog-max-len 128</span><br><span class="line"></span><br><span class="line">sentinel parallel-syncs mymaster 1</span><br><span class="line"></span><br><span class="line">sentinel failover-timeout mymaster 180000</span><br><span class="line"></span><br><span class="line">sentinel deny-scripts-reconfig yes</span><br><span class="line"></span><br><span class="line">SENTINEL resolve-hostnames no</span><br><span class="line"></span><br><span class="line">SENTINEL announce-hostnames no</span><br></pre></td></tr></table></figure>
-
-<p>启动哨兵进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@iZbp18qscowpmxk6xpk38iZ redis]<span class="comment"># docker run -d -p 49103:26379 -v /home/redis/sentinel.conf:/etc/redis/sentinel.conf --name=sentinel redis redis-sentinel /etc/redis/sentinel.conf </span></span><br></pre></td></tr></table></figure>
-
-<p>优点：</p>
-<ol>
-<li>主从可以自动切换，可用性会更好</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>redis不好在线扩容</li>
-<li>实现哨兵模式的配置优点麻烦</li>
 </ol>
 
           

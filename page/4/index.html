@@ -304,6 +304,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/01/%E3%80%90240-Medium%E3%80%91%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/03/01/%E3%80%90240-Medium%E3%80%91%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/" itemprop="url">【240-Medium】搜索二维矩阵II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-01T16:51:22+08:00">
+                2022-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/2022/03/01/%E3%80%90240-Medium%E3%80%91%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/03/01/%E3%80%90240-Medium%E3%80%91%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  278
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="搜索二维矩阵II"><a href="#搜索二维矩阵II" class="headerlink" title="搜索二维矩阵II"></a>搜索二维矩阵II</h2><p>编写一个高效的算法来搜索 <code>*m* x *n*</code> 矩阵 <code>matrix</code> 中的一个目标值 <code>target</code> 。该矩阵具有以下特性：</p>
+<ul>
+<li>每行的元素从左到右升序排列。</li>
+<li>每列的元素从上到下升序排列。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<img src="/%E7%AE%97%E6%B3%95/2022/03/01/%E3%80%90240-Medium%E3%80%91%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/%E7%A4%BA%E4%BE%8B%E4%B8%80.jpg" class title="示例一">
+
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = <span class="comment">[<span class="comment">[1,4,7,11,15]</span>,<span class="comment">[2,5,8,12,19]</span>,<span class="comment">[3,6,9,16,22]</span>,<span class="comment">[10,13,14,17,24]</span>,<span class="comment">[18,21,23,26,30]</span>]</span>, target = 5</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<img src="/%E7%AE%97%E6%B3%95/2022/03/01/%E3%80%90240-Medium%E3%80%91%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/%E7%A4%BA%E4%BE%8B%E4%BA%8C.jpg" class title="示例二">
+
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = <span class="comment">[<span class="comment">[1,4,7,11,15]</span>,<span class="comment">[2,5,8,12,19]</span>,<span class="comment">[3,6,9,16,22]</span>,<span class="comment">[10,13,14,17,24]</span>,<span class="comment">[18,21,23,26,30]</span>]</span>, target = 20</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == matrix.length</code></li>
+<li><code>n == matrix[i].length</code></li>
+<li><code>1 &lt;= n, m &lt;= 300</code></li>
+<li><code>-109 &lt;= matrix[i][j] &lt;= 109</code></li>
+<li>每行的所有元素从左到右升序排列</li>
+<li>每列的所有元素从上到下升序排列</li>
+<li><code>-109 &lt;= target &lt;= 109</code></li>
+</ul>
+<p><strong>Related Topics</strong></p>
+<ul>
+<li>数组</li>
+<li>二分查找</li>
+<li>分治</li>
+<li>矩阵</li>
+</ul>
+<h3 id="法一：二分查找"><a href="#法一：二分查找" class="headerlink" title="法一：二分查找"></a>法一：二分查找</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m=matrix.length;</span><br><span class="line">    <span class="keyword">int</span> n=matrix[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">int</span> i=m-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix[i][j]==target)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j]&gt;target)&#123;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/01/%E3%80%9034-Medium%E3%80%91%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2273,215 +2476,6 @@
 
 <p>客户端调用</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> SystemFacade().operateABC();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/" itemprop="url">【981-Medium】基于时间的键值存储</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-27T12:15:00+08:00">
-                2022-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/27/%E3%80%90981-Medium%E3%80%91%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E9%94%AE%E5%80%BC%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  767
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基于时间的键值存储"><a href="#基于时间的键值存储" class="headerlink" title="基于时间的键值存储"></a>基于时间的键值存储</h2><p>设计一个基于时间的键值数据结构，该结构可以在不同时间戳存储对应同一个键的多个值，并针对特定时间戳检索键对应的值。</p>
-<p>实现 <code>TimeMap</code> 类：</p>
-<ul>
-<li><p><code>TimeMap()</code> 初始化数据结构对象</p>
-</li>
-<li><p><code>void set(String key, String value, int timestamp)</code> 存储键 <code>key</code>、值 <code>value</code>，以及给定的时间戳 <code>timestamp</code>。</p>
-</li>
-<li><p>&#96;&#96;&#96;<br>String get(String key, int timestamp)</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="bullet">  -</span> 返回先前调用 <span class="code">`set(key, value, timestamp_prev)`</span> 所存储的值，其中 <span class="code">`timestamp_prev &lt;= timestamp`</span> 。</span><br><span class="line"><span class="bullet">  -</span> 如果有多个这样的值，则返回对应最大的 <span class="code">`timestamp_prev`</span> 的那个值。</span><br><span class="line"><span class="bullet">  -</span> 如果没有值，则返回空字符串（<span class="code">`&quot;&quot;`</span>）。</span><br><span class="line"></span><br><span class="line"><span class="strong">**示例：**</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>输入：<br>[“TimeMap”, “set”, “get”, “get”, “set”, “get”, “get”]<br>[[], [“foo”, “bar”, 1], [“foo”, 1], [“foo”, 3], [“foo”, “bar2”, 4], [“foo”, 4], [“foo”, 5]]<br>输出：<br>[null, null, “bar”, “bar”, null, “bar2”, “bar2”]</p>
-</li>
-</ul>
-<p>解释：<br>TimeMap timeMap &#x3D; new TimeMap();<br>timeMap.set(“foo”, “bar”, 1);  &#x2F;&#x2F; 存储键 “foo” 和值 “bar” ，时间戳 timestamp &#x3D; 1<br>timeMap.get(“foo”, 1);         &#x2F;&#x2F; 返回 “bar”<br>timeMap.get(“foo”, 3);         &#x2F;&#x2F; 返回 “bar”, 因为在时间戳 3 和时间戳 2 处没有对应 “foo” 的值，所以唯一的值位于时间戳 1 处（即 “bar”） 。<br>timeMap.set(“foo”, “bar2”, 4); &#x2F;&#x2F; 存储键 “foo” 和值 “bar2” ，时间戳 timestamp &#x3D; 4<br>timeMap.get(“foo”, 4);         &#x2F;&#x2F; 返回 “bar2”<br>timeMap.get(“foo”, 5);         &#x2F;&#x2F; 返回 “bar2”</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```java</span><br><span class="line">/**</span><br><span class="line"> * Your TimeMap <span class="type">object</span> will be instantiated <span class="built_in">and</span> called <span class="keyword">as</span> such:</span><br><span class="line"> * TimeMap obj = <span class="built_in">new</span> TimeMap();</span><br><span class="line"> * obj.<span class="keyword">set</span>(<span class="keyword">key</span>,value,timestamp);</span><br><span class="line"> * <span class="type">String</span> param_2 = obj.<span class="keyword">get</span>(<span class="keyword">key</span>,timestamp);</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= key.length, value.length &lt;= 100</code></li>
-<li><code>key</code> 和 <code>value</code> 由小写英文字母和数字组成</li>
-<li><code>1 &lt;= timestamp &lt;= 107</code></li>
-<li><code>set</code> 操作中的时间戳 <code>timestamp</code> 都是严格递增的</li>
-<li>最多调用 <code>set</code> 和 <code>get</code> 操作 <code>2 * 105</code> 次</li>
-</ul>
-<p><strong>Related Topics</strong></p>
-<ul>
-<li>设计</li>
-<li>哈希表</li>
-<li>字符串</li>
-<li>二分查找</li>
-</ul>
-<h3 id="法一：内置结构Map-lt-Integer-TreeMap-lt-Integer-String-gt-gt"><a href="#法一：内置结构Map-lt-Integer-TreeMap-lt-Integer-String-gt-gt" class="headerlink" title="法一：内置结构Map&lt;Integer,TreeMap&lt;Integer,String&gt;&gt;"></a>法一：内置结构<code>Map&lt;Integer,TreeMap&lt;Integer,String&gt;&gt;</code></h3><p>这是自己写的，但是超时了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeMap</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, TreeMap&lt;Integer,String&gt;&gt; map ;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TimeMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String key, String value, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        TreeMap&lt;Integer, String&gt; sm = map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(sm==<span class="keyword">null</span>) &#123;</span><br><span class="line">            TreeMap&lt;Integer, String&gt; v = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">            v.put(timestamp, value);</span><br><span class="line">            map.put(key, v);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            sm.put(timestamp,value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String key, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        TreeMap&lt;Integer, String&gt; sm = map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(sm==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> find = binarySearch(sm.keySet().toArray(<span class="keyword">new</span> Integer[]&#123;&#125;), timestamp);</span><br><span class="line">        <span class="keyword">if</span>(find==-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> sm.get(find);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(Integer[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (left&lt;=right) &#123;</span><br><span class="line">            mid = (left+right)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">return</span> target;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&gt;target)&#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[left-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是我看到评论区写的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TimeMap</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    HashMap&lt;String, TreeMap&lt;Integer, String&gt;&gt; map;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TimeMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String key, String value, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        map.computeIfAbsent(key, k-&gt; <span class="keyword">new</span> TreeMap()).put(timestamp, value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String key, <span class="keyword">int</span> timestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这是在对应的TreeMap中找到以timeStamp为天花板的数字</span></span><br><span class="line">        Integer time = map.get(key).floorKey(timestamp);</span><br><span class="line">        <span class="keyword">if</span>(time == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map.get(key).get(time);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>computeIfAbsent这是java8中的操作，关于java8新特性，我后面会专门写一个专栏的</p>
-</blockquote>
 
           
         
