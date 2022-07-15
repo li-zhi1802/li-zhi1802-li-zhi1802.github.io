@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Docker-基础1回顾hello-world我们先来回顾一下hello-world的案例   下面是完整的流程图   12345678先在本地查找是否存在hello-world镜像	有则直接使用此镜像创建一个容器并运行	没有则连接镜像服务器查找是否存在hello-world镜像		如果在镜像服务器查找到了该镜像，则将该镜像下载到本地，然后建一个容器并运行		如果没有，则报错  下面介绍关于镜像和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker-基础1">
+<meta property="og:url" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/index.html">
+<meta property="og:site_name" content="芝麻的blog">
+<meta property="og:description" content="Docker-基础1回顾hello-world我们先来回顾一下hello-world的案例   下面是完整的流程图   12345678先在本地查找是否存在hello-world镜像	有则直接使用此镜像创建一个容器并运行	没有则连接镜像服务器查找是否存在hello-world镜像		如果在镜像服务器查找到了该镜像，则将该镜像下载到本地，然后建一个容器并运行		如果没有，则报错  下面介绍关于镜像和">
+<meta property="og:locale">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713205248995.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713205925422.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713123408178.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714104335032.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714104702049.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714115412356.png">
+<meta property="article:published_time" content="2022-07-13T10:18:52.000Z">
+<meta property="article:modified_time" content="2022-07-15T04:08:44.514Z">
+<meta property="article:author" content="芝麻">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713205248995.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-基础1/"/>
+
+
+
+
+
+  <title>Docker-基础1 | 芝麻的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">芝麻的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">百 事 可 乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sometips">
+          <a href="/sometips/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            有料
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-anchor"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker-基础1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-13T18:18:52+08:00">
+                2022-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.6k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Docker-基础1"><a href="#Docker-基础1" class="headerlink" title="Docker-基础1"></a>Docker-基础1</h1><h2 id="回顾hello-world"><a href="#回顾hello-world" class="headerlink" title="回顾hello-world"></a>回顾hello-world</h2><p>我们先来回顾一下hello-world的案例</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713205248995.png" class title="hello-world">
+
+<p>下面是完整的流程图</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713205925422.png" class title="hello-world流程图">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">先在本地查找是否存在hello-world镜像</span><br><span class="line">	有则直接使用此镜像创建一个容器并运行</span><br><span class="line"></span><br><span class="line">	没有则连接镜像服务器查找是否存在hello-world镜像</span><br><span class="line"></span><br><span class="line">		如果在镜像服务器查找到了该镜像，则将该镜像下载到本地，然后建一个容器并运行</span><br><span class="line"></span><br><span class="line">		如果没有，则报错</span><br></pre></td></tr></table></figure>
+
+<p>下面介绍关于镜像和容器的命令</p>
+<h2 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h2><h3 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker search --help</span></span><br><span class="line"><span class="comment"># 使用说明</span></span><br><span class="line">Usage:  docker search [OPTIONS] TERM</span><br><span class="line"><span class="comment"># 在docker hub上搜索TERM镜像</span></span><br><span class="line">Search the Docker Hub <span class="keyword">for</span> images</span><br><span class="line"><span class="comment"># 可选参数</span></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 过滤</span></span><br><span class="line"><span class="comment"># 栗子 -f=STARS=3000意思的筛选出STARS大于3000的</span></span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line"><span class="comment"># 格式化输出，使用go语言的模板</span></span><br><span class="line">      --format string   Pretty-print search using a Go template</span><br><span class="line"><span class="comment"># 限制数量</span></span><br><span class="line">      --<span class="built_in">limit</span> int       Max number of search results (default 25)</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker pull --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker pull [OPTIONS] NAME[:TAG|@DIGEST]</span><br><span class="line"><span class="comment"># 从仓库拉取一个镜像或者一个仓库</span></span><br><span class="line">Pull an image or a repository from a registry</span><br><span class="line"><span class="comment"># 可选项</span></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 下载全部的版本</span></span><br><span class="line">  -a, --all-tags                Download all tagged images <span class="keyword">in</span> the repository</span><br><span class="line"><span class="comment"># 跳过镜像认证，默认开启</span></span><br><span class="line">      --disable-content-trust   Skip image verification (default <span class="literal">true</span>)</span><br><span class="line">      --platform string         Set platform <span class="keyword">if</span> server is multi-platform capable</span><br><span class="line"><span class="comment"># 跳过冗长的输出，等到下载结束后再输出镜像id</span></span><br><span class="line">  -q, --quiet                   Suppress verbose output</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看本地镜像"><a href="#查看本地镜像" class="headerlink" title="查看本地镜像"></a>查看本地镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker images --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker images [OPTIONS] [REPOSITORY[:TAG]]</span><br><span class="line"><span class="comment"># 列举镜像</span></span><br><span class="line">List images</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 展示全部的镜像，默认添加</span></span><br><span class="line">  -a, --all             Show all images (default hides intermediate images)</span><br><span class="line"><span class="comment"># 显示完整的镜像id</span></span><br><span class="line">      --digests         Show digests</span><br><span class="line"><span class="comment"># 过滤</span></span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">      --format string   Pretty-print images using a Go template</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br><span class="line"><span class="string"># 只显示镜像简写id</span></span><br><span class="line"><span class="string">  -q, --quiet           Only show image IDs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker rmi --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]</span><br><span class="line"><span class="comment"># 删除镜像</span></span><br><span class="line">Remove one or more images</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 强制删除</span></span><br><span class="line">  -f, --force      Force removal of the image</span><br><span class="line">      --no-prune   Do not delete untagged parents</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看镜像层级构建信息"><a href="#查看镜像层级构建信息" class="headerlink" title="查看镜像层级构建信息"></a>查看镜像层级构建信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker history --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker <span class="built_in">history</span> [OPTIONS] IMAGE</span><br><span class="line"><span class="comment"># 展示镜像的历史（构建信息）</span></span><br><span class="line">Show the <span class="built_in">history</span> of an image</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">      --format string   Pretty-print images using a Go template</span><br><span class="line"><span class="comment"># 以可读化好的方式展示</span></span><br><span class="line">  -H, --human           Print sizes and dates <span class="keyword">in</span> human readable format (default <span class="literal">true</span>)</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br><span class="line"><span class="string"># 只显示镜像id</span></span><br><span class="line"><span class="string">  -q, --quiet           Only show image IDs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker tag --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line"><span class="comment"># 给SOURCE_IMAGE打上新的标签，并使用TARGET_IMAGE保存</span></span><br><span class="line">Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h2><h3 id="创建一个容器"><a href="#创建一个容器" class="headerlink" title="创建一个容器"></a>创建一个容器</h3><blockquote>
+<p>这里因为可选项太多，我只放一些常用的</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker run --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"><span class="comment"># 创建并使用COMMAND运行一个容器</span></span><br><span class="line">Run a <span class="built_in">command</span> <span class="keyword">in</span> a new container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 后台启动容器</span></span><br><span class="line">  -d, --detach                         Run container <span class="keyword">in</span> background and <span class="built_in">print</span> container ID</span><br><span class="line"><span class="comment"># 保持标准输出流打开</span></span><br><span class="line">  -i, --interactive                    Keep STDIN open even <span class="keyword">if</span> not attached</span><br><span class="line"><span class="comment"># 挂载宿主机文件系统</span></span><br><span class="line">      --mount mount                    Attach a filesystem mount to the container</span><br><span class="line"><span class="comment"># 指定容器名字</span></span><br><span class="line">      --name string                    Assign a name to the container</span><br><span class="line"><span class="comment"># 指定容器所在网络</span></span><br><span class="line">      --network network                Connect a container to a network</span><br><span class="line"><span class="comment"># 给容器登录用户的特权</span></span><br><span class="line">      --privileged                     Give extended privileges to this container</span><br><span class="line"><span class="comment"># 指定端口映射 -p 宿主机端口:容器暴露端口</span></span><br><span class="line">  -p, --publish list                   Publish a container<span class="string">&#x27;s port(s) to the host</span></span><br><span class="line"><span class="string"># 随机指定端口映射</span></span><br><span class="line"><span class="string">  -P, --publish-all                    Publish all exposed ports to random ports</span></span><br><span class="line"><span class="string"># 容器的根文件系统只读</span></span><br><span class="line"><span class="string">      --read-only                      Mount the container&#x27;</span>s root filesystem as <span class="built_in">read</span> only</span><br><span class="line"><span class="comment"># 推出容器的时候，自动删除容器</span></span><br><span class="line">	  --rm							   Automatically remove the container when it exits</span><br><span class="line"><span class="comment"># 分配一个伪终端并绑定到容器的标准输入上</span></span><br><span class="line">  -t, --tty                            Allocate a pseudo-TTY</span><br><span class="line"><span class="comment"># 数据卷，将容器内的目录挂载到宿主机的目录</span></span><br><span class="line">  -v, --volume list                    Bind mount a volume</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker create --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker create [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"><span class="comment"># 创建一个容器，但是不运行</span></span><br><span class="line">Create a new container</span><br><span class="line"></span><br><span class="line">Options: </span><br><span class="line"><span class="comment"># 与docker run 一致，这里不重复了</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除一个容器"><a href="#删除一个容器" class="headerlink" title="删除一个容器"></a>删除一个容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker rm --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"><span class="comment"># 删除一个或者多个容器</span></span><br><span class="line">Remove one or more containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 强制删除，即使它在运行状态</span></span><br><span class="line">  -f, --force     Force the removal of a running container (uses SIGKILL)</span><br><span class="line"><span class="comment"># 删除挂载的宿主机目录</span></span><br><span class="line">  -v, --volumes   Remove anonymous volumes associated with the container</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker ps --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker ps [OPTIONS]</span><br><span class="line"><span class="comment"># 展示容器</span></span><br><span class="line">List containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 展示所有的容器</span></span><br><span class="line">  -a, --all             Show all containers (default shows just running)</span><br><span class="line"><span class="comment"># 条件过滤</span></span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">      --format string   Pretty-print containers using a Go template</span><br><span class="line"><span class="comment"># 控制显示个数，包括停止的容器</span></span><br><span class="line">  -n, --last int        Show n last created containers (includes all states) (default -1)</span><br><span class="line"><span class="comment"># 显示最近创建的容器，包括停止的容器</span></span><br><span class="line">  -l, --latest          Show the latest created container (includes all states)</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br><span class="line"><span class="string"># 只显示容器id</span></span><br><span class="line"><span class="string">  -q, --quiet           Only display container IDs</span></span><br><span class="line"><span class="string"># 显示容器占用内存</span></span><br><span class="line"><span class="string">  -s, --size            Display total file sizes</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker stop --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker stop [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"><span class="comment"># 停止一个或者多个容器</span></span><br><span class="line">Stop one or more running containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 在ints后停止容器</span></span><br><span class="line">  -t, --time int   Seconds to <span class="built_in">wait</span> <span class="keyword">for</span> stop before killing it (default 10)</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker start --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker start [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"><span class="comment"># 启动一个或者多个已经停止的容器</span></span><br><span class="line">Start one or more stopped containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 启动并进入容器</span></span><br><span class="line">  -a, --attach               Attach STDOUT/STDERR and forward signals</span><br><span class="line"><span class="comment"># 启动并进入容器的标准输出设备</span></span><br><span class="line">  -i, --interactive          Attach container<span class="string">&#x27;s STDIN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重启容器"><a href="#重启容器" class="headerlink" title="重启容器"></a>重启容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker restart --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker restart [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"></span><br><span class="line">Restart one or more containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -t, --time int   Seconds to <span class="built_in">wait</span> <span class="keyword">for</span> stop before killing the container (default 10)</span><br></pre></td></tr></table></figure>
+
+<h3 id="暂停容器"><a href="#暂停容器" class="headerlink" title="暂停容器"></a>暂停容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker pause --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker pause CONTAINER [CONTAINER...]</span><br><span class="line"></span><br><span class="line">Pause all processes within one or more containers</span><br></pre></td></tr></table></figure>
+
+<h3 id="取消暂停容器"><a href="#取消暂停容器" class="headerlink" title="取消暂停容器"></a>取消暂停容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker unpause --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker unpause CONTAINER [CONTAINER...]</span><br><span class="line"></span><br><span class="line">Unpause all processes within one or more containers</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器的源数据"><a href="#查看容器的源数据" class="headerlink" title="查看容器的源数据"></a>查看容器的源数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker inspect --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker inspect [OPTIONS] NAME|ID [NAME|ID...]</span><br><span class="line"></span><br><span class="line">Return low-level information on Docker objects</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">  -f, --format string   Format the output using the given Go template</span><br><span class="line"><span class="comment"># 展示容器的占用内存</span></span><br><span class="line">  -s, --size            Display total file sizes <span class="keyword">if</span> the <span class="built_in">type</span> is container</span><br><span class="line"><span class="comment"># 将JSON数据转化为特殊类型</span></span><br><span class="line">      --<span class="built_in">type</span> string     Return JSON <span class="keyword">for</span> specified <span class="built_in">type</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker logs --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker logs [OPTIONS] CONTAINER</span><br><span class="line"></span><br><span class="line">Fetch the logs of a container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 显示详细的数据</span></span><br><span class="line">      --details        Show extra details provided to logs</span><br><span class="line"><span class="comment"># 日志继续输出</span></span><br><span class="line">  -f, --follow         Follow <span class="built_in">log</span> output</span><br><span class="line"><span class="comment"># 只展示尾部n条数据</span></span><br><span class="line">  -n, --tail string    Number of lines to show from the end of the logs (default <span class="string">&quot;all&quot;</span>)</span><br><span class="line"><span class="comment"># 展示时间戳</span></span><br><span class="line">  -t, --timestamps     Show timestamps</span><br></pre></td></tr></table></figure>
+
+<h3 id="进入容器内部"><a href="#进入容器内部" class="headerlink" title="进入容器内部"></a>进入容器内部</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker attach --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker attach [OPTIONS] CONTAINER</span><br><span class="line"><span class="comment"># 直接进入容器当前正在运行的标准输出</span></span><br><span class="line">Attach <span class="built_in">local</span> standard input, output, and error streams to a running container</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker exec --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker <span class="built_in">exec</span> [OPTIONS] CONTAINER COMMAND [ARG...]</span><br><span class="line"><span class="comment"># 在运行的容器中运行一个新的command</span></span><br><span class="line">Run a <span class="built_in">command</span> <span class="keyword">in</span> a running container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 在后台运行command</span></span><br><span class="line">  -d, --detach               Detached mode: run <span class="built_in">command</span> <span class="keyword">in</span> the background</span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line">  -e, --env list             Set environment variables</span><br><span class="line"><span class="comment"># 读取文件中的环境变量</span></span><br><span class="line">      --env-file list        Read <span class="keyword">in</span> a file of environment variables</span><br><span class="line"><span class="comment"># 保持输出流开启</span></span><br><span class="line">  -i, --interactive          Keep STDIN open even <span class="keyword">if</span> not attached</span><br><span class="line"><span class="comment"># 给予此command登录用户的权力</span></span><br><span class="line">      --privileged           Give extended privileges to the <span class="built_in">command</span></span><br><span class="line"><span class="comment"># 分配一个伪终端</span></span><br><span class="line">  -t, --tty                  Allocate a pseudo-TTY</span><br></pre></td></tr></table></figure>
+
+<p>一般我们都会使用<code>docker exec -it containerId|containerName /bin/bash</code>进入容器</p>
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭当前的输出流，如果容器中没有其他输出流，容器就会自己关闭</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="comment"># 保持当前输出流开启</span></span><br><span class="line">Ctrl+p+q</span><br></pre></td></tr></table></figure>
+
+<p>如果容器中没有前台运行的command，则会自动关闭容器</p>
+<h3 id="查看容器开放端口"><a href="#查看容器开放端口" class="headerlink" title="查看容器开放端口"></a>查看容器开放端口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker port --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker port CONTAINER [PRIVATE_PORT[/PROTO]]</span><br><span class="line"></span><br><span class="line">List port mappings or a specific mapping <span class="keyword">for</span> the container</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器内进程信息"><a href="#查看容器内进程信息" class="headerlink" title="查看容器内进程信息"></a>查看容器内进程信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker top --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker top CONTAINER [ps OPTIONS]</span><br><span class="line"></span><br><span class="line">Display the running processes of a container</span><br></pre></td></tr></table></figure>
+
+<h3 id="宿主机和容器内的文件复制"><a href="#宿主机和容器内的文件复制" class="headerlink" title="宿主机和容器内的文件复制"></a>宿主机和容器内的文件复制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker cp --help</span></span><br><span class="line"></span><br><span class="line">Usage:  </span><br><span class="line"><span class="comment"># 将容器内的文件复制到宿主机内</span></span><br><span class="line">docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-</span><br><span class="line"><span class="comment"># 将宿主机中的文件复制到容器内</span></span><br><span class="line">docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH</span><br><span class="line"></span><br><span class="line">Copy files/folders between a container and the <span class="built_in">local</span> filesystem</span><br><span class="line"></span><br><span class="line">Use <span class="string">&#x27;-&#x27;</span> as the <span class="built_in">source</span> to <span class="built_in">read</span> a tar archive from stdin</span><br><span class="line">and extract it to a directory destination <span class="keyword">in</span> a container.</span><br><span class="line"></span><br><span class="line">Use <span class="string">&#x27;-&#x27;</span> as the destination to stream a tar archive of a</span><br><span class="line">container <span class="built_in">source</span> to stdout.</span><br></pre></td></tr></table></figure>
+
+<h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h2><img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713123408178.png" class title="总结图">
+
+<h2 id="镜像的理解"><a href="#镜像的理解" class="headerlink" title="镜像的理解"></a>镜像的理解</h2><h3 id="什么是镜像"><a href="#什么是镜像" class="headerlink" title="什么是镜像"></a>什么是镜像</h3><p>镜像是一种轻量级、可执行的独立软件包</p>
+<p>它包含运行某个软件所需要的所有内容，包括代码，运行时（一个程序在运行或者在被执行的依赖）、库，环境变量和配置文件。</p>
+<h3 id="镜像加载原理"><a href="#镜像加载原理" class="headerlink" title="镜像加载原理"></a>镜像加载原理</h3><blockquote>
+<p>UnionFS</p>
+</blockquote>
+<p>UnionFS (联合文件系统) 是一种<strong>分层</strong>、轻量级并且高性能的文件系统</p>
+<p>它支持对文件系统的修改作为一次一次的提交做一层层的叠加</p>
+<p>联合加载会把各层文件系统叠加起来,这样最终的文件系统会包含所有底层的文件和目录</p>
+<blockquote>
+<p>BootFS</p>
+</blockquote>
+<p>BootFS(Boot file system)主要包含Bootloader和Kernel</p>
+<p>Bootloader主要是引导加载Kernel内核，Linux刚启动时会加载Bootfs文件系统</p>
+<p>当Bootloader加载完成之后整个内核就都在内存中了</p>
+<p>此时内存的使用权已由Bootfs转交给内核，系统也会卸载BootFS</p>
+<blockquote>
+<p>RootFS</p>
+</blockquote>
+<p>RootFS (root file system) ，在Bootfs之上。包含的就是典型Linux系统中的&#x2F;dev, &#x2F;proc, &#x2F;bin, &#x2F;etc等标准目录和文件。Rootfs就是<br>各种不同的操作系统发行版,比如Ubuntu , Centos等等。</p>
+<blockquote>
+<p>docker的centos镜像为什么那么小？</p>
+</blockquote>
+<p>对于一个精简的OS，RootFS可以很小，只包含一些最基本的命令、工具、库就可以了</p>
+<p>当我们启动了一个容器，它底层可以直接使用宿主机已经加载好的Kernel</p>
+<p>就不需要自己再虚拟一套环境，重新使用BootFS加载一个新的内核，大大节省了开销</p>
+<hr>
+<p>Union 文件系统是Docker镜像的基础。</p>
+<p>镜像可以通过分层来进行继承,基于基础镜像(没有父镜像) , 可以制作各种具体的应用镜像。</p>
+<p>当我们拉取一个镜像</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714104335032.png" class title="拉取镜像">
+
+<p>我们可以发现</p>
+<p>该镜像是一层一层下载的而不是一整个下载的</p>
+<p>这就符合了UnionFS的特性</p>
+<p>前面几层是在我下载其他镜像的时候已经下载过了</p>
+<p>就可以直接拿来使用，不需要再次下载，实现了<strong>资源共享</strong>，极大的节省了内存</p>
+<h4 id="查看镜像分层"><a href="#查看镜像分层" class="headerlink" title="查看镜像分层"></a>查看镜像分层</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image inspect imageId|imageName</span><br></pre></td></tr></table></figure>
+
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714104702049.png" class title="查看镜像分层">
+
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>Docker镜像都是只读的</p>
+<p>当使用命令启动了一个新的容器的时候</p>
+<p>该镜像先被复制</p>
+<p>接着一个新的可写层被添加到该复制后的镜像的顶层</p>
+<p>这一层就是容器层</p>
+<p>所以当我们新建了一个容器后，如果想将本次修改后的容器打包成一个新的镜像，就需要使用<code>docker commit</code>命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima volumes]<span class="comment"># docker commit --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</span><br><span class="line"></span><br><span class="line">Create a new image from a container<span class="string">&#x27;s changes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Options:</span></span><br><span class="line"><span class="string">  -a, --author string    Author (e.g., &quot;John Hannibal Smith &lt;hannibal@a-team.com&gt;&quot;)</span></span><br><span class="line"><span class="string">  -c, --change list      Apply Dockerfile instruction to the created image</span></span><br><span class="line"><span class="string">  -m, --message string   Commit message</span></span><br><span class="line"><span class="string">  -p, --pause            Pause container during commit (default true)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><p>数据卷技术，说白了，其实就是文件的同步</p>
+<p>我们创建了一个MySQL的容器，我们不对其做任何措施</p>
+<p>如果我们误删除或者有人恶意删除了该容器</p>
+<p>那么里面保存的数据也就随之丢失了</p>
+<p>这是一件十分恶劣的事情</p>
+<p>所以为了防止这种事情</p>
+<p>我们就需要使用一种技术，将容器内保存数据的目录挂载到宿主机上</p>
+<p>这种技术就是数据卷技术</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>这里我们部署一个MySQL来让大家明白如何使用卷技术</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -v 宿主机目录:容器内目录</span></span><br><span class="line"><span class="comment"># -p 宿主机短裤:容器端口</span></span><br><span class="line"><span class="comment"># -d 后台启动</span></span><br><span class="line"><span class="comment"># -e 设置环境变量</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v /home/mysql:/usr/share/mysql -v /home/mysql/conf:/etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line"></span><br><span class="line">[root@zhima home]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                                NAMES</span><br><span class="line">d49309c0ab18   mysql          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   6 seconds ago   Up 4 seconds   33060/tcp, 0.0.0.0:49102-&gt;3306/tcp   mysql01</span><br><span class="line">[root@zhima conf]<span class="comment"># cd /home/mysql/data/</span></span><br><span class="line">[root@zhima data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf       binlog.000002  ca-key.pem  client-cert.pem  <span class="comment">#ib_16384_0.dblwr  ib_buffer_pool  ib_logfile0  ibtmp1        mysql      performance_schema  public_key.pem   server-key.pem  undo_001</span></span><br><span class="line">binlog.000001  binlog.index   ca.pem      client-key.pem   <span class="comment">#ib_16384_1.dblwr  ibdata1         ib_logfile1  #innodb_temp  mysql.ibd  private_key.pem     server-cert.pem  sys             undo_002</span></span><br></pre></td></tr></table></figure>
+
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714115412356.png" class title="测试连接">
+
+<p>删除容器之后，宿主机中仍然保存着容器内的数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima data]<span class="comment"># docker stop mysql01</span></span><br><span class="line">mysql01</span><br><span class="line">[root@zhima data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf       binlog.000002  ca-key.pem  client-cert.pem  <span class="comment">#ib_16384_0.dblwr  ib_buffer_pool  ib_logfile0  #innodb_temp  mysql.ibd           private_key.pem  server-cert.pem  sys       undo_002</span></span><br><span class="line">binlog.000001  binlog.index   ca.pem      client-key.pem   <span class="comment">#ib_16384_1.dblwr  ibdata1         ib_logfile1  mysql         performance_schema  public_key.pem   server-key.pem   undo_001</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="具名挂载和匿名挂载"><a href="#具名挂载和匿名挂载" class="headerlink" title="具名挂载和匿名挂载"></a>具名挂载和匿名挂载</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匿名挂载，我不指定宿主句的路径，指定容器内的路径</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v /usr/share/mysql -v /etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 具名挂载，我不指定宿主句的路径，但是指定一个名字，并指定容器内的路径</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v mysql_data:/usr/share/mysql -v mysql_config:/etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br></pre></td></tr></table></figure>
+
+<p>不管是具名挂载还是匿名挂载都是docker自动在<code>/var/lib/docker/volumes</code>目录下创建文件夹</p>
+<p>只不过具名挂载可以自己指定该文件夹的名字</p>
+<h4 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h4><p>如何做到多个容器间数据共享呢？ </p>
+<p>那就需要使用数据卷容器技术，其实就是一个可选项，下面看使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v mysql_data:/usr/share/mysql -v mysql_config/etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql02 --volumes-from mysql01 -p 49103:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql03 --volumes-from mysql01 -p 49103:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br></pre></td></tr></table></figure>
+
+<p>mysql01就叫数据卷容器</p>
+<p>mysql02、mysql03就会和mysql01的挂载是一样的</p>
+<p>即mysql02和mysql03都和mysql01一样挂载到了宿主机的同个目录</p>
+<p><code>/var/lib/docker/volumes/mysql_data</code>和<code>/var/lib/docker/volumes/mysql_cofig</code></p>
+<h4 id="对数据卷的操作"><a href="#对数据卷的操作" class="headerlink" title="对数据卷的操作"></a>对数据卷的操作</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对卷的操作</span></span><br><span class="line">[root@zhima etc]<span class="comment"># docker volume --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker volume COMMAND</span><br><span class="line"></span><br><span class="line">Manage volumes</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  create      Create a volume</span><br><span class="line">  inspect     Display detailed information on one or more volumes</span><br><span class="line">  ls          List volumes</span><br><span class="line">  prune       Remove all unused <span class="built_in">local</span> volumes</span><br><span class="line">  rm          Remove one or more volumes</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>Dockerfile就是用来构建docker镜像的文件</p>
+<p>1、Dockerfile中的保留关键词使用的时候都必须是大写</p>
+<p>2、指令是从上到下执行的</p>
+<p>3、#表示注释</p>
+<p>4、每一个指令都会创建并提交一层镜像层</p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p>Dockerfile中的指令</p>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FROM</td>
+<td>说明镜像使用的基础镜像</td>
+</tr>
+<tr>
+<td align="center">MAINTAINER</td>
+<td>设置镜像的作者</td>
+</tr>
+<tr>
+<td align="center">ADD</td>
+<td>构建镜像的时候复制文件到容器内</td>
+</tr>
+<tr>
+<td align="center">COPY</td>
+<td>构建镜像的时候复制文件到容器内</td>
+</tr>
+<tr>
+<td align="center">RUN</td>
+<td>设置容器的启动命令</td>
+</tr>
+<tr>
+<td align="center">ONBUILD</td>
+<td>设置镜像的ONBUILD指令</td>
+</tr>
+<tr>
+<td align="center">WORKDIR</td>
+<td>设置运行RUN CMD ENTRYPOINT COPY ADD指令的工作目录</td>
+</tr>
+<tr>
+<td align="center">USER</td>
+<td>设置运行RUN CMD ENTRYPOINT的用户名</td>
+</tr>
+<tr>
+<td align="center">STOPSIGNAL</td>
+<td>设置容器退出的时候的信号量</td>
+</tr>
+<tr>
+<td align="center">ARG</td>
+<td>设置编译镜像的时候加入的参数</td>
+</tr>
+<tr>
+<td align="center">LABEL</td>
+<td>设置镜像的标签</td>
+</tr>
+<tr>
+<td align="center">CMD</td>
+<td>编译镜像的时候运行的脚本</td>
+</tr>
+<tr>
+<td align="center">ENV</td>
+<td>设置容器的环境变量</td>
+</tr>
+<tr>
+<td align="center">EXPOSE</td>
+<td>设置镜像暴露的端口</td>
+</tr>
+<tr>
+<td align="center">ENTRYPOINT</td>
+<td>设置容器的入口程序</td>
+</tr>
+<tr>
+<td align="center">VOLUME</td>
+<td>设置容器的挂载卷</td>
+</tr>
+</tbody></table>
+<h3 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h3><p>自己制作一个带网络配置和vim的centos镜像</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> zhima&lt;<span class="number">1158778689</span>@qq.com&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> MYPATH /usr/local</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$MYPATH</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行RUN命令是为了解决以下这个错误的</span></span><br><span class="line"><span class="comment"># Error: Failed to download metadata for repo &#x27;appstream&#x27;: Cannot prepare internal mirrorlist: No URLs in mirrorlist</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">cd</span> /etc/yum.repos.d/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">&#x27;s/mirrorlist/#mirrorlist/g&#x27;</span> /etc/yum.repos.d/CentOS-*</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">&#x27;s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g&#x27;</span> /etc/yum.repos.d/CentOS-*</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum -y install vim</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum -y install net-tools</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$MYPATH</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-l&quot;</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>构建命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima home]<span class="comment"># docker build --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker build [OPTIONS] PATH | URL | -</span><br><span class="line"></span><br><span class="line">Build an image from a Dockerfile</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># Dockerfile的名字</span></span><br><span class="line">  -f, --file string             Name of the Dockerfile (Default is <span class="string">&#x27;PATH/Dockerfile&#x27;</span>)</span><br><span class="line"><span class="comment"># 生成的镜像的标签</span></span><br><span class="line">  -t, --tag list                Name and optionally a tag <span class="keyword">in</span> the <span class="string">&#x27;name:tag&#x27;</span> format</span><br><span class="line">  </span><br><span class="line">docker build -f Dockerfile -t myImageName:tag ./</span><br></pre></td></tr></table></figure>
+
+<p>构建镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker build -t mycentos:1.0 .</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name centos1  mycentos:1.0</span></span><br><span class="line">[root@49ea92e17942 <span class="built_in">local</span>]<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CMD和ENTRYPOINT"><a href="#CMD和ENTRYPOINT" class="headerlink" title="CMD和ENTRYPOINT"></a>CMD和ENTRYPOINT</h3><p>我们来试一下构建这个Dockerfile，并运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">CMD [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>构建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker build -t mycentos .</span></span><br><span class="line">Sending build context to Docker daemon  17.92kB</span><br><span class="line">Step 1/2 : FROM centos</span><br><span class="line"> ---&gt; 5d0da3dc9764</span><br><span class="line">Step 2/2 : CMD [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> a1e70a05d8dd</span><br><span class="line">Removing intermediate container a1e70a05d8dd</span><br><span class="line"> ---&gt; 00433fd4c299</span><br><span class="line">Successfully built 00433fd4c299</span><br><span class="line">Successfully tagged mycentos:latest</span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name &quot;centos1&quot; mycentos</span></span><br><span class="line">.   .dockerenv	dev  home  lib64       media  opt   root  sbin	sys  usr</span><br><span class="line">..  bin		etc  lib   lost+found  mnt    proc  run   srv	tmp  var</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，进入容器之后，就执行了<code>ls -a</code>命令</p>
+<p>我们尝试一下在启动的时候加入一些参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name &quot;centos2&quot; mycentos -l</span></span><br><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: <span class="built_in">exec</span>: <span class="string">&quot;-l&quot;</span>: executable file not found <span class="keyword">in</span> <span class="variable">$PATH</span>: unknown.</span><br></pre></td></tr></table></figure>
+
+<p>我们发现容器并没有执行<code>ls -al</code>，而是直接报错了</p>
+<p>其实这就是CMD的特性，当我在启动容器的时候添加了一个CMD后</p>
+<p>镜像中定义的CMD就被覆盖掉了</p>
+<p>单独的<code>-l</code>当然会报错了</p>
+<hr>
+<p>我们来看一下使用ENTRYPOINT会怎么样</p>
+<p>修改Dockerfile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>重新构建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker build -t mycentos .</span></span><br><span class="line">Sending build context to Docker daemon  17.92kB</span><br><span class="line">Step 1/2 : FROM centos</span><br><span class="line"> ---&gt; 5d0da3dc9764</span><br><span class="line">Step 2/2 : ENTRYPOINT [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> 22ef40dea625</span><br><span class="line">Removing intermediate container 22ef40dea625</span><br><span class="line"> ---&gt; 73a3d51b4d84</span><br><span class="line">Successfully built 73a3d51b4d84</span><br><span class="line">Successfully tagged mycentos:latest</span><br></pre></td></tr></table></figure>
+
+<p>运行容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name &quot;centos1&quot; mycentos -l</span></span><br><span class="line">total 56</span><br><span class="line">drwxr-xr-x   1 root root 4096 Jul 14 08:52 .</span><br><span class="line">drwxr-xr-x   1 root root 4096 Jul 14 08:52 ..</span><br><span class="line">-rwxr-xr-x   1 root root    0 Jul 14 08:52 .dockerenv</span><br><span class="line">lrwxrwxrwx   1 root root    7 Nov  3  2020 bin -&gt; usr/bin</span><br><span class="line">drwxr-xr-x   5 root root  360 Jul 14 08:52 dev</span><br><span class="line">drwxr-xr-x   1 root root 4096 Jul 14 08:52 etc</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 home</span><br><span class="line">lrwxrwxrwx   1 root root    7 Nov  3  2020 lib -&gt; usr/lib</span><br><span class="line">lrwxrwxrwx   1 root root    9 Nov  3  2020 lib64 -&gt; usr/lib64</span><br><span class="line">drwx------   2 root root 4096 Sep 15  2021 lost+found</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 media</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 mnt</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 opt</span><br><span class="line">dr-xr-xr-x 191 root root    0 Jul 14 08:52 proc</span><br><span class="line">dr-xr-x---   2 root root 4096 Sep 15  2021 root</span><br><span class="line">drwxr-xr-x  11 root root 4096 Sep 15  2021 run</span><br><span class="line">lrwxrwxrwx   1 root root    8 Nov  3  2020 sbin -&gt; usr/sbin</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 srv</span><br><span class="line">dr-xr-xr-x  13 root root    0 Jan 29 10:27 sys</span><br><span class="line">drwxrwxrwt   7 root root 4096 Sep 15  2021 tmp</span><br><span class="line">drwxr-xr-x  12 root root 4096 Sep 15  2021 usr</span><br><span class="line">drwxr-xr-x  20 root root 4096 Sep 15  2021 var</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，容器执行的是<code>ls -al</code>，<code>-l</code>指令被追加给了ENTRYPOINT定义的语句</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>给作者买杯咖啡吧~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"><i class="fa fa-tag"></i> Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/" rel="next" title="Docker-导言">
+                <i class="fa fa-chevron-left"></i> Docker-导言
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20anchor">
+              
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/li-zhi1802" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div>
+    <svg>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-1"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-2"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-3"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-4"></text>
+    </svg>
+</div>
+
+<script>
+function showtime(){
+    var noatime = new Date();
+    var h = noatime.getHours(),
+        m = noatime.getMinutes(),
+        s = noatime.getSeconds();
+    h=checktime(h);
+    m=checktime(m);
+    s=checktime(s);
+  return h+":"+m+":"+s;
+}
+
+function checktime(x){
+  if(x<10){
+    x="0"+x;
+  }
+  return x;
+}
+
+var div1=document.getElementsByTagName("text");
+setInterval(function(){
+  for (var i in div1){
+      div1[i].innerHTML=showtime();
+  }
+},1000);
+</script>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker-%E5%9F%BA%E7%A1%801"><span class="nav-text">Docker-基础1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BEhello-world"><span class="nav-text">回顾hello-world</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker镜像命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E9%95%9C%E5%83%8F"><span class="nav-text">搜索镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="nav-text">拉取镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="nav-text">查看本地镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="nav-text">删除本地镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%95%9C%E5%83%8F%E5%B1%82%E7%BA%A7%E6%9E%84%E5%BB%BA%E4%BF%A1%E6%81%AF"><span class="nav-text">查看镜像层级构建信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E6%A0%87%E7%AD%BE"><span class="nav-text">打标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">Docker容器命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8"><span class="nav-text">创建一个容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8"><span class="nav-text">删除一个容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8"><span class="nav-text">查看容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E5%AE%B9%E5%99%A8"><span class="nav-text">停止容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="nav-text">运行容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%90%AF%E5%AE%B9%E5%99%A8"><span class="nav-text">重启容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%82%E5%81%9C%E5%AE%B9%E5%99%A8"><span class="nav-text">暂停容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E6%9A%82%E5%81%9C%E5%AE%B9%E5%99%A8"><span class="nav-text">取消暂停容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E7%9A%84%E6%BA%90%E6%95%B0%E6%8D%AE"><span class="nav-text">查看容器的源数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97"><span class="nav-text">查看容器日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E5%AE%B9%E5%99%A8%E5%86%85%E9%83%A8"><span class="nav-text">进入容器内部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E5%AE%B9%E5%99%A8"><span class="nav-text">退出容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3"><span class="nav-text">查看容器开放端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E5%86%85%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF"><span class="nav-text">查看容器内进程信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%8D%E5%88%B6"><span class="nav-text">宿主机和容器内的文件复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93"><span class="nav-text">命令总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-text">镜像的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%95%9C%E5%83%8F"><span class="nav-text">什么是镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86"><span class="nav-text">镜像加载原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%95%9C%E5%83%8F%E5%88%86%E5%B1%82"><span class="nav-text">查看镜像分层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7"><span class="nav-text">数据卷</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B7%E5%90%8D%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8C%BF%E5%90%8D%E6%8C%82%E8%BD%BD"><span class="nav-text">具名挂载和匿名挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%AE%B9%E5%99%A8"><span class="nav-text">数据卷容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%8D%B7%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-text">对数据卷的操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-text">Dockerfile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80"><span class="nav-text">小试牛刀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA"><span class="nav-text">构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-text">启动容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD%E5%92%8CENTRYPOINT"><span class="nav-text">CMD和ENTRYPOINT</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 评论框美化 -->
+<style>
+    #comments .veditor{
+        min-height: 10rem;
+        background-image: url('/images/comment-bg.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-id-card"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">芝麻</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数&#58;</span>
+    
+    <span title="站点总字数">134.9k</span>
+  
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'AwKkmCP2V87f6ONd4IOzb4wf-gzGzoHsz',
+        appKey: 'GD4efYgVwX8UW8AxUGwCvqTp',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+  <script type="text/javascript"
+   color="0,0,255"
+    opacity='0.3' 
+    zIndex="-2" 
+    count="200" 
+    src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>

@@ -89,7 +89,7 @@
 <meta name="description" content="芝麻的blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="芝麻的blog">
-<meta property="og:url" content="http://li-zhi.net.cn/page/8/index.html">
+<meta property="og:url" content="https://li-zhi.net.cn/page/8/index.html">
 <meta property="og:site_name" content="芝麻的blog">
 <meta property="og:description" content="芝麻的blog">
 <meta property="og:locale">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://li-zhi.net.cn/page/8/"/>
+  <link rel="canonical" href="https://li-zhi.net.cn/page/8/"/>
 
 
 
@@ -304,7 +304,462 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901380-Easy%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/Redis/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/Redis/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/" itemprop="url">Redis-三大特殊类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-22T16:41:55+08:00">
+                2022-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/Redis/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Redis/2022/02/22/Redis-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="三种特殊类型"><a href="#三种特殊类型" class="headerlink" title="三种特殊类型"></a>三种特殊类型</h2><h3 id="geospatial"><a href="#geospatial" class="headerlink" title="geospatial"></a>geospatial</h3><p>该数据类型是用来存储<strong>地理空间</strong>的</p>
+<p>附近的人，发送定位，分享实时位置，打车的时候的距离计算都可以通过这个实现</p>
+<p>我们这里使用这几个城市的经纬度作为测试</p>
+<table>
+<thead>
+<tr>
+<th align="center">城市</th>
+<th align="center">经度</th>
+<th align="center">维度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">相城区</td>
+<td align="center">120.64239</td>
+<td align="center">31.36889</td>
+</tr>
+<tr>
+<td align="center">吴江区</td>
+<td align="center">120.638317</td>
+<td align="center">31.159815</td>
+</tr>
+<tr>
+<td align="center">太仓</td>
+<td align="center">121.10891</td>
+<td align="center">31.4497</td>
+</tr>
+<tr>
+<td align="center">常熟市</td>
+<td align="center">120.75225</td>
+<td align="center">31.65374</td>
+</tr>
+<tr>
+<td align="center">昆山市</td>
+<td align="center">120.98074</td>
+<td align="center">31.38464</td>
+</tr>
+</tbody></table>
+<p>这里有六个基本命令，我们来一个个看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># geoadd key longitude latitude member [longitude latitude member..]</span></span><br><span class="line"><span class="comment"># 增加一个经纬度的坐标</span></span><br><span class="line"><span class="comment"># 两极无法添加，一般我们通过java程序一次性导入</span></span><br><span class="line">127.0.0.1:6379&gt; geoadd Suzhou 120.64239 31.36889 XiangChengDistrict 120.638317 31.159815 WuJiangDistrict 121.10891 31.4497 TaiCang 120.75225 31.65374 ChangShuCity 120.98074 31.38464 KunShanCity</span><br><span class="line">(<span class="built_in">integer</span>) 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># geodist key member1 member2 [unit]</span></span><br><span class="line"><span class="comment"># 获取两地之间的距离单位为米</span></span><br><span class="line">127.0.0.1:6379&gt; GEODIST Suzhou TaiCang WuJiangDistrict</span><br><span class="line"><span class="string">&quot;55133.1652&quot;</span></span><br><span class="line">127.0.0.1:6379&gt; GEODIST Suzhou TaiCang KunShanCity km</span><br><span class="line"><span class="string">&quot;14.1556&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># geohash key member [member..]</span></span><br><span class="line"><span class="comment"># 获取member的二维的空间经纬度数据编码</span></span><br><span class="line"><span class="comment"># 这个可以csdn搜一下具体的算法实现</span></span><br><span class="line">127.0.0.1:6379&gt; geohash Suzhou TaiCang</span><br><span class="line">1) <span class="string">&quot;wtw4gvhzf10&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># geopos key member [member..]</span></span><br><span class="line"><span class="comment"># 查看member的经纬度</span></span><br><span class="line">127.0.0.1:6379&gt; geopos Suzhou TaiCang XiangChengDistrict</span><br><span class="line">1) 1) <span class="string">&quot;121.10891193151474&quot;</span></span><br><span class="line">   2) <span class="string">&quot;31.449701065685858&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;120.64238995313644&quot;</span></span><br><span class="line">   2) <span class="string">&quot;31.368889085683811&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># georadius key longitude latitude radius m|km|ft|mi [WITHSCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC| ESC]</span></span><br><span class="line"><span class="comment"># mi是英里，ft是英尺</span></span><br><span class="line"><span class="comment"># 以给定的经纬度为中心，找到某一半径内的元素</span></span><br><span class="line"><span class="comment"># WITHCOORD表示显示坐标</span></span><br><span class="line"><span class="comment"># WITHDIST表示显示距离该点的位置</span></span><br><span class="line"><span class="comment"># WITHHASH表示显示该地址的hash值</span></span><br><span class="line"><span class="comment"># COUNT count表示显示几个</span></span><br><span class="line"><span class="comment"># ASC| ESC 表示正序还是倒序</span></span><br><span class="line">127.0.0.1:6379&gt; georadius Suzhou 120.98080 31.28460 30 km withdist</span><br><span class="line">1) 1) <span class="string">&quot;KunShanCity&quot;</span></span><br><span class="line">   2) <span class="string">&quot;11.1271&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;TaiCang&quot;</span></span><br><span class="line">   2) <span class="string">&quot;22.0285&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># georadiusbymember key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC]</span></span><br><span class="line"><span class="comment"># 以member为中心radius为半径，找到在此范围中的元素</span></span><br><span class="line">127.0.0.1:6379&gt; georadiusbymember Suzhou TaiCang 30 km withcoord withdist withhash asc</span><br><span class="line">1) 1) <span class="string">&quot;TaiCang&quot;</span></span><br><span class="line">   2) <span class="string">&quot;0.0000&quot;</span></span><br><span class="line">   3) (<span class="built_in">integer</span>) 4054798020485654</span><br><span class="line">   4) 1) <span class="string">&quot;121.10891193151474&quot;</span></span><br><span class="line">      2) <span class="string">&quot;31.449701065685858&quot;</span></span><br><span class="line">2) 1) <span class="string">&quot;KunShanCity&quot;</span></span><br><span class="line">   2) <span class="string">&quot;14.1556&quot;</span></span><br><span class="line">   3) (<span class="built_in">integer</span>) 4054794184325796</span><br><span class="line">   4) 1) <span class="string">&quot;120.98073989152908&quot;</span></span><br><span class="line">      2) <span class="string">&quot;31.38463984296795&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>geo的底层其实是Zset，我们可以使用Zset的命令去操作geo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrem Suzhou TaiCang</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; zrange Suzhou 0 -1</span><br><span class="line">1) <span class="string">&quot;WuJiangDistrict&quot;</span></span><br><span class="line">2) <span class="string">&quot;XiangChengDistrict&quot;</span></span><br><span class="line">3) <span class="string">&quot;ChangShuCity&quot;</span></span><br><span class="line">4) <span class="string">&quot;KunShanCity&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Hyperloglog"><a href="#Hyperloglog" class="headerlink" title="Hyperloglog"></a>Hyperloglog</h3><blockquote>
+<p>先来了解一下基数是什么？</p>
+</blockquote>
+<p>基数其实就是一个集合中<strong>不重复的元素个数</strong>，其实就是一个集合去重后的集合长度</p>
+<p>业务场景：</p>
+<p>网站的访问量（一个人访问一个网站多次，也算一个人）</p>
+<p>传统使用set集合的重复无序的特性，可以保存用户的id，以set集合的长度作为标准。但是，专门使用一个set来保存用户id未免优点奢侈，如果id是分布式的会很复杂，导致set集合很庞大，所以需要一个方法来解决这个问题。</p>
+<p>Hyperloglog就是用来解决此问题的算法。</p>
+<p>优点：占用很小的内存空间存放2^64个数据，也只占用12kb</p>
+<p>瑕疵：会有0.81%的错误率</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pfadd key member [member..]</span></span><br><span class="line">127.0.0.1:6379&gt; pfadd <span class="built_in">set</span> a b c d e f g h i j k l</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># pfcount key [key..]</span></span><br><span class="line"><span class="comment"># 返回基数</span></span><br><span class="line">127.0.0.1:6379&gt; pfcount <span class="built_in">set</span></span><br><span class="line">(<span class="built_in">integer</span>) 12</span><br><span class="line">127.0.0.1:6379&gt; pfadd set2 j k l m n</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; pfcount <span class="built_in">set</span> set2</span><br><span class="line">(<span class="built_in">integer</span>) 14</span><br><span class="line"></span><br><span class="line"><span class="comment"># pfmerge destkey sourcekey [sourcekey..]</span></span><br><span class="line"><span class="comment"># 将sourcekey合并到destkey</span></span><br><span class="line">127.0.0.1:6379&gt; pfmerge <span class="built_in">set</span> set2</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"><span class="comment"># 探究底层：</span></span><br><span class="line"><span class="comment"># 我们获取一下此数据的数据类型，可以看到实际上存储的是string</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">type</span> <span class="built_in">set</span></span><br><span class="line">string</span><br><span class="line">127.0.0.1:6379&gt; get <span class="built_in">set</span></span><br><span class="line"><span class="string">&quot;HYLL\x01\x00\x00\x00\x0c\x00\x00\x00\x00\x00\x00\x00Fm\x80I\xe8\x80@\xc4\x84K\\\x80D&lt;\x848\x80B=\x80K\x83\x80B\xed\x84A\xfc\x8cG\x8e\x80Bm\x80BZ&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Bitmap"><a href="#Bitmap" class="headerlink" title="Bitmap"></a>Bitmap</h3><p>位存储，一般使用两种状态的区分</p>
+<p>比如统计中国的男子和女子的数目</p>
+<p>14亿个二进制数，0代表女子，1代表男</p>
+<p>0 0 1 1 1 0 1 …</p>
+<p>登录，头像是亮着的，未登录，头像是灰色的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setbit key offset value</span></span><br><span class="line"><span class="comment"># 设置offset位是value</span></span><br><span class="line">127.0.0.1:6379&gt; setbit sign 0 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 1 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 2 0</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; setbit sign 3 1</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"><span class="comment"># 中国sign可以代表</span></span><br><span class="line"><span class="comment"># 星期日未打卡</span></span><br><span class="line"><span class="comment"># 星期一已打卡</span></span><br><span class="line"><span class="comment"># 星期二未打卡</span></span><br><span class="line"><span class="comment"># 星期三已打卡</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># getbit key offset</span></span><br><span class="line"><span class="comment"># 查看该天是否打卡</span></span><br><span class="line">127.0.0.1:6379&gt; getbit sign 3</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># bitcount key [start end]</span></span><br><span class="line"><span class="comment"># 查看sign中为1的个数</span></span><br><span class="line">127.0.0.1:6379&gt; BITCOUNT sign</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/" itemprop="url">【1827-Easy】最少操作使数组递增</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-21T21:49:48+08:00">
+                2022-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901827-Easy%E3%80%91%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E4%BD%BF%E6%95%B0%E7%BB%84%E9%80%92%E5%A2%9E/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  408
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="最少操作使数组递增"><a href="#最少操作使数组递增" class="headerlink" title="最少操作使数组递增"></a>最少操作使数组递增</h2><p>给你一个整数数组 <code>nums</code> （<strong>下标从 0 开始</strong>）。每一次操作中，你可以选择数组中一个元素，并将它增加 <code>1</code> 。</p>
+<ul>
+<li>比方说，如果 <code>nums = [1,2,3]</code> ，你可以选择增加 <code>nums[1]</code> 得到 <code>nums = [1,3,3]</code> 。</li>
+</ul>
+<p>请你返回使 <code>nums</code> <strong>严格递增</strong> 的 <strong>最少</strong> 操作次数。</p>
+<p>我们称数组 <code>nums</code> 是 <strong>严格递增的</strong> ，当它满足对于所有的 <code>0 &lt;= i &lt; nums.length - 1</code> 都有 <code>nums[i] &lt; nums[i+1]</code> 。一个长度为 <code>1</code> 的数组是严格递增的一种特殊情况。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = <span class="comment">[1,1,1]</span></span><br><span class="line">输出：3</span><br><span class="line">解释：你可以进行如下操作：</span><br><span class="line">1) 增加 nums<span class="comment">[2]</span> ，数组变为 <span class="comment">[1,1,2]</span> 。</span><br><span class="line">2) 增加 nums<span class="comment">[1]</span> ，数组变为 <span class="comment">[1,2,2]</span> 。</span><br><span class="line">3) 增加 nums<span class="comment">[2]</span> ，数组变为 <span class="comment">[1,2,3]</span> 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = <span class="string">[1,5,2,4,1]</span></span><br><span class="line">输出：<span class="number">14</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">输入：nums </span>=<span class="string"> [8]</span></span><br><span class="line"><span class="string">输出：0</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 5000</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 104</code></li>
+</ul>
+<p><strong>Related Topics</strong></p>
+<ul>
+<li>贪心</li>
+<li>数组</li>
+</ul>
+<h3 id="法一："><a href="#法一：" class="headerlink" title="法一："></a>法一：</h3><p>分析：从第二位遍历数组，与前一位比较，将差值给后者补上并加一即可</p>
+<p>上代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minOperations</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]-nums[i-<span class="number">1</span>]&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">                temp = nums[i-<span class="number">1</span>]-nums[i]+<span class="number">1</span>;</span><br><span class="line">                sum += temp;</span><br><span class="line">                nums[i] += temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为不需要对原数组做出改动，所以以上可以简化成以下的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minOperations</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]-nums[i-<span class="number">1</span>]&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">                sum += nums[i-<span class="number">1</span>]-nums[i]+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901380-Easy%E3%80%91%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%B9%B8%E8%BF%90%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -517,7 +972,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%90717-Easy%E3%80%911%E6%AF%94%E7%89%B9%E4%B8%8E2%E6%AF%94%E7%89%B9%E5%AD%97%E7%AC%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -715,7 +1170,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%902-Medium%E3%80%91%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -954,7 +1409,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901-Easy%E3%80%91%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/02/21/%E3%80%901-Easy%E3%80%91%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1163,7 +1618,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/21/%E5%8E%BBIOE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/21/%E5%8E%BBIOE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1352,7 +1807,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/Redis/2022/02/21/Redis-%E4%BA%94%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1572,7 +2027,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/Redis/2022/02/19/Redis-%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1869,7 +2324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/SpringBoot/2022/02/17/SpringBoot-Shiro/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/SpringBoot/2022/02/17/SpringBoot-Shiro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2184,528 +2639,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/" itemprop="url">swagger</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-17T10:11:19+08:00">
-                2022-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringBoot</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  770
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Swagger"><a href="#Swagger" class="headerlink" title="Swagger"></a>Swagger</h2><ul>
-<li>号称世界上最流行的API框架</li>
-<li>RestFul风格的API展示可以实现API文档和API定义同步更新</li>
-</ul>
-<h3 id="SpringBoot整合Swagger"><a href="#SpringBoot整合Swagger" class="headerlink" title="SpringBoot整合Swagger"></a>SpringBoot整合Swagger</h3><ol>
-<li>导入相关依赖</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--需要web的支持--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>写一个简单的Controller</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>开启Swagger功能</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerConfig</span> </span>&#123;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>访问swagger-ui.html</li>
-</ol>
-<img src="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/UI%E7%95%8C%E9%9D%A2.png" class title="UI界面">
-
-<p>我们在ui的jar包中可以知道我们可以访问该页面</p>
-<p>这是访问的页面</p>
-<img src="/javaEE/SpringBoot/2022/02/17/SpringBoot-Swagger/swagger%E7%9A%84%E7%95%8C%E9%9D%A2.png" class title="swagger的界面">
-
-<h3 id="配置Swagger"><a href="#配置Swagger" class="headerlink" title="配置Swagger"></a>配置Swagger</h3><p>Swagger中用来配置的bean是Docket</p>
-<h4 id="配置文档信息"><a href="#配置文档信息" class="headerlink" title="配置文档信息"></a>配置文档信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Docket <span class="title">docket</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//配置swagger信息</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ApiInfo(</span><br><span class="line">            <span class="string">&quot;swagger测试&quot;</span>,<span class="comment">//文档名称</span></span><br><span class="line">            <span class="string">&quot;初次测试swagger&quot;</span>,<span class="comment">//文档描述</span></span><br><span class="line">            <span class="string">&quot;1.0&quot;</span>,<span class="comment">//版本号</span></span><br><span class="line">            <span class="string">&quot;http://li-zhi.net.cn/&quot;</span>,<span class="comment">//作者个人博客</span></span><br><span class="line">            <span class="keyword">new</span> Contact(<span class="string">&quot;李智&quot;</span>,<span class="string">&quot;http://li-zhi.net.cn/&quot;</span>,<span class="string">&quot;1158778689@qq.com&quot;</span>),<span class="comment">//作者联系方式</span></span><br><span class="line">            <span class="string">&quot;Apache 2.0&quot;</span>,<span class="comment">//开源协议</span></span><br><span class="line">            <span class="string">&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;</span>,</span><br><span class="line">            <span class="keyword">new</span> ArrayList&lt;&gt;()</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="配置模型"><a href="#配置模型" class="headerlink" title="配置模型"></a>配置模型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwaggerModelConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">user</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我是专门建了一个SwaggerModelConfig来放置所有的模型类</p>
-<h4 id="配置分组"><a href="#配置分组" class="headerlink" title="配置分组"></a>配置分组</h4><p>因为项目一般是分组协同开发，每个组各自开发的接口，那接口文档应该各自分开，所以就有了分组的需要</p>
-<p>分组只需要配置一个groupName(“groupName”)即可</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Docket <span class="title">docket2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo()).groupName(<span class="string">&quot;group2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Docket <span class="title">docket1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo()).groupName(<span class="string">&quot;group1&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="配置扫描的接口"><a href="#配置扫描的接口" class="headerlink" title="配置扫描的接口"></a>配置扫描的接口</h4><p>这里主要讲两种方式，第一种是按路径扫描，第二种是按包名扫描</p>
-<h5 id="按路径扫描"><a href="#按路径扫描" class="headerlink" title="按路径扫描"></a>按路径扫描</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Docket <span class="title">docket1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo()).groupName(<span class="string">&quot;group1&quot;</span>)</span><br><span class="line">            .select()</span><br><span class="line">            .paths(PathSelectors.ant(<span class="string">&quot;/user/**&quot;</span>))</span><br><span class="line">			<span class="comment">// 该配置下，该组会扫描所有的/user/下的所有的API</span></span><br><span class="line">            .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="按包名扫描"><a href="#按包名扫描" class="headerlink" title="按包名扫描"></a>按包名扫描</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Docket <span class="title">docket2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo()).groupName(<span class="string">&quot;group2&quot;</span>)</span><br><span class="line">            .select()</span><br><span class="line">            .apis(RequestHandlerSelectors.basePackage(<span class="string">&quot;com.lizhiswaggertest.controller&quot;</span>))</span><br><span class="line">			<span class="comment">//该配置下，该组会扫描所有此包下的API接口</span></span><br><span class="line">            .build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在类RequestHandlerSelectors中还有其他的扫描机制，可自行研究</p>
-<h3 id="根据环境控制是否能访问swagger"><a href="#根据环境控制是否能访问swagger" class="headerlink" title="根据环境控制是否能访问swagger"></a>根据环境控制是否能访问swagger</h3><p>一般产品的开发都会有开发、测试、运维、上线等多套环境，根据不同的环境，控制是否可以访问swagger的ui界面</p>
-<p>配置文件application.yml</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span> <span class="string">dev</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8082</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span> <span class="string">test</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8083</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span> <span class="string">pro</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span></span><br></pre></td></tr></table></figure>
-
-<p>配置dev环境和test环境可以使用swagger</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Docket <span class="title">docket1</span><span class="params">(Environment environment)</span></span>&#123;</span><br><span class="line">    Profiles devProfile = Profiles.of(<span class="string">&quot;dev&quot;</span>,<span class="string">&quot;test&quot;</span>);</span><br><span class="line">    <span class="keyword">boolean</span> dev = environment.acceptsProfiles(devProfile);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.SWAGGER_2)</span><br><span class="line">            .apiInfo(apiInfo()).groupName(<span class="string">&quot;group1&quot;</span>)</span><br><span class="line">            .enable(dev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url">单例设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-16T19:02:56+08:00">
-                2022-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/16/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.4k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><p>该设计模式解决的问题是，一个环境中只会存在<strong>一个</strong>该类的对象</p>
-<p>该模式有五种实现方式</p>
-<ol>
-<li>恶汉模式</li>
-<li>懒汉模式</li>
-<li>静态内部类模式</li>
-<li>枚举模式</li>
-</ol>
-<p>该设计模式的核心是<strong>构造方法私有化</strong></p>
-<h3 id="饿汉模式"><a href="#饿汉模式" class="headerlink" title="饿汉模式"></a>饿汉模式</h3><p>恶汉模式：见名知意，就是在类被加载的时候就创建。</p>
-<p>案例：Runtime类</p>
-<p>缺点：浪费内存空间</p>
-<blockquote>
-<p>我查了资料，查到了这个缺点，但是这个缺点我不时很能理解</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hungry</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Hungry HUNGRY = <span class="keyword">new</span> Hungry();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Hungry</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Hungry <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> HUNGRY;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="懒汉模式"><a href="#懒汉模式" class="headerlink" title="懒汉模式"></a>懒汉模式</h3><p>这种实现方式，我们从分几个版本从简单到复杂</p>
-<h4 id="Version-01"><a href="#Version-01" class="headerlink" title="Version 01"></a>Version 01</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyMan</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazyMan lAZYMAN;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyMan</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyMan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(lAZYMAN==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">//A</span></span><br><span class="line">            lAZYMAN = <span class="keyword">new</span> LazyMan();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lAZYMAN;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>缺点：</strong>只能在单线程中安全，多线程中是不安全的</p>
-<p>现在有线程A和线程B，线程A走到了注解A处，然后线程B抢占了CPU，这时候lAZYMAN还是null，所以线程B创建了一个lAZYMAN对象，然后线程A抢回CPU，它这时候已经在if语句里面了，箭在弦上不得不发，所以线程A也创建了一个lAZYMAN对象，导致单例模式被破坏，所以该实现方式线程不安全</p>
-<h4 id="Version-02"><a href="#Version-02" class="headerlink" title="Version 02"></a>Version 02</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyMan</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazyMan LAZYMAN;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyMan</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> LazyMan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(LAZYMAN==<span class="keyword">null</span>)&#123;</span><br><span class="line">            LAZYMAN = <span class="keyword">new</span> LazyMan();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> LAZYMAN;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>缺点：</strong>为方法加锁，确实保证了单例模式，但是我们都知道同步方法，锁的是LazyMan的Class类，所以我们得知这种方式可以保证单例模式的线程安全。但是我们好好想想，当我们创建了第一个单例对象之后，还需要锁来保证同步吗？答案显而易见，肯定是不需要的，所以这种方式效率低下，需要改进，我们来看下一个版本</p>
-<h4 id="Version-03"><a href="#Version-03" class="headerlink" title="Version 03"></a>Version 03</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyMan</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazyMan LAZYMAN;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyMan</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyMan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(LAZYMAN==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">//A</span></span><br><span class="line">            <span class="keyword">synchronized</span> (LazyMan.class)&#123;</span><br><span class="line">                LAZYMAN = <span class="keyword">new</span> LazyMan();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> LAZYMAN;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们不使用同步方法来保证所有的线程同步，我们只对LAZYMAN对象还为null的线程同步，这时候又出现了问题。我们来分析一下</p>
-<p>现在我们有两个线程，线程A和线程B。线程A走到了注释A处，然后线程B抢占了CPU，这时候lAZYMAN还是null，所以线程B创建了一个lAZYMAN对象，然后线程A抢回CPU，它这时候已经在if语句里面了，箭在弦上不得不发，所以线程A也创建了一个lAZYMAN对象，导致单例模式被破坏，所以该实现方式线程不安全，我们发现这和我们没有加锁的时候的情形几乎一模一样。我们来看下一个版本，<strong>双重锁机制</strong></p>
-<h4 id="Version-04"><a href="#Version-04" class="headerlink" title="Version 04"></a>Version 04</h4><pre><code>public class LazyMan &#123;
-    private static LazyMan LAZYMAN;
-    private LazyMan()&#123;
-    
-    &#125;
-    public static LazyMan getInstance()&#123;
-        if(LAZYMAN==null)&#123;
-            //A
-            synchronized (LazyMan.class)&#123;
-                if(LAZYMAN==null)&#123;
-                    //B
-                    LAZYMAN = new LazyMan();
-                &#125;
-            &#125;
-        &#125;
-        return LAZYMAN;
-    &#125;
-&#125;
-</code></pre>
-<p>我个人的理解是第一重锁是为了过滤LAZYMAN为NULL的线程，第二重锁是为了保证只能有一个线程去创建对象，这时候我们似乎找不到什么破绽了，我们来继续往下看</p>
-<h4 id="Version-05"><a href="#Version-05" class="headerlink" title="Version 05"></a>Version 05</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyMan</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> LazyMan LAZYMAN;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyMan</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyMan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(LAZYMAN==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="comment">//A</span></span><br><span class="line">            <span class="keyword">synchronized</span> (LazyMan.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(LAZYMAN==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    <span class="comment">//B</span></span><br><span class="line">                    LAZYMAN = <span class="keyword">new</span> LazyMan();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> LAZYMAN;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>乍一看，好像和上一个版本没什么区别，仔细一看，其实区别是在这个单例变量的修饰符多了一个volatile。</p>
-<p>volatile三大作用</p>
-<ol>
-<li>保证可见性</li>
-<li>不保证原子性</li>
-<li>禁止该变量出现的地方发生指令重排</li>
-</ol>
-<p>这里的话，我们使用到的特性是第三点，我们来分析一下<code> LAZYMAN = new LazyMan();</code></p>
-<p>这一句话其实执行了三个步骤</p>
-<ol>
-<li>开辟一个内存空间</li>
-<li>初始化对象</li>
-<li>将该内存空间的地址指向变量</li>
-</ol>
-<p>JVM内部会有一种叫指令重排的代码优化机制，这时候，这三者的顺序就有可能会改变。</p>
-<p>现在我们有两个线程，线程A和线程B。线程A走到了注释A处，然后线程B抢占了CPU，开始执行<code>LAZYMAN = new LazyMan();</code>开辟内存空间后，没有先初始化对象，而是先将该内存空间的地址指向变量，<strong>这时候</strong>线程A抢回了CPU，这时候的LAZYMAN已经不是NULL了，直接将其返回了出去，但是这个对象其实还没有初始化，还是个空架子，这就出现了问题。</p>
-<p>当然这种情况十分十分少，但是为了严谨性，最好还是加上volatile关键词禁止指令重排</p>
-<h3 id="静态内部类模式"><a href="#静态内部类模式" class="headerlink" title="静态内部类模式"></a>静态内部类模式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticWay</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StaticWay</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> StaticWay STATICWAY = <span class="keyword">new</span> StaticWay();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StaticWay <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> InnerClass.STATICWAY;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>该实现方式其实就是利用的JVM的一些特性</p>
-<p>类的加载分为以下过程</p>
-<ul>
-<li><p><strong>类的加载：</strong>将Class文件字节码加载到内存中，并将这些静态数据转换为方法区的运行时数据结构，然后在堆中生成一个代表该类的Class对象，作为方法区类数据的访问入口，可以使用反射获取该类的所有信息。</p>
-</li>
-<li><p><strong>类的链接：</strong>将Java类的二进制代码合并到JVM中  </p>
-<ul>
-<li>验证：确保加载的类符合JVM规范  </li>
-<li>准备：为静态变量分配内存并设置成员变量的默认值  </li>
-<li>解析：JVM常量池内的符号引用（常量名）替换为直接引用（地址）的过程</li>
-</ul>
-</li>
-<li><p><strong>类的初始化：</strong>执行类构造器&lt; clinit &gt;()方法的过程，当初始化一个类的时候，如果其父类为初始化，则先初始化其父类 ，<strong>JVM会保证类构造器在多线程环境下被正确加锁</strong></p>
-</li>
-</ul>
-<p>其实最开始的饿汉单例模式也是也是这个原理</p>
-<h3 id="颠覆"><a href="#颠覆" class="headerlink" title="颠覆"></a>颠覆</h3><p>其实一路到了这里，以上方法都是不安全的。因为java有一个很牛X的包。</p>
-<p><strong><code>java.lang.reflect</code></strong></p>
-<p>我们在最开始说过，单例模式的本质就是构造器私有化，但是java的反射机制，它不讲武德，它可以直接修改权限修饰符。我们来看看代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line">    Constructor&lt;Hungry&gt; constructor = Hungry.class.getDeclaredConstructor(<span class="keyword">null</span>);</span><br><span class="line">    constructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">    Hungry hungry1 = Hungry.getInstance();;</span><br><span class="line">    Hungry hungry2 = constructor.newInstance();</span><br><span class="line">    System.out.println(hungry1==hungry2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可想而知最后的结果是  false</span></span><br></pre></td></tr></table></figure>
-
-<p>可不可以对其作出防御呢？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Hungry</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(HUNGRY!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;请不要尝试使用反射破坏单例模式&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Exception in thread <span class="string">&quot;main&quot;</span> java.lang.reflect.InvocationTargetException</span><br><span class="line">	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)</span><br><span class="line">	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:<span class="number">62</span>)</span><br><span class="line">	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:<span class="number">45</span>)</span><br><span class="line">	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:<span class="number">490</span>)</span><br><span class="line">	at com.lizhi.hungry.Hungry.main(Hungry.java:<span class="number">26</span>)</span><br><span class="line">Caused by: java.lang.IllegalArgumentException: 请不要尝试使用反射破坏单例模式</span><br><span class="line">	at com.lizhi.hungry.Hungry.&lt;init&gt;(Hungry.java:<span class="number">15</span>)</span><br><span class="line">	... <span class="number">5</span> more</span><br></pre></td></tr></table></figure>
-
-<p>上述方法对饿汉已经作出了合适的防御，那对于懒汉模式，如果两个对象都是使用反射创建的呢？这时候这个防御就是形同虚设了，因为我们肯定是禁止反射去创建对象，所以这种肯定是不行的</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyMan</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazyMan LazyMan;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyMan</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(LAZYMAN!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;请不要尝试使用反射破坏单例模式&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (LazyMan.class)&#123;</span><br><span class="line">                LazyMan = <span class="keyword">new</span> LazyMan();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyMan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(LazyMan==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (LazyMan.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(LazyMan==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    LazyMan = <span class="keyword">new</span> LazyMan();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> LazyMan;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line">        Constructor&lt;LazyMan&gt; constructor = LazyMan.class.getDeclaredConstructor(<span class="keyword">null</span>);</span><br><span class="line">        constructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        LazyMan lazyMan1 = constructor.newInstance();</span><br><span class="line">        LazyMan lazyMan2 = LazyMan.getInstance();</span><br><span class="line">        System.out.println(lazyMan1==lazyMan2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们引入一个布尔值来完成这个任务</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyMan</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> LazyMan LazyMan;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> <span class="keyword">boolean</span> flag ;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazyMan</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;请不要尝试使用反射破坏单例模式&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            flag=<span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyMan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(LazyMan==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (LazyMan.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(LazyMan==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    LazyMan = <span class="keyword">new</span> LazyMan();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> LazyMan;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line">        Constructor&lt;LazyMan&gt; constructor = LazyMan.class.getDeclaredConstructor(<span class="keyword">null</span>);</span><br><span class="line">        constructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        LazyMan lazyMan1 = constructor.newInstance();</span><br><span class="line"><span class="comment">//        LazyMan lazyMan2 = constructor.newInstance();</span></span><br><span class="line">        LazyMan lazyMan2 = LazyMan.getInstance();</span><br><span class="line"><span class="comment">//        LazyMan lazyMan1 = LazyMan.getInstance();</span></span><br><span class="line">        System.out.println(lazyMan1==lazyMan2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样反射就无法控制我们的单例了！</p>
-<h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><p>这时候有没有想起来我们在学javaSE的时候就学到了一个自带单例模式的类型，那就是枚举类Enum！</p>
-<p>我们来尝试攻击一下枚举类！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">SingleEnum</span> </span>&#123;</span><br><span class="line">    SINGLETON;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line">        Constructor&lt;SingleEnum&gt; constructor = SingleEnum.class.getDeclaredConstructor(String.class, <span class="keyword">int</span>.class);</span><br><span class="line">        constructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        SingleEnum single1 = constructor.newInstance(<span class="string">&quot;single&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        SingleEnum single2 = constructor.newInstance(<span class="string">&quot;single&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        System.out.println(single1==single2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这时候发现报错了！！</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.IllegalArgumentException: Cannot reflectively create enum objects</span><br><span class="line">	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)</span><br><span class="line">	at com.lizhi.SingleEnum.main(SingleEnum.java:12)</span><br></pre></td></tr></table></figure>
-
-<p>我们点进newInstance方法看下源码，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CallerSensitive</span></span><br><span class="line"><span class="meta">@ForceInline</span> <span class="comment">// to ensure Reflection.getCallerClass optimization</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">newInstance</span><span class="params">(Object ... initargs)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">throws</span> InstantiationException, IllegalAccessException,</span></span><br><span class="line"><span class="function">           IllegalArgumentException, InvocationTargetException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!override) &#123;</span><br><span class="line">        Class&lt;?&gt; caller = Reflection.getCallerClass();</span><br><span class="line">        checkAccess(caller, clazz, clazz, modifiers);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ((clazz.getModifiers() &amp; Modifier.ENUM) != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Cannot reflectively create enum objects&quot;</span>);</span><br><span class="line">    ConstructorAccessor ca = constructorAccessor;   <span class="comment">// read volatile</span></span><br><span class="line">    <span class="keyword">if</span> (ca == <span class="keyword">null</span>) &#123;</span><br><span class="line">        ca = acquireConstructorAccessor();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    T inst = (T) ca.newInstance(initargs);</span><br><span class="line">    <span class="keyword">return</span> inst;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们发现了这句话<code>throw new IllegalArgumentException(&quot;Cannot reflectively create enum objects&quot;);</code></p>
-<p>这就解释通了，原来是java的反射已经处理好了枚举类，使其真正的实现了安全的单例！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2760,7 +2693,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2890,7 +2823,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">129.2k</span>
+    <span title="站点总字数">134.9k</span>
   
 </div>
 

@@ -89,7 +89,7 @@
 <meta name="description" content="芝麻的blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="芝麻的blog">
-<meta property="og:url" content="http://li-zhi.net.cn/index.html">
+<meta property="og:url" content="https://li-zhi.net.cn/index.html">
 <meta property="og:site_name" content="芝麻的blog">
 <meta property="og:description" content="芝麻的blog">
 <meta property="og:locale">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://li-zhi.net.cn/"/>
+  <link rel="canonical" href="https://li-zhi.net.cn/"/>
 
 
 
@@ -304,7 +304,668 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/2022/07/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/" itemprop="url">Docker-基础1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-13T18:18:52+08:00">
+                2022-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.6k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Docker-基础1"><a href="#Docker-基础1" class="headerlink" title="Docker-基础1"></a>Docker-基础1</h1><h2 id="回顾hello-world"><a href="#回顾hello-world" class="headerlink" title="回顾hello-world"></a>回顾hello-world</h2><p>我们先来回顾一下hello-world的案例</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713205248995.png" class title="hello-world">
+
+<p>下面是完整的流程图</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713205925422.png" class title="hello-world流程图">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">先在本地查找是否存在hello-world镜像</span><br><span class="line">	有则直接使用此镜像创建一个容器并运行</span><br><span class="line"></span><br><span class="line">	没有则连接镜像服务器查找是否存在hello-world镜像</span><br><span class="line"></span><br><span class="line">		如果在镜像服务器查找到了该镜像，则将该镜像下载到本地，然后建一个容器并运行</span><br><span class="line"></span><br><span class="line">		如果没有，则报错</span><br></pre></td></tr></table></figure>
+
+<p>下面介绍关于镜像和容器的命令</p>
+<h2 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h2><h3 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker search --help</span></span><br><span class="line"><span class="comment"># 使用说明</span></span><br><span class="line">Usage:  docker search [OPTIONS] TERM</span><br><span class="line"><span class="comment"># 在docker hub上搜索TERM镜像</span></span><br><span class="line">Search the Docker Hub <span class="keyword">for</span> images</span><br><span class="line"><span class="comment"># 可选参数</span></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 过滤</span></span><br><span class="line"><span class="comment"># 栗子 -f=STARS=3000意思的筛选出STARS大于3000的</span></span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line"><span class="comment"># 格式化输出，使用go语言的模板</span></span><br><span class="line">      --format string   Pretty-print search using a Go template</span><br><span class="line"><span class="comment"># 限制数量</span></span><br><span class="line">      --<span class="built_in">limit</span> int       Max number of search results (default 25)</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker pull --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker pull [OPTIONS] NAME[:TAG|@DIGEST]</span><br><span class="line"><span class="comment"># 从仓库拉取一个镜像或者一个仓库</span></span><br><span class="line">Pull an image or a repository from a registry</span><br><span class="line"><span class="comment"># 可选项</span></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 下载全部的版本</span></span><br><span class="line">  -a, --all-tags                Download all tagged images <span class="keyword">in</span> the repository</span><br><span class="line"><span class="comment"># 跳过镜像认证，默认开启</span></span><br><span class="line">      --disable-content-trust   Skip image verification (default <span class="literal">true</span>)</span><br><span class="line">      --platform string         Set platform <span class="keyword">if</span> server is multi-platform capable</span><br><span class="line"><span class="comment"># 跳过冗长的输出，等到下载结束后再输出镜像id</span></span><br><span class="line">  -q, --quiet                   Suppress verbose output</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看本地镜像"><a href="#查看本地镜像" class="headerlink" title="查看本地镜像"></a>查看本地镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker images --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker images [OPTIONS] [REPOSITORY[:TAG]]</span><br><span class="line"><span class="comment"># 列举镜像</span></span><br><span class="line">List images</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 展示全部的镜像，默认添加</span></span><br><span class="line">  -a, --all             Show all images (default hides intermediate images)</span><br><span class="line"><span class="comment"># 显示完整的镜像id</span></span><br><span class="line">      --digests         Show digests</span><br><span class="line"><span class="comment"># 过滤</span></span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">      --format string   Pretty-print images using a Go template</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br><span class="line"><span class="string"># 只显示镜像简写id</span></span><br><span class="line"><span class="string">  -q, --quiet           Only show image IDs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除本地镜像"><a href="#删除本地镜像" class="headerlink" title="删除本地镜像"></a>删除本地镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker rmi --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]</span><br><span class="line"><span class="comment"># 删除镜像</span></span><br><span class="line">Remove one or more images</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 强制删除</span></span><br><span class="line">  -f, --force      Force removal of the image</span><br><span class="line">      --no-prune   Do not delete untagged parents</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看镜像层级构建信息"><a href="#查看镜像层级构建信息" class="headerlink" title="查看镜像层级构建信息"></a>查看镜像层级构建信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker history --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker <span class="built_in">history</span> [OPTIONS] IMAGE</span><br><span class="line"><span class="comment"># 展示镜像的历史（构建信息）</span></span><br><span class="line">Show the <span class="built_in">history</span> of an image</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">      --format string   Pretty-print images using a Go template</span><br><span class="line"><span class="comment"># 以可读化好的方式展示</span></span><br><span class="line">  -H, --human           Print sizes and dates <span class="keyword">in</span> human readable format (default <span class="literal">true</span>)</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br><span class="line"><span class="string"># 只显示镜像id</span></span><br><span class="line"><span class="string">  -q, --quiet           Only show image IDs</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker tag --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line"><span class="comment"># 给SOURCE_IMAGE打上新的标签，并使用TARGET_IMAGE保存</span></span><br><span class="line">Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h2><h3 id="创建一个容器"><a href="#创建一个容器" class="headerlink" title="创建一个容器"></a>创建一个容器</h3><blockquote>
+<p>这里因为可选项太多，我只放一些常用的</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker run --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"><span class="comment"># 创建并使用COMMAND运行一个容器</span></span><br><span class="line">Run a <span class="built_in">command</span> <span class="keyword">in</span> a new container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 后台启动容器</span></span><br><span class="line">  -d, --detach                         Run container <span class="keyword">in</span> background and <span class="built_in">print</span> container ID</span><br><span class="line"><span class="comment"># 保持标准输出流打开</span></span><br><span class="line">  -i, --interactive                    Keep STDIN open even <span class="keyword">if</span> not attached</span><br><span class="line"><span class="comment"># 挂载宿主机文件系统</span></span><br><span class="line">      --mount mount                    Attach a filesystem mount to the container</span><br><span class="line"><span class="comment"># 指定容器名字</span></span><br><span class="line">      --name string                    Assign a name to the container</span><br><span class="line"><span class="comment"># 指定容器所在网络</span></span><br><span class="line">      --network network                Connect a container to a network</span><br><span class="line"><span class="comment"># 给容器登录用户的特权</span></span><br><span class="line">      --privileged                     Give extended privileges to this container</span><br><span class="line"><span class="comment"># 指定端口映射 -p 宿主机端口:容器暴露端口</span></span><br><span class="line">  -p, --publish list                   Publish a container<span class="string">&#x27;s port(s) to the host</span></span><br><span class="line"><span class="string"># 随机指定端口映射</span></span><br><span class="line"><span class="string">  -P, --publish-all                    Publish all exposed ports to random ports</span></span><br><span class="line"><span class="string"># 容器的根文件系统只读</span></span><br><span class="line"><span class="string">      --read-only                      Mount the container&#x27;</span>s root filesystem as <span class="built_in">read</span> only</span><br><span class="line"><span class="comment"># 推出容器的时候，自动删除容器</span></span><br><span class="line">	  --rm							   Automatically remove the container when it exits</span><br><span class="line"><span class="comment"># 分配一个伪终端并绑定到容器的标准输入上</span></span><br><span class="line">  -t, --tty                            Allocate a pseudo-TTY</span><br><span class="line"><span class="comment"># 数据卷，将容器内的目录挂载到宿主机的目录</span></span><br><span class="line">  -v, --volume list                    Bind mount a volume</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker create --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker create [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"><span class="comment"># 创建一个容器，但是不运行</span></span><br><span class="line">Create a new container</span><br><span class="line"></span><br><span class="line">Options: </span><br><span class="line"><span class="comment"># 与docker run 一致，这里不重复了</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除一个容器"><a href="#删除一个容器" class="headerlink" title="删除一个容器"></a>删除一个容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker rm --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"><span class="comment"># 删除一个或者多个容器</span></span><br><span class="line">Remove one or more containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 强制删除，即使它在运行状态</span></span><br><span class="line">  -f, --force     Force the removal of a running container (uses SIGKILL)</span><br><span class="line"><span class="comment"># 删除挂载的宿主机目录</span></span><br><span class="line">  -v, --volumes   Remove anonymous volumes associated with the container</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker ps --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker ps [OPTIONS]</span><br><span class="line"><span class="comment"># 展示容器</span></span><br><span class="line">List containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 展示所有的容器</span></span><br><span class="line">  -a, --all             Show all containers (default shows just running)</span><br><span class="line"><span class="comment"># 条件过滤</span></span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">      --format string   Pretty-print containers using a Go template</span><br><span class="line"><span class="comment"># 控制显示个数，包括停止的容器</span></span><br><span class="line">  -n, --last int        Show n last created containers (includes all states) (default -1)</span><br><span class="line"><span class="comment"># 显示最近创建的容器，包括停止的容器</span></span><br><span class="line">  -l, --latest          Show the latest created container (includes all states)</span><br><span class="line">      --no-trunc        Don<span class="string">&#x27;t truncate output</span></span><br><span class="line"><span class="string"># 只显示容器id</span></span><br><span class="line"><span class="string">  -q, --quiet           Only display container IDs</span></span><br><span class="line"><span class="string"># 显示容器占用内存</span></span><br><span class="line"><span class="string">  -s, --size            Display total file sizes</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker stop --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker stop [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"><span class="comment"># 停止一个或者多个容器</span></span><br><span class="line">Stop one or more running containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 在ints后停止容器</span></span><br><span class="line">  -t, --time int   Seconds to <span class="built_in">wait</span> <span class="keyword">for</span> stop before killing it (default 10)</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker start --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker start [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"><span class="comment"># 启动一个或者多个已经停止的容器</span></span><br><span class="line">Start one or more stopped containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 启动并进入容器</span></span><br><span class="line">  -a, --attach               Attach STDOUT/STDERR and forward signals</span><br><span class="line"><span class="comment"># 启动并进入容器的标准输出设备</span></span><br><span class="line">  -i, --interactive          Attach container<span class="string">&#x27;s STDIN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重启容器"><a href="#重启容器" class="headerlink" title="重启容器"></a>重启容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker restart --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker restart [OPTIONS] CONTAINER [CONTAINER...]</span><br><span class="line"></span><br><span class="line">Restart one or more containers</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -t, --time int   Seconds to <span class="built_in">wait</span> <span class="keyword">for</span> stop before killing the container (default 10)</span><br></pre></td></tr></table></figure>
+
+<h3 id="暂停容器"><a href="#暂停容器" class="headerlink" title="暂停容器"></a>暂停容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker pause --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker pause CONTAINER [CONTAINER...]</span><br><span class="line"></span><br><span class="line">Pause all processes within one or more containers</span><br></pre></td></tr></table></figure>
+
+<h3 id="取消暂停容器"><a href="#取消暂停容器" class="headerlink" title="取消暂停容器"></a>取消暂停容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker unpause --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker unpause CONTAINER [CONTAINER...]</span><br><span class="line"></span><br><span class="line">Unpause all processes within one or more containers</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器的源数据"><a href="#查看容器的源数据" class="headerlink" title="查看容器的源数据"></a>查看容器的源数据</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker inspect --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker inspect [OPTIONS] NAME|ID [NAME|ID...]</span><br><span class="line"></span><br><span class="line">Return low-level information on Docker objects</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 格式化输出</span></span><br><span class="line">  -f, --format string   Format the output using the given Go template</span><br><span class="line"><span class="comment"># 展示容器的占用内存</span></span><br><span class="line">  -s, --size            Display total file sizes <span class="keyword">if</span> the <span class="built_in">type</span> is container</span><br><span class="line"><span class="comment"># 将JSON数据转化为特殊类型</span></span><br><span class="line">      --<span class="built_in">type</span> string     Return JSON <span class="keyword">for</span> specified <span class="built_in">type</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker logs --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker logs [OPTIONS] CONTAINER</span><br><span class="line"></span><br><span class="line">Fetch the logs of a container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 显示详细的数据</span></span><br><span class="line">      --details        Show extra details provided to logs</span><br><span class="line"><span class="comment"># 日志继续输出</span></span><br><span class="line">  -f, --follow         Follow <span class="built_in">log</span> output</span><br><span class="line"><span class="comment"># 只展示尾部n条数据</span></span><br><span class="line">  -n, --tail string    Number of lines to show from the end of the logs (default <span class="string">&quot;all&quot;</span>)</span><br><span class="line"><span class="comment"># 展示时间戳</span></span><br><span class="line">  -t, --timestamps     Show timestamps</span><br></pre></td></tr></table></figure>
+
+<h3 id="进入容器内部"><a href="#进入容器内部" class="headerlink" title="进入容器内部"></a>进入容器内部</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker attach --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker attach [OPTIONS] CONTAINER</span><br><span class="line"><span class="comment"># 直接进入容器当前正在运行的标准输出</span></span><br><span class="line">Attach <span class="built_in">local</span> standard input, output, and error streams to a running container</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker exec --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker <span class="built_in">exec</span> [OPTIONS] CONTAINER COMMAND [ARG...]</span><br><span class="line"><span class="comment"># 在运行的容器中运行一个新的command</span></span><br><span class="line">Run a <span class="built_in">command</span> <span class="keyword">in</span> a running container</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># 在后台运行command</span></span><br><span class="line">  -d, --detach               Detached mode: run <span class="built_in">command</span> <span class="keyword">in</span> the background</span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line">  -e, --env list             Set environment variables</span><br><span class="line"><span class="comment"># 读取文件中的环境变量</span></span><br><span class="line">      --env-file list        Read <span class="keyword">in</span> a file of environment variables</span><br><span class="line"><span class="comment"># 保持输出流开启</span></span><br><span class="line">  -i, --interactive          Keep STDIN open even <span class="keyword">if</span> not attached</span><br><span class="line"><span class="comment"># 给予此command登录用户的权力</span></span><br><span class="line">      --privileged           Give extended privileges to the <span class="built_in">command</span></span><br><span class="line"><span class="comment"># 分配一个伪终端</span></span><br><span class="line">  -t, --tty                  Allocate a pseudo-TTY</span><br></pre></td></tr></table></figure>
+
+<p>一般我们都会使用<code>docker exec -it containerId|containerName /bin/bash</code>进入容器</p>
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭当前的输出流，如果容器中没有其他输出流，容器就会自己关闭</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="comment"># 保持当前输出流开启</span></span><br><span class="line">Ctrl+p+q</span><br></pre></td></tr></table></figure>
+
+<p>如果容器中没有前台运行的command，则会自动关闭容器</p>
+<h3 id="查看容器开放端口"><a href="#查看容器开放端口" class="headerlink" title="查看容器开放端口"></a>查看容器开放端口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker port --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker port CONTAINER [PRIVATE_PORT[/PROTO]]</span><br><span class="line"></span><br><span class="line">List port mappings or a specific mapping <span class="keyword">for</span> the container</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看容器内进程信息"><a href="#查看容器内进程信息" class="headerlink" title="查看容器内进程信息"></a>查看容器内进程信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker top --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker top CONTAINER [ps OPTIONS]</span><br><span class="line"></span><br><span class="line">Display the running processes of a container</span><br></pre></td></tr></table></figure>
+
+<h3 id="宿主机和容器内的文件复制"><a href="#宿主机和容器内的文件复制" class="headerlink" title="宿主机和容器内的文件复制"></a>宿主机和容器内的文件复制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima ~]<span class="comment"># docker cp --help</span></span><br><span class="line"></span><br><span class="line">Usage:  </span><br><span class="line"><span class="comment"># 将容器内的文件复制到宿主机内</span></span><br><span class="line">docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-</span><br><span class="line"><span class="comment"># 将宿主机中的文件复制到容器内</span></span><br><span class="line">docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH</span><br><span class="line"></span><br><span class="line">Copy files/folders between a container and the <span class="built_in">local</span> filesystem</span><br><span class="line"></span><br><span class="line">Use <span class="string">&#x27;-&#x27;</span> as the <span class="built_in">source</span> to <span class="built_in">read</span> a tar archive from stdin</span><br><span class="line">and extract it to a directory destination <span class="keyword">in</span> a container.</span><br><span class="line"></span><br><span class="line">Use <span class="string">&#x27;-&#x27;</span> as the destination to stream a tar archive of a</span><br><span class="line">container <span class="built_in">source</span> to stdout.</span><br></pre></td></tr></table></figure>
+
+<h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h2><img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220713123408178.png" class title="总结图">
+
+<h2 id="镜像的理解"><a href="#镜像的理解" class="headerlink" title="镜像的理解"></a>镜像的理解</h2><h3 id="什么是镜像"><a href="#什么是镜像" class="headerlink" title="什么是镜像"></a>什么是镜像</h3><p>镜像是一种轻量级、可执行的独立软件包</p>
+<p>它包含运行某个软件所需要的所有内容，包括代码，运行时（一个程序在运行或者在被执行的依赖）、库，环境变量和配置文件。</p>
+<h3 id="镜像加载原理"><a href="#镜像加载原理" class="headerlink" title="镜像加载原理"></a>镜像加载原理</h3><blockquote>
+<p>UnionFS</p>
+</blockquote>
+<p>UnionFS (联合文件系统) 是一种<strong>分层</strong>、轻量级并且高性能的文件系统</p>
+<p>它支持对文件系统的修改作为一次一次的提交做一层层的叠加</p>
+<p>联合加载会把各层文件系统叠加起来,这样最终的文件系统会包含所有底层的文件和目录</p>
+<blockquote>
+<p>BootFS</p>
+</blockquote>
+<p>BootFS(Boot file system)主要包含Bootloader和Kernel</p>
+<p>Bootloader主要是引导加载Kernel内核，Linux刚启动时会加载Bootfs文件系统</p>
+<p>当Bootloader加载完成之后整个内核就都在内存中了</p>
+<p>此时内存的使用权已由Bootfs转交给内核，系统也会卸载BootFS</p>
+<blockquote>
+<p>RootFS</p>
+</blockquote>
+<p>RootFS (root file system) ，在Bootfs之上。包含的就是典型Linux系统中的&#x2F;dev, &#x2F;proc, &#x2F;bin, &#x2F;etc等标准目录和文件。Rootfs就是<br>各种不同的操作系统发行版,比如Ubuntu , Centos等等。</p>
+<blockquote>
+<p>docker的centos镜像为什么那么小？</p>
+</blockquote>
+<p>对于一个精简的OS，RootFS可以很小，只包含一些最基本的命令、工具、库就可以了</p>
+<p>当我们启动了一个容器，它底层可以直接使用宿主机已经加载好的Kernel</p>
+<p>就不需要自己再虚拟一套环境，重新使用BootFS加载一个新的内核，大大节省了开销</p>
+<hr>
+<p>Union 文件系统是Docker镜像的基础。</p>
+<p>镜像可以通过分层来进行继承,基于基础镜像(没有父镜像) , 可以制作各种具体的应用镜像。</p>
+<p>当我们拉取一个镜像</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714104335032.png" class title="拉取镜像">
+
+<p>我们可以发现</p>
+<p>该镜像是一层一层下载的而不是一整个下载的</p>
+<p>这就符合了UnionFS的特性</p>
+<p>前面几层是在我下载其他镜像的时候已经下载过了</p>
+<p>就可以直接拿来使用，不需要再次下载，实现了<strong>资源共享</strong>，极大的节省了内存</p>
+<h4 id="查看镜像分层"><a href="#查看镜像分层" class="headerlink" title="查看镜像分层"></a>查看镜像分层</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image inspect imageId|imageName</span><br></pre></td></tr></table></figure>
+
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714104702049.png" class title="查看镜像分层">
+
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>Docker镜像都是只读的</p>
+<p>当使用命令启动了一个新的容器的时候</p>
+<p>该镜像先被复制</p>
+<p>接着一个新的可写层被添加到该复制后的镜像的顶层</p>
+<p>这一层就是容器层</p>
+<p>所以当我们新建了一个容器后，如果想将本次修改后的容器打包成一个新的镜像，就需要使用<code>docker commit</code>命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima volumes]<span class="comment"># docker commit --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</span><br><span class="line"></span><br><span class="line">Create a new image from a container<span class="string">&#x27;s changes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Options:</span></span><br><span class="line"><span class="string">  -a, --author string    Author (e.g., &quot;John Hannibal Smith &lt;hannibal@a-team.com&gt;&quot;)</span></span><br><span class="line"><span class="string">  -c, --change list      Apply Dockerfile instruction to the created image</span></span><br><span class="line"><span class="string">  -m, --message string   Commit message</span></span><br><span class="line"><span class="string">  -p, --pause            Pause container during commit (default true)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><p>数据卷技术，说白了，其实就是文件的同步</p>
+<p>我们创建了一个MySQL的容器，我们不对其做任何措施</p>
+<p>如果我们误删除或者有人恶意删除了该容器</p>
+<p>那么里面保存的数据也就随之丢失了</p>
+<p>这是一件十分恶劣的事情</p>
+<p>所以为了防止这种事情</p>
+<p>我们就需要使用一种技术，将容器内保存数据的目录挂载到宿主机上</p>
+<p>这种技术就是数据卷技术</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>这里我们部署一个MySQL来让大家明白如何使用卷技术</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -v 宿主机目录:容器内目录</span></span><br><span class="line"><span class="comment"># -p 宿主机短裤:容器端口</span></span><br><span class="line"><span class="comment"># -d 后台启动</span></span><br><span class="line"><span class="comment"># -e 设置环境变量</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v /home/mysql:/usr/share/mysql -v /home/mysql/conf:/etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line"></span><br><span class="line">[root@zhima home]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                                NAMES</span><br><span class="line">d49309c0ab18   mysql          <span class="string">&quot;docker-entrypoint.s…&quot;</span>   6 seconds ago   Up 4 seconds   33060/tcp, 0.0.0.0:49102-&gt;3306/tcp   mysql01</span><br><span class="line">[root@zhima conf]<span class="comment"># cd /home/mysql/data/</span></span><br><span class="line">[root@zhima data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf       binlog.000002  ca-key.pem  client-cert.pem  <span class="comment">#ib_16384_0.dblwr  ib_buffer_pool  ib_logfile0  ibtmp1        mysql      performance_schema  public_key.pem   server-key.pem  undo_001</span></span><br><span class="line">binlog.000001  binlog.index   ca.pem      client-key.pem   <span class="comment">#ib_16384_1.dblwr  ibdata1         ib_logfile1  #innodb_temp  mysql.ibd  private_key.pem     server-cert.pem  sys             undo_002</span></span><br></pre></td></tr></table></figure>
+
+<img src="/javaEE/2022/07/13/Docker-%E5%9F%BA%E7%A1%801/image-20220714115412356.png" class title="测试连接">
+
+<p>删除容器之后，宿主机中仍然保存着容器内的数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima data]<span class="comment"># docker stop mysql01</span></span><br><span class="line">mysql01</span><br><span class="line">[root@zhima data]<span class="comment"># ls</span></span><br><span class="line">auto.cnf       binlog.000002  ca-key.pem  client-cert.pem  <span class="comment">#ib_16384_0.dblwr  ib_buffer_pool  ib_logfile0  #innodb_temp  mysql.ibd           private_key.pem  server-cert.pem  sys       undo_002</span></span><br><span class="line">binlog.000001  binlog.index   ca.pem      client-key.pem   <span class="comment">#ib_16384_1.dblwr  ibdata1         ib_logfile1  mysql         performance_schema  public_key.pem   server-key.pem   undo_001</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="具名挂载和匿名挂载"><a href="#具名挂载和匿名挂载" class="headerlink" title="具名挂载和匿名挂载"></a>具名挂载和匿名挂载</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匿名挂载，我不指定宿主句的路径，指定容器内的路径</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v /usr/share/mysql -v /etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 具名挂载，我不指定宿主句的路径，但是指定一个名字，并指定容器内的路径</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v mysql_data:/usr/share/mysql -v mysql_config:/etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br></pre></td></tr></table></figure>
+
+<p>不管是具名挂载还是匿名挂载都是docker自动在<code>/var/lib/docker/volumes</code>目录下创建文件夹</p>
+<p>只不过具名挂载可以自己指定该文件夹的名字</p>
+<h4 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h4><p>如何做到多个容器间数据共享呢？ </p>
+<p>那就需要使用数据卷容器技术，其实就是一个可选项，下面看使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql01 -v mysql_data:/usr/share/mysql -v mysql_config/etc/mysql/conf.d -p 49102:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql02 --volumes-from mysql01 -p 49103:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br><span class="line">[root@zhima home]<span class="comment"># docker run --name mysql03 --volumes-from mysql01 -p 49103:3306  -d -e MYSQL_ROOT_PASSWORD=123456  mysql</span></span><br></pre></td></tr></table></figure>
+
+<p>mysql01就叫数据卷容器</p>
+<p>mysql02、mysql03就会和mysql01的挂载是一样的</p>
+<p>即mysql02和mysql03都和mysql01一样挂载到了宿主机的同个目录</p>
+<p><code>/var/lib/docker/volumes/mysql_data</code>和<code>/var/lib/docker/volumes/mysql_cofig</code></p>
+<h4 id="对数据卷的操作"><a href="#对数据卷的操作" class="headerlink" title="对数据卷的操作"></a>对数据卷的操作</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对卷的操作</span></span><br><span class="line">[root@zhima etc]<span class="comment"># docker volume --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker volume COMMAND</span><br><span class="line"></span><br><span class="line">Manage volumes</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  create      Create a volume</span><br><span class="line">  inspect     Display detailed information on one or more volumes</span><br><span class="line">  ls          List volumes</span><br><span class="line">  prune       Remove all unused <span class="built_in">local</span> volumes</span><br><span class="line">  rm          Remove one or more volumes</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>Dockerfile就是用来构建docker镜像的文件</p>
+<p>1、Dockerfile中的保留关键词使用的时候都必须是大写</p>
+<p>2、指令是从上到下执行的</p>
+<p>3、#表示注释</p>
+<p>4、每一个指令都会创建并提交一层镜像层</p>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p>Dockerfile中的指令</p>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FROM</td>
+<td>说明镜像使用的基础镜像</td>
+</tr>
+<tr>
+<td align="center">MAINTAINER</td>
+<td>设置镜像的作者</td>
+</tr>
+<tr>
+<td align="center">ADD</td>
+<td>构建镜像的时候复制文件到容器内</td>
+</tr>
+<tr>
+<td align="center">COPY</td>
+<td>构建镜像的时候复制文件到容器内</td>
+</tr>
+<tr>
+<td align="center">RUN</td>
+<td>设置容器的启动命令</td>
+</tr>
+<tr>
+<td align="center">ONBUILD</td>
+<td>设置镜像的ONBUILD指令</td>
+</tr>
+<tr>
+<td align="center">WORKDIR</td>
+<td>设置运行RUN CMD ENTRYPOINT COPY ADD指令的工作目录</td>
+</tr>
+<tr>
+<td align="center">USER</td>
+<td>设置运行RUN CMD ENTRYPOINT的用户名</td>
+</tr>
+<tr>
+<td align="center">STOPSIGNAL</td>
+<td>设置容器退出的时候的信号量</td>
+</tr>
+<tr>
+<td align="center">ARG</td>
+<td>设置编译镜像的时候加入的参数</td>
+</tr>
+<tr>
+<td align="center">LABEL</td>
+<td>设置镜像的标签</td>
+</tr>
+<tr>
+<td align="center">CMD</td>
+<td>编译镜像的时候运行的脚本</td>
+</tr>
+<tr>
+<td align="center">ENV</td>
+<td>设置容器的环境变量</td>
+</tr>
+<tr>
+<td align="center">EXPOSE</td>
+<td>设置镜像暴露的端口</td>
+</tr>
+<tr>
+<td align="center">ENTRYPOINT</td>
+<td>设置容器的入口程序</td>
+</tr>
+<tr>
+<td align="center">VOLUME</td>
+<td>设置容器的挂载卷</td>
+</tr>
+</tbody></table>
+<h3 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h3><p>自己制作一个带网络配置和vim的centos镜像</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> centos</span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> zhima&lt;<span class="number">1158778689</span>@qq.com&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> MYPATH /usr/local</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> <span class="variable">$MYPATH</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面三行RUN命令是为了解决以下这个错误的</span></span><br><span class="line"><span class="comment"># Error: Failed to download metadata for repo &#x27;appstream&#x27;: Cannot prepare internal mirrorlist: No URLs in mirrorlist</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">cd</span> /etc/yum.repos.d/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">&#x27;s/mirrorlist/#mirrorlist/g&#x27;</span> /etc/yum.repos.d/CentOS-*</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">&#x27;s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g&#x27;</span> /etc/yum.repos.d/CentOS-*</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum -y install vim</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> yum -y install net-tools</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$MYPATH</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-l&quot;</span>]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h3><p>构建命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima home]<span class="comment"># docker build --help</span></span><br><span class="line"></span><br><span class="line">Usage:  docker build [OPTIONS] PATH | URL | -</span><br><span class="line"></span><br><span class="line">Build an image from a Dockerfile</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"><span class="comment"># Dockerfile的名字</span></span><br><span class="line">  -f, --file string             Name of the Dockerfile (Default is <span class="string">&#x27;PATH/Dockerfile&#x27;</span>)</span><br><span class="line"><span class="comment"># 生成的镜像的标签</span></span><br><span class="line">  -t, --tag list                Name and optionally a tag <span class="keyword">in</span> the <span class="string">&#x27;name:tag&#x27;</span> format</span><br><span class="line">  </span><br><span class="line">docker build -f Dockerfile -t myImageName:tag ./</span><br></pre></td></tr></table></figure>
+
+<p>构建镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker build -t mycentos:1.0 .</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name centos1  mycentos:1.0</span></span><br><span class="line">[root@49ea92e17942 <span class="built_in">local</span>]<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CMD和ENTRYPOINT"><a href="#CMD和ENTRYPOINT" class="headerlink" title="CMD和ENTRYPOINT"></a>CMD和ENTRYPOINT</h3><p>我们来试一下构建这个Dockerfile，并运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">CMD [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>构建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker build -t mycentos .</span></span><br><span class="line">Sending build context to Docker daemon  17.92kB</span><br><span class="line">Step 1/2 : FROM centos</span><br><span class="line"> ---&gt; 5d0da3dc9764</span><br><span class="line">Step 2/2 : CMD [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> a1e70a05d8dd</span><br><span class="line">Removing intermediate container a1e70a05d8dd</span><br><span class="line"> ---&gt; 00433fd4c299</span><br><span class="line">Successfully built 00433fd4c299</span><br><span class="line">Successfully tagged mycentos:latest</span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name &quot;centos1&quot; mycentos</span></span><br><span class="line">.   .dockerenv	dev  home  lib64       media  opt   root  sbin	sys  usr</span><br><span class="line">..  bin		etc  lib   lost+found  mnt    proc  run   srv	tmp  var</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，进入容器之后，就执行了<code>ls -a</code>命令</p>
+<p>我们尝试一下在启动的时候加入一些参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name &quot;centos2&quot; mycentos -l</span></span><br><span class="line">docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: <span class="built_in">exec</span>: <span class="string">&quot;-l&quot;</span>: executable file not found <span class="keyword">in</span> <span class="variable">$PATH</span>: unknown.</span><br></pre></td></tr></table></figure>
+
+<p>我们发现容器并没有执行<code>ls -al</code>，而是直接报错了</p>
+<p>其实这就是CMD的特性，当我在启动容器的时候添加了一个CMD后</p>
+<p>镜像中定义的CMD就被覆盖掉了</p>
+<p>单独的<code>-l</code>当然会报错了</p>
+<hr>
+<p>我们来看一下使用ENTRYPOINT会怎么样</p>
+<p>修改Dockerfile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM centos</span><br><span class="line"></span><br><span class="line">ENTRYPOINT [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>重新构建</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker build -t mycentos .</span></span><br><span class="line">Sending build context to Docker daemon  17.92kB</span><br><span class="line">Step 1/2 : FROM centos</span><br><span class="line"> ---&gt; 5d0da3dc9764</span><br><span class="line">Step 2/2 : ENTRYPOINT [<span class="string">&quot;ls&quot;</span>,<span class="string">&quot;-a&quot;</span>]</span><br><span class="line"> ---&gt; Running <span class="keyword">in</span> 22ef40dea625</span><br><span class="line">Removing intermediate container 22ef40dea625</span><br><span class="line"> ---&gt; 73a3d51b4d84</span><br><span class="line">Successfully built 73a3d51b4d84</span><br><span class="line">Successfully tagged mycentos:latest</span><br></pre></td></tr></table></figure>
+
+<p>运行容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[root@zhima lizhi]<span class="comment"># docker run -it --name &quot;centos1&quot; mycentos -l</span></span><br><span class="line">total 56</span><br><span class="line">drwxr-xr-x   1 root root 4096 Jul 14 08:52 .</span><br><span class="line">drwxr-xr-x   1 root root 4096 Jul 14 08:52 ..</span><br><span class="line">-rwxr-xr-x   1 root root    0 Jul 14 08:52 .dockerenv</span><br><span class="line">lrwxrwxrwx   1 root root    7 Nov  3  2020 bin -&gt; usr/bin</span><br><span class="line">drwxr-xr-x   5 root root  360 Jul 14 08:52 dev</span><br><span class="line">drwxr-xr-x   1 root root 4096 Jul 14 08:52 etc</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 home</span><br><span class="line">lrwxrwxrwx   1 root root    7 Nov  3  2020 lib -&gt; usr/lib</span><br><span class="line">lrwxrwxrwx   1 root root    9 Nov  3  2020 lib64 -&gt; usr/lib64</span><br><span class="line">drwx------   2 root root 4096 Sep 15  2021 lost+found</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 media</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 mnt</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 opt</span><br><span class="line">dr-xr-xr-x 191 root root    0 Jul 14 08:52 proc</span><br><span class="line">dr-xr-x---   2 root root 4096 Sep 15  2021 root</span><br><span class="line">drwxr-xr-x  11 root root 4096 Sep 15  2021 run</span><br><span class="line">lrwxrwxrwx   1 root root    8 Nov  3  2020 sbin -&gt; usr/sbin</span><br><span class="line">drwxr-xr-x   2 root root 4096 Nov  3  2020 srv</span><br><span class="line">dr-xr-xr-x  13 root root    0 Jan 29 10:27 sys</span><br><span class="line">drwxrwxrwt   7 root root 4096 Sep 15  2021 tmp</span><br><span class="line">drwxr-xr-x  12 root root 4096 Sep 15  2021 usr</span><br><span class="line">drwxr-xr-x  20 root root 4096 Sep 15  2021 var</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，容器执行的是<code>ls -al</code>，<code>-l</code>指令被追加给了ENTRYPOINT定义的语句</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/" itemprop="url">Docker-导言</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-13T18:18:48+08:00">
+                2022-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Docker-导言"><a href="#Docker-导言" class="headerlink" title="Docker-导言"></a>Docker-导言</h1><h2 id="Docker出现的原因"><a href="#Docker出现的原因" class="headerlink" title="Docker出现的原因"></a>Docker出现的原因</h2><p>每一款产品的出示都是为了解决一些痛点问题</p>
+<p>相信我们都经历过这种场景</p>
+<p>我们的项目在本地跑起来一点毛病都没有</p>
+<p>开心地将jar包分享给同学</p>
+<p>过了一会，同学一脸嫌弃地找你去看他在服务器上运行后齐刷刷的报错信息，觉得你写的代码不行，跑都跑不起来</p>
+<p>看了报错，发现他没有安装redis，没有安装es，没有安装mysql等等软件</p>
+<p>这时候就很无奈了，只能帮其一步步进行安装，进行配置</p>
+<p>安装完成后，可能还要调一堆的bug，浪费了大量的时间</p>
+<hr>
+<p>我们现在的结构是(Linux + jar + Redis环境 + ES环境 + Mysql环境… )</p>
+<p>这就会导致上面出现的问题，就算他早就安装了这些软件，如果版本和你使用的不一致，那么也有可能报错</p>
+<p>这时候，就希望有样东西可以帮我们解决这个问题</p>
+<p>那么这个东西就是<strong>Docker</strong></p>
+<p>在使用Docker之后，结构就变成了(Linux+（jar + Redis环境 + ES环境 + Mysql环境… ）)</p>
+<p>将jar包和环境一起打包，就不会出现开头出现的问题啦</p>
+<p>下面让我们来学习Docker吧</p>
+<h2 id="认识Docker"><a href="#认识Docker" class="headerlink" title="认识Docker"></a>认识Docker</h2><p>传统运行应用</p>
+<p>所有的应用都是跑在同一个宿主机上</p>
+<p>使用共同的类库（Lib）</p>
+<p>所以请你想象这种场景：</p>
+<p>APP1(将其比作放射物质)+APP2(将其比作食物)</p>
+<p>那么这种情况下，APP2会被APP1破坏</p>
+<p>如果有些应用又依赖APP1，那么就会牵扯很多应用无故躺枪</p>
+<p>导致Linux大环境牵连受损，很难处理</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/image-20220713201412305.png" class title="传统安装应用">
+
+<p>当我们使用了Docker技术之后</p>
+<p>所有的应用都是在Docker的管理下运行的</p>
+<p>这里的应用就要换个名字了，叫容器</p>
+<p>每一个容器都有一套自己的环境，并且不会受到其他容器环境的影响，容器之间是相互隔绝的</p>
+<p>就算有两个水火不容的应用出现在了同一个容器中，也不会影响到其他容器的环境</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/image-20220713202043674.png" class title="使用Docker">
+
+<p>下面看一下Docker官方给出的一张体系架构图</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/image-20220713203453022.png" class title="Docker体系架构">
+
+<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2><p>传统虚拟机技术 VS Docker容器技术</p>
+<p>虚拟机实现资源隔离的方法是利用独立的OS，并利用Hypervisor虚拟化CPU、内存、IO设备等实现的</p>
+<p>Docker比虚拟机有更少的抽象层，不需要Hypervisor实现硬件资源虚拟化，运行在docker容器上的程序直接使用的都是实际物理机的硬件资源</p>
+<p>而虚拟机加载GuestOs是分钟级启动的</p>
+<p>docker利用的是宿主机的内核，而不需要Guest OS。</p>
+<p>因此，Docker通过镜像新建一个容器的时候，不需要像虚拟机一样重新加载一个虚拟机内核</p>
+<p>我们知道，引导、加载操作系统内核是一个比较费时费资源的过程，当新建一个虚拟机时，虚拟机软件需要加载Guest OS，这个新建过程是分钟级别的。</p>
+<p>而docker由于直接利用宿主机的操作系统，则省略了这个过程，因此新建一个docker容器只需要几秒钟。</p>
+<p>另外，现代操作系统是复杂的系统，在一台物理机上新增加一个操作系统的资源开销是比较大的</p>
+<p>所以docker对比虚拟机在资源消耗上也占有比较大的优势。</p>
+<p>在一台物理机上我们可以很容易建立成百上千的容器，而只能建立几个虚拟机</p>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#卸载之前的Docker</span></span><br><span class="line">sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br><span class="line"><span class="comment">#下载需要的安装包</span></span><br><span class="line">sudo yum install -y yum-utils</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置镜像仓库</span></span><br><span class="line"> sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:\\download.docker.com\linux\centos\docker-ce.repo<span class="comment">#默认是国外的</span></span><br><span class="line">    </span><br><span class="line"> sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:\\mirrors.aliyun.com\docker-ce\linux\centos\docker-ce.repo<span class="comment">#阿里云的</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment"># 更新yum软件包索引</span></span><br><span class="line">sudo yum makecache fast</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装Docker引擎 docker-ce  docker-ee</span></span><br><span class="line"> sudo yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动docker</span></span><br><span class="line"> sudo systemctl start docker</span><br><span class="line"> </span><br><span class="line"><span class="comment">#测试是否启动成功</span></span><br><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<img src="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/image-20220713204346903.png" class title="测试是否安装成功">
+
+<p>如果你购买了阿里云、百度云、腾讯云的服务器，可以配置一个容器镜像加速</p>
+<img src="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/image-20220713204713156.png" class title="容器镜像服务">
+
+<img src="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/image-20220713204734931.png" class title="点击镜像加速器">
+
+<img src="/javaEE/2022/07/13/Docker-%E5%AF%BC%E8%A8%80/image-20220713204809382.png" class title="参考命令">
+
+<blockquote>
+<p>这个镜像加速走的是服务器内网，写我的也没有用哦</p>
+</blockquote>
+<h2 id="卸载Docker"><a href="#卸载Docker" class="headerlink" title="卸载Docker"></a>卸载Docker</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#卸载docker依赖</span></span><br><span class="line">sudo yum remove docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除资源</span></span><br><span class="line">sudo rm -rf /var/lib/docker</span><br><span class="line">sudo rm -rf /var/lib/containerd</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/2022/07/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1011,7 +1672,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/07/01/Vue2-%E5%9F%BA%E7%A1%805/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/07/01/Vue2-%E5%9F%BA%E7%A1%805/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1472,7 +2133,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/28/Vue2-%E5%9F%BA%E7%A1%804/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/28/Vue2-%E5%9F%BA%E7%A1%804/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1937,7 +2598,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/22/Vue2-%E5%9F%BA%E7%A1%803/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/22/Vue2-%E5%9F%BA%E7%A1%803/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2382,7 +3043,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/21/Vue2-%E5%9F%BA%E7%A1%802/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/21/Vue2-%E5%9F%BA%E7%A1%802/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2768,7 +3429,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/20/Vue2-%E5%9F%BA%E7%A1%801/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/20/Vue2-%E5%9F%BA%E7%A1%801/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -3113,7 +3774,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/18/Vue2-%E5%AF%BC%E8%A8%80/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/Vue2/2022/06/18/Vue2-%E5%AF%BC%E8%A8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -3355,7 +4016,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/05/07/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E7%BA%B2%E9%A2%86%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/05/07/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88%E7%BA%B2%E9%A2%86%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -3579,434 +4240,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/" itemprop="url">【19-Medium】删除链表的倒数第N个节点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-01T13:16:28+08:00">
-                2022-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  379
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="删除链表的倒数第N个节点"><a href="#删除链表的倒数第N个节点" class="headerlink" title="删除链表的倒数第N个节点"></a>删除链表的倒数第N个节点</h2><p>给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
-<p><strong>示例 1</strong>：</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/example.jpg" class title="示例">
-
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">1,2,3,4</span>,<span class="number">5</span>], n = <span class="number">2</span></span><br><span class="line">输出：[<span class="number">1,2,3,5</span>]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = <span class="comment">[1]</span>, n = 1</span><br><span class="line">输出：<span class="comment">[]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = <span class="comment">[1,2]</span>, n = 1</span><br><span class="line">输出：<span class="comment">[1]</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中结点的数目为 <code>sz</code></li>
-<li><code>1 &lt;= sz &lt;= 30</code></li>
-<li><code>0 &lt;= Node.val &lt;= 100</code></li>
-<li><code>1 &lt;= n &lt;= sz</code></li>
-</ul>
-<p><strong>进阶：</strong>你能尝试使用一趟扫描实现吗？</p>
-<ul>
-<li>Related Topics</li>
-<li>链表</li>
-<li>双指针</li>
-</ul>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题目暴力解法就是，先进行一个循环用一个数字将总长度<code>size</code>算出来，然后取<code>size-n-1</code>个节点，进行删除操作</p>
-<p>这里我们不使用这种方法，我们使用快慢指针法。</p>
-<p>先将<code>fast</code>指针往后走n步</p>
-<p>然后两者齐头并进，当<code>fast.next</code>为<code>null</code>的时候，<code>slow</code>已经在倒数第n-1个节点的位置了，此时进行删除操作。</p>
-<p>该方法的原理是利用<strong>步长</strong>，fast先走的那几步，在<code>fast</code>到了链表末尾的<code>null</code>的时候，<code>slow</code>则表示的是倒数第n个节点，</p>
-<p>因为这里需要执行删除操作，所以需要将<code>fast</code>走到链表末尾即可</p>
-<p>代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode slow = head;</span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(fast == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(fast.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">        &#125;</span><br><span class="line">        slow.next = slow.next.next;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" itemprop="url">算法-递归算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-30T12:12:07+08:00">
-                2022-04-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  613
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Chapter-2单项递归循环与递归对比"><a href="#Chapter-2单项递归循环与递归对比" class="headerlink" title="Chapter 2单项递归循环与递归对比"></a>Chapter 2单项递归循环与递归对比</h2><h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>1、参数传递</p>
-<ul>
-<li>值传递</li>
-<li>引用传递</li>
-</ul>
-<p>2、递归三要素</p>
-<ul>
-<li>递归定义</li>
-<li>递归拆解s</li>
-<li>递归出口</li>
-</ul>
-<p>3、尾递归</p>
-<p>​	特点：</p>
-<pre><code>* 函数中所有的递归形式的调用都出现在函数的末尾
-* 递归调用不属于表达式的一部分
-</code></pre>
-<p>​	作用：</p>
-<pre><code>* 不会在栈中创建一个新的栈
-* 覆盖当前活动记录
-</code></pre>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>例一：二阶阶乘</p>
-<p>题目：给定一个数<code>n</code>，返回该数的二阶阶乘。在数学中，正整数的<strong>二阶阶乘</strong>表示不超过这个正整数且与它有相同奇偶性的所有正整数乘积。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: n = <span class="number">5</span></span><br><span class="line">输出: <span class="number">15</span></span><br><span class="line">解释:</span><br><span class="line"><span class="number">5</span>!! = <span class="number">5</span> * <span class="number">3</span> * <span class="number">1</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="普通递归"><a href="#普通递归" class="headerlink" title="普通递归"></a>普通递归</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通递归    </span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example1OrdinaryWay</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_ordinaryWay(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">example1_ordinaryWay</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> example1_recursion(n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">example1_recursion</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">2</span>||n==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n * example1_recursion(n-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 尾递归   </span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example1TailRecursion</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_tailRecursion(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_tailRecursion</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> example1_tailRecursion(n, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_tailRecursion</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> res)</span></span>&#123;</span><br><span class="line">    res*=n;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>||n==<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> example1_tailRecursion(n-<span class="number">2</span>,res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example2Iterate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_iterate(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_iterate</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> res =<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">1</span>&amp;&amp;n!=<span class="number">2</span>)&#123;</span><br><span class="line">        res*=n;</span><br><span class="line">        n-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>模板</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> returnType <span class="title">function</span><span class="params">(parameters)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        dosomething...</span><br><span class="line">        get <span class="keyword">new</span> parameters</span><br><span class="line">        parameters = <span class="keyword">new</span> parameters</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>按照模板</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example2Iterate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_iterate(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_iterate</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> example1_iterate(n,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_iterate</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> res)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        res*=n;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>||n==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        n-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-<p>例一：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/">2. 两数相加</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        <span class="built_in">return</span> add(l1,l2,0);</span><br><span class="line">    &#125;</span><br><span class="line">    public ListNode add(ListNode l1, ListNode l2, int bit) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == null &amp;&amp; l2 == null &amp;&amp; bit == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> null;</span><br><span class="line">        &#125;</span><br><span class="line">        int val = bit;</span><br><span class="line">        // bit就是表示每次是否进位</span><br><span class="line">        <span class="keyword">if</span> (l1 != null) &#123;</span><br><span class="line">            val += l1.val;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l2 != null) &#123;</span><br><span class="line">            val += l2.val;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode node = new ListNode(val % 10);</span><br><span class="line">        node.next = add(l1, l2, val / 10);</span><br><span class="line">        <span class="built_in">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>例二：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode mergeTwoLists(ListNode list1, ListNode list2) &#123;</span><br><span class="line">    <span class="keyword">if</span>(list1==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> list2;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(list2==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> list1;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(list1.<span class="keyword">val</span> &lt;= list2.<span class="keyword">val</span>)&#123;</span><br><span class="line">        list1.next=mergeTwoLists(list1.next,list2);</span><br><span class="line">        <span class="keyword">return</span> list1;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        list2.next = mergeTwoLists(list1, list2.next);</span><br><span class="line">        <span class="keyword">return</span> list2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>例三：两两交换节点</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">swapTwoAsGroup</span><span class="params">(ListNode head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead = head.next;</span><br><span class="line">    ListNode tail=head.next.next;</span><br><span class="line">    head.next.next=head;</span><br><span class="line">    head.next=swapTwoAsGroup(tail);</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4061,7 +4294,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4191,7 +4424,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">129.2k</span>
+    <span title="站点总字数">134.9k</span>
   
 </div>
 

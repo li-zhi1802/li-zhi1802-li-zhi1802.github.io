@@ -89,7 +89,7 @@
 <meta name="description" content="芝麻的blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="芝麻的blog">
-<meta property="og:url" content="http://li-zhi.net.cn/page/2/index.html">
+<meta property="og:url" content="https://li-zhi.net.cn/page/2/index.html">
 <meta property="og:site_name" content="芝麻的blog">
 <meta property="og:description" content="芝麻的blog">
 <meta property="og:locale">
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://li-zhi.net.cn/page/2/"/>
+  <link rel="canonical" href="https://li-zhi.net.cn/page/2/"/>
 
 
 
@@ -304,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/uncategorized/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -323,7 +323,435 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/uncategorized/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="url">Linux-常用命令</a></h1>
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/" itemprop="url">【19-Medium】删除链表的倒数第N个节点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-01T13:16:28+08:00">
+                2022-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  379
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="删除链表的倒数第N个节点"><a href="#删除链表的倒数第N个节点" class="headerlink" title="删除链表的倒数第N个节点"></a>删除链表的倒数第N个节点</h2><p>给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
+<p><strong>示例 1</strong>：</p>
+<img src="/%E7%AE%97%E6%B3%95/2022/05/01/%E3%80%9019-Medium%E3%80%91%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/example.jpg" class title="示例">
+
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [<span class="number">1,2,3,4</span>,<span class="number">5</span>], n = <span class="number">2</span></span><br><span class="line">输出：[<span class="number">1,2,3,5</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = <span class="comment">[1]</span>, n = 1</span><br><span class="line">输出：<span class="comment">[]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = <span class="comment">[1,2]</span>, n = 1</span><br><span class="line">输出：<span class="comment">[1]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中结点的数目为 <code>sz</code></li>
+<li><code>1 &lt;= sz &lt;= 30</code></li>
+<li><code>0 &lt;= Node.val &lt;= 100</code></li>
+<li><code>1 &lt;= n &lt;= sz</code></li>
+</ul>
+<p><strong>进阶：</strong>你能尝试使用一趟扫描实现吗？</p>
+<ul>
+<li>Related Topics</li>
+<li>链表</li>
+<li>双指针</li>
+</ul>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这道题目暴力解法就是，先进行一个循环用一个数字将总长度<code>size</code>算出来，然后取<code>size-n-1</code>个节点，进行删除操作</p>
+<p>这里我们不使用这种方法，我们使用快慢指针法。</p>
+<p>先将<code>fast</code>指针往后走n步</p>
+<p>然后两者齐头并进，当<code>fast.next</code>为<code>null</code>的时候，<code>slow</code>已经在倒数第n-1个节点的位置了，此时进行删除操作。</p>
+<p>该方法的原理是利用<strong>步长</strong>，fast先走的那几步，在<code>fast</code>到了链表末尾的<code>null</code>的时候，<code>slow</code>则表示的是倒数第n个节点，</p>
+<p>因为这里需要执行删除操作，所以需要将<code>fast</code>走到链表末尾即可</p>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode slow = head;</span><br><span class="line">        ListNode fast = head;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(fast == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(fast.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">        &#125;</span><br><span class="line">        slow.next = slow.next.next;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" itemprop="url">算法-递归算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-30T12:12:07+08:00">
+                2022-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/04/30/%E7%AE%97%E6%B3%95-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  613
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Chapter-2单项递归循环与递归对比"><a href="#Chapter-2单项递归循环与递归对比" class="headerlink" title="Chapter 2单项递归循环与递归对比"></a>Chapter 2单项递归循环与递归对比</h2><h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>1、参数传递</p>
+<ul>
+<li>值传递</li>
+<li>引用传递</li>
+</ul>
+<p>2、递归三要素</p>
+<ul>
+<li>递归定义</li>
+<li>递归拆解s</li>
+<li>递归出口</li>
+</ul>
+<p>3、尾递归</p>
+<p>​	特点：</p>
+<pre><code>* 函数中所有的递归形式的调用都出现在函数的末尾
+* 递归调用不属于表达式的一部分
+</code></pre>
+<p>​	作用：</p>
+<pre><code>* 不会在栈中创建一个新的栈
+* 覆盖当前活动记录
+</code></pre>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>例一：二阶阶乘</p>
+<p>题目：给定一个数<code>n</code>，返回该数的二阶阶乘。在数学中，正整数的<strong>二阶阶乘</strong>表示不超过这个正整数且与它有相同奇偶性的所有正整数乘积。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: n = <span class="number">5</span></span><br><span class="line">输出: <span class="number">15</span></span><br><span class="line">解释:</span><br><span class="line"><span class="number">5</span>!! = <span class="number">5</span> * <span class="number">3</span> * <span class="number">1</span> = <span class="number">15</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="普通递归"><a href="#普通递归" class="headerlink" title="普通递归"></a>普通递归</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通递归    </span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example1OrdinaryWay</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_ordinaryWay(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">example1_ordinaryWay</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> example1_recursion(n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">example1_recursion</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">2</span>||n==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n * example1_recursion(n-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 尾递归   </span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example1TailRecursion</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_tailRecursion(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_tailRecursion</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> example1_tailRecursion(n, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_tailRecursion</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> res)</span></span>&#123;</span><br><span class="line">    res*=n;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>||n==<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> example1_tailRecursion(n-<span class="number">2</span>,res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example2Iterate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_iterate(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_iterate</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> res =<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">1</span>&amp;&amp;n!=<span class="number">2</span>)&#123;</span><br><span class="line">        res*=n;</span><br><span class="line">        n-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模板</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> returnType <span class="title">function</span><span class="params">(parameters)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        dosomething...</span><br><span class="line">        get <span class="keyword">new</span> parameters</span><br><span class="line">        parameters = <span class="keyword">new</span> parameters</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按照模板</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">example2Iterate</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(example1_iterate(<span class="number">5</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_iterate</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> example1_iterate(n,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">example1_iterate</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> res)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        res*=n;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>||n==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        n-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<p>例一：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/">2. 两数相加</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;</span><br><span class="line">        <span class="built_in">return</span> add(l1,l2,0);</span><br><span class="line">    &#125;</span><br><span class="line">    public ListNode add(ListNode l1, ListNode l2, int bit) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == null &amp;&amp; l2 == null &amp;&amp; bit == 0) &#123;</span><br><span class="line">            <span class="built_in">return</span> null;</span><br><span class="line">        &#125;</span><br><span class="line">        int val = bit;</span><br><span class="line">        // bit就是表示每次是否进位</span><br><span class="line">        <span class="keyword">if</span> (l1 != null) &#123;</span><br><span class="line">            val += l1.val;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l2 != null) &#123;</span><br><span class="line">            val += l2.val;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode node = new ListNode(val % 10);</span><br><span class="line">        node.next = add(l1, l2, val / 10);</span><br><span class="line">        <span class="built_in">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例二：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode mergeTwoLists(ListNode list1, ListNode list2) &#123;</span><br><span class="line">    <span class="keyword">if</span>(list1==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> list2;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(list2==<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> list1;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(list1.<span class="keyword">val</span> &lt;= list2.<span class="keyword">val</span>)&#123;</span><br><span class="line">        list1.next=mergeTwoLists(list1.next,list2);</span><br><span class="line">        <span class="keyword">return</span> list1;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        list2.next = mergeTwoLists(list1, list2.next);</span><br><span class="line">        <span class="keyword">return</span> list2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例三：两两交换节点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">swapTwoAsGroup</span><span class="params">(ListNode head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead = head.next;</span><br><span class="line">    ListNode tail=head.next.next;</span><br><span class="line">    head.next.next=head;</span><br><span class="line">    head.next=swapTwoAsGroup(tail);</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/Linux/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/javaEE/Linux/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="url">Linux-常用命令</a></h1>
         
 
         <div class="post-meta">
@@ -346,6 +774,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -354,8 +815,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/uncategorized/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/uncategorized/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+                <a href="/javaEE/Linux/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Linux/2022/04/24/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -678,7 +1139,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/uncategorized/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/Linux/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -697,7 +1158,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/uncategorized/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" itemprop="url">Linux-系统管理</a></h1>
+                <a class="post-title-link" href="/javaEE/Linux/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" itemprop="url">Linux-系统管理</a></h1>
         
 
         <div class="post-meta">
@@ -720,6 +1181,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -728,8 +1222,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/uncategorized/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/uncategorized/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+                <a href="/javaEE/Linux/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Linux/2022/04/24/Linux-%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -849,7 +1343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JVM/2022/03/18/JVM-%E5%86%85%E5%AD%98%E5%88%86%E5%8C%BA/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/JVM/2022/03/18/JVM-%E5%86%85%E5%AD%98%E5%88%86%E5%8C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1113,7 +1607,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/JavaScript/2022/03/16/JavaScript-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E5%89%8D%E7%AB%AF/JavaScript/2022/03/16/JavaScript-%E6%A8%A1%E5%9D%97%E5%8C%96%E5%BC%80%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1464,7 +1958,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JVM/2022/03/12/JVM-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/JVM/2022/03/12/JVM-%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -1752,7 +2246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/JVM/2022/03/11/JVM-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2017,7 +2511,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/11/%E7%AE%97%E6%B3%95-%E5%B7%AE%E5%88%86%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2239,7 +2733,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/10/%E7%AE%97%E6%B3%95-%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/10/%E7%AE%97%E6%B3%95-%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -2439,429 +2933,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/" itemprop="url">算法-以k个节点为一组逆转单链表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-08T15:00:11+08:00">
-                2022-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  485
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="以k个节点为一组逆转单链表"><a href="#以k个节点为一组逆转单链表" class="headerlink" title="以k个节点为一组逆转单链表"></a>以k个节点为一组逆转单链表</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">力扣25：K 个一组翻转链表</a></p>
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E9%A2%98%E7%9B%AE.png" class title="题目">
-
-<p>首先我们来分析一下这道题目，题目不难理解，就是以k个节点为一组逆转单链表，我们使用递归的思想来思考一下这道题</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E5%88%86%E6%9E%90-process01.png" class title="分析-process01">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E5%88%86%E6%9E%90-process02.png" class title="分析-process02">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E5%88%86%E6%9E%90-process03.png" class title="分析-process03">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E5%88%86%E6%9E%90-process04.png" class title="分析-process04">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E5%88%86%E6%9E%90-process05.png" class title="分析-process05">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E5%88%86%E6%9E%90-process06.png" class title="分析-process06">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E4%BB%A5k%E4%B8%AA%E8%8A%82%E7%82%B9%E4%B8%BA%E4%B8%80%E7%BB%84%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E5%88%86%E6%9E%90-process07.png" class title="分析-process07">
-
-<p>首先需要一个逆转前n个节点的方法</p>
-<p><strong>方法签名：</strong><code>public ListNode reverseKNode(ListNode head,int k)</code></p>
-<p>迭代实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKNode</span><span class="params">(ListNode head,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">    ListNode cur = head;</span><br><span class="line">    ListNode suffix;</span><br><span class="line">    <span class="keyword">while</span>(cur!=<span class="keyword">null</span> &amp;&amp; k--!=<span class="number">0</span>)&#123;</span><br><span class="line">        suffix = cur.next;</span><br><span class="line">        cur.next = prev;</span><br><span class="line">        prev = cur;</span><br><span class="line">        cur = suffix;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>递归实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ListNode processor;</span><br><span class="line"><span class="comment">// 这里的k要保证不超过链表长度</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKNode</span><span class="params">(ListNode head,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k == <span class="number">1</span>)&#123;</span><br><span class="line">        processor = head.next;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode node = reverseKNode1(head.next, k-<span class="number">1</span>);</span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = processor;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>方法签名：</strong><code>public ListNode reverseKNode(ListNode head,ListNode end)</code></p>
-<p>递归实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ListNode processor;</span><br><span class="line"><span class="comment">// [head,end)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKNode</span><span class="params">(ListNode head,ListNode end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(head.next == end)&#123;</span><br><span class="line">        processor = head.next;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode node = reverseKNode(head.next, end);</span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = processor;</span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>迭代实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKNode</span><span class="params">(ListNode head,ListNode end)</span></span>&#123;</span><br><span class="line">    ListNode prev = <span class="keyword">null</span>;</span><br><span class="line">    ListNode cur = head;</span><br><span class="line">    ListNode suffix;</span><br><span class="line">    <span class="keyword">while</span>(cur != end)&#123;</span><br><span class="line">        suffix = cur.next;</span><br><span class="line">        cur.next = prev;</span><br><span class="line">        prev = cur;</span><br><span class="line">        cur = suffix;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> prev;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="k个一组逆转单链表"><a href="#k个一组逆转单链表" class="headerlink" title="k个一组逆转单链表"></a>k个一组逆转单链表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        ListNode end = head;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            <span class="comment">// 如果长度不足k，则直接返回头部，不用逆转</span></span><br><span class="line">            <span class="keyword">if</span>(end==<span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> head;</span><br><span class="line">            &#125;</span><br><span class="line">            end = end.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = reverseKNode(head, k);</span><br><span class="line">        head.next = reverseKGroup(end, k);</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKNode</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        ListNode prev=<span class="keyword">null</span>;</span><br><span class="line">        ListNode cur=head;</span><br><span class="line">        ListNode suffix;</span><br><span class="line">        <span class="keyword">while</span>(cur!=<span class="keyword">null</span>&amp;&amp;k--!=<span class="number">0</span>)&#123;</span><br><span class="line">            suffix=cur.next;</span><br><span class="line">            cur.next=prev;</span><br><span class="line">            prev=cur;</span><br><span class="line">            cur=suffix;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第二次写</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    ListNode node = head;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(node==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        node=node.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead = reverseKNode(head,k,node);</span><br><span class="line">    head.next=reverseKGroup(node,k);</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> ListNode <span class="title">reverseKNode</span><span class="params">(ListNode head,<span class="keyword">int</span> k,ListNode tail)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(k==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newHead=reverseKNode(head.next,k-<span class="number">1</span>,tail);</span><br><span class="line">    head.next.next=head;</span><br><span class="line">    head.next=tail;</span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://li-zhi.net.cn/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/" itemprop="url">算法-逆转单链表</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-08T09:31:19+08:00">
-                2022-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  593
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="逆转单链表"><a href="#逆转单链表" class="headerlink" title="逆转单链表"></a>逆转单链表</h2><p>逆转单链表，这是一个经典的单链表问题</p>
-<p>本节不仅讲如何迭代去逆转单链表</p>
-<p>还讲如何使用递归去逆转一部分单链表或者整个单链表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    ListNode() &#123;&#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val) &#123; <span class="keyword">this</span>.val = val; &#125;</span><br><span class="line">    ListNode(<span class="keyword">int</span> val, ListNode next) &#123; <span class="keyword">this</span>.val = val; <span class="keyword">this</span>.next = next; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">力扣206：反转链表</a></p>
-<p><strong>迭代实现</strong></p>
-<p>1、初始化三个节点<code>prev = null</code>（作为前置节点）、<code>cur = head</code>（作为当前节点）、<code>suffix</code>（作为后置节点）</p>
-<p>2、开始循环条件为<code>cur!=null</code>的循环，cur将一直走到最后一个节点的下一个节点为null的地方</p>
-<p>3、先将<code>suffix</code>指向cur的next，然后将<code>cur</code>的next指向前一个指针<code>prev</code>，然后<code>prev</code>变为<code>cur</code>，<code>cur</code>变为<code>suffix</code></p>
-<p>4、返回<code>prev</code>节点</p>
-<p>初始化</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E8%BF%AD%E4%BB%A3%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8-process01.png" class title="迭代逆转单链表-process01">
-
-<p>开始循环</p>
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E8%BF%AD%E4%BB%A3%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8-process02.png" class title="迭代逆转单链表-process02">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E8%BF%AD%E4%BB%A3%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8-process03.png" class title="迭代逆转单链表-process03">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E8%BF%AD%E4%BB%A3%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8-process04.png" class title="迭代逆转单链表-process04">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E8%BF%AD%E4%BB%A3%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8-process05.png" class title="迭代逆转单链表-process05">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E8%BF%AD%E4%BB%A3%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8-process06.png" class title="迭代逆转单链表-process06">
-
-<img src="/%E7%AE%97%E6%B3%95/2022/03/08/%E7%AE%97%E6%B3%95-%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8/%E8%BF%AD%E4%BB%A3%E9%80%86%E8%BD%AC%E5%8D%95%E9%93%BE%E8%A1%A8-process07.png" class title="迭代逆转单链表-process07">
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode prev=<span class="keyword">null</span>;</span><br><span class="line">        ListNode cur=head;</span><br><span class="line">        ListNode suffix;</span><br><span class="line">        <span class="keyword">while</span>(cur!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            suffix=cur.next;</span><br><span class="line">            cur.next=prev;</span><br><span class="line">            prev = cur;</span><br><span class="line">            cur=suffix;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>递归实现</strong></p>
-<p>我们的 <code>reverseList</code> 函数定义是这样的：</p>
-<p><strong>输入一个节点 <code>head</code>，将「以 <code>head</code> 为起点」的链表反转，并返回反转之后的头结点</strong>。</p>
-<p>先递归到源链表的最后一个节点</p>
-<p>然后当前的<code>head</code>节点就是需要加入到反转好的链表中，</p>
-<p><code>head</code>的<code>next</code>指针是逆转后的链表的最后一个节点</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode cur = reverseList(head.next);</span><br><span class="line">        head.next.next=head;</span><br><span class="line">        head.next=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="反转前n个节点"><a href="#反转前n个节点" class="headerlink" title="反转前n个节点"></a>反转前n个节点</h3><p>n&lt;&#x3D;链表长度</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    ListNode end = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head,<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</span><br><span class="line">            end = head.next;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode node = reverseList(head.next,n-<span class="number">1</span>);</span><br><span class="line">        head.next.next=head;</span><br><span class="line">        head.next=end;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="反转指定索引范围的链表"><a href="#反转指定索引范围的链表" class="headerlink" title="反转指定索引范围的链表"></a>反转指定索引范围的链表</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">力扣92：反转链表 II</a></p>
-<p>反转<code>left</code>到<code>right</code>部分的链表</p>
-<p>如果当<code>left</code>为1，那不就回到上面的那个问题了</p>
-<p>所以只需要在<code>reverseBetween</code>中不断递归直到<code>left</code>的时候，<code>right</code>也就变成了区间长度</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> reverseList(head,right);</span><br><span class="line">        &#125;</span><br><span class="line">        head.next=reverseBetween(head.next,left-<span class="number">1</span>,right-<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode end = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>)&#123;</span><br><span class="line">            end = head.next;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode node = reverseList(head.next,n-<span class="number">1</span>);</span><br><span class="line">        head.next.next=head;</span><br><span class="line">        head.next=end;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2916,7 +2987,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3046,7 +3117,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">129.2k</span>
+    <span title="站点总字数">134.9k</span>
   
 </div>
 
