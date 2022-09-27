@@ -89,18 +89,18 @@
 <meta name="description" content="AOPAOP为Aspect Oriented Programming的缩写，意思是面向切面编程，是通过预编译和运行期动态代理实现程序功能的统一维护的一种技术。 Spring框架两大重点，AOP和IOC(Inversion Of Control)控制反转 AOP是OOP的延续,是软件开发中的一个热点, 也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。 利用AOP可以对业务逻辑的各个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring-aop">
-<meta property="og:url" content="https://li-zhi.net.cn/javaEE/Spring/2022/01/27/Spring-aop/index.html">
+<meta property="og:url" content="https://li-zhi.net.cn/JavaEE/Spring/2022/01/27/Spring-aop/index.html">
 <meta property="og:site_name" content="芝麻的blog">
 <meta property="og:description" content="AOPAOP为Aspect Oriented Programming的缩写，意思是面向切面编程，是通过预编译和运行期动态代理实现程序功能的统一维护的一种技术。 Spring框架两大重点，AOP和IOC(Inversion Of Control)控制反转 AOP是OOP的延续,是软件开发中的一个热点, 也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。 利用AOP可以对业务逻辑的各个">
 <meta property="og:locale">
-<meta property="og:image" content="https://li-zhi.net.cn/javaEE/Spring/2022/01/27/Spring-aop/JDK%E4%BB%A3%E7%90%86.png">
-<meta property="og:image" content="https://li-zhi.net.cn/javaEE/Spring/2022/01/27/Spring-aop/cglib%E4%BB%A3%E7%90%86.png">
+<meta property="og:image" content="https://li-zhi.net.cn/JavaEE/Spring/2022/01/27/Spring-aop/JDK%E4%BB%A3%E7%90%86.png">
+<meta property="og:image" content="https://li-zhi.net.cn/JavaEE/Spring/2022/01/27/Spring-aop/cglib%E4%BB%A3%E7%90%86.png">
 <meta property="article:published_time" content="2022-01-27T08:25:19.000Z">
-<meta property="article:modified_time" content="2022-02-24T11:00:34.477Z">
+<meta property="article:modified_time" content="2022-09-27T14:00:24.540Z">
 <meta property="article:author" content="芝麻">
 <meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://li-zhi.net.cn/javaEE/Spring/2022/01/27/Spring-aop/JDK%E4%BB%A3%E7%90%86.png">
+<meta name="twitter:image" content="https://li-zhi.net.cn/JavaEE/Spring/2022/01/27/Spring-aop/JDK%E4%BB%A3%E7%90%86.png">
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="https://li-zhi.net.cn/javaEE/Spring/2022/01/27/Spring-aop/"/>
+  <link rel="canonical" href="https://li-zhi.net.cn/JavaEE/Spring/2022/01/27/Spring-aop/"/>
 
 
 
@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/Spring/2022/01/27/Spring-aop/">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/JavaEE/Spring/2022/01/27/Spring-aop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -360,8 +360,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/" itemprop="url" rel="index">
-                    <span itemprop="name">javaEE</span>
+                  <a href="/categories/JavaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaEE</span>
                   </a>
                 </span>
 
@@ -371,7 +371,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javaEE/Spring/" itemprop="url" rel="index">
+                  <a href="/categories/JavaEE/Spring/" itemprop="url" rel="index">
                     <span itemprop="name">Spring</span>
                   </a>
                 </span>
@@ -389,8 +389,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/javaEE/Spring/2022/01/27/Spring-aop/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/Spring/2022/01/27/Spring-aop/" itemprop="commentCount"></span>
+                <a href="/JavaEE/Spring/2022/01/27/Spring-aop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/JavaEE/Spring/2022/01/27/Spring-aop/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -461,7 +461,7 @@
 <ul>
 <li>JDK代理：基于接口的动态代理技术</li>
 </ul>
-<img src="/javaEE/Spring/2022/01/27/Spring-aop/JDK%E4%BB%A3%E7%90%86.png" class title="JDK代理">
+<img src="/JavaEE/Spring/2022/01/27/Spring-aop/JDK%E4%BB%A3%E7%90%86.png" class title="JDK代理">
 
 <p>Adivce.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Advice</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;前置增强&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;后置增强&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -479,7 +479,7 @@
 <ul>
 <li>cglib代理：基于父类的动态代理技术</li>
 </ul>
-<img src="/javaEE/Spring/2022/01/27/Spring-aop/cglib%E4%BB%A3%E7%90%86.png" class title="cglib代理">
+<img src="/JavaEE/Spring/2022/01/27/Spring-aop/cglib%E4%BB%A3%E7%90%86.png" class title="cglib代理">
 
 <p>ProxyTest.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Target target = <span class="keyword">new</span> Target();</span><br><span class="line">        Enhance enhance = <span class="keyword">new</span> Enhance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建增强其</span></span><br><span class="line">        Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">        <span class="comment">//设置父类</span></span><br><span class="line">        enhancer.setSuperclass(Target.class);</span><br><span class="line">        <span class="comment">//设置回调</span></span><br><span class="line">        enhancer.setCallback(<span class="keyword">new</span> MethodInterceptor() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                enhance.before();</span><br><span class="line">                Object invoke = method.invoke(target, args);</span><br><span class="line">                enhance.after();</span><br><span class="line">                <span class="keyword">return</span> invoke;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//创建代理对象</span></span><br><span class="line">        Target proxy = (Target) enhancer.create();</span><br><span class="line">        proxy.save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -672,7 +672,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/javaEE/MyBatis/2022/01/27/MyBatis%E6%98%A0%E5%B0%84%E5%99%A8%E6%96%87%E4%BB%B6/" rel="prev" title="MyBatis映射器文件">
+              <a href="/JavaEE/MyBatis/2022/01/27/MyBatis%E6%98%A0%E5%B0%84%E5%99%A8%E6%96%87%E4%BB%B6/" rel="prev" title="MyBatis映射器文件">
                 MyBatis映射器文件 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -769,7 +769,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -904,7 +904,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">134.9k</span>
+    <span title="站点总字数">135.1k</span>
   
 </div>
 
