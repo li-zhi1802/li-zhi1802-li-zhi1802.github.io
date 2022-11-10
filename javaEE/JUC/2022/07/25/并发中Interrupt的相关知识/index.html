@@ -86,15 +86,15 @@
 
 
 
-<meta name="description" content="Interruptinterrupt()是线程类的成员方法，作用是打断线程 与之有关的还有isInterrupted()和interrupted() interrupt()的作用是分情况的  当线程被join()、sleep()、wait()阻塞的时候  使用此方法，会设置打断标记为true，并且抛出异常InterruptedException  当线程正在运行的时候  使用此方法，会设置打断标记">
+<meta name="description" content="Interruptinterrupt()是线程类的成员方法，作用是打断线程 与之有关的还有isInterrupted()和interrupted() interrupt()的作用是分情况的  当线程被join()、sleep()、wait()阻塞的时候  使用此方法，会设置打断标记为false，并且抛出异常InterruptedException  当线程正在运行的时候  使用此方法，会设置打断标">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并发中Interrupt的相关知识">
 <meta property="og:url" content="https://li-zhi.net.cn/javaEE/JUC/2022/07/25/%E5%B9%B6%E5%8F%91%E4%B8%ADInterrupt%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="芝麻的blog">
-<meta property="og:description" content="Interruptinterrupt()是线程类的成员方法，作用是打断线程 与之有关的还有isInterrupted()和interrupted() interrupt()的作用是分情况的  当线程被join()、sleep()、wait()阻塞的时候  使用此方法，会设置打断标记为true，并且抛出异常InterruptedException  当线程正在运行的时候  使用此方法，会设置打断标记">
+<meta property="og:description" content="Interruptinterrupt()是线程类的成员方法，作用是打断线程 与之有关的还有isInterrupted()和interrupted() interrupt()的作用是分情况的  当线程被join()、sleep()、wait()阻塞的时候  使用此方法，会设置打断标记为false，并且抛出异常InterruptedException  当线程正在运行的时候  使用此方法，会设置打断标">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-07-25T08:21:32.000Z">
-<meta property="article:modified_time" content="2022-10-04T13:55:58.408Z">
+<meta property="article:modified_time" content="2022-11-06T12:48:00.711Z">
 <meta property="article:author" content="芝麻">
 <meta property="article:tag" content="并发">
 <meta name="twitter:card" content="summary">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  752
+                  762
                 </span>
               
 
@@ -445,7 +445,7 @@
 <blockquote>
 <p>当线程被<code>join()</code>、<code>sleep()</code>、<code>wait()</code>阻塞的时候</p>
 </blockquote>
-<p>使用此方法，会设置打断标记为<code>true</code>，并且抛出异常<code>InterruptedException</code></p>
+<p>使用此方法，会设置打断标记为<code>false</code>，并且抛出异常<code>InterruptedException</code></p>
 <blockquote>
 <p>当线程正在运行的时候</p>
 </blockquote>
@@ -459,7 +459,7 @@
 <h2 id="isInterrupted"><a href="#isInterrupted" class="headerlink" title="isInterrupted"></a>isInterrupted</h2><p>此方法也是线程类的成员方法，作用是返回打断标记</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Tests whether this thread has been interrupted.  The &lt;i&gt;interrupted</span></span><br><span class="line"><span class="comment"> * status&lt;/i&gt; of the thread is unaffected by this method.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;A thread interruption ignored because a thread was not alive</span></span><br><span class="line"><span class="comment"> * at the time of the interrupt will be reflected by this method</span></span><br><span class="line"><span class="comment"> * returning false.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>  &#123;<span class="doctag">@code</span> true&#125; if this thread has been interrupted;</span></span><br><span class="line"><span class="comment"> *          &#123;<span class="doctag">@code</span> false&#125; otherwise.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span>     #interrupted()</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@revised</span> 6.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isInterrupted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> isInterrupted(<span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="interrupted"><a href="#interrupted" class="headerlink" title="interrupted"></a>interrupted</h2><p>此方法是Thread的静态方法，作用是重置<strong>当前运行线程的打断标记</strong>，并返回之前的打断标记</p>
+<h2 id="interrupted"><a href="#interrupted" class="headerlink" title="interrupted"></a>interrupted</h2><p>此方法是Thread的静态方法，作用是重置<strong>当前运行线程的打断标记（就是将打断标记置为false）</strong>，并返回之前的打断标记</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Tests whether the current thread has been interrupted.  The</span></span><br><span class="line"><span class="comment">     * &lt;i&gt;interrupted status&lt;/i&gt; of the thread is cleared by this method.  In</span></span><br><span class="line"><span class="comment">     * other words, if this method were to be called twice in succession, the</span></span><br><span class="line"><span class="comment">     * second call would return false (unless the current thread were</span></span><br><span class="line"><span class="comment">     * interrupted again, after the first call had cleared its interrupted</span></span><br><span class="line"><span class="comment">     * status and before the second call had examined it).</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;A thread interruption ignored because a thread was not alive</span></span><br><span class="line"><span class="comment">     * at the time of the interrupt will be reflected by this method</span></span><br><span class="line"><span class="comment">     * returning false.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span>  &#123;<span class="doctag">@code</span> true&#125; if the current thread has been interrupted;</span></span><br><span class="line"><span class="comment">     *          &#123;<span class="doctag">@code</span> false&#125; otherwise.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> #isInterrupted()</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@revised</span> 6.0</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">interrupted</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> currentThread().isInterrupted(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -616,7 +616,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">124</span>
+                  <span class="site-state-item-count">143</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -762,7 +762,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">147.4k</span>
+    <span title="站点总字数">163.4k</span>
   
 </div>
 
