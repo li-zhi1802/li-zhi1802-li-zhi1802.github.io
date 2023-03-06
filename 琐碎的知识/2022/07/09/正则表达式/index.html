@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -134,7 +134,7 @@
 <meta property="og:image" content="https://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/07/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/image-20220709172624342.png">
 <meta property="og:image" content="https://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/07/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/image-20220709174523626.png">
 <meta property="article:published_time" content="2022-07-09T03:19:07.000Z">
-<meta property="article:modified_time" content="2022-09-27T10:21:33.572Z">
+<meta property="article:modified_time" content="2023-01-27T03:54:43.227Z">
 <meta property="article:author" content="芝麻">
 <meta property="article:tag" content="琐碎的知识">
 <meta name="twitter:card" content="summary">
@@ -146,7 +146,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -276,6 +276,16 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonlyusedconfiguration">
+          <a href="/commonlyUsedConfiguration" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br />
+            
+            常用配置
           </a>
         </li>
       
@@ -444,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5k
+                  5.1k
                 </span>
               
 
@@ -573,15 +583,23 @@
 </tr>
 <tr>
 <td align="center">\W</td>
-<td align="center">匹配单个非数字、大小写字母字符，相当于<code>[^0-9a-zA-Z]</code></td>
+<td align="center">匹配单个非数字、非大小写字母字符，非下划线，相当于<code>[^0-9a-zA-Z_]</code></td>
 </tr>
 <tr>
 <td align="center">\s</td>
 <td align="center">匹配任意一个\n、空格、tab</td>
 </tr>
 <tr>
+<td align="center">\S</td>
+<td align="center">与\s匹配的相反</td>
+</tr>
+<tr>
 <td align="center">\b</td>
 <td align="center">匹配每一个单词的前和后</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td align="center">与\b匹配的相反</td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -705,7 +723,7 @@
 <p>就是<code>&lt;</code>还是符合<code>.</code>的吧，那就继续匹配</p>
 <p>直到匹配到span2后面的<code>&lt;</code>的时候，发现如果再匹配span2后面的<code>&lt;</code>了</p>
 <p>那么我们正则表达式中最后的<code>&lt;/span&gt;</code>就没法匹配了，所以<code>.</code>就匹配到span2中的2为止</p>
-<p>那让我们开启懒惰模式看看结构</p>
+<p>那让我们开启懒惰模式看看结果</p>
 <img src="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/07/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/image-20220709122836416.png" class title="开启懒惰模式">
 
 <blockquote>
@@ -720,7 +738,7 @@
 </blockquote>
 <p>开启懒惰模式中的<code>?</code>和我们在数量控制中的<code>?</code>是<strong>不一样</strong>的</p>
 <p>懒惰模式中的<code>?</code>只能写在数量控制<code>&#123;&#125;</code>后面</p>
-<p>数量控制<code>&#123;&#125;</code>只可以写在范围字符后面<code>[a-f]或者\d这种</code></p>
+<p>数量控制<code>&#123;&#125;</code>只可以写在范围字符后面<code>[a-f]</code>或者<code>\d</code>这种</p>
 <p>这里需要好好理解一下</p>
 <h4 id="删除所有的HTML注释"><a href="#删除所有的HTML注释" class="headerlink" title="删除所有的HTML注释"></a>删除所有的HTML注释</h4><p>测试数据如下</p>
 <p>有三种注释哦</p>
@@ -1161,7 +1179,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">143</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1172,7 +1190,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1307,7 +1325,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">163.4k</span>
+    <span title="站点总字数">119.2k</span>
   
 </div>
 
