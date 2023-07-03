@@ -1385,6 +1385,265 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7%E7%AF%87/2022/03/02/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E9%AD%94%E9%AC%BC%E7%BB%86%E8%8A%82%E6%8E%A2%E7%A9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7%E7%AF%87/2022/03/02/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E9%AD%94%E9%AC%BC%E7%BB%86%E8%8A%82%E6%8E%A2%E7%A9%B6/" itemprop="url">算法-二分查找的多种写法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-02T09:07:03+08:00">
+                2022-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">技巧篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7%E7%AF%87/2022/03/02/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E9%AD%94%E9%AC%BC%E7%BB%86%E8%8A%82%E6%8E%A2%E7%A9%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7%E7%AF%87/2022/03/02/%E7%AE%97%E6%B3%95-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E9%AD%94%E9%AC%BC%E7%BB%86%E8%8A%82%E6%8E%A2%E7%A9%B6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>二分查找作为数组的基操，肯定是要牢牢掌握的，其思想十分简单，但是对于细节的处理，就可以看出你对二分算法的理解深刻与否。</p>
+<p>如果没有真正的理解细节处的内涵，二分查找算法的编写就是玄学编写，这里加不加等号呢？这里是+1还是不变呢？最后该返回啥呢？</p>
+<p>接下来我们就来看看这些细节该如何处理</p>
+<p>下面使用三个二分查找使用的场景做出分析：<strong>寻找一个数</strong>、<strong>寻找左侧边界</strong>、<strong>寻找右侧边界</strong></p>
+<h3 id="二分查找的骨架"><a href="#二分查找的骨架" class="headerlink" title="二分查找的骨架"></a>二分查找的骨架</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = ..;<span class="comment">// nums.length-1还是nums.length</span></span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(left..right)&#123;<span class="comment">// &lt;=还是&lt;</span></span><br><span class="line">        mid = (left + right) &gt;&gt; <span class="number">1</span>;<span class="comment">// (right - left) / 2 + left(left + right) &gt;&gt; 1还是 (right + left) / 2</span></span><br><span class="line">        <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">            .. = ..; <span class="comment">// right还是left  mid-1还是mid</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(target &lt; nums[mid])&#123;</span><br><span class="line">            right = ..; <span class="comment">// mid-1还是mid</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            left = ..; <span class="comment">// mid+1 </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ..;<span class="comment">// left或者要做什么处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或许你经常看见一些代码不会将等于的情况单独列出来，但是我觉得对于二分查找的分析，将等于的情况单独分离出来，会更有利于理解</p>
+<p>等到彻底理解后，随便怎么写都不会少搜索区间的时候，那就随便合并语句了</p>
+<p>上述骨架中<code>..</code>出现的地方就是我们需要去琢磨的细节之处了，乍一看，全是细节，所以叫魔鬼细节探究</p>
+<p>先解决最好解决的一个细节</p>
+<p>很多人都在LeetCode官网中看到有时候官网对于中间值的取值</p>
+<p>有时候会使用<code>(right - left) / 2 + left</code></p>
+<p>有时候会使用<code>(left + right) &gt;&gt; 1</code></p>
+<p>有时候看见别人写的代码中又是<code>(right + left) / 2</code>，肯定会很迷糊，这三者的计算到底有什么不同之处呢？</p>
+<p><code>(right - left) / 2 + left</code>这种写法是为了防止<code>(left+right)</code>因为数据过大导致溢出，导致mid计算错误，</p>
+<p><code>(left + right) &gt;&gt; 1</code>这是位运算，处理效率会高一点</p>
+<p><code>(right + left) / 2</code>这就是正常写法，一般也不会出错</p>
+<p>接下来按照二分查找的常见使用场景来逐个做出分析</p>
+<h3 id="查找一个数"><a href="#查找一个数" class="headerlink" title="查找一个数"></a>查找一个数</h3><p><strong>场景1：查找一个数，存在返回索引，不存在返回-1</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="comment">// [left,right]</span></span><br><span class="line">    <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">            <span class="keyword">return</span> mid; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">            left = mid + <span class="number">1</span>; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)&#123;</span><br><span class="line">            right = mid - <span class="number">1</span>; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>循环条件是<code>left &lt;= right</code>而不是<code>left &lt; right</code>？</strong></li>
+</ol>
+<p>这里我们要说一下什么时候应该退出循环，就是当我所有的元素都搜索完成之后（即搜索区间里面没有元素的时候），或者是找到了目标值的时候可以直接终止，返回结果。</p>
+<p>当right赋值为<code>nums.length - 1</code>，则搜索区间为<code>[left,right]</code>，所有元素搜索完成的条件应该是<code>left==right+1</code>，即搜索区间为<code>[right+1,right]</code>，符合要求。如果循环退出条件改为 <code>left&lt;right</code>，则退出循环的时候，搜索区间为<code>[left,right]</code>，会缺少搜索第left个元素，不符合要求</p>
+<p>如果**right赋值为<code>nums.length</code>**，则搜索区间为<code>[left,right)</code>，所有元素搜索完成的条件应该是<code>left==right</code>，即搜索区间为<code>[left,right)</code></p>
+<ol start="2">
+<li><strong>当<code>nums[mid] &gt; target</code>的时候，为什么是<code>right = mid - 1; </code>而不是<code>right = mid; </code>？</strong></li>
+</ol>
+<p>还是回到搜索区间的问题上，当我发现当前这个元素与target不等而是大于target，那么我只需要搜索左边区间，即将<code>[left,right]</code>分割为左边区间<code>[left,mid-1]</code>和右边区间<code>[mid+1,right]</code>，所以下一步应该将<code>mid-1</code>赋值给right</p>
+<ol start="3">
+<li><strong>此算法的用途</strong></li>
+</ol>
+<p>这种方法只可以在找到目标值的情况下返回索引，但是当nums为<code>[1,2,2,2,4]</code>的时候，返回的值是2，没错，但是这样可能就无法满足我们的需求了，只能在数组是严格递增的情况下使用。	</p>
+<p>如果场景变为：查找一个数，如果找到则返回索引位置，如果找不到，则返回目标值插入数组的位置</p>
+<p>这个时候其实只要最后返回left即可</p>
+<h3 id="返回左边界"><a href="#返回左边界" class="headerlink" title="返回左边界"></a>返回左边界</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="comment">// [left,right]</span></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= nums.length || nums[left] != target) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>为什么最后返回的时候要做出判断？</strong></li>
+</ol>
+<p>当目标元素比所有的值都小的时候，在最后一次循环的时候，<code>right = mid - 1</code>，left此时为0，但是无法确定该元素是否为目标元素，所以需要做出判断，</p>
+<p>当目标元素比所有的值都大的时候，在最后一次循环的时候，<code>left= mid + 1</code>，left此时为数组长度，这时候则说明，该元素在此数组中不存在，也要做出判断</p>
+<ol start="2">
+<li><strong>为什么找到的一定是左边界？</strong></li>
+</ol>
+<p>因为这一段代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">    right= mid - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当数组元素等于目标元素的时候，不着急返回，而是缩小查找范围。因为需要查找左边界，所以需要向左边收缩区间</p>
+<ol start="3">
+<li><strong>这里面while的循环条件可以改为<code>left &lt; right</code>吗？</strong></li>
+</ol>
+<p>当然可以，只要理解了搜索区间，只要能够保证所有的元素都被查找了，怎么写都可以。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = nums.length;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果target毕nums所有的值都小，则right会变成-1,left就是0</span></span><br><span class="line">    <span class="comment">// 如果target比nums所有的值都大，则left会变成nums.length，right就是nums.length-1</span></span><br><span class="line">    <span class="keyword">if</span> (left == nums.length || nums[left] != target) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当目标元素比所有的值都大的时候，在最后一次循环的时候，<code>left= mid + 1</code>，left此时为数组长度，这时候则说明，该元素在此数组中不存在，需要单独做出判断</p>
+<p>当目标元素比所有的值都小的时候，在最后一次循环的时候，<code>right = mid </code>，left此时为0，但是无法确定该元素是否为目标元素，所以需要做出判断，</p>
+<h3 id="返回右边界"><a href="#返回右边界" class="headerlink" title="返回右边界"></a>返回右边界</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">            left = mid + <span class="number">1</span>; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)&#123;</span><br><span class="line">            right = mid - <span class="number">1</span>; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果target比nums中所有元素都大，left在nums.length,right在nums.length-1</span></span><br><span class="line">    <span class="comment">// target比nums所有元素都小，left在0，right是-1</span></span><br><span class="line">    <span class="keyword">if</span> (left == <span class="number">0</span> || nums[left - <span class="number">1</span>] != target) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong>为什么最后返回的时候要做出判断？</strong></li>
+</ol>
+<p>当目标元素比所有的值都大的时候，在最后一次循环的时候，<code>left= mid + 1</code>，left此时为数组长度，这时候则说明，该元素在此数组中不存在，也要做出判断</p>
+<p>当目标元素比所有的值都小的时候，在最后一次循环的时候，<code>right = mid - 1</code>，left此时为0，但是无法确定该元素是否为目标元素，所以需要做出判断，</p>
+<ol start="2">
+<li><strong>为什么找到的一定是右边界？</strong></li>
+</ol>
+<p>因为这一段代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(nums[mid] == target)&#123;</span><br><span class="line">    left = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当数组元素等于目标元素的时候，不着急返回，而是缩小查找范围。因为需要查找右边界，所以需要向右边收缩区间</p>
+<ol start="3">
+<li><strong>如何修改循环条件为<code>left &lt; right</code>？</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = nums.length;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">            right = mid;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 当target比数组中所有元素都小的时候，right和left都走到了0的位置</span></span><br><span class="line">    <span class="comment">// 这时候这说明，数组中不存在target元素，直接返回0</span></span><br><span class="line">    <span class="keyword">if</span> (left == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 当target比数组所有元素都大的时候，right和left都走到了数组长度的位置，</span></span><br><span class="line">    <span class="comment">// 如果数组最后一个元素不是这说明数组中没有target元素</span></span><br><span class="line">    <span class="keyword">if</span> (nums[left - <span class="number">1</span>] != target) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%AE%97%E6%B3%95/%E5%88%B7%E9%A2%98%E7%AF%87/2022/03/01/%E3%80%9034-Medium%E3%80%91%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2212,267 +2471,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/" itemprop="url">关于权限修饰符protected</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-28T18:05:05+08:00">
-                2022-02-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
-                    <span itemprop="name">琐碎的知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="权限修饰符"><a href="#权限修饰符" class="headerlink" title="权限修饰符"></a>权限修饰符</h2><p>我们先回顾一下java中的权限修饰符</p>
-<table>
-<thead>
-<tr>
-<th align="center">权限修饰符</th>
-<th align="center">同类</th>
-<th align="center">同包</th>
-<th align="center">子类</th>
-<th align="center">其他包</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">public</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">protected</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">default</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">×</td>
-<td align="center">×</td>
-</tr>
-<tr>
-<td align="center">private</td>
-<td align="center">√</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-</tr>
-</tbody></table>
-<p>对于public和private大家都很了解了，但是对于<strong>protected</strong>，大家可能对它的概念可能就一句话：被protected修饰的成员对于本包和其子类可见。</p>
-<p>该权限修饰符的关键是</p>
-<ul>
-<li>基类的protected成员属性是包内可见的，并且对所有子类可见</li>
-<li>若子类与基类不在同一包下，则在<strong>子类中</strong>，子类实例可以访问从基类继承来的protected方法，而不能访问基类实例的protected方法</li>
-</ul>
-<p>遇到protected</p>
-<p>首先思考这个protected来自何方</p>
-<p>接着看其和这个地方是不是同包</p>
-<p>最后看其是否有父子类关系</p>
-<p>可以通过以下几个Test来掌握protected的用法</p>
-<blockquote>
-<p><strong>注意：观察包限定名</strong></p>
-</blockquote>
-<p>模型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son1</span> <span class="keyword">extends</span> <span class="title">Feather1</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Feather1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son11</span> <span class="keyword">extends</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>测试</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p11.Son11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son1.f();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        son1.clone();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        son2.f();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        son2.clone();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        feather1.f();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>测试</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Feather1;</span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Son1;</span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p11.Son11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        son1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        son2.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        son2.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        feather1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>测试</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Feather1;</span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Son1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son11</span> <span class="keyword">extends</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son2.f();<span class="comment">//编译通过，因为该测试类所在的地方是Feather1的子类</span></span><br><span class="line">        son2.clone();<span class="comment">//编译通过，因为该测试类所在的地方是Feather1的子类</span></span><br><span class="line">        feather1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">        son1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">        son1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>测试</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p11.Son11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son2.f();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        son2.clone();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        feather1.f();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        son1.f();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        son1.clone();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>测试</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p44.Test4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyObject4</span> <span class="keyword">extends</span> <span class="title">Test4</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p44;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p4.MyObject4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        MyObject4 myObject4 = <span class="keyword">new</span> MyObject4();</span><br><span class="line">        myObject4.clone();<span class="comment">//编译不通过</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>说明：</strong>myobject4的clone<strong>直接</strong>来自MyObject4类本身</p>
-<p>其范围是MyObjcet4的子类与其同包的类</p>
-<p>Test4都不满足</p>
-<p>所以编译不通过</p>
-<p><strong>测试</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p44.Test4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyObject4</span> <span class="keyword">extends</span> <span class="title">Test4</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p44;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p4.MyObject4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        MyObject4 myObject4 = <span class="keyword">new</span> MyObject4();</span><br><span class="line">        myObject4.clone();<span class="comment">//编译通过</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>说明：</strong>myobject4的clone<strong>直接</strong>来源于Test4</p>
-<p>范围是Test4子类及其同包的类</p>
-<p>满足与其同包</p>
-<p>编译通过</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2527,7 +2525,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2657,7 +2655,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">126.8k</span>
+    <span title="站点总字数">129k</span>
   
 </div>
 

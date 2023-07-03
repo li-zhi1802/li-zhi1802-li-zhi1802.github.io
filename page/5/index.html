@@ -314,6 +314,267 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/" itemprop="url">关于权限修饰符protected</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-28T18:05:05+08:00">
+                2022-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">琐碎的知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E7%90%90%E7%A2%8E%E7%9A%84%E7%9F%A5%E8%AF%86/2022/02/28/%E5%85%B3%E4%BA%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6protected/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="权限修饰符"><a href="#权限修饰符" class="headerlink" title="权限修饰符"></a>权限修饰符</h2><p>我们先回顾一下java中的权限修饰符</p>
+<table>
+<thead>
+<tr>
+<th align="center">权限修饰符</th>
+<th align="center">同类</th>
+<th align="center">同包</th>
+<th align="center">子类</th>
+<th align="center">其他包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">×</td>
+</tr>
+<tr>
+<td align="center">default</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">×</td>
+<td align="center">×</td>
+</tr>
+<tr>
+<td align="center">private</td>
+<td align="center">√</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">×</td>
+</tr>
+</tbody></table>
+<p>对于public和private大家都很了解了，但是对于<strong>protected</strong>，大家可能对它的概念可能就一句话：被protected修饰的成员对于本包和其子类可见。</p>
+<p>该权限修饰符的关键是</p>
+<ul>
+<li>基类的protected成员属性是包内可见的，并且对所有子类可见</li>
+<li>若子类与基类不在同一包下，则在<strong>子类中</strong>，子类实例可以访问从基类继承来的protected方法，而不能访问基类实例的protected方法</li>
+</ul>
+<p>遇到protected</p>
+<p>首先思考这个protected来自何方</p>
+<p>接着看其和这个地方是不是同包</p>
+<p>最后看其是否有父子类关系</p>
+<p>可以通过以下几个Test来掌握protected的用法</p>
+<blockquote>
+<p><strong>注意：观察包限定名</strong></p>
+</blockquote>
+<p>模型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son1</span> <span class="keyword">extends</span> <span class="title">Feather1</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Feather1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son11</span> <span class="keyword">extends</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p11.Son11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son1.f();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        son1.clone();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        son2.f();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        son2.clone();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        feather1.f();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译通过，因为该测试类与Feather1处于同一包下</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Feather1;</span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Son1;</span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p11.Son11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        son1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        son2.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        son2.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        feather1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下，该类也不是Feather1的子类</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Feather1;</span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p1.Son1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son11</span> <span class="keyword">extends</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son2.f();<span class="comment">//编译通过，因为该测试类所在的地方是Feather1的子类</span></span><br><span class="line">        son2.clone();<span class="comment">//编译通过，因为该测试类所在的地方是Feather1的子类</span></span><br><span class="line">        feather1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">        son1.f();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">        son1.clone();<span class="comment">//编译不通过，因为该测试类与Feather1处于不同一包下</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p11.Son11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Feather1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        Feather1 feather1 = <span class="keyword">new</span> Feather1();</span><br><span class="line">        Son1 son1 = <span class="keyword">new</span> Son1();</span><br><span class="line">        Son11 son2 = <span class="keyword">new</span> Son11();</span><br><span class="line">        son2.f();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        son2.clone();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        feather1.f();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        feather1.clone();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        son1.f();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">        son1.clone();<span class="comment">//编译通过，因为该测试类是Son1和Son11的父类</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p44.Test4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyObject4</span> <span class="keyword">extends</span> <span class="title">Test4</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p44;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p4.MyObject4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        MyObject4 myObject4 = <span class="keyword">new</span> MyObject4();</span><br><span class="line">        myObject4.clone();<span class="comment">//编译不通过</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong>myobject4的clone<strong>直接</strong>来自MyObject4类本身</p>
+<p>其范围是MyObjcet4的子类与其同包的类</p>
+<p>Test4都不满足</p>
+<p>所以编译不通过</p>
+<p><strong>测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p44.Test4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyObject4</span> <span class="keyword">extends</span> <span class="title">Test4</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lizhi.protect.p44;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.lizhi.protect.p4.MyObject4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        MyObject4 myObject4 = <span class="keyword">new</span> MyObject4();</span><br><span class="line">        myObject4.clone();<span class="comment">//编译通过</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明：</strong>myobject4的clone<strong>直接</strong>来源于Test4</p>
+<p>范围是Test4子类及其同包的类</p>
+<p>满足与其同包</p>
+<p>编译通过</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%97%A8%E9%9D%A2%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2277,209 +2538,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-OOP%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="芝麻的blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-OOP%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" itemprop="url">设计模式-OOP七大原则</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-24T18:18:58+08:00">
-                2022-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-OOP%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2022/02/24/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-OOP%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="OOP七大原则"><a href="#OOP七大原则" class="headerlink" title="OOP七大原则"></a>OOP七大原则</h2><h3 id="开闭原则-Open-Closed-Principle-，OCP"><a href="#开闭原则-Open-Closed-Principle-，OCP" class="headerlink" title="开闭原则(Open-Closed Principle ，OCP)"></a>开闭原则(Open-Closed Principle ，OCP)</h3><p><strong>定义：</strong>对拓展开放，对修改关闭</p>
-<p><strong>问题的由来：</strong>在软件的生命周期的，因为变化、升级和维护等原因需要对软件原有代码进行修改时，可能会给旧的代码引入错误。</p>
-<p><strong>解决办法：</strong>当软件需要发生变化的时候，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</p>
-<p><strong>为什么要遵循开闭原则</strong></p>
-<p>　　1、只要是面向对象的编程，在开发过程中都会强调开闭原则</p>
-<p>　　2、是最基础的设计原则，其他五个设计原则都是开闭原则的具体形态</p>
-<p>　　3、可以提高代码的复用性</p>
-<p>　　4、可以提高代码的可维护性</p>
-<h3 id="单一职责原则（Single-Responsibility-Principle-SRP）"><a href="#单一职责原则（Single-Responsibility-Principle-SRP）" class="headerlink" title="单一职责原则（Single Responsibility Principle,SRP）"></a>单一职责原则（Single Responsibility Principle,SRP）</h3><p><strong>定义：</strong>如果一个类具有多个职责，应当将对象解耦，提高内聚，分别创建一些类去一 一完成这些职责，</p>
-<p><strong>核心：</strong>高内聚、低耦合。</p>
-<p><strong>优点：</strong></p>
-<p>　　1、降低类的功能复杂度</p>
-<p>　　2、提高系统的可维护性</p>
-<p>　　3、变更风险低</p>
-<h3 id="里氏替换原则（Liskov-Substitution-Principle-，LSP）"><a href="#里氏替换原则（Liskov-Substitution-Principle-，LSP）" class="headerlink" title="里氏替换原则（Liskov Substitution Principle ，LSP）"></a>里氏替换原则（Liskov Substitution Principle ，LSP）</h3><p><strong>定义：</strong> 子类对象能够替代程序中父类对象出现的任何地方，并且保证原来的程序的逻辑行为不变及正确性不被破坏</p>
-<p>里氏替换至少包含一下两个含义：</p>
-<p>　1、如果继承是为了实现代码重用，那么共享的父类方法就应该保持不变，不能被子类重新定义。子类只能通过新添加方法来扩展功能，父类和子类都可以实例化，而子类继承的方法和父类是一样的，父类调用方法的地方，子类也可以调用同一个继承得来的一致的方法，这时用子类对象将父类对象替换掉时，当然逻辑一致，相安无事。</p>
-<p>​	2、如果继承的目的是为了多态，而多态的前提就是子类覆盖并重新定义父类的方法，我们应该将父类定义为抽象类，并定义抽象方法，让子类重新定义这些方法，当父类是抽象类时，父类就是不能实例化的，也就不存在子类替换父类实例的现象。 </p>
-<p><strong>优点：</strong>可以大大减少程序的bug以及增强代码的可读性。</p>
-<h3 id="依赖倒置原则（Dependency-Inversion-Principle-，DIP）"><a href="#依赖倒置原则（Dependency-Inversion-Principle-，DIP）" class="headerlink" title="依赖倒置原则（Dependency Inversion Principle ，DIP）"></a>依赖倒置原则（Dependency Inversion Principle ，DIP）</h3><p><strong>定义：</strong>面向接口编程</p>
-<p>本质就是通过抽象(接口或抽象类)使各个类或模块的实现彼此独立，不互相影响，实现模块间的松耦合。</p>
-<h3 id="接口隔离原则-Interface-Segregation-Principle-ISP"><a href="#接口隔离原则-Interface-Segregation-Principle-ISP" class="headerlink" title="接口隔离原则(Interface Segregation Principle, ISP)"></a>接口隔离原则(Interface Segregation Principle, ISP)</h3><p><strong>定义：</strong>要用各个类建立他们需要的专用接口</p>
-<p>它包含了2层意思：</p>
-<p><strong>接口的设计原则：</strong>接口的设计应该遵循最小接口原则，不要把用户使用不到的方法塞进同一个接口里。如果一个接口的有方法没有被用户使用到，则说明该接口已经臃肿了，应该将其分割成几个功能专一的接口。</p>
-<p><strong>接口的依赖（继承）原则：</strong>如果一个接口a继承另一个接口b，则接口a相当于继承了接口b的方法，那么接口a也应该遵循上述原则：不应该包含用户不使用的方法。 反之，则说明接口a被b给污染了，应该重新设计它们的关系。</p>
-<h3 id="迪米特法则（Law-of-Demeter-，LOD）"><a href="#迪米特法则（Law-of-Demeter-，LOD）" class="headerlink" title="迪米特法则（Law of Demeter ，LOD）"></a>迪米特法则（Law of Demeter ，LOD）</h3><p><strong>定义：</strong>只与直接朋友交谈，不与陌生人通信</p>
-<p><strong>直接朋友的定义：</strong></p>
-<p>1）当前对象本身（this）</p>
-<p>2）以参量形式传入到当前对象方法中的对象</p>
-<p>3）当前对象的实例变量</p>
-<p>4）当前对象的实例变量如果是一个聚集，那么聚集中的元素也都是朋友</p>
-<p>5）当前对象所创建的对象</p>
-<h3 id="合成复用原则（Composite-x2F-Aggregate-Reuse-Principle-，CARP）"><a href="#合成复用原则（Composite-x2F-Aggregate-Reuse-Principle-，CARP）" class="headerlink" title="合成复用原则（Composite&#x2F;Aggregate Reuse Principle ，CARP）"></a>合成复用原则（Composite&#x2F;Aggregate Reuse Principle ，CARP）</h3><p><strong>定义：</strong>尽量先使用<strong>组合或者内聚</strong>等关联关系来实现，其次才考虑使用继承来实现，因为java是单继承</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2534,7 +2592,7 @@
               
                 <a href="/archives/%7C%7C%20anchor">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2664,7 +2722,7 @@ setInterval(function(){
     
       <span class="post-meta-item-text">站点总字数&#58;</span>
     
-    <span title="站点总字数">126.8k</span>
+    <span title="站点总字数">129k</span>
   
 </div>
 
