@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SpringBoot," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SpringBoot自动装配流程准备工作123456@SpringBootApplicationpublic class SpringStartProcessApplication &amp;#123;    public static void main(String[] args) &amp;#123;        SpringApplication.run(SpringStartProcessApplic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot自动装配流程">
+<meta property="og:url" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/index.html">
+<meta property="og:site_name" content="芝麻的blog">
+<meta property="og:description" content="SpringBoot自动装配流程准备工作123456@SpringBootApplicationpublic class SpringStartProcessApplication &amp;#123;    public static void main(String[] args) &amp;#123;        SpringApplication.run(SpringStartProcessApplic">
+<meta property="og:locale">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process0.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process1.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process2.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process3.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process4.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process5.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process6.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process7.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process8.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process11.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process12.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process9.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process10.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process14.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process18.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process13.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process15.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process16.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process17.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process19.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process21.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process20.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process22.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process23.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process24.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process25.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process26.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process27.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process28.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process29.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process30.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process31.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process32.png">
+<meta property="article:published_time" content="2023-07-17T02:11:19.000Z">
+<meta property="article:modified_time" content="2023-08-19T03:20:22.805Z">
+<meta property="article:author" content="芝麻">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot自动装配/"/>
+
+
+
+
+
+  <title>SpringBoot自动装配流程 | 芝麻的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">芝麻的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">百 事 可 乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sometips">
+          <a href="/sometips/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            有料
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-anchor"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonlyusedconfiguration">
+          <a href="/commonlyUsedConfiguration" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br />
+            
+            常用配置
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringBoot自动装配流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-07-17T10:11:19+08:00">
+                2023-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  919
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SpringBoot自动装配流程"><a href="#SpringBoot自动装配流程" class="headerlink" title="SpringBoot自动装配流程"></a>SpringBoot自动装配流程</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringStartProcessApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringStartProcessApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>拆分@SpringBootApplication注解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 标注该类是主启动类</span></span><br><span class="line">@SpringBootApplication</span><br><span class="line">    @SpringBootConfiguration</span><br><span class="line">        <span class="comment"># 配置类</span></span><br><span class="line">        @Configuration</span><br><span class="line">        <span class="comment"># 加快SpringBoot启动</span></span><br><span class="line">        @Indexed</span><br><span class="line">    <span class="comment"># 开启自动装配</span></span><br><span class="line">    @EnableAutoConfiguration</span><br><span class="line">        <span class="comment"># 设置扫描包的路径</span></span><br><span class="line">        @AutoConfigurationPackage</span><br><span class="line">            <span class="comment"># 导入一个类</span></span><br><span class="line">            @Import(AutoConfigurationPackages.Registrar.class)</span><br><span class="line">        <span class="comment"># 加载META-INF/spring.factories，将beandefinitions装入容器</span></span><br><span class="line">        @Import(AutoConfigurationImportSelector.class)</span><br><span class="line">    <span class="comment"># 用来排除一些自动配置类</span></span><br><span class="line">    @ComponentScan(excludeFilters = &#123; @Filter(<span class="built_in">type</span> = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span><br><span class="line">    		@Filter(<span class="built_in">type</span> = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)</span><br></pre></td></tr></table></figure>
+<p>接下来重点关注<code>AutoConfigurationPackages.Registrar</code>类和<code>AutoConfigurationImportSelector</code>类</p>
+<h2 id="AutoConfigurationPackages-Registrar"><a href="#AutoConfigurationPackages-Registrar" class="headerlink" title="AutoConfigurationPackages.Registrar"></a>AutoConfigurationPackages.Registrar</h2><p>先在<code>AutoConfigurationPackages.Registrar</code>的图示位置打上断点，接着启动程序</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process0.png" class>
+
+<p>分析源码要由内而外的分析</p>
+<p>方法参数中有一个new出来的对象，直接单步调试进去</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process1.png" class>
+<p>1、metadata到底是哪个类的注解元信息？</p>
+<p>其实是启动类的，也就是SpringStartProcessorApplication</p>
+<p>2、这个basePackages和basePackageClasses在哪里体现的呢？</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process2.png" class>
+
+<p>其实是在SpringBootApplication注解上</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process3.png" class>
+
+<p>这也就说明这个metadata包括了<code>@SpringBootApplication</code>标注的类上的其他注解的元信息和自身内部的注解的元信息</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process4.png" class>
+
+<p>ok这段代码解决，现在继续点进去，看这个<code>register</code>方法里面写了啥</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process5.png" class>
+<h2 id="AutoConfigurationImportSelector"><a href="#AutoConfigurationImportSelector" class="headerlink" title="AutoConfigurationImportSelector"></a>AutoConfigurationImportSelector</h2><img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process6.png" class>
+
+<p>既然知道了这个类的作用，所以找到selectImports方法，打上断点，启动程序等待程序停止</p>
+<p>但是！你会发现断点并没有生效</p>
+<p>实际上断点应该打在<code>AutoConfigurationGroup</code>类的<code>process</code>方法</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process7.png" class>
+
+<p>点进<code>getAutoConfigurationEntry</code>方法</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process8.png" class>
+<blockquote>
+<p>ps:这里的attributes是取出exclude和excludeName，就是用于排除掉不需要加载的自动配置类<br>这两个属性是在@SpringBootApplication中配的，是从@EnableConfiguration中得来的</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process11.png" class>
+</blockquote>
+<blockquote>
+<blockquote>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process12.png" class>
+</blockquote>
+</blockquote>
+<h3 id="getCandidateConfigurations"><a href="#getCandidateConfigurations" class="headerlink" title="getCandidateConfigurations"></a><code>getCandidateConfigurations</code></h3><img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process9.png" class>
+
+<p>点进<code>SpringFactoriesLoader.loadFactoryNames</code>方法</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process10.png" class>
+
+<p>点进<code>loadSpringFactories</code>方法</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process14.png" class>
+
+<p>然后在这里就会发现这个result竟然不是null，直接返回了result</p>
+<p>哎不是，我还没执行下面的逻辑呢，怎么就走缓存了</p>
+<p>其实这步加载在刚开始的时候就做了，所以直接在下面打一个断点，然后重新执行</p>
+<p>你会发现之前的那些断点都没有起作用，而是直接停在了这一行</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process18.png" class>
+
+<p>现在找一下<code>auto-configuration</code>包下的<code>META-INF/spring.factories</code>文件</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process13.png" class>
+
+<p>可以看到这些类都有一个统一的特征，那就是都是以AutoConfiguration结尾</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process15.png" class>
+
+<p>随便点开一个看，发现都长得差不多</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process16.png" class>
+<blockquote>
+<p>注意：这里会加载类路径下所有的<code>META-INF/spring.factories</code>文件</p>
+<p>每一个url就是一个jar包下的<code>META-INF/spring.factories</code>文件</p>
+</blockquote>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process17.png" class>
+
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process19.png" class>
+
+<p>好，现在我们加载了所有jar包下的<code>META-INF/spring.factories</code>文件</p>
+<p>现在放行，一直到这一步</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process21.png" class>
+
+<p>为什么要框住131这个数字？</p>
+<p>你现在回到刚刚那个<code>spring.factories</code>文件</p>
+<p>数一下<code>org.springframework.boot.autoconfigure.EnableAutoConfiguration</code>后面有几个类的全限定名</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process20.png" class>
+
+<p>对，正正好好131个</p>
+<h3 id="removeDuplicates"><a href="#removeDuplicates" class="headerlink" title="removeDuplicates"></a><code>removeDuplicates</code></h3><img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process22.png" class>
+<p>这个方法就是给list去重的，简单的赖，我来我也行！</p>
+<p>为什么要做去重？这个文件不是spring自己写的吗？它自己还不敢确定这个类不会重复吗？</p>
+<p>刚刚提到了，这里会加载所有类路径下的<code>spring.factories</code>文件，所以我如果这样呢<br>我在我自己的类路径下面创建一个<code>spring.factories</code>文件</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process23.png" class>
+
+<p>内容如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</span><br><span class="line">org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration</span><br></pre></td></tr></table></figure>
+
+<p>Spring能确认自己写的不会重复，但是它不能保证你不加个重复的啊</p>
+<h3 id="getExclusions"><a href="#getExclusions" class="headerlink" title="getExclusions"></a><code>getExclusions</code></h3><img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process24.png" class>
+
+<h3 id="checkExcludedClasses"><a href="#checkExcludedClasses" class="headerlink" title="checkExcludedClasses"></a><code>checkExcludedClasses</code></h3><p>检查排除的类是否在<code>org.springframework.boot.autoconfigure.EnableAutoConfiguration</code>配置中</p>
+<p>如果不存在则不允许排除，抛出异常</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process25.png" class>
+
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process26.png" class>
+
+<h3 id="configurations-removeAll-exclusions"><a href="#configurations-removeAll-exclusions" class="headerlink" title="configurations.removeAll(exclusions);"></a><code>configurations.removeAll(exclusions);</code></h3><p>即将configurations排除exclusions</p>
+<h3 id="getConfigurationClassFilter-filter-configurations"><a href="#getConfigurationClassFilter-filter-configurations" class="headerlink" title="getConfigurationClassFilter().filter(configurations);"></a><code>getConfigurationClassFilter().filter(configurations);</code></h3><img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process27.png" class>
+
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process28.png" class>
+
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process29.png" class>
+
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process30.png" class>
+
+<p>在过滤后，configurations就只剩下可怜的13个了</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process31.png" class>
+
+<h3 id="fireAutoConfigurationImportEvents"><a href="#fireAutoConfigurationImportEvents" class="headerlink" title="fireAutoConfigurationImportEvents"></a><code>fireAutoConfigurationImportEvents</code></h3><p>这个不太确定</p>
+<img src="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/process32.png" class>
+
+<p>最后就将其封装成<code>AutoConfigurationEntry</code>对象返回</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>给作者买杯咖啡吧~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringBoot/" rel="tag"><i class="fa fa-tag"></i> SpringBoot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/javaEE/2023/07/16/Nginx%E9%85%8D%E7%BD%AE/" rel="next" title="Nginx配置">
+                <i class="fa fa-chevron-left"></i> Nginx配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" rel="prev" title="SpringMVC工作流程">
+                SpringMVC工作流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20anchor">
+              
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/li-zhi1802" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div>
+    <svg>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-1"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-2"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-3"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-4"></text>
+    </svg>
+</div>
+
+<script>
+function showtime(){
+    var noatime = new Date();
+    var h = noatime.getHours(),
+        m = noatime.getMinutes(),
+        s = noatime.getSeconds();
+    h=checktime(h);
+    m=checktime(m);
+    s=checktime(s);
+  return h+":"+m+":"+s;
+}
+
+function checktime(x){
+  if(x<10){
+    x="0"+x;
+  }
+  return x;
+}
+
+var div1=document.getElementsByTagName("text");
+setInterval(function(){
+  for (var i in div1){
+      div1[i].innerHTML=showtime();
+  }
+},1000);
+</script>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E6%B5%81%E7%A8%8B"><span class="nav-text">SpringBoot自动装配流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AutoConfigurationPackages-Registrar"><span class="nav-text">AutoConfigurationPackages.Registrar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AutoConfigurationImportSelector"><span class="nav-text">AutoConfigurationImportSelector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getCandidateConfigurations"><span class="nav-text">getCandidateConfigurations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#removeDuplicates"><span class="nav-text">removeDuplicates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getExclusions"><span class="nav-text">getExclusions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkExcludedClasses"><span class="nav-text">checkExcludedClasses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#configurations-removeAll-exclusions"><span class="nav-text">configurations.removeAll(exclusions);</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getConfigurationClassFilter-filter-configurations"><span class="nav-text">getConfigurationClassFilter().filter(configurations);</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fireAutoConfigurationImportEvents"><span class="nav-text">fireAutoConfigurationImportEvents</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 评论框美化 -->
+<style>
+    #comments .veditor{
+        min-height: 10rem;
+        background-image: url('/images/comment-bg.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-id-card"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">芝麻</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数&#58;</span>
+    
+    <span title="站点总字数">147.9k</span>
+  
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'AwKkmCP2V87f6ONd4IOzb4wf-gzGzoHsz',
+        appKey: 'GD4efYgVwX8UW8AxUGwCvqTp',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+  <script type="text/javascript"
+   color="0,0,255"
+    opacity='0.3' 
+    zIndex="-2" 
+    count="200" 
+    src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>

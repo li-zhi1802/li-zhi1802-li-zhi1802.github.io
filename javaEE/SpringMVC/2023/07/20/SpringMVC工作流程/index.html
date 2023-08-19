@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-loading-bar.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SpringMVC," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SpringMVC工作流程SpringMVC几大核心组件  DispatcherServlet：所有请求的入口，所有请求都会被打到这个servlet上，由它来做统筹 RequestHandlerMapping：由它来做请求的匹配，返回一个处理本次请求的HandlerExecutionChain RequestHandlerAdapter：由它来做handler的适配，执行业务逻辑 ViewReso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC工作流程">
+<meta property="og:url" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="芝麻的blog">
+<meta property="og:description" content="SpringMVC工作流程SpringMVC几大核心组件  DispatcherServlet：所有请求的入口，所有请求都会被打到这个servlet上，由它来做统筹 RequestHandlerMapping：由它来做请求的匹配，返回一个处理本次请求的HandlerExecutionChain RequestHandlerAdapter：由它来做handler的适配，执行业务逻辑 ViewReso">
+<meta property="og:locale">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814184804721.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814191249786.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814191734475.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814191921944.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814192156083.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814192228034.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814192606361.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193032754.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193248293.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193316698.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193400750.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814194424170.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814194408279.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814194758975.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814195009045.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814195343391.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200115090.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200249581.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200321432.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200716164.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200852601.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200959223.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201056490.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201129704.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201158727.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201222255.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201406377.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201648286.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202038976.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202111941.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202225260.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202346128.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202442198.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202511993.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202527687.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202557993.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203049843.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203418375.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203601844.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203702387.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203937447.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814204026773.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814204220256.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814204433917.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814205614322.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210123325.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814205903071.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210308455.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210552867.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210714883.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210759500.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814211028246.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814211103072.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814211852919.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213100988.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213229086.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212119953.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212628921.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212337158.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212725993.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213519766.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213604692.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213707569.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213656299.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814223347868.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222057013.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222117947.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222533424.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225416006.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225433715.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222705465.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222922395.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814223518496.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224010046.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224309026.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224451182.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224721730.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224805370.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225504748.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225633924.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814230143918.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815083638216.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814230430024.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815084043411.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815084552090.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815090156872.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815084859302.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092605316.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092646855.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092730470.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092901063.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092930257.png">
+<meta property="og:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815101142186.png">
+<meta property="article:published_time" content="2023-07-20T03:15:29.000Z">
+<meta property="article:modified_time" content="2023-08-19T03:18:52.997Z">
+<meta property="article:author" content="芝麻">
+<meta property="article:tag" content="SpringMVC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814184804721.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC工作流程/"/>
+
+
+
+
+
+  <title>SpringMVC工作流程 | 芝麻的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">芝麻的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">百 事 可 乐</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sometips">
+          <a href="/sometips/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            有料
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-anchor"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonlyusedconfiguration">
+          <a href="/commonlyUsedConfiguration" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-id-card"></i> <br />
+            
+            常用配置
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://li-zhi.net.cn/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="芝麻的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringMVC工作流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-07-20T11:15:29+08:00">
+                2023-07-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/" itemprop="url" rel="index">
+                    <span itemprop="name">javaEE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaEE/SpringMVC/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringMVC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="SpringMVC工作流程"><a href="#SpringMVC工作流程" class="headerlink" title="SpringMVC工作流程"></a>SpringMVC工作流程</h1><p>SpringMVC几大核心组件</p>
+<ul>
+<li><code>DispatcherServlet</code>：所有请求的入口，所有请求都会被打到这个<code>servlet</code>上，由它来做<strong>统筹</strong></li>
+<li><code>RequestHandlerMapping</code>：由它来做请求的匹配，返回一个处理本次请求的<code>HandlerExecutionChain</code></li>
+<li><code>RequestHandlerAdapter</code>：由它来做handler的适配，执行业务逻辑</li>
+<li><code>ViewResolver</code>：由它做视图解析</li>
+<li><code>HandlerExceptionResolver</code>：当出现异常的时候由它来做处理</li>
+</ul>
+<p>下面从统筹者逐步分析工作流程</p>
+<h2 id="DispatcherServlet的继承体系"><a href="#DispatcherServlet的继承体系" class="headerlink" title="DispatcherServlet的继承体系"></a><code>DispatcherServlet</code>的继承体系</h2><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814184804721.png" class title="image-20230814184804721">
+
+<p>通过继承体系可以得知以下几点</p>
+<p>1、<code>DispatcherServlet</code>本质上是一个<code>servlet</code></p>
+<p>2、内部注入了</p>
+<ul>
+<li><code>Environment</code>：项目的运行环境</li>
+<li><code>ApplicationContext</code>：Spring容器</li>
+</ul>
+<h2 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a><code>Servlet</code>的生命周期</h2><p>回顾一下<code>Servlet</code>的生命周期</p>
+<ul>
+<li><code>init</code>：在servlet被<strong>初始化</strong>的时候执行</li>
+<li><code>service</code>：在<strong>接收请求</strong>的时候执行该方法</li>
+<li><code>destory</code>：被<strong>销毁</strong>的时候执行该方法</li>
+</ul>
+<p>刚刚说了<code>DispatcherServlet</code>本质上就是<code>Servlet</code>，那就一定也有这三个生命周期</p>
+<h3 id="Servlet接口"><a href="#Servlet接口" class="headerlink" title="Servlet接口"></a>Servlet接口</h3><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814191249786.png" class title="image-20230814191249786">
+
+<p>可以看到这三个方法就对应着三个生命周期</p>
+<h3 id="初始化init"><a href="#初始化init" class="headerlink" title="初始化init"></a>初始化<code>init</code></h3><p>这里我们采用从上往下找，也就是从父类往子类找</p>
+<h4 id="GenericServlet"><a href="#GenericServlet" class="headerlink" title="GenericServlet"></a><code>GenericServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814191734475.png" class title="image-20230814191734475">
+
+<h4 id="HttpServlet"><a href="#HttpServlet" class="headerlink" title="HttpServlet"></a><code>HttpServlet</code></h4><p>此类中没有定义初始化的逻辑</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814191921944.png" class title="image-20230814191921944">
+
+<h4 id="HttpServletBean"><a href="#HttpServletBean" class="headerlink" title="HttpServletBean"></a><code>HttpServletBean</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814192156083.png" class title="image-20230814192156083">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814192228034.png" class title="image-20230814192228034">
+
+<h4 id="FrameworkServlet"><a href="#FrameworkServlet" class="headerlink" title="FrameworkServlet"></a><code>FrameworkServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814192606361.png" class title="image-20230814192606361">
+
+<h5 id="initWebApplicationContext"><a href="#initWebApplicationContext" class="headerlink" title="initWebApplicationContext"></a><code>initWebApplicationContext</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193032754.png" class title="image-20230814193032754">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193248293.png" class title="image-20230814193248293">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193316698.png" class title="image-20230814193316698">
+
+<h4 id="DispatcherServlet"><a href="#DispatcherServlet" class="headerlink" title="DispatcherServlet"></a><code>DispatcherServlet</code></h4><p>找<code>onRefresh</code>方法</p>
+<p>终于到<strong>九大护法</strong>出场的时候了</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814193400750.png" class title="image-20230814193400750">
+
+<h5 id="initMultipartResolver"><a href="#initMultipartResolver" class="headerlink" title="initMultipartResolver"></a><code>initMultipartResolver</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814194424170.png" class title="image-20230814194424170">
+
+<p>可以看到尝试了从容器中拿，找不到就直接赋值为null了</p>
+<p>也就是说，如果我们自己不提供<code>multipartResolver</code>的Bean，我就不装载它</p>
+<blockquote>
+<p>在<code>SpringBoot</code>中是默认加载<code>multipartResolver</code>的</p>
+<p>自动配置类如下</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814194408279.png" class title="image-20230814194408279">
+
+<h5 id="initLocaleResolver"><a href="#initLocaleResolver" class="headerlink" title="initLocaleResolver"></a><code>initLocaleResolver</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814194758975.png" class title="image-20230814194758975">
+
+<p>可以看到和刚刚的<code>initMultipartResolver</code>差不多</p>
+<p>区别就是就是如果在容器找不到<code>LocaleResolver</code>，<code>DispatcherServlet</code>就会找默认的<code>LocaleResolver</code></p>
+<h6 id="getDefaultStrategy"><a href="#getDefaultStrategy" class="headerlink" title="getDefaultStrategy"></a><code>getDefaultStrategy</code></h6><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814195009045.png" class title="image-20230814195009045">
+
+<p>此方法就是返回指定类的默认实现</p>
+<h6 id="getDefaultStrategies"><a href="#getDefaultStrategies" class="headerlink" title="getDefaultStrategies"></a><code>getDefaultStrategies</code></h6><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814195343391.png" class title="image-20230814195343391">
+
+<p>在<code>DispatcherServlet</code>的同级目录下找到<code>DispatcherServlet.properties</code>文件</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200115090.png" class title="image-20230814200115090">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200249581.png" class title="image-20230814200249581">
+
+<h5 id="initThemeResolver"><a href="#initThemeResolver" class="headerlink" title="initThemeResolver"></a><code>initThemeResolver</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200321432.png" class title="image-20230814200321432">
+
+<p>和刚刚的<code>initLocaleResolver</code>一样</p>
+<p>如果在容器中找不到，就直接找默认策略</p>
+<h5 id="initHandlerMappings"><a href="#initHandlerMappings" class="headerlink" title="initHandlerMappings"></a><code>initHandlerMappings</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200716164.png" class title="image-20230814200716164">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200852601.png" class title="image-20230814200852601">
+
+<h5 id="initHandlerAdapters"><a href="#initHandlerAdapters" class="headerlink" title="initHandlerAdapters"></a><code>initHandlerAdapters</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814200959223.png" class title="image-20230814200959223">
+
+<h5 id="initHandlerExceptionResolvers"><a href="#initHandlerExceptionResolvers" class="headerlink" title="initHandlerExceptionResolvers"></a><code>initHandlerExceptionResolvers</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201056490.png" class title="image-20230814201056490">
+
+<h5 id="initRequestToViewNameTranslator"><a href="#initRequestToViewNameTranslator" class="headerlink" title="initRequestToViewNameTranslator"></a><code>initRequestToViewNameTranslator</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201129704.png" class title="image-20230814201129704">
+
+<h5 id="initViewResolvers"><a href="#initViewResolvers" class="headerlink" title="initViewResolvers"></a><code>initViewResolvers</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201158727.png" class title="image-20230814201158727">
+
+<h5 id="initFlashMapManager"><a href="#initFlashMapManager" class="headerlink" title="initFlashMapManager"></a><code>initFlashMapManager</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201222255.png" class title="image-20230814201222255">
+
+<h4 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h4><p>好了，初始化流程就这些，是不是很简单😄😄😄</p>
+<p>主要初始化了以下这些组件</p>
+<p>1、<code>MultipartResolver</code>：处理文件上传的</p>
+<p>2、<code>LocaleResolver</code>：国际化相关组件</p>
+<p>3、<code>ThemeResolver</code></p>
+<p>4、<code>HandlerMappings</code>：匹配请求路径，创建对应的<code>HandlerExecutionChain</code></p>
+<p>5、<code>HandlerAdapters</code>：根据刚刚创建的<code>HandlerExecutionChain</code>中的<code>Handler</code>匹配对应的<code>HandlerAdapter</code></p>
+<p>6、<code>HandlerExceptionResolvers</code>：异常解析器</p>
+<p>7、<code>RequestToViewNameTranslator</code>：将请求路径转化为视图名</p>
+<p>8、<code>ViewResolvers</code>：视图解析器，解析<code>ModelAndView</code></p>
+<p>9、<code>FlashMapManager</code></p>
+<p>接下来的<code>service</code>才是重头戏</p>
+<h3 id="接收请求service"><a href="#接收请求service" class="headerlink" title="接收请求service"></a>接收请求<code>service</code></h3><h4 id="GenericServlet-1"><a href="#GenericServlet-1" class="headerlink" title="GenericServlet"></a><code>GenericServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201406377.png" class title="image-20230814201406377">
+
+<p>这个方法是抽象的，交给子类去实现</p>
+<h4 id="HttpServlet-1"><a href="#HttpServlet-1" class="headerlink" title="HttpServlet"></a><code>HttpServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814201648286.png" class title="image-20230814201648286">
+
+<h5 id="service"><a href="#service" class="headerlink" title="service"></a><code>service</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202038976.png" class title="image-20230814202038976">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202111941.png" class title="image-20230814202111941">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202225260.png" class title="image-20230814202225260">
+
+<h5 id="doGet"><a href="#doGet" class="headerlink" title="doGet"></a><code>doGet</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202346128.png" class title="image-20230814202346128">
+
+<h5 id="doHead"><a href="#doHead" class="headerlink" title="doHead"></a><code>doHead</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202442198.png" class title="image-20230814202442198">
+
+<h5 id="doPost"><a href="#doPost" class="headerlink" title="doPost"></a><code>doPost</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202511993.png" class title="image-20230814202511993">
+
+<h5 id="doPut"><a href="#doPut" class="headerlink" title="doPut"></a><code>doPut</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202527687.png" class title="image-20230814202527687">
+
+<h5 id="doDelete"><a href="#doDelete" class="headerlink" title="doDelete"></a><code>doDelete</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814202557993.png" class title="image-20230814202557993">
+
+<h5 id="doOptions"><a href="#doOptions" class="headerlink" title="doOptions"></a><code>doOptions</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203049843.png" class title="image-20230814203049843">
+
+<h6 id="getDeclaredMethods"><a href="#getDeclaredMethods" class="headerlink" title="getDeclaredMethods"></a><code>getDeclaredMethods</code></h6><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203418375.png" class title="image-20230814203418375">
+
+<blockquote>
+<p><code>c.getDeclaredMethods()</code>调用的是Class类的方法，返回的是这个类定义的所有方法，包括私有方法</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203601844.png" class title="image-20230814203601844">
+</blockquote>
+<p>接着看<code>doOptions</code>方法</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203702387.png" class title="image-20230814203702387">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814203937447.png" class title="image-20230814203937447">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814204026773.png" class title="image-20230814204026773">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814204220256.png" class title="image-20230814204220256">
+
+
+
+<h4 id="FrameworkServlet-1"><a href="#FrameworkServlet-1" class="headerlink" title="FrameworkServlet"></a><code>FrameworkServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814204433917.png" class title="image-20230814204433917">
+
+<blockquote>
+<p> <code>PATCH</code>请求方式是什么？</p>
+<p>传送门：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bee85cf4e33a">https://www.jianshu.com/p/bee85cf4e33a</a></p>
+</blockquote>
+<p>好，也就是说如果请求方式是<code>PATCH</code>，那么就走<code>processRequest</code>方法</p>
+<p>如果不是<code>PATCH</code>方式，就走父类的<code>service</code>方法</p>
+<p>等等，父类的<code>service</code>方法，那不是<code>HttpServlet</code>的<code>service</code>方法吗</p>
+<p>这个<code>service</code>方法中根据请求方式的不同，将请求分发到不同的<code>doXxx</code>方法</p>
+<h5 id="doGet、doPost、doPut、doDelete方法"><a href="#doGet、doPost、doPut、doDelete方法" class="headerlink" title="doGet、doPost、doPut、doDelete方法"></a><code>doGet、doPost、doPut、doDelete</code>方法</h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814205614322.png" class title="image-20230814205614322">
+
+<h5 id="doOptions-1"><a href="#doOptions-1" class="headerlink" title="doOptions"></a><code>doOptions</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210123325.png" class title="image-20230814210123325">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814205903071.png" class title="image-20230814205903071">
+
+<h5 id="doTrace"><a href="#doTrace" class="headerlink" title="doTrace"></a><code>doTrace</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210308455.png" class title="image-20230814210308455">
+
+<h5 id="doHead-1"><a href="#doHead-1" class="headerlink" title="doHead"></a><code>doHead</code></h5><p>在<code>FrameworkServlet</code>中并没有<code>doHead</code>方法，说明是直接复用的父类<code>HttpServlet</code>的<code>doHead</code>方法</p>
+<h5 id="processRequest-❗关键"><a href="#processRequest-❗关键" class="headerlink" title="processRequest(❗关键)"></a><code>processRequest</code>(❗关键)</h5><p>可以看到很多<code>doXxx</code>中都调用了<code>processRequest</code>方法，下面让我们来揭开它的面纱</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210552867.png" class title="image-20230814210552867">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210714883.png" class title="image-20230814210714883">
+
+<p>好接下来的关键就是<code>doService</code>方法了</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814210759500.png" class title="image-20230814210759500">
+
+<p>抽象方法，那就要找子类了，<code>FrameworkServlet</code>的子类，那就是我们的主角<code>DispatcherServlet</code></p>
+<h4 id="DispatcherServlet-1"><a href="#DispatcherServlet-1" class="headerlink" title="DispatcherServlet"></a><code>DispatcherServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814211028246.png" class title="image-20230814211028246">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814211103072.png" class title="image-20230814211103072">
+
+<h5 id="doDispatch-❗❗❗关键中的关键"><a href="#doDispatch-❗❗❗关键中的关键" class="headerlink" title="doDispatch(❗❗❗关键中的关键)"></a><code>doDispatch</code>(❗❗❗关键中的关键)</h5><p>走到这里，其实才是我们的mvc框架大展神威的时候，开头提到的三大护法将一 一现身</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814211852919.png" class title="image-20230814211852919">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213100988.png" class title="image-20230814213100988">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213229086.png" class title="image-20230814213229086">
+
+<h6 id="HandlerExecutionChain"><a href="#HandlerExecutionChain" class="headerlink" title="HandlerExecutionChain"></a><code>HandlerExecutionChain</code></h6><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212119953.png" class title="image-20230814212119953">
+
+<h5 id="1、checkMultipart"><a href="#1、checkMultipart" class="headerlink" title="1、checkMultipart"></a>1、<code>checkMultipart</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212628921.png" class title="image-20230814212628921">
+
+<h5 id="2、getHandler"><a href="#2、getHandler" class="headerlink" title="2、getHandler"></a>2、<code>getHandler</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212337158.png" class title="image-20230814212337158">
+
+<h5 id="3、getHandlerAdapter"><a href="#3、getHandlerAdapter" class="headerlink" title="3、getHandlerAdapter"></a>3、<code>getHandlerAdapter</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814212725993.png" class title="image-20230814212725993">
+
+<h5 id="4、applyPreHandle"><a href="#4、applyPreHandle" class="headerlink" title="4、applyPreHandle"></a>4、<code>applyPreHandle</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213519766.png" class title="image-20230814213519766">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213604692.png" class title="image-20230814213604692">
+
+<blockquote>
+<p> 没有一个拦截器返回false的情况</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213707569.png" class title="image-20230814213707569">
+
+<blockquote>
+<p>中间有一个拦截器返回false的情况</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814213656299.png" class title="image-20230814213656299">
+
+<h5 id="5、handle"><a href="#5、handle" class="headerlink" title="5、handle"></a>5、<code>handle</code></h5><p>好，这个ha是一个<code>HandlerAdapter</code>接口实现类</p>
+<p>我们跑个程序让断点停在这</p>
+<blockquote>
+<p>控制器定义如下<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814223347868.png" class title="image-20230814223347868"></p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222057013.png" class title="image-20230814222057013">
+
+<p>点进去</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222117947.png" class title="image-20230814222117947">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222533424.png" class title="image-20230814222533424">
+
+<blockquote>
+<p>invokeHandlerMethod</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225416006.png" class title="image-20230814225416006">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225433715.png" class title="image-20230814225433715">
+
+<blockquote>
+<p>invokeAndHandle</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222705465.png" class title="image-20230814222705465">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814222922395.png" class title="image-20230814222922395">
+
+<blockquote>
+<p>getMethodArgumentValues</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814223518496.png" class title="image-20230814223518496">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224010046.png" class title="image-20230814224010046">
+
+<p>具体解析参数的逻辑就不在这里看了，后续文章可以写一下</p>
+<blockquote>
+<p>doInvoke</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224309026.png" class title="image-20230814224309026">
+
+<p>回到刚刚调用<code>invokeForRequest</code>的地方</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224451182.png" class title="image-20230814224451182">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224721730.png" class title="image-20230814224721730">
+
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814224805370.png" class title="image-20230814224805370">
+
+<p><code>writeWithMessageConviters</code>方法就是将方法返回值转化为json后将其写到response中，具体执行逻辑后续文章可以写一下</p>
+<p>好，这个方法执行完之后，回到刚刚<code>RequestMappingHandlerAdapter</code>的<code>invokeHandlerMethod</code>的地方，然后就是获得<code>ModelAndView</code>对象了</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225504748.png" class title="image-20230814225504748">
+
+<blockquote>
+<p>getModelAndView</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814225633924.png" class title="image-20230814225633924">
+
+<blockquote>
+<p>这里是true的原因</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814230143918.png" class title="image-20230814230143918">
+</blockquote>
+<p>然后一直往回走，一直回到<code>RequestMappingHandlerAdaptor</code>的<code>handleInternal</code>方法得到这个<code>ModelAndView</code>对象</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815083638216.png" class title="image-20230815083638216">
+
+<p>将<code>ModelAndView</code>对象返回到<code>DispatcherServlet</code>的<code>ha.handle</code>方法</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230814230430024.png" class title="image-20230814230430024">
+
+<h5 id="小总结-1"><a href="#小总结-1" class="headerlink" title="小总结"></a>小总结</h5><p>这个handle方法干的事情还真多啊，对它的功能做一下小总结</p>
+<p>1、执行目标方法（就是对应Controller中的方法）</p>
+<p>2、将响应信息写入response中</p>
+<p>3、构建<code>ModelAndView</code>对象（如果需要的话）</p>
+<h5 id="6、applyPostHandle"><a href="#6、applyPostHandle" class="headerlink" title="6、applyPostHandle"></a>6、<code>applyPostHandle</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815084043411.png" class title="image-20230815084043411">
+
+<p>这里就是执行拦截器链的<code>postHandle</code>方法</p>
+<p>可以看到这里是直接从拦截器尾部开始往前遍历的</p>
+<h5 id="7、processDispatchResult"><a href="#7、processDispatchResult" class="headerlink" title="7、processDispatchResult"></a>7、<code>processDispatchResult</code></h5><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815084552090.png" class title="image-20230815084552090">
+
+<blockquote>
+<p>processHandlerException</p>
+</blockquote>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815090156872.png" class title="image-20230815090156872">
+
+<hr>
+<p>回到刚刚的<code>processDispatchResult</code>下半部分</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815084859302.png" class title="image-20230815084859302">
+
+<h4 id="小总结-2"><a href="#小总结-2" class="headerlink" title="小总结"></a>小总结</h4><p>对<code>DispatcherServlet</code>此块功能做个小总结</p>
+<p>1、根据请求方法将请求分发到对应的<code>doXxx</code>方法（从<code>HttpServlet</code>继承来的方法）</p>
+<p>2、<code>FrameworkServlet</code>方法复写这些<code>doXxx</code>方法，都使用到了一个方法<code>processRequest</code></p>
+<p>3、在<code>processRequest</code>方法中，放出了一个<code>doService</code>抽象方法被<code>DispatcherServlet</code>实现</p>
+<p>4、在<code>doService</code>方法中，又调用了本类的<code>doDispatch</code>方法</p>
+<p>5、<code>getHandler(processedRequest)</code>使用成员属性<code>handlerMappings</code>匹配并创建<code>HandlerExecutionChain</code></p>
+<p>6、<code>getHandlerAdapter(mappedHandler.getHandler())</code>使用成员属性<code>handlerAdapters</code>匹配可以处理<code>HandlerExecutionChain</code>中的<code>handler</code>的<code>HandlerAdapter</code></p>
+<p>7、<code>mappedHandler.applyPreHandle(processedRequest, response)</code>执行拦截器链的<code>preHandle</code>方法</p>
+<p>8、<code> ha.handle(processedRequest, response, mappedHandler.getHandler())</code>执行目标方法中的逻辑，并创建<code>ModelAndView</code>(如果有的话)</p>
+<p>9、<code>mappedHandler.applyPostHandle(processedRequest, response, mv)</code>执行拦截器链的<code>postHandle</code>方法</p>
+<p>10、<code>processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException)</code>执行过程中如果有异常需要用成员属性<code>handlerExceptionResolvers</code>处理异常指定错误视图，并且执行拦截器链的<code>afterCompletion</code>方法</p>
+<h3 id="销毁destroy"><a href="#销毁destroy" class="headerlink" title="销毁destroy"></a>销毁<code>destroy</code></h3><h4 id="GenericServlet-2"><a href="#GenericServlet-2" class="headerlink" title="GenericServlet"></a><code>GenericServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092605316.png" class title="image-20230815092605316">
+
+<h4 id="HttpServlet-2"><a href="#HttpServlet-2" class="headerlink" title="HttpServlet"></a><code>HttpServlet</code></h4><p>该类中没有复写<code>destroy</code>方法</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092646855.png" class title="image-20230815092646855">
+
+<h4 id="HttpServletBean-1"><a href="#HttpServletBean-1" class="headerlink" title="HttpServletBean"></a><code>HttpServletBean</code></h4><p>该类中没有复写<code>destroy</code>方法</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092730470.png" class title="image-20230815092730470">
+
+<h4 id="FrameworkServlet-2"><a href="#FrameworkServlet-2" class="headerlink" title="FrameworkServlet"></a><code>FrameworkServlet</code></h4><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092901063.png" class title="image-20230815092901063">
+
+<h4 id="DispatcherServlet-2"><a href="#DispatcherServlet-2" class="headerlink" title="DispatcherServlet"></a><code>DispatcherServlet</code></h4><p>该类中没有复写<code>destroy</code>方法</p>
+<img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815092930257.png" class title="image-20230815092930257">
+
+<h4 id="小总结-3"><a href="#小总结-3" class="headerlink" title="小总结"></a>小总结</h4><p>也就是说只有<code>FrameworkServlet</code>中定义了<code>destroy</code>方法，也就是关闭web容器</p>
+<h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><img src="/javaEE/SpringMVC/2023/07/20/SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/image-20230815101142186.png" class title="image-20230815101142186">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>给作者买杯咖啡吧~~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringMVC/" rel="tag"><i class="fa fa-tag"></i> SpringMVC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/javaEE/SpringBoot/2023/07/17/SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D/" rel="next" title="SpringBoot自动装配流程">
+                <i class="fa fa-chevron-left"></i> SpringBoot自动装配流程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20anchor">
+              
+                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/li-zhi1802" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div>
+    <svg>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-1"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-2"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-3"></text>
+        <text id="time" text-anchor="middle" x="36%" y="80%" class="words words-4"></text>
+    </svg>
+</div>
+
+<script>
+function showtime(){
+    var noatime = new Date();
+    var h = noatime.getHours(),
+        m = noatime.getMinutes(),
+        s = noatime.getSeconds();
+    h=checktime(h);
+    m=checktime(m);
+    s=checktime(s);
+  return h+":"+m+":"+s;
+}
+
+function checktime(x){
+  if(x<10){
+    x="0"+x;
+  }
+  return x;
+}
+
+var div1=document.getElementsByTagName("text");
+setInterval(function(){
+  for (var i in div1){
+      div1[i].innerHTML=showtime();
+  }
+},1000);
+</script>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringMVC%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">SpringMVC工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DispatcherServlet%E7%9A%84%E7%BB%A7%E6%89%BF%E4%BD%93%E7%B3%BB"><span class="nav-text">DispatcherServlet的继承体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text">Servlet的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet%E6%8E%A5%E5%8F%A3"><span class="nav-text">Servlet接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96init"><span class="nav-text">初始化init</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GenericServlet"><span class="nav-text">GenericServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServlet"><span class="nav-text">HttpServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServletBean"><span class="nav-text">HttpServletBean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FrameworkServlet"><span class="nav-text">FrameworkServlet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#initWebApplicationContext"><span class="nav-text">initWebApplicationContext</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DispatcherServlet"><span class="nav-text">DispatcherServlet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#initMultipartResolver"><span class="nav-text">initMultipartResolver</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initLocaleResolver"><span class="nav-text">initLocaleResolver</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#getDefaultStrategy"><span class="nav-text">getDefaultStrategy</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#getDefaultStrategies"><span class="nav-text">getDefaultStrategies</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initThemeResolver"><span class="nav-text">initThemeResolver</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initHandlerMappings"><span class="nav-text">initHandlerMappings</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initHandlerAdapters"><span class="nav-text">initHandlerAdapters</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initHandlerExceptionResolvers"><span class="nav-text">initHandlerExceptionResolvers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initRequestToViewNameTranslator"><span class="nav-text">initRequestToViewNameTranslator</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initViewResolvers"><span class="nav-text">initViewResolvers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initFlashMapManager"><span class="nav-text">initFlashMapManager</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93"><span class="nav-text">小总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E6%94%B6%E8%AF%B7%E6%B1%82service"><span class="nav-text">接收请求service</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GenericServlet-1"><span class="nav-text">GenericServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServlet-1"><span class="nav-text">HttpServlet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#service"><span class="nav-text">service</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doGet"><span class="nav-text">doGet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doHead"><span class="nav-text">doHead</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doPost"><span class="nav-text">doPost</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doPut"><span class="nav-text">doPut</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doDelete"><span class="nav-text">doDelete</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doOptions"><span class="nav-text">doOptions</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#getDeclaredMethods"><span class="nav-text">getDeclaredMethods</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FrameworkServlet-1"><span class="nav-text">FrameworkServlet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#doGet%E3%80%81doPost%E3%80%81doPut%E3%80%81doDelete%E6%96%B9%E6%B3%95"><span class="nav-text">doGet、doPost、doPut、doDelete方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doOptions-1"><span class="nav-text">doOptions</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doTrace"><span class="nav-text">doTrace</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#doHead-1"><span class="nav-text">doHead</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#processRequest-%E2%9D%97%E5%85%B3%E9%94%AE"><span class="nav-text">processRequest(❗关键)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DispatcherServlet-1"><span class="nav-text">DispatcherServlet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#doDispatch-%E2%9D%97%E2%9D%97%E2%9D%97%E5%85%B3%E9%94%AE%E4%B8%AD%E7%9A%84%E5%85%B3%E9%94%AE"><span class="nav-text">doDispatch(❗❗❗关键中的关键)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HandlerExecutionChain"><span class="nav-text">HandlerExecutionChain</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81checkMultipart"><span class="nav-text">1、checkMultipart</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81getHandler"><span class="nav-text">2、getHandler</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81getHandlerAdapter"><span class="nav-text">3、getHandlerAdapter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81applyPreHandle"><span class="nav-text">4、applyPreHandle</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81handle"><span class="nav-text">5、handle</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93-1"><span class="nav-text">小总结</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6%E3%80%81applyPostHandle"><span class="nav-text">6、applyPostHandle</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81processDispatchResult"><span class="nav-text">7、processDispatchResult</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93-2"><span class="nav-text">小总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%80%E6%AF%81destroy"><span class="nav-text">销毁destroy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GenericServlet-2"><span class="nav-text">GenericServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServlet-2"><span class="nav-text">HttpServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServletBean-1"><span class="nav-text">HttpServletBean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FrameworkServlet-2"><span class="nav-text">FrameworkServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DispatcherServlet-2"><span class="nav-text">DispatcherServlet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E6%80%BB%E7%BB%93-3"><span class="nav-text">小总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="nav-text">时序图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 评论框美化 -->
+<style>
+    #comments .veditor{
+        min-height: 10rem;
+        background-image: url('/images/comment-bg.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-id-card"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">芝麻</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数&#58;</span>
+    
+    <span title="站点总字数">147.9k</span>
+  
+</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'AwKkmCP2V87f6ONd4IOzb4wf-gzGzoHsz',
+        appKey: 'GD4efYgVwX8UW8AxUGwCvqTp',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "./public/search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+  <script type="text/javascript"
+   color="0,0,255"
+    opacity='0.3' 
+    zIndex="-2" 
+    count="200" 
+    src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
